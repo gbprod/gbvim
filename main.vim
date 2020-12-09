@@ -10,7 +10,9 @@ endfor
 let g:gbvim_plugins_root = (has('nvim') ? stdpath('data') : '~/.vim') . '/plugged'
 call plug#begin(g:gbvim_plugins_root)
 for s:layer in g:layers
-  call layers#{s:layer}#plugins()
+  if exists("*layers#{s:layer}#plugins")
+    call layers#{s:layer}#plugins()
+  endif
 endfor
 call plug#end()
 
@@ -20,8 +22,17 @@ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 endif
 
 for s:layer in g:layers
-  call layers#{s:layer}#config()
-  call layers#{s:layer}#bindings()
+  if exists("*layers#{s:layer}#config")
+    call layers#{s:layer}#config()
+  endif
+  if exists("*layers#{s:layer}#bindings")
+    call layers#{s:layer}#bindings()
+  endif
 endfor
 
+for s:layer in g:layers
+  if exists("*layers#{s:layer}#config_after")
+    call layers#{s:layer}#config_after()
+  endif
+endfor
 

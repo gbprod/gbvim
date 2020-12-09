@@ -1,16 +1,8 @@
- - MARKDOWN
- - https://github.com/mg979/vim-visual-multi ?
- - distraction free goyo
- - undo tree
- - terminal
- - php
- - javascript
- - typescript
- - python
- - better whitespace
- - snippets
- - https://github.com/Shougo/echodoc.vim
- - split join
- - keymap pour parcourir les erreurs
- - echo des erreurs ?
- - sudo save
+# gbvim
+
+My neovim setup
+
+Todo:
+
+- [ ] diff
+- [ ] rebase

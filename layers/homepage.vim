@@ -3,9 +3,11 @@ function! layers#homepage#plugins() abort
 endfunction
 
 function! layers#homepage#config() abort
-  autocmd VimEnter * if isdirectory(expand('%:p:h')) | Startify | endif
+  autocmd VimEnter * if isdirectory(expand('%:p')) | Startify | endif
 endfunction
 
 function! layers#homepage#bindings() abort
-  nnoremap <silent><leader>as :Startify<CR>
+  let g:leader_key_map.a.h = 'Homepage'
+  nnoremap <silent><leader>ah :Startify<CR>
 endfunction
+

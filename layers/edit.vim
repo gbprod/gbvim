@@ -1,16 +1,28 @@
 function! layers#edit#plugins() abort
   Plug 'tpope/vim-surround'
-  Plug 'svermeulen/vim-subversive'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'andrewradev/splitjoin.vim'
+  Plug 'tpope/vim-abolish'
+  if has('nvim')
+    Plug 'lambdalisue/suda.vim'
+  endif
+  Plug 'ntpeters/vim-better-whitespace'
 endfunction
 
 function! layers#edit#config() abort
-  call add(g:coc_global_extensions, 'coc-pairs')
+  call add(g:extensions, 'coc-pairs')
 
   set tabstop=4
   set softtabstop=4
   set shiftwidth=4
   set expandtab
+  highlight CocCursorRange guibg=#B48EAD guifg=#D8DEE9
+
+  " Whitespaces
+  highlight ExtraWhitespace guibg=#3B4252
+  let g:better_whitespace_enabled=1
+  let g:strip_whitespace_on_save=1
+  let g:strip_whitespace_confirm=0
 endfunction
 
 function! layers#edit#bindings() abort
@@ -34,22 +46,51 @@ function! layers#edit#bindings() abort
   vnoremap <Tab> >gv
   vnoremap <S-Tab> <gv
 
-  nmap s <plug>(SubversiveSubstitute)
-  nmap ss <plug>(SubversiveSubstituteLine)
-  nmap S <plug>(SubversiveSubstituteToEndOfLine)
-  
-  let g:leader_key_map.s = {
-    \ 'name': '+Substitute',
-    \ 'r': 'substitute range',
-    \ 'w': 'substitute word',
-    \ 'R': 'substitute range with confirm',
-    \ 'W': 'substitute word with confirm',
+  let g:leader_key_map.j = {
+    \ 'name': '+Join/Split',
+    \ 'o': 'Oneliner',
+    \ 'm': 'Multiple liner',
     \ }
-  nmap <leader>sr <plug>(SubversiveSubstituteRange)
-  xmap <leader>sr <plug>(SubversiveSubstituteRange)
-  nmap <leader>sw <plug>(SubversiveSubstituteWordRange)
-  nmap <leader>sR <plug>(SubversiveSubstituteRangeConfirm)
-  xmap <leader>sR <plug>(SubversiveSubstituteRangeConfirm)
-  nmap <leader>sW <plug>(SubversiveSubstituteWordRangeConfirm)
+  nmap <silent><leader>jo :SplitjoinJoin<CR>
+  nmap <silent><leader>jm :SplitjoinSplit<CR>
+
+  let g:leader_key_map.x.c = {'name': '+Convert case'}
+  let g:leader_key_map.x.c.s = 'snake_case'
+  nmap <silent><leader>xcs <Plug>(abolish-coerce-word)s
+  vmap <silent><leader>xcs <Plug>(abolish-coerce)s
+  let g:leader_key_map.x.c.m = 'MixedCase'
+  nmap <silent><leader>xcm <Plug>(abolish-coerce-word)m
+  vmap <silent><leader>xcm <Plug>(abolish-coerce)m
+  let g:leader_key_map.x.c.c = 'camelCase'
+  nmap <silent><leader>xcc <Plug>(abolish-coerce-word)c
+  vmap <silent><leader>xcc <Plug>(abolish-coerce)c
+  let g:leader_key_map.x.c.u = 'UPPER_CASE'
+  nmap <silent><leader>xcu <Plug>(abolish-coerce-word)u
+  vmap <silent><leader>xcu <Plug>(abolish-coerce)u
+  let g:leader_key_map.x.c['-'] = 'dash-case'
+  nmap <silent><leader>xc- <Plug>(abolish-coerce-word)-
+  vmap <silent><leader>xc- <Plug>(abolish-coerce)-
+  let g:leader_key_map.x.c['.'] = 'dot.case'
+  nmap <silent><leader>xc. <Plug>(abolish-coerce-word).
+  vmap <silent><leader>xc. <Plug>(abolish-coerce).
+  let g:leader_key_map.x.c['<space>'] = 'space case'
+  nmap <silent><leader>xc<space> <Plug>(abolish-coerce-word)<space>
+  vmap <silent><leader>xc<space> <Plug>(abolish-coerce)<space>
+  let g:leader_key_map.x.c.t = 'Title Case'
+  nmap <silent><leader>xct <Plug>(abolish-coerce-word)t
+  vmap <silent><leader>xct <Plug>(abolish-coerce)t
+
+  let g:leader_key_map.f.W = 'Sudo save'
+  if has('nvim')
+    nmap <silent><leader>fW :SudaWrite<CR>
+  else
+    nmap <silent><leader>fW :w !sudo tee >/dev/null %<CR>
+  endif
+
+  nmap <silent> <c-a-d> <Plug>(coc-cursors-position)
+  nmap <silent> <c-d> <Plug>(coc-cursors-word)
+  xmap <silent> <c-d> <Plug>(coc-cursors-range)
+  let g:leader_key_map.d = 'Cursor operator <motion>'
+  nmap <leader>d <Plug>(coc-cursors-operator)
 endfunction
 

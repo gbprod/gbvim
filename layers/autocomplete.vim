@@ -1,7 +1,7 @@
 function! layers#autocomplete#plugins() abort
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
-  let g:coc_global_extensions = []
+  let g:extensions = []
 endfunction
 
 function! layers#autocomplete#config() abort
@@ -43,6 +43,7 @@ function! layers#autocomplete#bindings() abort
   nnoremap <silent><leader>cd :call CocActionAsync('doHover')<CR>
 
   nmap <a-cr> <Plug>(coc-codeaction)
+  inoremap <silent><expr> <c-k> coc#refresh()
 
   let g:leader_key_map.c.a = 'Code action <motion>'
   xmap <leader>ca <Plug>(coc-codeaction-selected)
@@ -62,3 +63,6 @@ function! layers#autocomplete#bindings() abort
   omap ac <Plug>(coc-classobj-a)
 endfunction
 
+function! layers#autocomplete#config_after() abort
+  let g:coc_global_extensions = g:extensions
+endfunction

@@ -1,6 +1,3 @@
-function! layers#defaults#plugins() abort
-endfunction
-
 function! layers#defaults#config() abort
   let g:mapleader=','
   let g:loaded_netrwPlugin = 1
@@ -15,7 +12,7 @@ function! layers#defaults#config() abort
   set cursorline
   set guicursor=n-v-c:block-blinkon10,i-ci-ve:ver25-blinkon10,r-cr:hor20,o:hor50
   set relativenumber
-
+  set termguicolors
   set laststatus=2
   set noshowcmd
   set autoindent
@@ -79,7 +76,4 @@ function! layers#defaults#config() abort
   set shortmess+=s
   set nowrap
   set conceallevel=0
-endfunction
-
-function! layers#defaults#bindings() abort
 endfunction

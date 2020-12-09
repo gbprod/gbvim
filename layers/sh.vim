@@ -1,10 +1,6 @@
-function! layers#sh#plugins() abort
-endfunction
-
 function! layers#sh#config() abort
-  call add(g:coc_global_extensions, 'coc-sh')
+  call add(g:extensions, 'coc-sh')
+  let g:checkers.sh = "shellcheck"
   let g:neoformat_enabled_sh = ['shfmt']
 endfunction
 
-function! layers#sh#bindings() abort
-endfunction
