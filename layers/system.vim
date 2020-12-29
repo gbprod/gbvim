@@ -4,6 +4,6 @@ function! layers#system#plugins() abort
 endfunction
 
 function! layers#system#config() abort
-  call coc#config('rootPatterns', ['.git/', '.env', '.env.dist', '.project.json', '.envrc'])
+  let g:rooter_patterns = ['.git/', '.env', '.env.dist', '.project.json', '.envrc']
   let g:rooter_silent_chdir = 1
 endfunction

@@ -74,6 +74,10 @@ function! layers#ui#bindings() abort
 
   let g:leader_key_map.w['='] = 'Balance'
   nnoremap <silent><leader>w= :wincmd =<CR>
+  nnoremap <silent> <leader>w<Up> :resize +5<CR>
+  nnoremap <silent> <leader>w<Down> :resize -5<CR>
+  nnoremap <silent> <leader>w<Right> :vertical resize +5<CR>
+  nnoremap <silent> <leader>w<Left> :vertical resize -5<CR>
 
   let g:leader_key_map.w.v = 'Vertical split'
   nnoremap <silent><leader>wv :vsplit<CR>

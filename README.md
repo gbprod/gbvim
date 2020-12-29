@@ -6,3 +6,4 @@ Todo:
 
 - [ ] diff
 - [ ] rebase
+- [ ] multi cursor ?
