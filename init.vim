@@ -34,6 +34,7 @@ let g:layers = [
 \ 'markdown',
 \ 'terminal',
 \ 'docker',
+\ 'cursor',
 \ ]
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'

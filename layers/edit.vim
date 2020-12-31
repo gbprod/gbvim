@@ -87,10 +87,10 @@ function! layers#edit#bindings() abort
     nmap <silent><leader>fW :w !sudo tee >/dev/null %<CR>
   endif
 
-  nmap <silent> <c-a-d> <Plug>(coc-cursors-position)
-  nmap <silent> <c-d> <Plug>(coc-cursors-word)
-  xmap <silent> <c-d> <Plug>(coc-cursors-range)
-  let g:leader_key_map.d = 'Cursor operator <motion>'
-  nmap <leader>d <Plug>(coc-cursors-operator)
+  " nmap <silent> <c-a-d> <Plug>(coc-cursors-position)
+  " nmap <silent> <c-d> <Plug>(coc-cursors-word)
+  " xmap <silent> <c-d> <Plug>(coc-cursors-range)
+  " let g:leader_key_map.d = 'Cursor operator <motion>'
+  " nmap <leader>d <Plug>(coc-cursors-operator)
 endfunction
 

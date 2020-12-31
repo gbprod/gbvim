@@ -12,6 +12,7 @@ function! layers#php#config() abort
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan', 'psalm']
+  " call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
   let g:vista_executive_for['php'] = 'coc'
 
   call coc#config('phpactor', {
@@ -21,6 +22,13 @@ function! layers#php#config() abort
 
   " autocmd FileType php let b:coc_root_patterns = ['composer.json']
   autocmd FileType php setlocal colorcolumn=+1,+40 textwidth=80 formatoptions-=t
+
+  let g:neoformat_php_phpcs = {
+  \ 'exe': 'php-cs-fixer',
+  \ 'args': ['fix', '-q', '--config', '~/.config/phpcs/.php_cs'],
+  \ 'replace': 1,
+  \ }
+  let g:neoformat_enabled_php = ['phpcs']
 
   let g:PhpactorRootDirectoryStrategy = {-> getcwd() }
 endfunction

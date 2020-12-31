@@ -2,12 +2,6 @@ function! layers#snippets#config() abort
   call add(g:extensions, 'coc-snippets')
 
   call coc#config('snippets', {
-  \ 'userSnippetsDirectory': g:gbvim_root_dir . '/layers/snippets',
-  \ 'ultisnips': {
-    \ 'directories': [
-      \ 'UltiSnips',
-      \ g:gbvim_root_dir . '/layers/snippets'
-      \ ]
-    \ }
+  \ 'userSnippetsDirectory': g:gbvim_root_dir . '/layers/snippets'
   \ })
 endfunction
