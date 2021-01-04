@@ -10,13 +10,17 @@ function! layers#checker#config() abort
     \ "infoSign": "🛈",
     \ "hintSign": "➤",
     \ })
+
+  call coc#config('diagnostic-languageserver.mergeConfig', v:true)
+  " call coc#config('diagnostic-languageserver.debug', v:true)
+  " call coc#config('diagnostic-languageserver.server.trace', 'verbose')
 endfunction
 
 function! layers#checker#bindings() abort
   let g:leader_key_map.e = { 'name': '+Errors' }
 
-  let g:leader_key_map.e.o = 'Open'
-  nnoremap <silent><leader>eo :CocDiagnostics<CR>
+  let g:leader_key_map.e.e = 'Open'
+  nnoremap <silent><leader>ee :CocDiagnostics<CR>
   let g:leader_key_map.e.O = 'Open All'
   nnoremap <silent><leader>eO :CocList diagnostics<CR>
   let g:leader_key_map.e.c = 'Close'

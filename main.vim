@@ -36,3 +36,10 @@ for s:layer in g:layers
   endif
 endfor
 
+command! -nargs=0 GBUpdate :call <SID>update()
+function s:update() abort
+  PlugUpgrade
+  PlugUpdate
+  PlugClean
+  CocCommand extensions.forceUpdateAll
+endfunction

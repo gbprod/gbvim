@@ -19,4 +19,6 @@ function! layers#cursor#config()
   " let g:leader_key_map.v.a = "Visual Add"
   " let g:leader_key_map.v.f = "Visual Find"
   " let g:leader_key_map.v.c = "Visual Cursors"
+
+  autocmd User visual_multi_mappings imap <buffer><expr> <CR> pumvisible() ? "\<C-Y>" : "\<Plug>(VM-I-Return)"
 endfunction

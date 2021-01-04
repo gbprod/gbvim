@@ -12,7 +12,15 @@ function! layers#php#config() abort
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan', 'psalm']
-  " call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
+  call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
+  call coc#config('diagnostic-languageserver.linters.phpstan.args', [
+    \ "analyze",
+    \ "--error-format", "raw",
+    \ "--no-progress",
+    \ "--level", "max",
+    \ "%file"
+    \ ])
+
   let g:vista_executive_for['php'] = 'coc'
 
   call coc#config('phpactor', {

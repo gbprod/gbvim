@@ -6,5 +6,5 @@ function! layers#terminal#bindings() abort
   tnoremap <silent><C-Left> <C-\><C-n>:<C-u>wincmd h<CR>
   tnoremap <silent><C-Up> <C-\><C-n>:<C-u>wincmd k<CR>
   tnoremap <silent><C-Down> <C-\><C-n>:<C-u>wincmd j<CR>
-  tnoremap <silent><esc><esc> <C-\><C-n>
+  tnoremap <silent><C-o> <C-\><C-n>
 endfunction
