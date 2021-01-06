@@ -39,6 +39,8 @@ function! layers#php#config() abort
   let g:neoformat_enabled_php = ['phpcs']
 
   let g:PhpactorRootDirectoryStrategy = {-> getcwd() }
+
+  let g:PHP_noArrowMatching = 1
 endfunction
 
 function! layers#php#bindings() abort
@@ -48,7 +50,7 @@ function! layers#php#bindings() abort
   autocmd FileType php nnoremap <leader>lR :PhpactorFindReferences<CR>
   autocmd FileType php nnoremap <leader>lN :PhpactorNavigate<CR>
   autocmd FileType php nnoremap <leader>lv :PhpactorChangeVisibility<CR>
-  autocmd FileType php nnoremap <leader>lt :call layers#php#alternate(expand("%@"))
+  autocmd FileType php nnoremap <leader>lt :call layers#php#alternate(expand("%@"))<CR>
   autocmd FileType php noremap <leader>lxm :PhpactorExtractMethod<CR>
   autocmd FileType php noremap <leader>lxv :PhpactorExtractExpression<CR>
   autocmd FileType php noremap <leader>lxc :PhpactorExtractConstant<CR>

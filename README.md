@@ -4,5 +4,8 @@ My neovim setup
 
 Todo:
 
-- [ ] diff
-- [ ] multi cursor a finir
+- diff
+- https://github.com/vimwiki/vimwiki
+- https://github.com/blindFS/vim-taskwarrior
+- multi cursor a finir
+

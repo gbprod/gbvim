@@ -62,6 +62,7 @@ function! layers#ui#bindings() abort
 
   nnoremap <silent><A-Right> :call <SID>change_tab('next')<CR>
   nnoremap <silent><A-Left> :call <SID>change_tab('prev')<CR>
+  nnoremap <silent><leader><tab> :call <SID>change_tab('#')<CR>
 
   let g:leader_key_map.b.d = 'Close current'
   nnoremap <silent><leader>bd :Bdelete<CR>

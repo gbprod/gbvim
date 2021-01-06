@@ -3,7 +3,7 @@ function! layers#javascript#config() abort
   call add(g:extensions, 'coc-tsserver')
   call add(g:extensions, 'coc-eslint')
 
-  autocmd Filetype json let g:indentLine_setConceal = 0
+  autocmd Filetype json let g:indentLine_setConceal = 0 | set conceallevel=0
 
   autocmd FileType javascript let b:coc_root_patterns = ['package.json']
 

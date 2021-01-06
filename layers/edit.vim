@@ -7,6 +7,7 @@ function! layers#edit#plugins() abort
     Plug 'lambdalisue/suda.vim'
   endif
   Plug 'ntpeters/vim-better-whitespace'
+  Plug 'christoomey/vim-sort-motion'
 endfunction
 
 function! layers#edit#config() abort
@@ -23,6 +24,9 @@ function! layers#edit#config() abort
   let g:better_whitespace_enabled=1
   let g:strip_whitespace_on_save=1
   let g:strip_whitespace_confirm=0
+
+  let g:sort_motion = '<leader>xo'
+  let g:sort_motion_visual = '<leader>xo'
 endfunction
 
 function! layers#edit#bindings() abort
@@ -79,6 +83,8 @@ function! layers#edit#bindings() abort
   let g:leader_key_map.x.c.t = 'Title Case'
   nmap <silent><leader>xct <Plug>(abolish-coerce-word)t
   vmap <silent><leader>xct <Plug>(abolish-coerce)t
+
+  let g:leader_key_map.x.o = 'Sort <motion>'
 
   let g:leader_key_map.f.W = 'Sudo save'
   if has('nvim')

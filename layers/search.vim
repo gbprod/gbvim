@@ -13,7 +13,7 @@ endfunction
 
 function! layers#search#bindings() abort
   let g:leader_key_map.s.s = 'Search'
-  nmap <leader>ss :<c-u>CocSearch<space>
+  nmap <leader>ss :<c-u>CocSearch --fixed-strings<space>
   let g:leader_key_map.s.w = 'Search <cword>'
   nmap <expr> <leader>sw <SID>SearchCwordCmd()
   let g:leader_key_map.s['/'] = 'Search <lastsearch>'
@@ -27,9 +27,9 @@ function! layers#search#bindings() abort
 endfunction
 
 function! s:SearchCwordCmd()
-  return ":\<C-U>CocSearch " . expand('<cword>')
+  return ":\<C-U>CocSearch --fixed-strings " . expand('<cword>')
 endfunction
 
 function! s:SearchPwordCmd()
-  return ":\<C-U>CocSearch " . @/
+  return ":\<C-U>CocSearch --fixed-strings " . @/
 endfunction
