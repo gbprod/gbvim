@@ -21,6 +21,7 @@ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   PlugInstall --sync | q
 endif
 
+    call layers#project#config()
 for s:layer in g:layers
   if exists("*layers#{s:layer}#config")
     call layers#{s:layer}#config()

@@ -10,8 +10,8 @@ function! layers#tagbar#config() abort
 endfunction
 
 function! layers#tagbar#bindings() abort
-  let g:leader_key_map.a.t = "Tagbar"
-  nmap <silent><leader>at :Vista!!<CR>
+  let g:leader_key_map.a.v = "Tagbar"
+  nmap <silent><leader>av :Vista!!<CR>
   let g:leader_key_map.f.v = "Vista tags"
   nmap <silent><leader>fv :Vista finder<CR>
 endfunction

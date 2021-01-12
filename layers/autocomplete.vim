@@ -14,8 +14,8 @@ endfunction
 function! layers#autocomplete#bindings() abort
   let g:leader_key_map.c = { 'name': "+Code" }
 
-  inoremap <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
-  inoremap <expr> <S-Tab> pumvisible() ? "\<Up>" : ""
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : ""
   if exists('*complete_info')
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   else
@@ -52,6 +52,8 @@ function! layers#autocomplete#bindings() abort
   nmap <silent><leader>cf <Plug>(coc-fix-current)
   let g:leader_key_map.c.h = 'Hightlight'
   nmap <silent><leader>ch :call CocActionAsync('highlight')<CR>
+  let g:leader_key_map.c.r = 'Rename'
+  nmap <silent><leader>cr <Plug>(coc-rename)
 
   xmap if <Plug>(coc-funcobj-i)
   omap if <Plug>(coc-funcobj-i)

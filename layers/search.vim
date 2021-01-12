@@ -19,11 +19,12 @@ function! layers#search#bindings() abort
   let g:leader_key_map.s['/'] = 'Search <lastsearch>'
   nmap <expr> <leader>s/ <SID>SearchPwordCmd()
   let g:leader_key_map.s.g = 'Grep'
-  nnoremap <silent><leader>sg :CocList grep<CR>
+  nnoremap <silent><leader>sg :<c-u>CocList grep<CR>
   let g:leader_key_map.s.f = 'Word in file'
-  nnoremap <silent><leader>sf :CocList words<CR>
+  nnoremap <silent><leader>sf :<c-u>CocList words<CR>
 
-  nnoremap <leader>sr <Plug>(coc-refactor)
+  let g:leader_key_map.s.r = 'Search regex'
+  nnoremap <silent><leader>sf :<c-u>CocSearch --regex
 endfunction
 
 function! s:SearchCwordCmd()

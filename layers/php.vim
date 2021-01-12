@@ -9,6 +9,7 @@ endfunction
 
 function! layers#php#config() abort
   autocmd FileType php setlocal commentstring=//\ %s
+  autocmd FileType html.twig,htmldjango.twig setlocal commentstring={#\ %s\ #} | let b:current_syntax = 'twig'
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan', 'psalm']

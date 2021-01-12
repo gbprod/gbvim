@@ -57,9 +57,6 @@ function! s:defx_options() abort
 endfunction
 
 function! s:defx_setup() abort
-  set nonumber
-  set norelativenumber
-
   nnoremap <silent><buffer><expr> <CR>
     \  defx#is_directory()
     \ ? defx#do_action('open_tree', 'toggle')

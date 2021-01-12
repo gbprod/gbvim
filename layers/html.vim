@@ -1,3 +1,7 @@
+function! layers#html#plugins() abort
+  Plug 'alvan/vim-closetag'
+endfunction
+
 function! layers#html#config() abort
   call add(g:extensions, 'coc-css')
   call add(g:extensions, 'coc-html')

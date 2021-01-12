@@ -9,6 +9,7 @@ endif
 let g:layers = [
 \ 'defaults',
 \ 'system',
+\ 'project',
 \ 'ui',
 \ 'homepage',
 \ 'yanking',
@@ -37,6 +38,7 @@ let g:layers = [
 \ 'cursor',
 \ 'repl',
 \ 'nginx',
+\ 'taskwarrior',
 \ ]
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'

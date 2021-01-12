@@ -1,3 +1,8 @@
+function! layers#javascript#plugins() abort
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+endfunction
+
 function! layers#javascript#config() abort
   call add(g:extensions, 'coc-json')
   call add(g:extensions, 'coc-tsserver')

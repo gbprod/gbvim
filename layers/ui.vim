@@ -8,6 +8,7 @@ function! layers#ui#plugins() abort
   Plug 'yggdroot/indentline'
   Plug 'ryanoasis/vim-devicons'
   Plug 'junegunn/goyo.vim'
+  Plug 'troydm/zoomwintab.vim'
 
   let g:language_specified_mappings = {}
 endfunction
@@ -52,6 +53,8 @@ function! layers#ui#config() abort
   let g:indentLine_conceallevel = 2
 
   let g:goyo_width = 120
+
+  let g:zoomwintab_remap = 0
 endfunction
 
 function! layers#ui#bindings() abort
@@ -105,6 +108,12 @@ function! layers#ui#bindings() abort
 
   let g:leader_key_map.a.d = "Distraction free"
   nmap <silent> <leader>ad :Goyo<CR>
+
+  let g:leader_key_map.w.z = 'Zoom'
+  nnoremap <leader>wz :ZoomWinTabToggle<CR>
+  if has('terminal')
+    tnoremap <leader>wz :ZoomWinTabToggle<CR>
+  endif
 endfunction
 
 function! s:change_lspc_bindings() abort

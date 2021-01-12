@@ -4,7 +4,7 @@ function! layers#motions#plugins() abort
   Plug 'kana/vim-textobj-indent'
   Plug 'kana/vim-textobj-line'
   " Plug 'kana/vim-textobj-function'
-  Plug 'glts/vim-textobj-comment'
+  " Plug 'glts/vim-textobj-comment'
   Plug 'kana/vim-textobj-entire'
   Plug 'rhysd/clever-f.vim'
   Plug 'andymass/vim-matchup'

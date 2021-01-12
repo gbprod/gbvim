@@ -5,6 +5,7 @@ endfunction
 
 function! layers#markdown#config() abort
   call add(g:extensions, 'coc-markdownlint')
+  call add(g:extensions, 'coc-emoji')
   let g:vim_markdown_conceal = 0
 endfunction
 
