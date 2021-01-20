@@ -18,8 +18,6 @@ function! layers#finder#bindings() abort
 endfunction
 
 function! OpenList(list) abort
-  if &filetype ==# 'defx'
-    wincmd p
-  endif
+  call SelectMain()
   execute "CocList --number-select ".a:list
 endfunction

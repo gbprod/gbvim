@@ -19,6 +19,7 @@ function! layers#defaults#config() abort
   set smartindent
   set cindent
   set wildmenu
+  set wildmode=longest:full,full
   set linebreak
   set number
   set autoread

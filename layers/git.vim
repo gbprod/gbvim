@@ -20,13 +20,15 @@ endfunction
 function! layers#git#bindings() abort
   let g:leader_key_map.g = { 'name': '+Git' }
   let g:leader_key_map.g.s = 'Status'
-  nnoremap <silent> <leader>gs :CocList gstatus<CR>
+  nnoremap <silent> <leader>gs :Gstatus<CR>
   let g:leader_key_map.g.b = 'Blame'
   nnoremap <silent> <leader>gb :Gblame<CR>
   let g:leader_key_map.g.m = 'Branches'
   nnoremap <silent> <leader>gm :CocList branches<CR>
   let g:leader_key_map.g.c = 'Commits'
   nnoremap <silent> <leader>gc :CocList commits<CR>
+  let g:leader_key_map.g.d = 'File diff'
+  nnoremap <silent> <leader>gd :Gdiff<CR>
   let g:leader_key_map.g.C = 'File commits'
   nnoremap <silent> <leader>gC :CocList bcommits<CR>
   let g:leader_key_map.g.n = 'Next chunk'
@@ -39,6 +41,8 @@ function! layers#git#bindings() abort
   nmap <silent> <leader>gx <Plug>(coc-git-nextconflict)
   let g:leader_key_map.g.X = 'Prev conflict'
   nmap <silent> <leader>gX <Plug>(coc-git-prevconflict)
+  let g:leader_key_map.g.u = 'Undo chunk'
+  nnoremap <silent> <leader>gC :CocCommand git.chunkUndo<CR>
 
   let g:leader_key_map.g.r = { 'name': '+Rebase' }
   let g:leader_key_map.g.r.p = 'Pick'

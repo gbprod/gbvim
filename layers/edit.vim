@@ -98,5 +98,10 @@ function! layers#edit#bindings() abort
   " xmap <silent> <c-d> <Plug>(coc-cursors-range)
   " let g:leader_key_map.d = 'Cursor operator <motion>'
   " nmap <leader>d <Plug>(coc-cursors-operator)
+
+  let g:leader_key_map[';'] = 'Add trailing ;'
+  nmap <silent><leader>; A;<C-c>
+  let g:leader_key_map[','] = 'Add trailing ,'
+  nmap <silent><leader>; A,<C-c>
 endfunction
 

@@ -7,6 +7,8 @@ function! layers#html#config() abort
   call add(g:extensions, 'coc-html')
   call add(g:extensions, 'coc-stylelint')
 
+  call coc#config('html.autoClosingTags', v:true)
+
   autocmd Filetype json let g:indentLine_setConceal = 0
 
   let g:neoformat_enabled_html = ['prettier']

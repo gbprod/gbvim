@@ -2,6 +2,7 @@ function! layers#autocomplete#plugins() abort
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
   let g:extensions = []
+  let g:coc_filetype_map = {}
 endfunction
 
 function! layers#autocomplete#config() abort
@@ -25,7 +26,8 @@ function! layers#autocomplete#bindings() abort
   inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
   inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
   inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-  inoremap <silent><expr> <c-n> coc#refresh()
+  imap <silent> <c-n> <C-r>=coc#refresh()<CR>
+  imap <silent> <c-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
   let g:leader_key_map.c.g = { 'name': '+Goto' }
   let g:leader_key_map.c.g.d = 'Definition'
@@ -43,7 +45,6 @@ function! layers#autocomplete#bindings() abort
   nnoremap <silent><leader>cd :call CocActionAsync('doHover')<CR>
 
   nmap <a-cr> <Plug>(coc-codeaction)
-  inoremap <silent><expr> <c-k> coc#refresh()
 
   let g:leader_key_map.c.a = 'Code action <motion>'
   xmap <leader>ca <Plug>(coc-codeaction-selected)

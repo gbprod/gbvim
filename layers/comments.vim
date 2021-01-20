@@ -7,9 +7,9 @@ function! layers#comments#bindings() abort
   nmap <leader>cl <Plug>CommentaryLine
   xmap <leader>cl <Plug>Commentary
 
-  let g:leader_key_map[';'] = 'Comment <motion>'
-  omap <leader>; <Plug>Commentary
-  nmap <leader>; <Plug>Commentary
-  xmap <leader>; <Plug>Commentary
+  let g:leader_key_map.c.c = 'Comment <motion>'
+  omap <leader>cc <Plug>Commentary
+  nmap <leader>cc <Plug>Commentary
+  xmap <leader>cc <Plug>Commentary
 endfunction
 

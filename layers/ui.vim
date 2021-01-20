@@ -89,6 +89,16 @@ function! layers#ui#bindings() abort
   nnoremap <silent><leader>wh :split<CR>
   let g:leader_key_map.w.d = 'Delete'
   nnoremap <silent><leader>wd :close<CR>
+  let g:leader_key_map.w.x = 'Exchange'
+  nnoremap <silent><leader>wx :wincmd x<CR>
+  let g:leader_key_map.w.r = 'Rotate'
+  nnoremap <silent><leader>wr :wincmd r<CR>
+
+  let g:leader_key_map.w.z = 'Zoom'
+  nnoremap <leader>wz :ZoomWinTabToggle<CR>
+  if has('terminal')
+    tnoremap <leader>wz :ZoomWinTabToggle<CR>
+  endif
 
   let g:leader_key_map.a.C = 'Color picker'
   nnoremap <silent><leader>aC :call CocAction('pickColor')<CR>
@@ -109,11 +119,8 @@ function! layers#ui#bindings() abort
   let g:leader_key_map.a.d = "Distraction free"
   nmap <silent> <leader>ad :Goyo<CR>
 
-  let g:leader_key_map.w.z = 'Zoom'
-  nnoremap <leader>wz :ZoomWinTabToggle<CR>
-  if has('terminal')
-    tnoremap <leader>wz :ZoomWinTabToggle<CR>
-  endif
+  let g:leader_key_map.f.e = 'Edit <cfile>'
+  nmap <silent> <leader>fe :call <SID>edit_cfile()<CR>
 endfunction
 
 function! s:change_lspc_bindings() abort
@@ -126,9 +133,27 @@ function! s:change_lspc_bindings() abort
 endfunction
 
 function s:change_tab(target) abort
-  if &filetype ==# "defx"
-    wincmd p
+  call SelectMain()
+  execute 'b'.a:target
+endfunction
+
+function s:edit_cfile() abort
+  let file = expand('<cfile>')
+  if !filereadable(file)
+    echoerr "File not found"
+    return
   endif
 
-  execute 'b'.a:target
+  call SelectMain()
+  execute 'e '.file
+endfunction
+
+function! SelectMain() abort
+  let nr = winnr('$')
+  for w in range(nr)
+    if &buftype == ""
+      break
+    endif
+    wincmd w
+  endfor
 endfunction
