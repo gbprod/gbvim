@@ -3,13 +3,10 @@ function! layers#motions#plugins() abort
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-indent'
   Plug 'kana/vim-textobj-line'
-  " Plug 'kana/vim-textobj-function'
-  " Plug 'glts/vim-textobj-comment'
   Plug 'kana/vim-textobj-entire'
   Plug 'rhysd/clever-f.vim'
   Plug 'andymass/vim-matchup'
   Plug 'wellle/targets.vim'
-  " https://github.com/mg979/vim-visual-multi ?
 endfunction
 
 function! layers#motions#bindings() abort

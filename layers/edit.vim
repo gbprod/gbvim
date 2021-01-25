@@ -102,6 +102,6 @@ function! layers#edit#bindings() abort
   let g:leader_key_map[';'] = 'Add trailing ;'
   nmap <silent><leader>; A;<C-c>
   let g:leader_key_map[','] = 'Add trailing ,'
-  nmap <silent><leader>; A,<C-c>
+  nmap <silent><leader>, A,<C-c>
 endfunction
 

@@ -48,6 +48,8 @@ function! layers#php#config() abort
   let g:PhpactorRootDirectoryStrategy = {-> getcwd() }
 
   let g:PHP_noArrowMatching = 1
+
+  let g:doc_targets.php = '"https://duckduckgo.com/?q=\!php %s"'
 endfunction
 
 function! layers#php#bindings() abort

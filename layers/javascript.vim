@@ -18,5 +18,7 @@ function! layers#javascript#config() abort
 
   let g:neoformat_enabled_javascript = ['prettier']
   let g:neoformat_enabled_json = ['prettier']
+
+  let g:doc_targets.javascript = '"https://duckduckgo.com/?q=\!javascript %s"'
 endfunction
 

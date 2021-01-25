@@ -7,6 +7,7 @@ function! layers#filetree#plugins() abort
     Plug 'ryanoasis/vim-devicons'
     Plug 'preservim/nerdtree'
   endif
+  Plug 'danro/rename.vim'
 endfunction
 
 function! layers#filetree#config() abort
@@ -126,5 +127,13 @@ function! layers#filetree#bindings() abort
     nnoremap <silent> <F3> :NERDTreeToggle<CR>
     nnoremap <leader>fo :NERDTreeFind<CR>
   endif
+
+
+  let g:leader_key_map.f.R = 'Rename file'
+  nnoremap <leader>fR :call RenameInput()<CR>
 endfunction
 
+function! RenameInput()
+  let name = input('Enter new name: ', expand('%:t'))
+  call Rename(name, '')
+endfunction

@@ -15,11 +15,14 @@ function! layers#html#config() abort
   let g:neoformat_enabled_css = ['prettier']
 
   autocmd FileType html setlocal
-  \ shiftwidth=2
-  \ tabstop=2
+        \ shiftwidth=2
+        \ tabstop=2
 
   autocmd FileType css,less,sass setlocal
-  \ shiftwidth=2
-  \ tabstop=2
+        \ shiftwidth=2
+        \ tabstop=2
+
+  let g:doc_targets.html = '"https://duckduckgo.com/?q=\!w3c %s"'
+  let g:doc_targets.css = '"https://duckduckgo.com/?q=\!css %s"'
 endfunction
 

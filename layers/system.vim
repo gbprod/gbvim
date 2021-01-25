@@ -6,7 +6,7 @@ function! layers#system#plugins() abort
 endfunction
 
 function! layers#system#config() abort
-  let g:rooter_patterns = ['.git/', '.env', '.env.dist', '.project.json', '.envrc']
+  let g:rooter_patterns = ['.git/', '.env', '.env.dist', '.project.vim', '.envrc']
   let g:rooter_silent_chdir = 1
 
   " autocmd VimEnter * if isdirectory(expand('%:p')) | :call <SID>load_session() | endif
