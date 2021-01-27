@@ -14,7 +14,7 @@ function! layers#defaults#config() abort
   set relativenumber
   set termguicolors
   set laststatus=2
-  set noshowcmd
+  set showcmd
   set autoindent
   set smartindent
   set cindent
@@ -63,7 +63,7 @@ function! layers#defaults#config() abort
   set completeopt=menu,menuone,longest
   set complete=.,w,b,u,t
   set pumheight=15
-  set scrolloff=1
+  set scrolloff=4
   set sidescrolloff=5
   set display+=lastline
   set incsearch
@@ -77,4 +77,5 @@ function! layers#defaults#config() abort
   set shortmess+=s
   set nowrap
   set conceallevel=0
+  set title
 endfunction

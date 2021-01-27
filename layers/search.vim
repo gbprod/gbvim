@@ -1,3 +1,7 @@
+function! layers#search#plugins() abort
+  Plug 'haya14busa/vim-asterisk'
+endfunction
+
 function! layers#search#config() abort
   call add(g:extensions, 'coc-lists')
 
@@ -9,28 +13,35 @@ function! layers#search#config() abort
     \ 'openCommand': 'rightbelow vsplit'
     \ }
     \ )
+
+  let g:asterisk#keeppos = 1
 endfunction
 
 function! layers#search#bindings() abort
   let g:leader_key_map.s.s = 'Search'
-  nmap <leader>ss :<c-u>CocSearch --fixed-strings<space>
+  nmap <leader>ss :call SelectMain()<CR>:<c-u>CocSearch --fixed-strings<space>
   let g:leader_key_map.s.w = 'Search <cword>'
   nmap <expr> <leader>sw <SID>SearchCwordCmd()
   let g:leader_key_map.s['/'] = 'Search <lastsearch>'
   nmap <expr> <leader>s/ <SID>SearchPwordCmd()
   let g:leader_key_map.s.g = 'Grep'
-  nnoremap <silent><leader>sg :<c-u>CocList grep<CR>
+  nnoremap <silent><leader>sg :call SelectMain()<CR>:<c-u>CocList grep<CR>
   let g:leader_key_map.s.f = 'Word in file'
-  nnoremap <silent><leader>sf :<c-u>CocList words<CR>
+  nnoremap <silent><leader>sf :call SelectMain()<CR>:<c-u>CocList words<CR>
 
   let g:leader_key_map.s.r = 'Search regex'
-  nnoremap <silent><leader>sf :<c-u>CocSearch --regex
+  nnoremap <silent><leader>sr :call SelectMain()<CR>:<c-u>CocSearch --regex<space>
+
+  map * <Plug>(asterisk-z*)
+  map # <Plug>(asterisk-z#)
+  map g* <Plug>(asterisk-gz*)
+  map g# <Plug>(asterisk-gz#)
 endfunction
 
 function! s:SearchCwordCmd()
-  return ":\<C-U>CocSearch --fixed-strings " . expand('<cword>')
+  return ":call SelectMain()\<CR>:\<C-U>CocSearch --fixed-strings " . expand('<cword>')
 endfunction
 
 function! s:SearchPwordCmd()
-  return ":\<C-U>CocSearch --fixed-strings " . @/
+  return ":call SelectMain()\<CR>:\<C-U>CocSearch --fixed-strings " . @/
 endfunction

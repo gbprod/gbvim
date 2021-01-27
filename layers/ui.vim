@@ -55,6 +55,8 @@ function! layers#ui#config() abort
   let g:goyo_width = 120
 
   let g:zoomwintab_remap = 0
+
+  autocmd FileType qf setlocal nobuflisted
 endfunction
 
 function! layers#ui#bindings() abort
