@@ -1,5 +1,7 @@
 function! layers#search#plugins() abort
   Plug 'haya14busa/vim-asterisk'
+  Plug 'voldikss/vim-browser-search'
+  Plug 'google/vim-searchindex'
 endfunction
 
 function! layers#search#config() abort
@@ -15,6 +17,16 @@ function! layers#search#config() abort
     \ )
 
   let g:asterisk#keeppos = 1
+
+  let g:browser_search_default_engine = ''
+  let g:browser_search_engines = {
+        \ 'duckduckgo': 'https://duckduckgo.com/?q=%s',
+        \ 'github':'https://github.com/search?q=%s',
+        \ 'google':'https://google.com/search?q=%s',
+        \ 'stackoverflow':'https://stackoverflow.com/search?q=%s',
+        \ 'translate': 'https://translate.google.com/?sl=auto&tl=it&text=%s',
+        \ 'wikipedia': 'https://en.wikipedia.org/wiki/%s',
+        \ }
 endfunction
 
 function! layers#search#bindings() abort
@@ -28,9 +40,13 @@ function! layers#search#bindings() abort
   nnoremap <silent><leader>sg :call SelectMain()<CR>:<c-u>CocList grep<CR>
   let g:leader_key_map.s.f = 'Word in file'
   nnoremap <silent><leader>sf :call SelectMain()<CR>:<c-u>CocList words<CR>
-
+  let g:leader_key_map.s.d = 'Search in directory'
+  nmap <expr> <leader>sd <SID>SearchInDirCmd()
   let g:leader_key_map.s.r = 'Search regex'
   nnoremap <silent><leader>sr :call SelectMain()<CR>:<c-u>CocSearch --regex<space>
+
+  nmap <silent> <Leader>sb <Plug>SearchNormal
+  vmap <silent> <Leader>sb <Plug>SearchVisual
 
   map * <Plug>(asterisk-z*)
   map # <Plug>(asterisk-z#)
@@ -44,4 +60,18 @@ endfunction
 
 function! s:SearchPwordCmd()
   return ":call SelectMain()\<CR>:\<C-U>CocSearch --fixed-strings " . @/
+endfunction
+
+function! s:SearchInDirCmd()
+  if &ft == 'defx'
+    if defx#get_candidate().is_directory
+      let path = expand(defx#get_candidate().action__path, '%:h')
+    else
+      let path = expand(defx#get_candidate().action__path, '%:h')
+    endif
+    let path = fnamemodify(substitute(path, escape(getcwd(), '/').'\/', '', ''), ':h')
+  else
+    let path = expand('%:h')
+  endif
+  return printf(":call SelectMain()\<CR>:\<C-U>CocSearch --glob=%s/** --fixed-strings ", path)
 endfunction

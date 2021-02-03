@@ -27,7 +27,7 @@ function! layers#defaults#config() abort
   set backup
   set undofile
   set undolevels=1000
-  let g:data_dir = '/home/gilles/cache/gbvim/'
+  let g:data_dir = expand('~/cache/gbvim/')
   let g:backup_dir = g:data_dir . 'backup'
   let g:swap_dir = g:data_dir . 'swap'
   let g:undo_dir = g:data_dir . 'undofile'
@@ -61,7 +61,7 @@ function! layers#defaults#config() abort
   set showmatch
   set showmode
   set completeopt=menu,menuone,longest
-  set complete=.,w,b,u,t
+  set complete=.,w,b,u,t,k
   set pumheight=15
   set scrolloff=4
   set sidescrolloff=5

@@ -12,8 +12,6 @@ function! layers#checker#config() abort
     \ })
 
   call coc#config('diagnostic-languageserver.mergeConfig', v:true)
-  " call coc#config('diagnostic-languageserver.debug', v:true)
-  " call coc#config('diagnostic-languageserver.server.trace', 'verbose')
 endfunction
 
 function! layers#checker#bindings() abort

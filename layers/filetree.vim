@@ -22,7 +22,7 @@ endfunction
 function! s:defx_options() abort
   call defx#custom#option('_', {
         \ 'columns': 'indent:mark:git:icons:filename:type:size:time',
-        \ 'winwidth': 50,
+        \ 'winwidth': 40,
         \ 'split': 'vertical',
         \ 'direction': 'leftabove',
         \ 'show_ignored_files': 1,

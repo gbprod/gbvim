@@ -4,7 +4,7 @@ endfunction
 
 function! layers#finder#bindings() abort
   let g:leader_key_map.f = { "name": '+Finder' }
-  nnoremap <silent><c-p> :call OpenList('files')<CR>
+  nnoremap <silent><c-p> :call OpenList('files --hidden')<CR>
   let g:leader_key_map.b.b = 'Buffers list'
   nnoremap <silent><leader>bb :call OpenList('buffers')<CR>
   let g:leader_key_map.f.m = 'MRU Files'

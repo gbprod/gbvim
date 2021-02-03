@@ -26,8 +26,8 @@ function! layers#autocomplete#bindings() abort
   inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
   inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
   inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-  imap <silent> <c-n> <C-r>=coc#refresh()<CR>
-  imap <silent> <c-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+  imap <silent><C-n> <C-r>=coc#refresh()<CR>
+  imap <silent><C-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
   let g:leader_key_map.c.g = { 'name': '+Goto' }
   let g:leader_key_map.c.g.d = 'Definition'

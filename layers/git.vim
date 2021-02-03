@@ -25,8 +25,8 @@ function! layers#git#bindings() abort
   nnoremap <silent> <leader>gb :Gblame<CR>
   let g:leader_key_map.g.m = 'Branches'
   nnoremap <silent> <leader>gm :CocList branches<CR>
-  let g:leader_key_map.g.c = 'Commits'
-  nnoremap <silent> <leader>gc :CocList commits<CR>
+  let g:leader_key_map.g.L = 'Log'
+  nnoremap <silent> <leader>gL :CocList commits<CR>
   let g:leader_key_map.g.d = 'File diff'
   nnoremap <silent> <leader>gd :Gdiff<CR>
   let g:leader_key_map.g.C = 'File commits'
@@ -43,6 +43,8 @@ function! layers#git#bindings() abort
   nmap <silent> <leader>gX <Plug>(coc-git-prevconflict)
   let g:leader_key_map.g.u = 'Undo chunk'
   nnoremap <silent> <leader>gC :CocCommand git.chunkUndo<CR>
+  let g:leader_key_map.g.c = 'Commit'
+  nnoremap <silent> <leader>gC :<C-u>Gcommit<CR>
 
   let g:leader_key_map.g.r = { 'name': '+Rebase' }
   let g:leader_key_map.g.r.p = 'Pick'

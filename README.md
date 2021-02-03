@@ -6,4 +6,5 @@ Todo:
 
 - diff
 - multi cursor a finir
-- finir wimwiki
+- finir notes
+- remplacer coc-bookmark

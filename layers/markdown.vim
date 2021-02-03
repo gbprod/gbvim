@@ -9,7 +9,6 @@ function! layers#markdown#config() abort
   let g:vim_markdown_conceal = 0
 endfunction
 
-
 function! layers#markdown#bindings() abort
   autocmd FileType markdown nmap <silent><leader>lp <Plug>MarkdownPreviewToggle
   autocmd FileType markdown setlocal colorcolumn=+1 textwidth=80

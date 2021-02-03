@@ -6,9 +6,9 @@ function! layers#homepage#config() abort
   autocmd VimEnter * if isdirectory(expand('%:p')) | Startify | endif
 
   let g:startify_lists = [
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': 'dir', 'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'files', 'header': ['   MRU'] },
+        \ { 'type': function('s:gitModified'), 'header': ['   git modified']},
         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
         \ ]
   " \ { 'type': 'sessions',  'header': ['   Sessions']       },

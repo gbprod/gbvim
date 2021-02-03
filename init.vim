@@ -39,8 +39,7 @@ let g:layers = [
 \ 'repl',
 \ 'nginx',
 \ 'taskwarrior',
-\ 'doc',
-\ 'wiki',
+\ 'notes',
 \ ]
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'

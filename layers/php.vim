@@ -1,7 +1,7 @@
 function! layers#php#plugins() abort
   Plug 'StanAngeloff/php.vim'
   Plug '2072/PHP-Indenting-for-VIm'
-  Plug 'lumiliet/vim-twig'
+  Plug 'nelsyeung/twig.vim'
   Plug 'phpactor/phpactor', {'branch' : 'develop', 'do' : 'composer install --no-dev -o' .
         \ ' && bin/phpactor extension:install phpactor/phpunit-extension'
         \ }
@@ -9,10 +9,8 @@ endfunction
 
 function! layers#php#config() abort
   autocmd FileType php setlocal commentstring=//\ %s
-  autocmd FileType html.twig,htmldjango.twig setlocal commentstring={#\ %s\ #} | let b:current_syntax = 'twig'
-  " autocmd BufEnter *.html.twig :set ft=html
-  " let g:coc_filetype_map['html.twig'] = 'html'
-  " let g:coc_filetype_map['htmldjango.twig'] = 'html'
+  autocmd FileType html.twig* setlocal commentstring={#\ %s\ #} | let b:current_syntax = 'twig'
+  let g:coc_filetype_map['html.twig.js.css'] = 'html'
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan']
@@ -41,15 +39,13 @@ function! layers#php#config() abort
   let g:neoformat_enabled_php = ['phpcs']
   let g:neoformat_php_phpcs = {
         \ 'exe': 'php-cs-fixer',
-        \ 'args': ['fix', '-q', '--config', '~/.config/phpcs/.php_cs'],
+        \ 'args': ['fix', '-q', '--config', expand('~/.config/phpcs/.php_cs')],
         \ 'replace': 1,
         \ }
 
   let g:PhpactorRootDirectoryStrategy = {-> getcwd() }
 
   let g:PHP_noArrowMatching = 1
-
-  let g:doc_targets.php = '"https://duckduckgo.com/?q=\!php %s"'
 endfunction
 
 function! layers#php#bindings() abort

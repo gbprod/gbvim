@@ -27,6 +27,8 @@ function! layers#edit#config() abort
 
   let g:sort_motion = '<leader>xo'
   let g:sort_motion_visual = '<leader>xo'
+
+  call coc#config('pairs.enableCharacters', ["(", "[", "{", "'", "\"", "`"])
 endfunction
 
 function! layers#edit#bindings() abort
