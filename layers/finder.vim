@@ -11,8 +11,6 @@ function! layers#finder#bindings() abort
   nnoremap <silent><leader>fm :call OpenList('mru')<CR>
   let g:leader_key_map.f.M = 'Mappings'
   nnoremap <silent><leader>fM :CocList maps<CR>
-  let g:leader_key_map.f.j = 'Marks'
-  nnoremap <silent><leader>fj :call OpenList('marks')<CR>
   let g:leader_key_map.f.t = 'Tags'
   nnoremap <silent><leader>ft :CocList outline<CR>
 endfunction

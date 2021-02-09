@@ -4,19 +4,20 @@ function! layers#ui#plugins() abort
   Plug 'vim-airline/vim-airline-themes'
   Plug 'moll/vim-bbye'
   Plug 'arithran/vim-delete-hidden-buffers'
-  Plug 'liuchengxu/vim-which-key'
+  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
   Plug 'yggdroot/indentline'
   Plug 'ryanoasis/vim-devicons'
   Plug 'junegunn/goyo.vim'
   Plug 'troydm/zoomwintab.vim'
+  Plug 'kshenoy/vim-signature'
 
+  autocmd! User vim-which-key call which_key#register('<Space>', 'g:leader_key_map')
   let g:language_specified_mappings = {}
 endfunction
 
 function! layers#ui#config() abort
   colorscheme nord
   call add(g:extensions, 'coc-highlight')
-  call add(g:extensions, 'coc-bookmark')
 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
@@ -29,19 +30,18 @@ function! layers#ui#config() abort
   let g:maplocalleader = ','
 
   let g:leader_key_map = {
-    \ 'a': { 'name': "+Applications" },
-    \ 'b': { 'name': "+Buffers" },
-    \ 'f': { 'name': "+Files" },
-    \ 'w': { 'name': "+Windows" },
-    \ 's': { 'name': '+Search' },
-    \ 'x': { 'name': '+String' },
-    \ 'm': { 'name': '+Marks' },
-    \ }
+        \ 'a': { 'name': "+Applications" },
+        \ 'b': { 'name': "+Buffers" },
+        \ 'f': { 'name': "+Files" },
+        \ 'w': { 'name': "+Windows" },
+        \ 's': { 'name': '+Search' },
+        \ 'x': { 'name': '+String' },
+        \ 'm': { 'name': '+Marks' },
+        \ }
 
   autocmd BufEnter * call s:change_lspc_bindings()
 
-  call which_key#register('<Space>', "g:leader_key_map")
-  call which_key#register(',', "g:localleader_key_map")
+  " call which_key#register('<Space>', "g:leader_key_map")
 
   nnoremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
   vnoremap <silent><leader> :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -57,6 +57,8 @@ function! layers#ui#config() abort
   let g:zoomwintab_remap = 0
 
   autocmd FileType qf setlocal nobuflisted
+
+  autocmd FileType help nmap gl <C-]>
 endfunction
 
 function! layers#ui#bindings() abort
@@ -68,6 +70,11 @@ function! layers#ui#bindings() abort
   nnoremap <silent><A-Right> :call <SID>change_tab('next')<CR>
   nnoremap <silent><A-Left> :call <SID>change_tab('prev')<CR>
   nnoremap <silent><leader><tab> :call <SID>change_tab('#')<CR>
+
+  map <PageUp> <C-U>
+  map <PageDown> <C-D>
+  imap <PageUp> <C-O><C-U>
+  imap <PageDown> <C-O><C-D>
 
   let g:leader_key_map.b.d = 'Close current'
   nnoremap <silent><leader>bd :Bdelete<CR>
@@ -105,18 +112,39 @@ function! layers#ui#bindings() abort
   let g:leader_key_map.a.C = 'Color picker'
   nnoremap <silent><leader>aC :call CocAction('pickColor')<CR>
 
+  let g:SignatureMap = {
+        \ 'Leader'             :  "<space>ma",
+        \ 'PlaceNextMark'      :  "",
+        \ 'ToggleMarkAtLine'   :  "<space>mm",
+        \ 'PurgeMarksAtLine'   :  "",
+        \ 'DeleteMark'         :  "<space>md",
+        \ 'PurgeMarks'         :  "<space>mp",
+        \ 'PurgeMarkers'       :  "",
+        \ 'GotoNextLineAlpha'  :  "<space>mn",
+        \ 'GotoPrevLineAlpha'  :  "<space>mN",
+        \ 'GotoNextSpotAlpha'  :  "",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "",
+        \ 'GotoPrevSpotByPos'  :  "",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListBufferMarks'    :  "<space>mb",
+        \ 'ListBufferMarkers'  :  ""
+        \ }
+
+  let g:leader_key_map.m.a = 'Add <letter>'
   let g:leader_key_map.m.m = 'Toggle'
-  nmap <silent> <leader>mm <Plug>(coc-bookmark-toggle)
-  let g:leader_key_map.m.a = 'Show all'
-  nmap <silent> <leader>ma :CocList bookmark<CR>
+  let g:leader_key_map.m.d = 'Delete <letter>'
+  let g:leader_key_map.m.p = 'Purge'
   let g:leader_key_map.m.n = 'Next'
-  nmap <silent> <leader>mn <Plug>(coc-bookmark-next)
   let g:leader_key_map.m.N = 'Previous'
-  nmap <silent> <leader>mN <Plug>(coc-bookmark-prev)
-  let g:leader_key_map.m.c = 'Clear for file'
-  nmap <silent> <leader>mc :CocCommand bookmark.clearForCurrentFile<CR>
-  let g:leader_key_map.m.C = 'Clear all'
-  nmap <silent> <leader>mC :CocCommand bookmark.clearForAllFiles<CR>
+  let g:leader_key_map.m.b = 'Buffer marks'
+  let g:leader_key_map.m.l = 'Show all'
+  nmap <silent> <leader>ml :CocList marks<CR>
 
   let g:leader_key_map.a.d = "Distraction free"
   nmap <silent> <leader>ad :Goyo<CR>
@@ -130,7 +158,8 @@ function! s:change_lspc_bindings() abort
     let g:leader_key_map.l = { 'name': '+Language-specified' }
     call call(g:language_specified_mappings[&filetype], [])
   else
-    let g:leader_key_map.l = 'which_key_ignore'
+    " let g:leader_key_map.l = 'which_key_ignore'
+    let g:leader_key_map.l = {}
   endif
 endfunction
 

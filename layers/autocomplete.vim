@@ -10,6 +10,7 @@ function! layers#autocomplete#config() abort
   set shortmess+=c
 
   let g:coc_disable_startup_warning = 1
+  call add(g:extensions, 'coc-dictionary')
 endfunction
 
 function! layers#autocomplete#bindings() abort
