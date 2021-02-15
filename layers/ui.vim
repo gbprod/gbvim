@@ -59,6 +59,9 @@ function! layers#ui#config() abort
   autocmd FileType qf setlocal nobuflisted
 
   autocmd FileType help nmap gl <C-]>
+
+  highlight CocErrorHighlight cterm=underline ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
+  highlight CocWarningHighlight cterm=underline ctermfg=3 gui=undercurl guifg=NONE guisp=#EBCB8B
 endfunction
 
 function! layers#ui#bindings() abort

@@ -59,7 +59,7 @@ endfunction
 
 function! s:defx_setup() abort
   nnoremap <silent><buffer><expr> <CR>
-        \  defx#is_directory()
+        \ defx#is_directory()
         \ ? defx#do_action('open_tree', 'toggle')
         \ : defx#do_action('drop')
   nnoremap <silent><buffer><expr> c

@@ -5,8 +5,8 @@ endfunction
 function! layers#cursor#config()
   let g:VM_leader = "<leader>v"
   let g:VM_maps = {}
-  let g:VM_maps['Find Under'] = '<C-m>'
-  let g:VM_maps['Find Subword Under'] = '<C-m>'
+  let g:VM_maps['Find Under'] = '<C-a>'
+  let g:VM_maps['Find Subword Under'] = '<C-a>'
   let g:VM_maps["Add Cursor Down"] = '<C-A-Down>'
   let g:VM_maps["Add Cursor Up"] = '<C-A-Up>'
 
