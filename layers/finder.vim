@@ -13,9 +13,11 @@ function! layers#finder#bindings() abort
   nnoremap <silent><leader>fM :CocList maps<CR>
   let g:leader_key_map.f.t = 'Tags'
   nnoremap <silent><leader>ft :CocList outline<CR>
+  let g:leader_key_map.f.w = 'Files <cword>'
+  nnoremap <silent><leader>fw :call OpenList('--input='.expand('<cword>').' files')<CR>
 endfunction
 
 function! OpenList(list) abort
   call SelectMain()
-  execute "CocList --number-select ".a:list
+  execute "CocList ".a:list
 endfunction

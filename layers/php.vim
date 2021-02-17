@@ -35,8 +35,8 @@ function! layers#php#config() abort
 
   " autocmd FileType php let b:coc_root_patterns = ['composer.json']
   autocmd FileType php setlocal
-        \ colorcolumn=+1,+40 t
-        \ extwidth=80
+        \ colorcolumn=+1,+40
+        \ textwidth=80
         \ formatoptions-=t
 
   let g:neoformat_enabled_php = ['phpcs']
