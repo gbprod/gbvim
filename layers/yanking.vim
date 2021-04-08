@@ -18,6 +18,9 @@ function! layers#yanking#config() abort
   let g:yoinkSwapClampAtEnds = 1
   let g:yoinkIncludeNamedRegisters = 1
   let g:yoinkSyncSystemClipboardOnFocus = 1
+
+  let g:subversivePromptWithCurrent = 1
+  let g:subversivePreserveCursorPosition = 1
 endfunction
 
 function! layers#yanking#bindings() abort

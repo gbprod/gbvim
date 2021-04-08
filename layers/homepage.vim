@@ -11,7 +11,6 @@ function! layers#homepage#config() abort
         \ { 'type': function('s:gitModified'), 'header': ['   git modified']},
         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
         \ ]
-  " \ { 'type': 'sessions',  'header': ['   Sessions']       },
 endfunction
 
 function! layers#homepage#bindings() abort

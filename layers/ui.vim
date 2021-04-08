@@ -9,7 +9,6 @@ function! layers#ui#plugins() abort
   Plug 'ryanoasis/vim-devicons'
   Plug 'junegunn/goyo.vim'
   Plug 'troydm/zoomwintab.vim'
-  Plug 'kshenoy/vim-signature'
 
   autocmd! User vim-which-key call which_key#register('<Space>', 'g:leader_key_map')
   let g:language_specified_mappings = {}
@@ -23,6 +22,7 @@ function! layers#ui#config() abort
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = ' '
   let g:airline#extensions#tabline#formatter = 'unique_tail'
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
 
   set timeoutlen=300
 
@@ -36,12 +36,9 @@ function! layers#ui#config() abort
         \ 'w': { 'name': "+Windows" },
         \ 's': { 'name': '+Search' },
         \ 'x': { 'name': '+String' },
-        \ 'm': { 'name': '+Marks' },
         \ }
 
   autocmd BufEnter * call s:change_lspc_bindings()
-
-  " call which_key#register('<Space>', "g:leader_key_map")
 
   nnoremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
   vnoremap <silent><leader> :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -62,6 +59,7 @@ function! layers#ui#config() abort
 
   highlight CocErrorHighlight cterm=underline ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
   highlight CocWarningHighlight cterm=underline ctermfg=3 gui=undercurl guifg=NONE guisp=#EBCB8B
+  highlight CocHintHighlight cterm=underline ctermfg=7 gui=undercurl guifg=NONE guisp=#ECEFF4
 endfunction
 
 function! layers#ui#bindings() abort
@@ -115,45 +113,30 @@ function! layers#ui#bindings() abort
   let g:leader_key_map.a.C = 'Color picker'
   nnoremap <silent><leader>aC :call CocAction('pickColor')<CR>
 
-  let g:SignatureMap = {
-        \ 'Leader'             :  "<space>ma",
-        \ 'PlaceNextMark'      :  "",
-        \ 'ToggleMarkAtLine'   :  "<space>mm",
-        \ 'PurgeMarksAtLine'   :  "",
-        \ 'DeleteMark'         :  "<space>md",
-        \ 'PurgeMarks'         :  "<space>mp",
-        \ 'PurgeMarkers'       :  "",
-        \ 'GotoNextLineAlpha'  :  "<space>mn",
-        \ 'GotoPrevLineAlpha'  :  "<space>mN",
-        \ 'GotoNextSpotAlpha'  :  "",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "",
-        \ 'GotoPrevSpotByPos'  :  "",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListBufferMarks'    :  "<space>mb",
-        \ 'ListBufferMarkers'  :  ""
-        \ }
-
-  let g:leader_key_map.m.a = 'Add <letter>'
-  let g:leader_key_map.m.m = 'Toggle'
-  let g:leader_key_map.m.d = 'Delete <letter>'
-  let g:leader_key_map.m.p = 'Purge'
-  let g:leader_key_map.m.n = 'Next'
-  let g:leader_key_map.m.N = 'Previous'
-  let g:leader_key_map.m.b = 'Buffer marks'
-  let g:leader_key_map.m.l = 'Show all'
-  nmap <silent> <leader>ml :CocList marks<CR>
-
   let g:leader_key_map.a.d = "Distraction free"
   nmap <silent> <leader>ad :Goyo<CR>
 
   let g:leader_key_map.f.e = 'Edit <cfile>'
   nmap <silent> <leader>fe :call <SID>edit_cfile()<CR>
+
+  let g:leader_key_map['&'] = 'which_key_ignore'
+  nmap <leader>& <Plug>AirlineSelectTab1
+  let g:leader_key_map['é'] = 'which_key_ignore'
+  nmap <leader>é <Plug>AirlineSelectTab2
+  let g:leader_key_map['"'] = 'which_key_ignore'
+  nmap <leader>" <Plug>AirlineSelectTab3
+  let g:leader_key_map["'"] = 'which_key_ignore'
+  nmap <leader>' <Plug>AirlineSelectTab4
+  let g:leader_key_map['('] = 'which_key_ignore'
+  nmap <leader>( <Plug>AirlineSelectTab5
+  let g:leader_key_map['-'] = 'which_key_ignore'
+  nmap <leader>- <Plug>AirlineSelectTab6
+  let g:leader_key_map['è'] = 'which_key_ignore'
+  nmap <leader>è <Plug>AirlineSelectTab7
+  let g:leader_key_map['_'] = 'which_key_ignore'
+  nmap <leader>_ <Plug>AirlineSelectTab8
+  let g:leader_key_map['ç'] = 'which_key_ignore'
+  nmap <leader>ç <Plug>AirlineSelectTab9
 endfunction
 
 function! s:change_lspc_bindings() abort

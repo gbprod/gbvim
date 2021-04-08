@@ -15,9 +15,13 @@ endfunction
 
 function! layers#autocomplete#bindings() abort
   let g:leader_key_map.c = { 'name': "+Code" }
+  intro
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : ""
   if exists('*complete_info')
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   else
@@ -27,8 +31,10 @@ function! layers#autocomplete#bindings() abort
   inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
   inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
   inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-  imap <silent><C-n> <C-r>=coc#refresh()<CR>
-  imap <silent><C-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><C-k> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
   let g:leader_key_map.c.g = { 'name': '+Goto' }
   let g:leader_key_map.c.g.d = 'Definition'
@@ -69,4 +75,9 @@ endfunction
 
 function! layers#autocomplete#config_after() abort
   let g:coc_global_extensions = g:extensions
+endfunction
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction

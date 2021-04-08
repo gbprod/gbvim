@@ -11,8 +11,8 @@ function! layers#javascript#config() abort
   autocmd Filetype json let g:indentLine_setConceal = 0 | set conceallevel=0
   " autocmd FileType javascript let b:coc_root_patterns = ['package.json']
   autocmd FileType javascript setlocal
-        \ shiftwidth=4
-        \ tabstop=4
+        \ shiftwidth=2
+        \ tabstop=2
         \ colorcolumn=+1,+40
         \ textwidth=80
         \ formatoptions-=t

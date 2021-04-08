@@ -2,7 +2,7 @@ function! layers#php#plugins() abort
   Plug 'StanAngeloff/php.vim'
   Plug '2072/PHP-Indenting-for-VIm'
   Plug 'nelsyeung/twig.vim'
-  Plug 'phpactor/phpactor', {'branch' : 'develop', 'do' : 'composer install --no-dev -o' .
+  Plug 'phpactor/phpactor', {'branch' : 'master', 'do' : 'composer install --no-dev -o' .
         \ ' && bin/phpactor extension:install phpactor/phpunit-extension'
         \ }
 endfunction
@@ -39,10 +39,10 @@ function! layers#php#config() abort
         \ textwidth=80
         \ formatoptions-=t
 
-  let g:neoformat_enabled_php = ['phpcs']
-  let g:neoformat_php_phpcs = {
+  let g:neoformat_enabled_php = ['phpcsfixer']
+  let g:neoformat_php_phpcsfixer = {
         \ 'exe': 'php-cs-fixer',
-        \ 'args': ['fix', '-q', '--config', expand('~/.config/phpcs/.php_cs')],
+        \ 'args': ['fix', '-q', '--config=/home/gilles/.config/phpcs/.php_cs'],
         \ 'replace': 1,
         \ }
 

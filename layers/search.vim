@@ -1,6 +1,5 @@
 function! layers#search#plugins() abort
   Plug 'haya14busa/vim-asterisk'
-  Plug 'voldikss/vim-browser-search'
   Plug 'google/vim-searchindex'
 endfunction
 
@@ -17,16 +16,6 @@ function! layers#search#config() abort
     \ )
 
   let g:asterisk#keeppos = 1
-
-  let g:browser_search_default_engine = ''
-  let g:browser_search_engines = {
-        \ 'duckduckgo': 'https://duckduckgo.com/?q=%s',
-        \ 'github':'https://github.com/search?q=%s',
-        \ 'google':'https://google.com/search?q=%s',
-        \ 'stackoverflow':'https://stackoverflow.com/search?q=%s',
-        \ 'translate': 'https://translate.google.com/?sl=auto&tl=it&text=%s',
-        \ 'wikipedia': 'https://en.wikipedia.org/wiki/%s',
-        \ }
 endfunction
 
 function! layers#search#bindings() abort

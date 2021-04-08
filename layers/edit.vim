@@ -25,17 +25,15 @@ function! layers#edit#config() abort
   let g:strip_whitespace_on_save=1
   let g:strip_whitespace_confirm=0
 
-  let g:sort_motion = '<leader>xo'
-  let g:sort_motion_visual = '<leader>xo'
-
   call coc#config('pairs.enableCharacters', ["(", "[", "{", "'", "\"", "`"])
 endfunction
 
 function! layers#edit#bindings() abort
   " Save fast
-  nnoremap <C-s> :<C-u>w<CR>
-  vnoremap <C-s> :<C-u>w<CR>
-  cnoremap <C-s> <C-u>w<CR>
+  nnoremap <c-s> :<c-u>w<CR>
+  vnoremap <c-s> :<c-u>w<CR>gv
+  cnoremap <c-s> <c-u>w<CR>
+  inoremap <c-s> <c-o>:w<CR>
 
   "Ctrl+Shift+Up/Down to move up and down
   nnoremap <silent><C-S-Down> :m .+1<CR>==
@@ -45,12 +43,19 @@ function! layers#edit#bindings() abort
   vnoremap <silent><C-S-Down> :m '>+1<CR>gv=gv
   vnoremap <silent><C-S-Up> :m '<-2<CR>gv=gv
 
+  let g:leader_key_map.O = 'which_key_ignore'
+  nnoremap <silent> <space>O :pu! _<cr>:']+1<cr>
+  let g:leader_key_map.o = 'which_key_ignore'
+  nnoremap <silent> <space>o :pu _<cr>:'[-1<cr>
+
   " Use tab for indenting in visual mode
   nnoremap > >>_
   nnoremap < <<_
   inoremap <S-Tab> <C-D>
   vnoremap <Tab> >gv
   vnoremap <S-Tab> <gv
+  vnoremap > >gv
+  vnoremap < <gv
 
   let g:leader_key_map.j = {
     \ 'name': '+Join/Split',
@@ -87,6 +92,12 @@ function! layers#edit#bindings() abort
   vmap <silent><leader>xct <Plug>(abolish-coerce)t
 
   let g:leader_key_map.x.o = 'Sort <motion>'
+  nmap <silent><leader>xo <Plug>SortMotion
+  xmap <silent><leader>xo <Plug>SortMotionVisual
+
+  let g:leader_key_map.x.d = { 'name': 'Delete' }
+  let g:leader_key_map.x.d.b = 'Blank lines'
+  nmap <silent><leader>xdb :.,/^.\+/g/^$/d<CR>:nohlsearch<CR>
 
   let g:leader_key_map.f.W = 'Sudo save'
   if has('nvim')
@@ -101,9 +112,9 @@ function! layers#edit#bindings() abort
   " let g:leader_key_map.d = 'Cursor operator <motion>'
   " nmap <leader>d <Plug>(coc-cursors-operator)
 
-  let g:leader_key_map[';'] = 'Add trailing ;'
+  let g:leader_key_map[';'] = 'which_key_ignore'
   nmap <silent><leader>; A;<C-c>
-  let g:leader_key_map[','] = 'Add trailing ,'
+  let g:leader_key_map[','] = 'which_key_ignore'
   nmap <silent><leader>, A,<C-c>
 endfunction
 

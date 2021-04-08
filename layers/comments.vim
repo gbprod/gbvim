@@ -4,7 +4,7 @@ endfunction
 
 function! layers#comments#bindings() abort
   let g:leader_key_map.c.l = 'Comment line'
-  nmap <leader>cl <Plug>CommentaryLine
+  nmap <leader>cl <Plug>CommentaryLinej
   xmap <leader>cl <Plug>Commentary
 
   let g:leader_key_map.c.c = 'Comment <motion>'

@@ -6,7 +6,7 @@ function! layers#terminal#config() abort
   let g:neoterm_default_mod = "botright"
   let g:neoterm_autoinsert = 1
   let g:neoterm_autoscroll = 1
-  let g:neoterm_size = 14
+  let g:neoterm_size = 12
 
   autocmd FileType neoterm setlocal nobuflisted conceallevel=0
 endfunction

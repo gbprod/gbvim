@@ -1,22 +1,15 @@
 function! layers#filetree#plugins() abort
-  if has('python3')
-    Plug 'shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'kristijanhusak/defx-git'
-    Plug 'kristijanhusak/defx-icons'
-  else
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'preservim/nerdtree'
-  endif
+  Plug 'shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'kristijanhusak/defx-git'
+  Plug 'kristijanhusak/defx-icons'
   Plug 'danro/rename.vim'
 endfunction
 
 function! layers#filetree#config() abort
-  if has('python3')
-    call s:defx_options()
-    autocmd FileType defx call s:defx_setup()
-    " Open filetree if open a folder or nothing
-    autocmd VimEnter * if isdirectory(expand('%:p')) || 0 ==# argc() | Defx | wincmd l | endif
-  endif
+  call s:defx_options()
+  autocmd FileType defx call s:defx_setup()
+  " Open filetree if open a folder or nothing
+  autocmd VimEnter * if isdirectory(expand('%:p')) || 0 ==# argc() | Defx | wincmd l | endif
 endfunction
 
 function! s:defx_options() abort
@@ -120,14 +113,8 @@ endfunction
 
 function! layers#filetree#bindings() abort
   let g:leader_key_map.f.o = 'Reveal in filtree'
-  if has('python3')
-    nnoremap <silent> <F3> :Defx<Cr>
-    nnoremap <leader>fo :Defx -no-toggle -search=`expand('%:p')`<CR>
-  else
-    nnoremap <silent> <F3> :NERDTreeToggle<CR>
-    nnoremap <leader>fo :NERDTreeFind<CR>
-  endif
-
+  nnoremap <silent> <F3> :Defx<Cr>
+  nnoremap <leader>fo :Defx -no-toggle -search=`expand('%:p')`<CR>
 
   let g:leader_key_map.f.R = 'Rename file'
   nnoremap <leader>fR :call RenameInput()<CR>

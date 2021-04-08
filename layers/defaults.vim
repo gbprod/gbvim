@@ -75,6 +75,8 @@ function! layers#defaults#config() abort
   set ttimeoutlen=50
   set shortmess+=c
   set shortmess+=s
+  set shortmess+=I
+  set shortmess+=A
   set nowrap
   set conceallevel=0
   set title
