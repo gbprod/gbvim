@@ -14,6 +14,8 @@ endfunction
 function! layers#terminal#bindings() abort
   let g:leader_key_map.a.s = 'Terminal'
   nmap <silent> <leader>as :Ttoggle<CR>
+  nmap <silent> <F4> :Ttoggle<CR>
+  tmap <silent> <F4> <C-\><C-n>:Ttoggle<CR>
 
   tnoremap <silent><C-Right> <C-\><C-n>:<C-u>wincmd l<CR>
   tnoremap <silent><C-Left> <C-\><C-n>:<C-u>wincmd h<CR>

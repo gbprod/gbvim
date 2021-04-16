@@ -1,6 +1,8 @@
 function! layers#javascript#plugins() abort
   Plug 'pangloss/vim-javascript'
+  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
 endfunction
 
 function! layers#javascript#config() abort

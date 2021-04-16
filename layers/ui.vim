@@ -9,6 +9,7 @@ function! layers#ui#plugins() abort
   Plug 'ryanoasis/vim-devicons'
   Plug 'junegunn/goyo.vim'
   Plug 'troydm/zoomwintab.vim'
+  Plug 'kana/vim-submode'
 
   autocmd! User vim-which-key call which_key#register('<Space>', 'g:leader_key_map')
   let g:language_specified_mappings = {}
@@ -23,6 +24,22 @@ function! layers#ui#config() abort
   let g:airline#extensions#tabline#left_alt_sep = ' '
   let g:airline#extensions#tabline#formatter = 'unique_tail'
   let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+  let g:airline#extensions#tabline#buffer_idx_format = {
+        \ '0': '0 ',
+        \ '1': '1 ',
+        \ '2': '2 ',
+        \ '3': '3 ',
+        \ '4': '4 ',
+        \ '5': '5 ',
+        \ '6': '6 ',
+        \ '7': '7 ',
+        \ '8': '8 ',
+        \ '9': '9 '
+        \}
+
+  let g:submode_always_show_submode = 1
+  let g:submode_timeout=0
 
   set timeoutlen=300
 
@@ -45,13 +62,15 @@ function! layers#ui#config() abort
 
   highlight default link WhichKeySeperator Identifier
 
-  let g:indentLine_char = '┊'
+  let g:indentLine_char = '▏'
   let g:indentLine_concealcursor = 'niv'
   let g:indentLine_conceallevel = 2
 
   let g:goyo_width = 120
 
   let g:zoomwintab_remap = 0
+
+  let g:submode_timeoutlen = 500
 
   autocmd FileType qf setlocal nobuflisted
 
@@ -85,13 +104,16 @@ function! layers#ui#bindings() abort
   nnoremap <silent><leader>bC :bufdo :Bdelete<CR>
   let g:leader_key_map.b.e = 'New empty'
   nnoremap <silent><leader>be :enew<CR>
-
-  let g:leader_key_map.w['='] = 'Balance'
+ g:leader_key_map.w['='] = 'Balance'
   nnoremap <silent><leader>w= :wincmd =<CR>
-  nnoremap <silent> <leader>w<Up> :resize +5<CR>
-  nnoremap <silent> <leader>w<Down> :resize -5<CR>
-  nnoremap <silent> <leader>w<Right> :vertical resize +5<CR>
-  nnoremap <silent> <leader>w<Left> :vertical resize -5<CR>
+
+  let g:leader_key_map.w.w = 'Resize'
+  call submode#enter_with('window', 'n', '', '<leader>ww')
+  call submode#leave_with('window', 'n', '', '<ESC>')
+  call submode#map('window', 'n', '', '<Up>', ':resize +5<CR>')
+  call submode#map('window', 'n', '', '<Down>', ':resize -5<CR>')
+  call submode#map('window', 'n', '', '<Right>', ':vertical resize +5<CR>')
+  call submode#map('window', 'n', '', '<Left>', ':vertical resize -5<CR>')
 
   let g:leader_key_map.w.v = 'Vertical split'
   nnoremap <silent><leader>wv :vsplit<CR>

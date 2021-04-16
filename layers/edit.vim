@@ -3,9 +3,7 @@ function! layers#edit#plugins() abort
   Plug 'editorconfig/editorconfig-vim'
   Plug 'andrewradev/splitjoin.vim'
   Plug 'tpope/vim-abolish'
-  if has('nvim')
-    Plug 'lambdalisue/suda.vim'
-  endif
+  Plug 'lambdalisue/suda.vim'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'christoomey/vim-sort-motion'
 endfunction

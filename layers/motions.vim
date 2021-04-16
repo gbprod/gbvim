@@ -40,14 +40,14 @@ function! layers#motions#bindings() abort
   nmap (( [[
 
   " 2-character Sneak (default)
-  nmap z <Plug>Sneak_s
-  nmap Z <Plug>Sneak_S
+  nmap m <Plug>Sneak_s
+  nmap M <Plug>Sneak_S
   " visual-mode
-  xmap z <Plug>Sneak_s
-  xmap Z <Plug>Sneak_S
+  xmap m <Plug>Sneak_s
+  xmap M <Plug>Sneak_S
   " operator-pending-mode
-  omap z <Plug>Sneak_s
-  omap Z <Plug>Sneak_S
+  omap m <Plug>Sneak_s
+  omap M <Plug>Sneak_S
   " repeat motion
   map ; <Plug>Sneak_;
   map , <Plug>Sneak_,

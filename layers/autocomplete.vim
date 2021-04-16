@@ -42,10 +42,13 @@ function! layers#autocomplete#bindings() abort
   nmap <silent>gd <Plug>(coc-definition)
   let g:leader_key_map.c.g.t = 'Type definition'
   nmap <silent><leader>cgt <Plug>(coc-type-definition)
+  nmap <silent>gt <Plug>(coc-type-definition)
   let g:leader_key_map.c.g.i = 'Implementation'
   nmap <silent><leader>cgi <Plug>(coc-implementation)
+  nmap <silent> gi <Plug>(coc-implementation)
   let g:leader_key_map.c.g.r = 'References'
   nmap <silent><leader>cgr <Plug>(coc-references)
+  nmap <silent>gr <Plug>(coc-references)
 
   nnoremap <silent> K :call CocActionAsync('doHover')<CR>
   let g:leader_key_map.c.d = 'Show documentation'
