@@ -2,12 +2,13 @@ function! layers#php#plugins() abort
   Plug 'StanAngeloff/php.vim'
   Plug '2072/PHP-Indenting-for-VIm'
   Plug 'nelsyeung/twig.vim'
-  Plug 'phpactor/phpactor', {'branch' : 'master', 'do' : 'composer install --no-dev -o' .
+  Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'.
         \ ' && bin/phpactor extension:install phpactor/phpunit-extension'
         \ }
 endfunction
 
 function! layers#php#config() abort
+  autocmd BufWritePre *.php if get(g:, 'format_on_save', 1) | undojoin | Neoformat | endif
   autocmd FileType php setlocal commentstring=//\ %s
   autocmd FileType html.twig* setlocal commentstring={#\ %s\ #} | let b:current_syntax = 'twig'
   let g:coc_filetype_map['html.twig.js.css'] = 'html'
@@ -33,7 +34,7 @@ function! layers#php#config() abort
         \ 'path': g:gbvim_plugins_root . '/phpactor/bin/phpactor'
         \ })
 
-  " autocmd FileType php let b:coc_root_patterns = ['composer.json']
+  autocmd FileType php let b:coc_root_patterns = ['composer.json']
   autocmd FileType php setlocal
         \ colorcolumn=+1,+40
         \ textwidth=80

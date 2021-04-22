@@ -2,13 +2,6 @@ function! layers#formatter#plugins() abort
   Plug 'sbdchd/neoformat'
 endfunction
 
-function! layers#formatter#config() abort
-  augroup FormatOnSave
-    autocmd!
-    autocmd BufWritePre * if get(g:, 'format_on_save', 1) | undojoin | Neoformat | endif
-  augroup END
-endfunction
-
 function! layers#formatter#bindings() abort
   let g:leader_key_map.b.f = 'Format buffer'
   nnoremap <silent><leader>bf :Neoformat<CR>
