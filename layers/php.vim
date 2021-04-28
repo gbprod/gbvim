@@ -2,7 +2,7 @@ function! layers#php#plugins() abort
   Plug 'StanAngeloff/php.vim'
   Plug '2072/PHP-Indenting-for-VIm'
   Plug 'nelsyeung/twig.vim'
-  Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'.
+  Plug 'phpactor/phpactor', {'for': 'php', 'tag': 'master', 'do': 'composer install --no-dev -o'.
         \ ' && bin/phpactor extension:install phpactor/phpunit-extension'
         \ }
 endfunction
@@ -14,7 +14,7 @@ function! layers#php#config() abort
   let g:coc_filetype_map['html.twig.js.css'] = 'html'
 
   call add(g:extensions, 'coc-phpactor')
-  let g:checkers['php'] = ['phpstan']
+  let g:checkers['php'] = ['phpstan', 'psalm']
   call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
 
   if !isdirectory(expand('%:p')) || !filereadable(expand('%:p').'/phpstan.neon') || match(readfile(expand('%:p').'/phpstan.neon'), "level") < 0
@@ -26,6 +26,15 @@ function! layers#php#config() abort
           \ "%file"
           \ ])
   endif
+
+  call coc#config('diagnostic-languageserver.linters.psalm.command', 'psalm')
+  call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
+  call coc#config('diagnostic-languageserver.linters.psalm.args', [
+        \ "--output-format=emacs",
+        \ "--no-progress",
+        \ "--config=/home/gilles/.config/psalm/psalm.xml",
+        \ "%file"
+        \ ])
 
   let g:vista_executive_for['php'] = 'coc'
 
