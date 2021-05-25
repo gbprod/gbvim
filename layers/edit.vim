@@ -6,6 +6,8 @@ function! layers#edit#plugins() abort
   Plug 'lambdalisue/suda.vim'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'christoomey/vim-sort-motion'
+
+  Plug 'sheerun/vim-polyglot'
 endfunction
 
 function! layers#edit#config() abort

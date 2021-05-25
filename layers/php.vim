@@ -1,5 +1,4 @@
 function! layers#php#plugins() abort
-  Plug 'StanAngeloff/php.vim'
   Plug '2072/PHP-Indenting-for-VIm'
   Plug 'nelsyeung/twig.vim'
   Plug 'phpactor/phpactor', {'for': 'php', 'tag': 'master', 'do': 'composer install --no-dev -o'.
@@ -8,27 +7,28 @@ function! layers#php#plugins() abort
 endfunction
 
 function! layers#php#config() abort
-  autocmd BufWritePre *.php if get(g:, 'format_on_save', 1) | undojoin | Neoformat | endif
-  autocmd FileType php setlocal commentstring=//\ %s
+  " autocmd BufWritePre *.php if get(g:, 'format_on_save', 1) | undojoin | Neoformat | endif
+  " autocmd BufWritePre *.php setlocal b:format_on_save=1
+
+  autocmd FileType php setlocal commentstring=//\ %s iskeyword+=$ | let b:format_on_save=1
   autocmd FileType html.twig* setlocal commentstring={#\ %s\ #} | let b:current_syntax = 'twig'
+
   let g:coc_filetype_map['html.twig.js.css'] = 'html'
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan', 'psalm']
   call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
 
-  if !isdirectory(expand('%:p')) || !filereadable(expand('%:p').'/phpstan.neon') || match(readfile(expand('%:p').'/phpstan.neon'), "level") < 0
-    call coc#config('diagnostic-languageserver.linters.phpstan.args', [
-          \ "analyze",
-          \ "--error-format", "raw",
-          \ "--no-progress",
-          \ "--level", "max",
-          \ "%file"
-          \ ])
-  endif
+  call coc#config('diagnostic-languageserver.linters.phpstan.args', [
+        \ "analyze",
+        \ "--error-format", "raw",
+        \ "--no-progress",
+        \ "--level", "max",
+        \ "%file"
+        \ ])
 
   call coc#config('diagnostic-languageserver.linters.psalm.command', 'psalm')
-  call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
+  " call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
   call coc#config('diagnostic-languageserver.linters.psalm.args', [
         \ "--output-format=emacs",
         \ "--no-progress",

@@ -27,6 +27,8 @@ function! layers#checker#bindings() abort
   nmap <silent> <leader>en <Plug>(coc-diagnostic-next)
   let g:leader_key_map.e.N = 'Previous'
   nmap <silent> <leader>eN <Plug>(coc-diagnostic-prev)
+  let g:leader_key_map.e.t = 'Toggle'
+  nmap <silent> <leader>et :call CocAction('diagnosticToggle')<CR>
 endfunction
 
 function! layers#checker#config_after() abort

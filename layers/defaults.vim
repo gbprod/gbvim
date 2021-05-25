@@ -78,6 +78,6 @@ function! layers#defaults#config() abort
   set shortmess+=I
   set shortmess+=A
   set nowrap
-  set conceallevel=0
+  set conceallevel=2
   set title
 endfunction

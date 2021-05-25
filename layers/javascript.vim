@@ -11,7 +11,7 @@ function! layers#javascript#config() abort
   call add(g:extensions, 'coc-eslint')
   call add(g:extensions, 'coc-react-refactor')
 
-  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx if get(g:, 'format_on_save', 1) | undojoin | Neoformat | endif
+  autocmd FileType *.js,*.jsx,*.ts,*.tsx let b:format_on_save=1
 
   autocmd Filetype json let g:indentLine_setConceal = 0 | set conceallevel=0
   autocmd FileType javascript let b:coc_root_patterns = ['package.json']

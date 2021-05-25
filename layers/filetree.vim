@@ -2,7 +2,6 @@ function! layers#filetree#plugins() abort
   Plug 'shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'kristijanhusak/defx-git'
   Plug 'kristijanhusak/defx-icons'
-  Plug 'danro/rename.vim'
 endfunction
 
 function! layers#filetree#config() abort
@@ -37,9 +36,9 @@ function! s:defx_options() abort
         \ 'Modified'  : '~',
         \ 'Staged'    : '+',
         \ 'Untracked' : '*',
-        \ 'Renamed'   : '➜',
-        \ 'Unmerged'  : '═',
-        \ 'Ignored'   : ' ',
+        \ 'Renamed'   : '>',
+        \ 'Unmerged'  : '=',
+        \ 'Ignored'   : '#',
         \ 'Deleted'   : 'x',
         \ 'Unknown'   : '?'
         \ })
@@ -115,12 +114,4 @@ function! layers#filetree#bindings() abort
   let g:leader_key_map.f.o = 'Reveal in filtree'
   nnoremap <silent> <F3> :Defx<Cr>
   nnoremap <leader>fo :Defx -no-toggle -search=`expand('%:p')`<CR>
-
-  let g:leader_key_map.f.R = 'Rename file'
-  nnoremap <leader>fR :call RenameInput()<CR>
-endfunction
-
-function! RenameInput()
-  let name = input('Enter new name: ', expand('%:t'))
-  call Rename(name, '')
 endfunction

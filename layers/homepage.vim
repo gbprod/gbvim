@@ -10,6 +10,7 @@ function! layers#homepage#config() abort
         \ { 'type': 'files', 'header': ['   MRU'] },
         \ { 'type': function('s:gitModified'), 'header': ['   git modified']},
         \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': function('s:gitFromMaster'), 'header': ['   git from master']},
         \ ]
 endfunction
 
@@ -28,3 +29,7 @@ function! s:gitUntracked()
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
+function! s:gitFromMaster()
+  let files = systemlist('git diff --relative --name-only HEAD origin/$(git show-ref --verify --quiet refs/heads/master && echo "master" || echo "main") 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
+endfunction

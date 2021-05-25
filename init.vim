@@ -37,10 +37,12 @@ let g:layers = [
       \ 'docker',
       \ 'cursor',
       \ 'repl',
-      \ 'nginx',
-      \ 'taskwarrior',
-      \ 'notes',
       \ 'spellcheck',
+      \ 'sql',
       \ ]
+
+      " \ 'mail',
+      " \ 'taskwarrior',
+      " \ 'notes',
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'

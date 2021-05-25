@@ -7,7 +7,6 @@ function! layers#ui#plugins() abort
   Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
   Plug 'yggdroot/indentline'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'junegunn/goyo.vim'
   Plug 'troydm/zoomwintab.vim'
   Plug 'kana/vim-submode'
 
@@ -17,7 +16,9 @@ endfunction
 
 function! layers#ui#config() abort
   colorscheme nord
+
   call add(g:extensions, 'coc-highlight')
+  call coc#config('coc.preferences.colorSupport', v:true)
 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
@@ -67,8 +68,6 @@ function! layers#ui#config() abort
   let g:indentLine_concealcursor = 'niv'
   let g:indentLine_conceallevel = 2
 
-  let g:goyo_width = 120
-
   let g:zoomwintab_remap = 0
 
   let g:submode_timeoutlen = 500
@@ -77,9 +76,12 @@ function! layers#ui#config() abort
 
   autocmd FileType help nmap gl <C-]>
 
-  highlight CocErrorHighlight cterm=underline ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
-  highlight CocWarningHighlight cterm=underline ctermfg=3 gui=undercurl guifg=NONE guisp=#EBCB8B
-  highlight CocHintHighlight cterm=underline ctermfg=7 gui=undercurl guifg=NONE guisp=#ECEFF4
+  highlight CocErrorHighlight cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
+  highlight CocWarningHighlight cterm=undercurl ctermfg=3 gui=undercurl guifg=NONE guisp=#EBCB8B
+  highlight CocHintHighlight cterm=undercurl ctermfg=7 gui=undercurl guifg=NONE guisp=#ECEFF4
+
+  highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A
+  " highlight Search cterm=underline ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A gui=underline
 endfunction
 
 function! layers#ui#bindings() abort
@@ -99,6 +101,8 @@ function! layers#ui#bindings() abort
 
   let g:leader_key_map.b.d = 'Close current'
   nnoremap <silent><leader>bd :Bdelete<CR>
+  let g:leader_key_map.b.D = 'Force close current'
+  nnoremap <silent><leader>bD :Bdelete!<CR>
   let g:leader_key_map.b.c = 'Clear others'
   nnoremap <silent><leader>bc :DeleteHiddenBuffers<cr>
   let g:leader_key_map.b.C = 'Close all'
@@ -135,9 +139,6 @@ function! layers#ui#bindings() abort
 
   let g:leader_key_map.a.C = 'Color picker'
   nnoremap <silent><leader>aC :call CocAction('pickColor')<CR>
-
-  let g:leader_key_map.a.d = "Distraction free"
-  nmap <silent> <leader>ad :Goyo<CR>
 
   let g:leader_key_map.f.e = 'Edit <cfile>'
   nmap <silent> <leader>fe :call <SID>edit_cfile()<CR>
