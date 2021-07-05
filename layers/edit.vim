@@ -59,11 +59,11 @@ function! layers#edit#bindings() abort
 
   let g:leader_key_map.j = {
     \ 'name': '+Join/Split',
-    \ 'o': 'Oneliner',
-    \ 'm': 'Multiple liner',
+    \ 'J': 'Oneliner',
+    \ 'j': 'Multiple liner',
     \ }
-  nmap <silent><leader>jo :SplitjoinJoin<CR>
-  nmap <silent><leader>jm :SplitjoinSplit<CR>
+  nmap <silent><leader>jJ :SplitjoinJoin<CR>
+  nmap <silent><leader>jj :SplitjoinSplit<CR>
 
   let g:leader_key_map.x.c = {'name': '+Convert case'}
   let g:leader_key_map.x.c.s = 'snake_case'

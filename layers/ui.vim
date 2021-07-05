@@ -27,18 +27,18 @@ function! layers#ui#config() abort
   let g:airline_symbols = { 'branch': '' }
 
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '0 ',
-        \ '1': '1 ',
-        \ '2': '2 ',
-        \ '3': '3 ',
-        \ '4': '4 ',
-        \ '5': '5 ',
-        \ '6': '6 ',
-        \ '7': '7 ',
-        \ '8': '8 ',
-        \ '9': '9 '
-        \}
+  " let g:airline#extensions#tabline#buffer_idx_format = {
+  "       \ '0': '0 ',
+  "       \ '1': '1 ',
+  "       \ '2': '2 ',
+  "       \ '3': '3 ',
+  "       \ '4': '4 ',
+  "       \ '5': '5 ',
+  "       \ '6': '6 ',
+  "       \ '7': '7 ',
+  "       \ '8': '8 ',
+  "       \ '9': '9 '
+  "       \}
 
   let g:submode_always_show_submode = 1
   let g:submode_timeout=0
@@ -91,7 +91,9 @@ function! layers#ui#bindings() abort
   nnoremap <silent><C-Down> :<C-u>wincmd j<CR>
 
   nnoremap <silent><A-Right> :call <SID>change_tab('next')<CR>
+  nnoremap <silent><A-l> :call <SID>change_tab('next')<CR>
   nnoremap <silent><A-Left> :call <SID>change_tab('prev')<CR>
+  nnoremap <silent><A-h> :call <SID>change_tab('prev')<CR>
   nnoremap <silent><leader><tab> :call <SID>change_tab('#')<CR>
 
   map <PageUp> <C-U>
@@ -109,7 +111,7 @@ function! layers#ui#bindings() abort
   nnoremap <silent><leader>bC :bufdo :Bdelete<CR>
   let g:leader_key_map.b.e = 'New empty'
   nnoremap <silent><leader>be :enew<CR>
- g:leader_key_map.w['='] = 'Balance'
+  g:leader_key_map.w['='] = 'Balance'
   nnoremap <silent><leader>w= :wincmd =<CR>
 
   let g:leader_key_map.w.w = 'Resize'

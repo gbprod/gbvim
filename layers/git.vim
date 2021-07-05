@@ -1,4 +1,5 @@
 function! layers#git#plugins() abort
+  Plug 'tpope/vim-git'
   Plug 'tpope/vim-fugitive'
 endfunction
 
@@ -26,8 +27,6 @@ function! layers#git#bindings() abort
   let g:leader_key_map.g.B = 'Blame'
   nnoremap <silent> <leader>gB :G blame<CR>
 
-  let g:leader_key_map.g.b = 'Branches'
-  nnoremap <silent> <leader>gb :<C-u>CocList branches<CR>
 
   let g:leader_key_map.g.l = { 'name': '+Log' }
   let g:leader_key_map.g.l.o = 'Log'
@@ -56,6 +55,8 @@ function! layers#git#bindings() abort
   nnoremap <silent> <leader>gcc :<C-u>G commit<CR>
   let g:leader_key_map.g.c['!'] = 'Commit amend'
   nnoremap <silent> <leader>gc! :<C-u>G commit --amend<CR>
+  let g:leader_key_map.g.c.o = 'Branches'
+  nnoremap <silent> <leader>gco :<C-u>CocList branches<CR>
 
   let g:leader_key_map.g.a = { 'name': '+Add' }
 
@@ -77,6 +78,8 @@ function! layers#git#bindings() abort
 
   let g:leader_key_map.g.r.m = 'Rebase on master'
   nnoremap <silent> <leader>grm :<C-u>call GitRebase()<CR>
+  let g:leader_key_map.g.r.i = 'Rebase interactive on master'
+  nnoremap <silent> <leader>gri :<C-u>Git rebase -i origin/master<CR>
 
   let g:leader_key_map.g.r.p = 'Pick'
   nmap <silent> <leader>grp :call RebaseAction('pick')<CR>

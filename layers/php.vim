@@ -17,24 +17,27 @@ function! layers#php#config() abort
 
   call add(g:extensions, 'coc-phpactor')
   let g:checkers['php'] = ['phpstan', 'psalm']
-  call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
+  if !isdirectory(expand('%:p')) || !filereadable(expand('%:p').'/phpstan.neon') || match(readfile(expand('%:p').'/phpstan.neon'), "level") < 0
+    call coc#config('diagnostic-languageserver.linters.phpstan.command', 'phpstan')
+    call coc#config('diagnostic-languageserver.linters.phpstan.args', [
+          \ "analyze",
+          \ "--error-format", "raw",
+          \ "--no-progress",
+          \ "--level", "max",
+          \ "%file"
+          \ ])
+  endif
 
-  call coc#config('diagnostic-languageserver.linters.phpstan.args', [
-        \ "analyze",
-        \ "--error-format", "raw",
-        \ "--no-progress",
-        \ "--level", "max",
-        \ "%file"
-        \ ])
-
-  call coc#config('diagnostic-languageserver.linters.psalm.command', 'psalm')
-  " call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
-  call coc#config('diagnostic-languageserver.linters.psalm.args', [
-        \ "--output-format=emacs",
-        \ "--no-progress",
-        \ "--config=/home/gilles/.config/psalm/psalm.xml",
-        \ "%file"
-        \ ])
+  if !isdirectory(expand('%:p')) || !filereadable(expand('%:p').'/psalm.xml')
+    call coc#config('diagnostic-languageserver.linters.psalm.command', 'psalm')
+    call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
+    call coc#config('diagnostic-languageserver.linters.psalm.args', [
+          \ "--output-format=emacs",
+          \ "--no-progress",
+          \ "--config=/home/gilles/.config/psalm/psalm.xml",
+          \ "%file"
+          \ ])
+  endif
 
   let g:vista_executive_for['php'] = 'coc'
 
@@ -59,6 +62,7 @@ function! layers#php#config() abort
   let g:PhpactorRootDirectoryStrategy = {-> getcwd() }
 
   let g:PHP_noArrowMatching = 1
+  let g:PHP_vintage_case_default_indent = 1
 endfunction
 
 function! layers#php#bindings() abort
