@@ -6,7 +6,7 @@ function! layers#yanking#plugins() abort
 endfunction
 
 function! layers#yanking#config() abort
-  set clipboard=unnamed,unnamedplus
+  set clipboard+=unnamedplus
 
   call add(g:extensions, 'coc-yank')
   hi HighlightedyankRegion term=bold ctermbg=0 guibg=#4C566A

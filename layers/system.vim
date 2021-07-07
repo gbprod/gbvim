@@ -2,7 +2,7 @@
 
 function! layers#system#plugins() abort
   Plug 'airblade/vim-rooter'
-  " should try coc workspaces...
+  Plug 'tpope/vim-eunuch'
 endfunction
 
 function! layers#system#config() abort

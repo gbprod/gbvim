@@ -82,30 +82,26 @@ function! layers#git#bindings() abort
   nnoremap <silent> <leader>gri :<C-u>Git rebase -i origin/master<CR>
 
   let g:leader_key_map.g.r.p = 'Pick'
-  nmap <silent> <leader>grp :call RebaseAction('pick')<CR>
-  xmap <silent> <leader>grp :call RebaseAction('pick')<CR>
+  nmap <silent> <leader>grp :Pick<CR>
+  xmap <silent> <leader>grp :Pick<CR>
   let g:leader_key_map.g.r.r = 'Reword'
-  nmap <silent> <leader>grr :call RebaseAction('reword')<CR>
-  xmap <silent> <leader>grr :call RebaseAction('reword')<CR>
+  nmap <silent> <leader>grr :Reword<CR>
+  xmap <silent> <leader>grr :Reword<CR>
   let g:leader_key_map.g.r.e = 'Edit'
-  nmap <silent> <leader>gre :call RebaseAction('edit')<CR>
-  xmap <silent> <leader>gre :call RebaseAction('edit')<CR>
+  nmap <silent> <leader>gre :Edit<CR>
+  xmap <silent> <leader>gre :Edit<CR>
   let g:leader_key_map.g.r.s = 'Squash'
-  nmap <silent> <leader>grs :call RebaseAction('squash')<CR>
-  xmap <silent> <leader>grs :call RebaseAction('squash')<CR>
+  nmap <silent> <leader>grs :Squash<CR>
+  xmap <silent> <leader>grs :Squash<CR>
   let g:leader_key_map.g.r.f = 'Fixup'
-  nmap <silent> <leader>grf :call RebaseAction('fixup')<CR>
-  xmap <silent> <leader>grf :call RebaseAction('fixup')<CR>
+  nmap <silent> <leader>grf :Fixup<CR>
+  xmap <silent> <leader>grf :Fixup<CR>
   let g:leader_key_map.g.r.b = 'Break'
-  nmap <silent> <leader>grb :call RebaseAction('break')<CR>
-  xmap <silent> <leader>grb :call RebaseAction('break')<CR>
+  nmap <silent> <leader>grb :Break<CR>
+  xmap <silent> <leader>grb :Break<CR>
   let g:leader_key_map.g.r.d = 'Drop'
-  nmap <silent> <leader>grd :call RebaseAction('drop')<CR>
-  xmap <silent> <leader>grd :call RebaseAction('drop')<CR>
-endfunction
-
-function RebaseAction(name, ...)
-  exec 's/^\w\+/'.a:name.'/'
+  nmap <silent> <leader>grd :DropCR>
+  xmap <silent> <leader>grd :DropCR>
 endfunction
 
 function GitRebase()

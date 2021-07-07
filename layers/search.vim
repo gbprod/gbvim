@@ -6,9 +6,7 @@ endfunction
 function! layers#search#config() abort
   call add(g:extensions, 'coc-lists')
 
-  if maparg('<C-L>', 'n') ==# ''
-    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-  endif
+  nnoremap <silent> <C-L> :nohlsearch<CR>
 
   call coc#config('refactor', {
     \ 'openCommand': 'rightbelow vsplit'
