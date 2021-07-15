@@ -29,6 +29,7 @@ function! layers#php#config() abort
   endif
 
   if !isdirectory(expand('%:p')) || !filereadable(expand('%:p').'/psalm.xml')
+    let g:checkers['php'] = ['phpstan']
     call coc#config('diagnostic-languageserver.linters.psalm.command', 'psalm')
     call coc#config('diagnostic-languageserver.linters.psalm.requiredFiles', v:null)
     call coc#config('diagnostic-languageserver.linters.psalm.args', [

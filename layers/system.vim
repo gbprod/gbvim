@@ -1,5 +1,3 @@
-" command! -nargs=0 GBLoadSession :call <SID>load_session()
-
 function! layers#system#plugins() abort
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-eunuch'
