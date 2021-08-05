@@ -1,3 +1,5 @@
+  set packpath-=/home/gilles/.local/share/nvim/site
+
 execute 'set encoding=utf-8'
 scriptencoding utf-8
 
@@ -16,12 +18,8 @@ for s:layer in g:layers
 endfor
 call plug#end()
 
-" Auto install missing plugins on startup
-if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  PlugInstall --sync | q
-endif
+call layers#project#config()
 
-    call layers#project#config()
 for s:layer in g:layers
   if exists("*layers#{s:layer}#config")
     call layers#{s:layer}#config()
@@ -44,3 +42,4 @@ function s:update() abort
   PlugClean
   CocCommand extensions.forceUpdateAll
 endfunction
+

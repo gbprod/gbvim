@@ -2,11 +2,11 @@ function! layers#ui#plugins() abort
   Plug 'arcticicestudio/nord-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'yggdroot/indentline'
+  Plug 'ryanoasis/vim-devicons'
   Plug 'moll/vim-bbye'
   Plug 'arithran/vim-delete-hidden-buffers'
   Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-  Plug 'yggdroot/indentline'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'troydm/zoomwintab.vim'
   Plug 'kana/vim-submode'
 
@@ -59,7 +59,7 @@ function! layers#ui#config() abort
 
   autocmd BufEnter * call s:change_lspc_bindings()
 
-  nnoremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
+  nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
   vnoremap <silent><leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
   highlight default link WhichKeySeperator Identifier
