@@ -1,80 +1,105 @@
-   local layer = {}
+local layer = {}
 
 layer.plugins = function(use)
-    use 'arcticicestudio/nord-vim'
-    use 'hoob3rt/lualine.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use "lukas-reineke/indent-blankline.nvim"
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {}
-    	end
-    }
-    use 'romgrk/barbar.nvim'
+  use 'arcticicestudio/nord-vim'
+  use 'hoob3rt/lualine.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+  use "lukas-reineke/indent-blankline.nvim"
+  use {
+     "folke/which-key.nvim",
+     config = function()
+        require("which-key").setup {}
+     end
+  }
+  use 'akinsho/nvim-bufferline.lua'
+  use 'famiu/bufdelete.nvim'
 end
 
 layer.setup = function()
-    vim.cmd [[colorscheme nord]]
-    require('lualine').setup {
-        options = {
-            theme = 'nord'
-        }
+  vim.cmd [[
+    colorscheme nord
+    autocmd ColorScheme * highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A
+  ]]
+
+  require('lualine').setup {
+    options = {
+      theme = 'nord',
+      section_separators = {'', ''},
+      component_separators = {'|', '|'}
     }
+  }
 
-    vim.g.indent_blankline_char = '▏'
+  vim.g.indent_blankline_char = '▏'
+  -- fix https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
+  vim.opt.colorcolumn='99999'
 
-    vim.g.bufferline = {
-        animation = false,
-        --  exclude_ft = ['javascript'],
-        --  exclude_name = ['package.json'],
+  require("bufferline").setup{
+    options = {
+      numbers = "ordinal",
+      close_command = function(bufnum)
+        require('bufdelete').bufdelete(bufnum, true)
+      end,
+      right_mouse_command = nil,
+      -- diagnostics = false | "nvim_lsp"
+      -- diagnostics_indicator = function(count, level)
+      --  return "("..count..")"
+      -- end
+      offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left"}}
     }
+  }
 
-    vim.cmd [[hi! link BufferCurrentMod BufferCurrent]]
-    vim.cmd [[hi! link BufferInactivetMod BufferInactive]]
 end
 
-layer.bindings = function()
-    local wk = require("which-key")
-    
-    wk.register({
-        ["<leader>b"] = {
-            name = "+Buffer",
-            d = { "<cmd>BufferClose<cr>", "Close current" },
-            D = { "<cmd>BufferClose!<cr>", "Force close current" },
-            C = { "<cmd>bufdo :BufferClose<cr>", "Close all" },
-            c = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current" },
-            L = { "<cmd>BufferCloseBuffersLeft<cr>", "Close buffers left" },
-            R = { "<cmd>BufferCloseBuffersRight<cr>", "Close buffers right" },
-            p = { "<cmd>BufferPick<cr>", "Pick buffer" },
-            od = { '<cmd>BufferOrderByDirectory<CR>', "Sort by directory" },
-            ol = { '<cmd>BufferOrderByLanguage<CR>', "Sort by language" },
-        },
-    })
+layer.bindings = function(map)
+  local wk = require("which-key")
 
-    local map = vim.api.nvim_set_keymap
-    local opts = { noremap = true, silent = true }
+  wk.register({
+    ["<leader>b"] = {
+      name = "+Buffer",
+      d = { "<cmd>Bdelete<cr>", "Close current" },
+      D = { "<cmd>Bdelete!<cr>", "Force close current" },
+      C = { "<cmd>bufdo :Bdelete<cr>", "Close all" },
+      c = { "<cmd>BufferLineCloseRight<cr><cmd>BufferLineCloseLeft<cr>", "Close all but current" },
+      L = { "<cmd>BufferLineCloseLeft<cr>", "Close buffers left" },
+      R = { "<cmd>BufferLineCloseRight<cr>", "Close buffers right" },
+      p = { "<cmd>BufferLinePick<cr>", "Pick buffer" },
+      od = { '<cmd>BufferLineSortByDirectory<CR>', "Sort by directory" },
+      oe = { '<cmd>BufferLineSortByExtension<CR>', "Sort by extension" },
+    },
+  })
 
-    map('n', '<A-Left>', ':BufferPrevious<CR>', opts)
-    map('n', '<A-Right>', ':BufferNext<CR>', opts)
-    map('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
-    map('n', '<A->>', ' :BufferMoveNext<CR>', opts)
-    map('n', '<A-c>', ':BufferClose<CR>', opts)
+  local map = vim.api.nvim_set_keymap
+  local opts = { noremap = true, silent = true }
 
-    wk.register({
-        ["<leader>"] = {
-            ["&"] = { "<cmd>BufferGoto 1<cr>", "which_key_ignore" },
-            ["é"] = { "<cmd>BufferGoto 2<cr>", "which_key_ignore"},
-            ["\""] = { "<cmd>BufferGoto 3<cr>", "which_key_ignore" },
-            ["'"] = { "<cmd>BufferGoto 4<cr>", "which_key_ignore" },
-            ["("] = { "<cmd>BufferGoto 5<cr>", "which_key_ignore" },
-            ["-"] = { "<cmd>BufferGoto 6<cr>", "which_key_ignore" },
-            ["è"] = { "<cmd>BufferGoto 7<cr>", "which_key_ignore" },
-            ["_"] = { "<cmd>BufferGoto 8<cr>", "which_key_ignore" },
-            ["ç"] = { "<cmd>BufferGoto 9<cr>", "which_key_ignore" },
-            ["à"] = { "<cmd>BufferLast<cr>", "which_key_ignore" }
-        },
-    })
+  map('n', '<A-Left>', ':BufferLineCyclePrev<CR>', opts)
+  map('n', '<A-Right>', ':BufferLineCycleNext<CR>', opts)
+  map('n', '<A-<>', ':BufferLineMovePrev<CR>', opts)
+  map('n', '<A->>', ' :BufferLineMoveNext<CR>', opts)
+  map('n', '<A-q>', ':Bdelete<CR>', opts)
+
+  wk.register({
+    ["<leader>"] = {
+      ["&"] = { '<cmd>lua require"bufferline".go_to_buffer(1)<cr>', "which_key_ignore" },
+      ["é"] = {  '<cmd>lua require"bufferline".go_to_buffer(2)<cr>', "which_key_ignore"},
+      ["\""] = {  '<cmd>lua require"bufferline".go_to_buffer(3)<cr>', "which_key_ignore" },
+      ["'"] = { '<cmd>lua require"bufferline".go_to_buffer(4)<cr>', "which_key_ignore" },
+      ["("] = { '<cmd>lua require"bufferline".go_to_buffer(5)<cr>', "which_key_ignore" },
+      ["-"] = { '<cmd>lua require"bufferline".go_to_buffer(6)<cr>', "which_key_ignore" },
+      ["è"] = { '<cmd>lua require"bufferline".go_to_buffer(7)<cr>', "which_key_ignore" },
+      ["_"] = { '<cmd>lua require"bufferline".go_to_buffer(8)<cr>', "which_key_ignore" },
+      ["ç"] = { '<cmd>lua require"bufferline".go_to_buffer(9)<cr>', "which_key_ignore" }
+    },
+  })
+
+  map('n', '<c-Left>', ':<C-u>wincmd h<CR>', opts)
+  map('n', '<c-Right>', ':<C-u>wincmd l<CR>', opts)
+  map('n', '<c-Up>', ':<C-u>wincmd k<CR>', opts)
+  map('n', '<c-Down>', ':<C-u>wincmd j<CR>', opts)
+
+  map('n', '<PageUp>', '<C-U>', {})
+  map('n', '<PageDown>', '<C-D>', {})
+  map('i', '<PageUp>', '<C-O><C-U>', {})
+  map('i', '<PageDown>', '<C-O><C-D>', {})
 end
 
 return layer

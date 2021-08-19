@@ -1,0 +1,46 @@
+local layer = {}
+
+layer.plugins = function(use)
+  use 'sheerun/vim-polyglot'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use { 'nvim-treesitter/tree-sitter-lua', run = ':TSInstall lua'}
+end
+
+layer.setup = function()
+  require'nvim-treesitter.configs'.setup {
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+        },
+      },
+    },
+    highlight = {
+      enable = true,
+      use_languagetree = false,
+    },
+    indent = {
+      enable = true,
+    },
+  }
+
+  vim.cmd [[
+    autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+    set foldlevel=99
+  ]]
+end
+
+layer.bindings = function(map)
+end
+
+return layer
+
+

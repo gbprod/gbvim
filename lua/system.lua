@@ -11,7 +11,7 @@ layer.setup = function()
   vim.g.rooter_silent_chdir = 1
 end
 
-layer.bindings = function()
+layer.bindings = function(map)
 end
 
 return layer

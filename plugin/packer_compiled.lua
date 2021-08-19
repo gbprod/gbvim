@@ -69,13 +69,25 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["barbar.nvim"] = {
+  ["bufdelete.nvim"] = {
     loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/barbar.nvim"
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["line-targets.vim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/line-targets.vim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -85,6 +97,34 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nord-vim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
@@ -93,25 +133,118 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
+  phpactor = {
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/opt/phpactor"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["splitjoin.vim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
+  },
+  ["suda.vim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/suda.vim"
+  },
+  ["targets.vim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/targets.vim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["tree-sitter-html"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/tree-sitter-html"
+  },
+  ["tree-sitter-lua"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/tree-sitter-lua"
+  },
+  ["tree-sitter-php"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/tree-sitter-php"
+  },
+  ["twig.vim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/twig.vim"
+  },
+  ["vim-abolish"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-abolish"
+  },
+  ["vim-better-whitespace"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-better-whitespace"
+  },
+  ["vim-cutlass"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-cutlass"
+  },
   ["vim-eunuch"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-eunuch"
+  },
+  ["vim-expand-region"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-expand-region"
+  },
+  ["vim-matchup"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-matchup"
+  },
+  ["vim-polyglot"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-repeat"
   },
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-rooter"
   },
-  ["vim-sensible"] = {
-    loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-sensible"
-  },
   ["vim-sleuth"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-sleuth"
   },
-  vimpeccable = {
+  ["vim-sneak"] = {
     loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vimpeccable"
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-sneak"
+  },
+  ["vim-sort-motion"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-sort-motion"
+  },
+  ["vim-subversive"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-subversive"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["vim-textobj-entire"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-entire"
+  },
+  ["vim-textobj-indent"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-indent"
+  },
+  ["vim-textobj-user"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-user"
+  },
+  ["vim-yoink"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-yoink"
   },
   ["which-key.nvim"] = {
     config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0" },
@@ -125,6 +258,13 @@ time([[Defining packer_plugins]], false)
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType php ++once lua require("packer.load")({'phpactor'}, { ft = "php" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
