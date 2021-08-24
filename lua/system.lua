@@ -1,9 +1,9 @@
 local layer = {}
 
 layer.plugins = function(use)
-    use 'airblade/vim-rooter'
-    use 'tpope/vim-eunuch'
-    -- use "ahmedkhalf/lsp-rooter.nvim"
+  use 'nvim-lua/plenary.nvim'
+  use 'airblade/vim-rooter'
+  use 'tpope/vim-eunuch'
 end
 
 layer.setup = function()

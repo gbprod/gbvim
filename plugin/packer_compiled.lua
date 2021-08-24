@@ -73,6 +73,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
@@ -85,9 +93,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/line-targets.vim"
   },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
+  ["lsp-trouble.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/lsp-trouble.nvim"
+  },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -108,6 +128,10 @@ _G.packer_plugins = {
   ["nvim-compe"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-lightbulb"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -194,6 +218,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-expand-region"
   },
+  ["vim-git"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-git"
+  },
   ["vim-matchup"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-matchup"
@@ -247,17 +275,12 @@ _G.packer_plugins = {
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-yoink"
   },
   ["which-key.nvim"] = {
-    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0" },
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
-time([[Config for which-key.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads

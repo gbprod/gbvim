@@ -1,6 +1,7 @@
 function! layers#php#plugins() abort
   Plug '2072/PHP-Indenting-for-VIm'
   Plug 'nelsyeung/twig.vim'
+  use { 'nvim-treesitter/tree-sitter-php', run = ':TSInstall php'}
   Plug 'phpactor/phpactor', {'for': 'php', 'tag': 'master', 'do': 'composer install --no-dev -o'.
         \ ' && bin/phpactor extension:install phpactor/phpunit-extension'
         \ }
@@ -111,7 +112,7 @@ function! s:language_specified_mappings() abort
   let g:leader_key_map.l.c.a = 'Generate accessors'
   let g:leader_key_map.l.c.t = 'Show transform context menu'
   let g:leader_key_map.l.c.e = 'Expand the class name'
-  let g:leader_key_map.l.c.n = 'create a new class'
+  let g:leader_key_map.l.c.n = 'Create a new class'
 endfunction
 
 function! layers#php#alternate(file) abort

@@ -1,10 +1,7 @@
 local layer = {}
 
 layer.plugins = function(use)
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  use 'nvim-telescope/telescope.nvim'
 end
 
 layer.setup = function()
@@ -20,7 +17,7 @@ layer.bindings = function(map)
 
   wk.register({
     ['<leader>ff'] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", 'Find files' },
-    ['<leader>fw'] = { ":Telescope find_files<cr>"..vim.fn.expand('<cword>'), 'Find file <cword>' },
+    -- ['<leader>fw'] = { ":Telescope find_files<cr>"..vim.fn.expand('<cword>'), 'Find file <cword>' },
     -- nnoremap <expr> <leader>sF ':Telescope find_files<cr>' . "'" . expand('<cword>')
     ['<leader>fm'] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", 'MRU files' },
     ['<leader>ss'] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", 'Live grep' },

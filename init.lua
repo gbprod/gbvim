@@ -24,6 +24,9 @@ local layers = {
   require 'finder',
   require 'lsp',
   require 'motions',
+  require 'diagnostics',
+  require 'git',
+  require 'format',
 
   require 'language/php',
   require 'language/html',

@@ -2,7 +2,6 @@ local layer = {}
 
 layer.plugins = function(use)
   use 'windwp/nvim-autopairs'
-  -- use 'cohama/lexima.vim'
   use 'hrsh7th/nvim-compe'
 end
 

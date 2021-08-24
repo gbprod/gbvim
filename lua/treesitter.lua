@@ -4,7 +4,6 @@ layer.plugins = function(use)
   use 'sheerun/vim-polyglot'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use { 'nvim-treesitter/tree-sitter-lua', run = ':TSInstall lua'}
 end
 
 layer.setup = function()

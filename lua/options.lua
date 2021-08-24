@@ -1,7 +1,6 @@
 local layer = {}
 
 layer.plugins = function(use)
---    use 'tpope/vim-sensible'
 end
 
 layer.setup = function()

@@ -5,17 +5,14 @@ layer.plugins = function(use)
   use 'hoob3rt/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use "lukas-reineke/indent-blankline.nvim"
-  use {
-     "folke/which-key.nvim",
-     config = function()
-        require("which-key").setup {}
-     end
-  }
+  use "folke/which-key.nvim"
   use 'akinsho/nvim-bufferline.lua'
   use 'famiu/bufdelete.nvim'
 end
 
 layer.setup = function()
+  require("which-key").setup {}
+
   vim.cmd [[
     colorscheme nord
     autocmd ColorScheme * highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A

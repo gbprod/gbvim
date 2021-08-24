@@ -54,12 +54,12 @@ layer.bindings = function(map)
   map('x', 'P', '<plug>(SubversiveSubstitute)', {})
 
   wk.register({
-    ["<leader>s"] = {
+    ["<leader>xs"] = {
       name = '+Substitute',
       s = { '<plug>(SubversiveSubstituteRange)', 'Substitute <motion><motion>' },
       S = { '<plug>(SubversiveSubstituteRangeConfirm)', 'Substitute <motion><motion> with confirm' },
     },
-    ["<leader>S"] = {
+    ["<leader>xS"] = {
       name = '+Subvert',
       s = { '<plug>(SubversiveSubvertRange)', 'Subvert <motion><motion>' },
       S = { '<plug>(SubversiveSubvertRangeConfirm)', 'Subvert <motion><motion> with confirm' },
@@ -67,12 +67,12 @@ layer.bindings = function(map)
   }, { mode='n' })
 
   wk.register({
-    ["<leader>s"] = {
+    ["<leader>xs"] = {
       name = '+Substitute',
       s = { '<plug>(SubversiveSubstituteRange)', 'Substitute <motion><motion>' },
       S = { '<plug>(SubversiveSubstituteRangeConfirm)', 'Substitute <motion><motion> with confirm' },
     },
-    ["<leader>S"] = {
+    ["<leader>xS"] = {
       name = '+Subvert',
       s = { '<plug>(SubversiveSubvertRange)', 'Subvert <motion><motion>' },
       S = { '<plug>(SubversiveSubvertRangeConfirm)', 'Subvert <motion><motion> with confirm' },
