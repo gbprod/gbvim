@@ -39,16 +39,22 @@ packer.startup(
   function()
     use "wbthomason/packer.nvim"
       for _,layer in pairs(layers) do
-        layer.plugins(use)
+        if layer.plugins ~= nil then
+          layer.plugins(use)
+        end
       end
   end
 )
 
 for _,layer in pairs(layers) do
-  layer.setup()
+  if layer.setup ~= nil then
+    layer.setup()
+  end
 end
 
 local map = vim.api.nvim_set_keymap
 for _,layer in pairs(layers) do
-  layer.bindings(map)
+  if layer.bindings ~= nil then
+    layer.bindings(map)
+  end
 end

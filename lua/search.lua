@@ -4,9 +4,6 @@ layer.plugins = function(use)
   use 'haya14busa/vim-asterisk'
 end
 
-layer.setup = function()
-end
-
 layer.bindings = function(map)
   map('n', '*', '<Plug>(asterisk-z*)')
   map('n', '#', '<Plug>(asterisk-z#)')

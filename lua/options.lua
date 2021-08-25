@@ -1,8 +1,5 @@
 local layer = {}
 
-layer.plugins = function(use)
-end
-
 layer.setup = function()
   vim.g.mapleader = " "
 
@@ -42,9 +39,6 @@ layer.setup = function()
   opt.conceallevel = 2
   opt.title = true
   opt.undofile = true
-end
-
-layer.bindings = function(map)
 end
 
 return layer

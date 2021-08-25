@@ -37,9 +37,5 @@ layer.setup = function()
   ]]
 end
 
-layer.bindings = function(map)
-end
-
 return layer
-
 

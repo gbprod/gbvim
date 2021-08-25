@@ -7,12 +7,6 @@ layer.plugins = function(use)
   use 'kosayoda/nvim-lightbulb'
 end
 
-layer.setup = function()
-end
-
-layer.bindings = function(map)
-end
-
 layer.on_attach = function(client, bufnr)
   require "lsp_signature".on_attach({
     bind = true,

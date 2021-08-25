@@ -73,6 +73,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/formatter.nvim"
@@ -125,9 +141,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
-  ["nvim-compe"] = {
+  ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-lightbulb"] = {
     loaded = true,
@@ -269,10 +285,6 @@ _G.packer_plugins = {
   ["vim-textobj-user"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-user"
-  },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   ["vim-yoink"] = {
     loaded = true,
