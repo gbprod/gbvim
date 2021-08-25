@@ -19,6 +19,26 @@ layer.setup = function()
           ["ic"] = "@class.inner",
         },
       },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          [")m"] = "@function.outer",
+          [")c"] = "@class.outer",
+        },
+        goto_next_end = {
+          [")M"] = "@function.outer",
+          [")C"] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["(m"] = "@function.outer",
+          ["(c"] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["(M"] = "@function.outer",
+          ["(C"] = "@class.outer",
+        },
+      },
     },
     highlight = {
       enable = true,
@@ -29,12 +49,11 @@ layer.setup = function()
     },
   }
 
-  vim.cmd [[
-    autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
-    set foldlevel=99
-  ]]
+  vim.cmd [[ autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A ]]
+
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+  vim.opt.foldlevel = 99
 end
 
 return layer

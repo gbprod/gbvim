@@ -5,12 +5,11 @@ layer.plugins = function(use)
 end
 
 layer.setup = function()
-  require'lspconfig'.phpactor.setup{
-    cmd = { require'packer'.config.package_root .. '/packer/opt/phpactor/bin/phpactor', 'language-server' },
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  require'lspconfig'.html.setup {
+    capabilities = capabilities,
     on_attach = require'lsp'.on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
   }
 end
 
