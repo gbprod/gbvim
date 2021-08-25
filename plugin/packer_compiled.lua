@@ -270,6 +270,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-user"
   },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
   ["vim-yoink"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-yoink"

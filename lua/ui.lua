@@ -14,8 +14,8 @@ layer.setup = function()
   require("which-key").setup {}
 
   vim.cmd [[
-    colorscheme nord
-    autocmd ColorScheme * highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A
+  colorscheme nord
+  autocmd ColorScheme * highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A
   ]]
 
   require('lualine').setup {
@@ -37,11 +37,18 @@ layer.setup = function()
         require('bufdelete').bufdelete(bufnum, true)
       end,
       right_mouse_command = nil,
-      -- diagnostics = false | "nvim_lsp"
-      -- diagnostics_indicator = function(count, level)
-      --  return "("..count..")"
-      -- end
-      offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left"}}
+      diagnostics = "nvim_lsp",
+      diagnostics_indicator = function(count, level)
+        return "("..count..")"
+      end,
+      offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left"}},
+      custom_filter = function(buf_number)
+        if vim.bo[buf_number].filetype == "" then
+          return false
+        end
+
+        return true
+      end
     }
   }
 

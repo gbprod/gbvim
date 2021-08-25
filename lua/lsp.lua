@@ -42,13 +42,15 @@ layer.on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ft', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 
   buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+
+  buf_set_keymap('n', '<leader>dN', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>ds', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+
   --[[
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   ]]
@@ -85,8 +87,8 @@ layer.on_attach = function(client, bufnr)
     },
   })
 
+  -- Gutter signs
   local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-
   for type, icon in pairs(signs) do
     local hl = "LspDiagnosticsSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })

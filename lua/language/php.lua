@@ -119,6 +119,7 @@ layer.on_ft = function()
               'fix',
             },
             stdin = false,
+            tempfile_dir = "/tmp"
           }
         end
       }

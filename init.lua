@@ -10,6 +10,8 @@ end
 
 local packer = require("packer")
 
+vim.g.root_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand('<sfile>:p')), ':h')
+
 local use = packer.use
 
 local layers = {
