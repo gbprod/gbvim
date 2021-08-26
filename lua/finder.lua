@@ -20,8 +20,11 @@ layer.bindings = function(map)
     -- ['<leader>fw'] = { ":Telescope find_files<cr>"..vim.fn.expand('<cword>'), 'Find file <cword>' },
     -- nnoremap <expr> <leader>sF ':Telescope find_files<cr>' . "'" . expand('<cword>')
     ['<leader>fm'] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", 'MRU files' },
-    ['<leader>ss'] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", 'Live grep' },
-    ['<leader>sw'] = { "<cmd>lua require('telescope.builtin').grep_string()<cr>", 'Grep word' },
+    ['<leader>s'] = {
+      name = "+Search",
+      s = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", 'Live grep' },
+      w = { "<cmd>lua require('telescope.builtin').grep_string()<cr>", 'Grep word' },
+    },
     ['<leader>bb'] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", 'Buffers' },
   }, { mode="n" })
 

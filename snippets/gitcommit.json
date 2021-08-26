@@ -1,0 +1,90 @@
+{
+  "feat": {
+    "prefix": "feat",
+    "body": [
+      "feat(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Feature"
+  },
+  "fix": {
+    "prefix": "fix",
+    "body": [
+      "fix(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Fix"
+  },
+  "chore": {
+    "prefix": "chore",
+    "body": [
+      "chore(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Chore"
+  },
+  "style": {
+    "prefix": "style",
+    "body": [
+      "style(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Style"
+  },
+  "build": {
+    "prefix": "build",
+    "body": [
+      "build(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Build"
+  },
+  "docs": {
+    "prefix": "docs",
+    "body": [
+      "docs(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Documentation"
+  },
+  "refactor": {
+    "prefix": "refactor",
+    "body": [
+      "refactor(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Refactor"
+  },
+  "perf": {
+    "prefix": "perf",
+    "body": [
+      "perf(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Performance"
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "test(${1:scope}): ${2:desc}",
+      "",
+      "$0"
+    ],
+    "description": "Tests"
+  },
+  "Ref": {
+    "prefix": "Ref",
+    "body": [
+      "Ref: ${0:ref}"
+    ],
+    "description": "Reference"
+  }
+}

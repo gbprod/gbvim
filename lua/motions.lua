@@ -4,10 +4,9 @@ layer.plugins = function(use)
   use 'kana/vim-textobj-user'
   use 'kana/vim-textobj-indent'
   use 'kana/vim-textobj-entire'
+  use 'kana/vim-textobj-line'
   use 'terryma/vim-expand-region'
   use 'andymass/vim-matchup'
-  use 'wellle/targets.vim'
-  use 'wellle/line-targets.vim'
   use 'justinmk/vim-sneak'
 end
 
@@ -28,7 +27,6 @@ layer.setup = function()
     ['ie'] = 0,
   }
 
- vim.g.targets_nl = 'nN'
  vim.cmd
  [[
    autocmd User targets#mappings#user call targets#mappings#extend({ '-': {'separator': [{'d': '-'}]}, 'l': {'line': [{'c': 1}]}, })

@@ -28,6 +28,7 @@ layer.bindings = function(map)
     ['<leader>gR'] = { '<cmd>lua require"gitsigns".reset_buffer()<CR>', 'Reset buffer' },
     ['<leader>ghp'] = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', 'Preview hunk' },
     ['<leader>gb'] = { '<cmd>lua require"gitsigns".blame_line(true)<CR>', 'Blame' },
+    ['<leader>gs'] = { '<cmd>Telescope git_status<CR>', 'Status' },
   })
 
   --[[ let g:leader_key_map.g.r.p = 'Pick'

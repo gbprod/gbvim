@@ -29,6 +29,8 @@ local layers = {
   require 'diagnostics',
   require 'git',
   require 'format',
+  require 'search',
+  require 'homepage',
 
   require 'language/php',
   require 'language/html',

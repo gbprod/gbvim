@@ -17,6 +17,21 @@ layer.setup = function()
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
+          ["ia"] = "@parameter.inner",
+          ["aa"] = "@parameter.outer",
+          -- ["i"] = "@block.inner",
+          -- ["a"] = "@block.outer",
+          -- ["im"] = "@call.inner",
+          -- ["am"] = "@call.outer",
+          -- @comment.outer
+          -- ["iC"] = '@conditional.inner',
+          -- ["aC"] = '@conditional.outer',
+          -- @frame.inner
+          -- @frame.outer
+          -- @loop.inner
+          -- @loop.outer
+          -- @scopename.inner
+          -- @statement.outer
         },
       },
       move = {

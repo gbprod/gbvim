@@ -89,6 +89,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-path"
   },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/cmp-vsnip"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/formatter.nvim"
@@ -104,10 +108,6 @@ _G.packer_plugins = {
   kommentary = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/kommentary"
-  },
-  ["line-targets.vim"] = {
-    loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/line-targets.vim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
@@ -190,10 +190,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/suda.vim"
   },
-  ["targets.vim"] = {
-    loaded = true,
-    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/targets.vim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -217,6 +213,10 @@ _G.packer_plugins = {
   ["vim-abolish"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-abolish"
+  },
+  ["vim-asterisk"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-asterisk"
   },
   ["vim-better-whitespace"] = {
     loaded = true,
@@ -266,6 +266,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-sort-motion"
   },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-startify"
+  },
   ["vim-subversive"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-subversive"
@@ -282,9 +286,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-indent"
   },
+  ["vim-textobj-line"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-line"
+  },
   ["vim-textobj-user"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-textobj-user"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
   },
   ["vim-yoink"] = {
     loaded = true,
