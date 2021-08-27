@@ -62,6 +62,9 @@ layer.setup = function()
     indent = {
       enable = true,
     },
+    autopairs = {
+      enable = true,
+    },
   }
 
   vim.cmd [[ autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A ]]

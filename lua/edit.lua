@@ -2,7 +2,7 @@ local layer = {}
 
 layer.plugins = function(use)
   use 'tpope/vim-sleuth'
-  use 'tpope/vim-surround'
+  use 'blackCauldron7/surround.nvim'
   use 'tpope/vim-abolish'
   use 'andrewradev/splitjoin.vim'
   use 'lambdalisue/suda.vim'
@@ -26,6 +26,9 @@ layer.setup = function()
   vim.g.better_whitespace_operator=''
 
   require('kommentary.config').use_extended_mappings()
+  require "surround".setup {
+    mappings_style = "surround",
+  }
 end
 
 layer.bindings = function(map)

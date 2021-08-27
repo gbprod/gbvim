@@ -31,21 +31,24 @@ layer.setup = function()
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
       ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+      --[[ ['<CR>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }), ]]
     },
 
     sources = {
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
-      {
-        name = 'buffer',
+      { name = 'buffer',
         opts = {
           get_bufnrs = function()
             return vim.api.nvim_list_bufs()
           end
         }
       },
-      { name = 'path' },
-      { name = 'nvim_lua' },
+      { name = 'path'},
+      { name = 'nvim_lua'},
     },
     formatting = {
       format = function(entry, vim_item)
@@ -55,11 +58,15 @@ layer.setup = function()
     },
   }
 
-  require('nvim-autopairs').setup{}
-  require("nvim-autopairs.completion.cmp").setup({
+  require('nvim-autopairs').setup{
+    check_ts = true,
+  }
+
+  require("nvim-autopairs.completion.cmp").setup{
     map_cr = true,
-    map_complete = true,
-  })
+    map_complete = false,
+    auto_select = true,
+  }
 end
 
 layer.bindings = function(map)
@@ -69,8 +76,6 @@ layer.bindings = function(map)
   map('s', '<C-l>' , 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
   map('i', '<c-j>' , 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
   map('s', '<c-j>' , 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
-  -- map('i', '<c-j>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"');
-  -- map('s', '<S-Tab>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"');
   map('n', 'gZ', '<Plug>(vsnip-select-text)', {});
   map('x', 'gZ', '<Plug>(vsnip-select-text)', {});
   map('n', 'gz', '<Plug>(vsnip-cut-text)', {});
