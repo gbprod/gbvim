@@ -36,7 +36,14 @@ layer.setup = function()
     sources = {
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
-      { name = 'buffer' },
+      {
+        name = 'buffer',
+        opts = {
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end
+        }
+      },
       { name = 'path' },
       { name = 'nvim_lua' },
     },
@@ -49,12 +56,10 @@ layer.setup = function()
   }
 
   require('nvim-autopairs').setup{}
-
   require("nvim-autopairs.completion.cmp").setup({
     map_cr = true,
     map_complete = true,
   })
-
 end
 
 layer.bindings = function(map)
@@ -66,6 +71,10 @@ layer.bindings = function(map)
   map('s', '<c-j>' , 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
   -- map('i', '<c-j>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"');
   -- map('s', '<S-Tab>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"');
+  map('n', 'gZ', '<Plug>(vsnip-select-text)', {});
+  map('x', 'gZ', '<Plug>(vsnip-select-text)', {});
+  map('n', 'gz', '<Plug>(vsnip-cut-text)', {});
+  map('x', 'gz', '<Plug>(vsnip-cut-text)', {});
 end
 return layer
 

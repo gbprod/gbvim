@@ -3,6 +3,7 @@ local layer = {}
 layer.plugins = function(use)
   use 'folke/lsp-colors.nvim'
   use "folke/lsp-trouble.nvim"
+  use 'folke/todo-comments.nvim'
 end
 
 layer.setup = function()
@@ -29,6 +30,8 @@ layer.setup = function()
     },
   }
 
+  require("todo-comments").setup{}
+
   vim.cmd [[
     autocmd ColorScheme * highlight LspDiagnosticsUnderlineError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
     autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#EBCB8B
@@ -47,6 +50,7 @@ layer.bindings = function(map)
       D = { "<cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics", mode="n" },
       l = { "<cmd>LspTroubleToggle loclist<cr>", "Loclist", mode="n" },
       q = { "<cmd>LspTroubleToggle quickfix<cr>", "Quickfix", mode="n" },
+      t = { "<cmd>TodoTelescope<cr>", "Todo list", mode="n" },
     },
   }, { mode='n' })
 

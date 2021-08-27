@@ -194,9 +194,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/todo-comments.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/toggleterm.nvim"
+  },
   ["tree-sitter-html"] = {
     loaded = true,
     path = "/home/gilles/.local/share/nvim/site/pack/packer/start/tree-sitter-html"
+  },
+  ["tree-sitter-json"] = {
+    loaded = true,
+    path = "/home/gilles/.local/share/nvim/site/pack/packer/start/tree-sitter-json"
   },
   ["tree-sitter-lua"] = {
     loaded = true,

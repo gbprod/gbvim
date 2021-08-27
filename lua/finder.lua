@@ -17,8 +17,7 @@ layer.bindings = function(map)
 
   wk.register({
     ['<leader>ff'] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", 'Find files' },
-    -- ['<leader>fw'] = { ":Telescope find_files<cr>"..vim.fn.expand('<cword>'), 'Find file <cword>' },
-    -- nnoremap <expr> <leader>sF ':Telescope find_files<cr>' . "'" . expand('<cword>')
+    ['<leader>fw'] = { "':Telescope find_files<cr>' . expand('<cword>')", 'Find file <cword>', expr = true },
     ['<leader>fm'] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", 'MRU files' },
     ['<leader>s'] = {
       name = "+Search",
@@ -30,6 +29,7 @@ layer.bindings = function(map)
 
   map('n', '<c-p>', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
 end
+
 
 return layer
 

@@ -31,10 +31,12 @@ local layers = {
   require 'format',
   require 'search',
   require 'homepage',
+  require 'terminal',
 
   require 'language/php',
   require 'language/html',
   require 'language/lua',
+  require 'language/json',
 }
 
 packer.startup(
