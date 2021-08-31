@@ -27,12 +27,17 @@ layer.setup = function()
     ['ie'] = 0,
   }
 
- vim.cmd
- [[
-   autocmd User targets#mappings#user call targets#mappings#extend({ '-': {'separator': [{'d': '-'}]}, 'l': {'line': [{'c': 1}]}, })
-   autocmd ColorScheme * highlight Sneak cterm=underline ctermfg=14 ctermbg=201 gui=underline guifg=Red guibg=#2E3440
- ]]
+  vim.cmd [[
+  autocmd User targets#mappings#user call targets#mappings#extend({ '-': {'separator': [{'d': '-'}]}, 'l': {'line': [{'c': 1}]}, })
+  autocmd ColorScheme * highlight Sneak cterm=underline ctermfg=14 ctermbg=201 gui=underline guifg=Red guibg=#2E3440
+  ]]
 
+  require'nvim-treesitter.configs'.setup {
+    matchup = {
+      enable = true,
+      disable = {},
+    },
+  }
 end
 
 layer.bindings = function(map)

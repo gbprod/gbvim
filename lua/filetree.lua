@@ -9,12 +9,9 @@ layer.setup = function()
   vim.g.nvim_tree_auto_close = 0
   vim.g.nvim_tree_auto_open = 1
   vim.g.nvim_tree_auto_ignore_ft = { 'dashboard' }
--- let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
   vim.g.nvim_tree_git_hl = 1
   vim.g.nvim_tree_highlight_opened_files = 1
   vim.g.nvim_tree_lsp_diagnostics = 1
--- vim.g.nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
--- vim.g.nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
   vim.g.nvim_tree_window_picker_exclude = {
     filetype = {
       'packer',
