@@ -1,17 +1,14 @@
-local layer = {}
+return {
+  plugins = function(use)
+    use 'mhartington/formatter.nvim'
+  end,
 
-layer.plugins = function(use)
-  use 'mhartington/formatter.nvim'
-end
-
-layer.setup = function()
-  vim.api.nvim_exec([[
+  setup = function()
+    vim.api.nvim_exec([[
     augroup FormatAutogroup
-      autocmd!
-      autocmd BufWritePost * silent! FormatWrite
+    autocmd!
+    autocmd BufWritePost * silent! FormatWrite
     augroup END
-  ]], true)
-end
-
-return layer
-
+      ]], true)
+  end,
+}

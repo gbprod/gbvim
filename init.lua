@@ -37,6 +37,7 @@ local layers = {
   require 'language/html',
   require 'language/lua',
   require 'language/json',
+  require 'language/css',
 }
 
 packer.startup(
