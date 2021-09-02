@@ -26,7 +26,12 @@ layer.setup = function()
     }
   }
 
-  vim.g.indent_blankline_char = '▏'
+  require("indent_blankline").setup {
+    char = '▏',
+    space_char_blankline = " ",
+    buftype_exclude = { "terminal" },
+    filetype_exclude = { "dashboard" },
+  }
   -- fix https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
   vim.opt.colorcolumn='99999'
 
