@@ -6,8 +6,8 @@ return {
 
   setup = function()
     vim.g.nvim_tree_width = 40
-    vim.g.nvim_tree_auto_close = 1
-    vim.g.nvim_tree_auto_open = 1
+    vim.g.nvim_tree_auto_close = 0
+    vim.g.nvim_tree_auto_open = 0
     vim.g.nvim_tree_auto_ignore_ft = { 'dashboard' }
     vim.g.nvim_tree_git_hl = 1
     vim.g.nvim_tree_highlight_opened_files = 1
@@ -59,10 +59,11 @@ return {
       }
     }
 
-    vim.cmd [[
+    vim.api.nvim_exec([[
     autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1
-    ]]
-
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) | execute 'cd '.argv()[0] | execute 'Dashboard' | wincmd l | endif
+    autocmd FileType dashboard autocmd WinLeave <buffer> execute 'NvimTreeOpen'
+    ]], false)
   end,
 
   bindings = function(map)
@@ -77,5 +78,4 @@ return {
     })
   end,
 }
-
 

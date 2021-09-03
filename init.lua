@@ -18,6 +18,7 @@ local layers = {
   require 'options',
   require 'system',
   require 'ui',
+  require 'homepage',
   require 'filetree',
   require 'edit',
   require 'yanking',
@@ -30,7 +31,6 @@ local layers = {
   require 'git',
   require 'format',
   require 'search',
-  require 'homepage',
   require 'terminal',
 
   require 'language/php',

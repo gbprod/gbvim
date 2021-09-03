@@ -38,5 +38,6 @@ return {
     opt.conceallevel = 2
     opt.title = true
     opt.undofile = true
+    opt.signcolumn = "yes"
   end
 }
