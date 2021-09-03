@@ -62,7 +62,6 @@ return {
     vim.api.nvim_exec([[
     autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1
 	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) | execute 'cd '.argv()[0] | execute 'Dashboard' | wincmd l | endif
-    autocmd FileType dashboard autocmd WinLeave <buffer> execute 'NvimTreeOpen'
     ]], false)
   end,
 

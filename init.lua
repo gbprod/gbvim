@@ -32,6 +32,7 @@ local layers = {
   require 'format',
   require 'search',
   require 'terminal',
+  require 'project',
 
   require 'language/php',
   require 'language/html',
