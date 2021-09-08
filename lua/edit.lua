@@ -56,6 +56,8 @@ return {
     map('v', '>', '>gv', { noremap = true })
     map('v', '<', '<gv', { noremap = true })
 
+    map('v', 'S', "gv<cmd>lua require'surround'.surround_add()<cr>", { noremap = true })
+
     wk.register({
       ["<leader>"] = {
         O = { "<cmd>pu! _<cr>:']+1<cr>", "which_key_ignore" },

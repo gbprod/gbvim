@@ -19,30 +19,13 @@ return {
       }
     }
 
-    require'lspconfig'.diagnosticls.setup{
+    --[[ require'lspconfig'.diagnosticls.setup{
       filetypes = { 'php' },
       init_options = {
         filetypes = {
-          php = { "phpstan","psalm" },
+          php = { "psalm" },
         },
         linters = {
-          phpstan = {
-            command = "./vendor/bin/phpstan",
-            debounce = 100,
-            rootPatterns = { "composer.json", "composer.lock", "vendor", ".git" },
-            args = { "analyze", "--error-format", "raw", "--no-progress", "%file" },
-            offsetLine = 0,
-            offsetColumn = 0,
-            sourceName = "phpstan",
-            formatLines = 1,
-            formatPattern = {
-              "^[^:]+:(\\d+):(.*)(\\r|\\n)*$",
-              {
-                line = 1,
-                message = 2,
-              }
-            }
-          },
           psalm = {
             command = "./vendor/bin/psalm",
             debounce = 100,
@@ -69,7 +52,7 @@ return {
           },
         },
       }
-    }
+    } ]]
 
     require('formatter').setup({
       logging = false,
@@ -92,6 +75,21 @@ return {
         }
       }
     })
+
+
+    local null_ls = require("null-ls")
+    null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
+      command = './vendor/bin/phpstan',
+      condition = function(utils)
+        return utils.root_has_file("phpstan.neon")
+      end,
+    }))
+    null_ls.register(null_ls.builtins.diagnostics.psalm.with({
+      command = './vendor/bin/psalm',
+      condition = function(utils)
+        return utils.root_has_file("psalm.xml")
+      end,
+    }))
   end,
 
   on_ft = function()

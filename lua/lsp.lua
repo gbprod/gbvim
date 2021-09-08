@@ -4,6 +4,12 @@ return {
     use "ray-x/lsp_signature.nvim"
     use "onsails/lspkind-nvim"
     use 'kosayoda/nvim-lightbulb'
+    use 'jose-elias-alvarez/null-ls.nvim'
+  end,
+
+  setup = function()
+    require("null-ls").config({})
+    require("lspconfig")["null-ls"].setup({})
   end,
 
   on_attach = function(client, bufnr)

@@ -13,7 +13,8 @@
   "function __construct": {
     "prefix": "cons",
     "body": [
-      "${1:public} function __construct(${2:args}) {",
+      "${1:public} function __construct(${2:args})",
+      "{",
       "\t$0",
       "}"
     ]
@@ -33,7 +34,7 @@
   "public function": {
     "prefix": "pub",
     "body": [
-      "public function ${1:name}(${2:params})",
+      "public function ${1:name}(${2:params}): ${3:void}",
       "{",
       "\t${0:$TM_SELECTED_TEXT}",
       "}"
@@ -43,7 +44,7 @@
   "protected function": {
     "prefix": "pro",
     "body": [
-      "protected function ${1:name}(${2:params})",
+      "protected function ${1:name}(${2:params}): ${3:void}",
       "{",
       "\t${0:$TM_SELECTED_TEXT}",
       "}"
@@ -53,7 +54,7 @@
   "private function": {
     "prefix": "pri",
     "body": [
-      "private function ${1:name}(${2:params})",
+      "private function ${1:name}(${2:params}): ${3:void}",
       "{",
       "\t${0:$TM_SELECTED_TEXT}",
       "}"

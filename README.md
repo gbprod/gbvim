@@ -4,11 +4,11 @@ My neovim setup
 
 # To test
 
- - https://github.com/jose-elias-alvarez/null-ls.nvim
  - https://github.com/nanotee/sqls.nvim
  - https://github.com/rmagatti/auto-session
  - https://github.com/vhyrro/neorg
  - https://github.com/windwp/nvim-ts-autotag
+ - https://github.com/nvim-lua/completion-nvim
 
 # todo
 
@@ -18,3 +18,4 @@ My neovim setup
  - yaml
  - markdown
  - bash
+ - javascript/typescript/tsx
