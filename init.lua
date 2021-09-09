@@ -29,7 +29,6 @@ local layers = {
   require 'motions',
   require 'diagnostics',
   require 'git',
-  require 'format',
   require 'search',
   require 'terminal',
   require 'project',

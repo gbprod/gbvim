@@ -80,6 +80,8 @@ return {
 
     map('n', '<A-Left>', ':BufferLineCyclePrev<CR>', opts)
     map('n', '<A-Right>', ':BufferLineCycleNext<CR>', opts)
+    map('n', '<A-j>', ':BufferLineCyclePrev<CR>', opts)
+    map('n', '<A-k>', ':BufferLineCycleNext<CR>', opts)
     map('n', '<A-<>', ':BufferLineMovePrev<CR>', opts)
     map('n', '<A->>', ' :BufferLineMoveNext<CR>', opts)
     map('n', '<A-q>', ':Bdelete<CR>', opts)

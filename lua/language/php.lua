@@ -19,76 +19,19 @@ return {
       }
     }
 
-    --[[ require'lspconfig'.diagnosticls.setup{
-      filetypes = { 'php' },
-      init_options = {
-        filetypes = {
-          php = { "psalm" },
-        },
-        linters = {
-          psalm = {
-            command = "./vendor/bin/psalm",
-            debounce = 100,
-            rootPatterns = {"composer.json", "composer.lock", "vendor", ".git"},
-            args = {"--output-format=emacs", "--no-progress", '%file' },
-            offsetLine = 0,
-            offsetColumn = 0,
-            sourceName = "psalm",
-            formatLines = 1,
-            formatPattern = {
-              "^[^:]+:(\\d+):(\\d+):(.*)\\s-\\s(.*)(\\r|\\n)*$",
-              {
-                line = 1,
-                column = 2,
-                message = 4,
-                security = 3
-              }
-            },
-            securities = {
-              error = "error",
-              warning = "warning"
-            },
-            requiredFiles = {"psalm.xml"},
-          },
-        },
-      }
-    } ]]
-
-    require('formatter').setup({
-      logging = false,
-      filetype = {
-        php = {
-          function()
-            return {
-              exe = 'php-cs-fixer',
-              args = {
-                '--using-cache=no',
-                '--no-interaction',
-                '--quiet',
-                '--config=/home/gilles/.config/phpcs/.php_cs',
-                'fix',
-              },
-              stdin = false,
-              tempfile_dir = "/tmp"
-            }
-          end
-        }
-      }
-    })
-
-
     local null_ls = require("null-ls")
-    null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
-      command = './vendor/bin/phpstan',
-      condition = function(utils)
-        return utils.root_has_file("phpstan.neon")
-      end,
-    }))
-    null_ls.register(null_ls.builtins.diagnostics.psalm.with({
-      command = './vendor/bin/psalm',
-      condition = function(utils)
-        return utils.root_has_file("psalm.xml")
-      end,
+
+    null_ls.register(null_ls.builtins.diagnostics.phpstan)
+    -- null_ls.register(null_ls.builtins.diagnostics.psalm)
+
+    null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
+        args = {
+            '--no-interaction',
+            '--quiet',
+            '--config=/home/gilles/.config/phpcs/.php_cs',
+            'fix',
+            "$FILENAME",
+        },
     }))
   end,
 

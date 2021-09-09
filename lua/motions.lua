@@ -5,6 +5,7 @@ return {
     use 'kana/vim-textobj-indent'
     use 'kana/vim-textobj-entire'
     use 'kana/vim-textobj-line'
+    use 'glts/vim-textobj-comment'
     use 'terryma/vim-expand-region'
     use 'andymass/vim-matchup'
     use 'justinmk/vim-sneak'
@@ -28,7 +29,6 @@ return {
     }
 
     vim.cmd [[
-    autocmd User targets#mappings#user call targets#mappings#extend({ '-': {'separator': [{'d': '-'}]}, 'l': {'line': [{'c': 1}]}, })
     autocmd ColorScheme * highlight Sneak cterm=underline ctermfg=14 ctermbg=201 gui=underline guifg=Red guibg=#2E3440
     ]]
 
@@ -38,11 +38,17 @@ return {
         disable = {},
       },
     }
+    vim.g.textobj_comment_no_default_key_mappings = 1
   end,
 
   bindings = function(map)
     map('x', 'v', '<Plug>(expand_region_expand)', {})
     map('x', 'V', '<Plug>(expand_region_shrink)', {})
+
+	map('x', 'ax', '<Plug>(textobj-comment-a)', {})
+	map('o', 'ax', '<Plug>(textobj-comment-a)', {})
+	map('x', 'ix', '<Plug>(textobj-comment-i)', {})
+	map('o', 'ix', '<Plug>(textobj-comment-i)', {})
 
     map('n', '))', ']]', {})
     map('n', '((', '[[', {})

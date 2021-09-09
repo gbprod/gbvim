@@ -3,13 +3,20 @@ return {
     use "neovim/nvim-lspconfig"
     use "ray-x/lsp_signature.nvim"
     use "onsails/lspkind-nvim"
-    use 'kosayoda/nvim-lightbulb'
-    use 'jose-elias-alvarez/null-ls.nvim'
+    use "jose-elias-alvarez/null-ls.nvim"
   end,
 
   setup = function()
-    require("null-ls").config({})
-    require("lspconfig")["null-ls"].setup({})
+    require("null-ls").config({
+      debug = true,
+    })
+    require("lspconfig")["null-ls"].setup({
+      on_attach = function(client, bufnr)
+        if client.resolved_capabilities.document_formatting then
+          vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+        end
+      end
+    })
   end,
 
   on_attach = function(client, bufnr)
@@ -92,8 +99,6 @@ return {
       local hl = "LspDiagnosticsSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
-
-    vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
   end,
 }
 

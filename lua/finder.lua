@@ -17,7 +17,7 @@ return {
     wk.register({
       ['<leader>ff'] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", 'Find files' },
       ['<leader>fw'] = { "':Telescope find_files<cr>' . expand('<cword>')", 'Find file <cword>', expr = true },
-      ['<leader>fm'] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", 'MRU files' },
+      ['<leader>fm'] = { "<cmd>Telescope oldfiles cwd_only=true<cr>", 'MRU files' },
       ['<leader>s'] = {
         name = "+Search",
         s = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", 'Live grep' },
