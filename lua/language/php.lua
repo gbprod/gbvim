@@ -22,7 +22,7 @@ return {
     local null_ls = require("null-ls")
 
     null_ls.register(null_ls.builtins.diagnostics.phpstan)
-    -- null_ls.register(null_ls.builtins.diagnostics.psalm)
+    null_ls.register(null_ls.builtins.diagnostics.psalm)
 
     null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
         args = {
