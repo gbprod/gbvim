@@ -23,12 +23,11 @@ return {
 
     null_ls.register(null_ls.builtins.diagnostics.phpstan)
     null_ls.register(null_ls.builtins.diagnostics.psalm)
-
     null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
         args = {
             '--no-interaction',
             '--quiet',
-            '--config=/home/gilles/.config/phpcs/.php_cs',
+            '--config=/home/gilles/.config/phpcs/.php-cs-fixer.php',
             'fix',
             "$FILENAME",
         },
