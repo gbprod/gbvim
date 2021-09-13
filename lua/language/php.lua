@@ -35,6 +35,8 @@ return {
   end,
 
   on_ft = function()
+    vim.opt.colorcolumn={"80", "120"}
+
     require("which-key").register({
       ['<leader>l'] = { name = '+Php' },
       ['<leader>li'] = { ':PhpactorImportClass<CR>', "Import the name under the cusor", buffer = 0 },
