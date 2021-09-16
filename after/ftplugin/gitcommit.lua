@@ -1,2 +1,1 @@
-require'git'.on_ft()
-
+require("git").on_ft()

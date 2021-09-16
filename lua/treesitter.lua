@@ -1,12 +1,12 @@
 return {
   plugins = function(use)
-    use 'sheerun/vim-polyglot'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use("sheerun/vim-polyglot")
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use("nvim-treesitter/nvim-treesitter-textobjects")
   end,
 
   setup = function()
-    require'nvim-treesitter.configs'.setup {
+    require("nvim-treesitter.configs").setup({
       textobjects = {
         select = {
           enable = true,
@@ -56,20 +56,24 @@ return {
       },
       highlight = {
         enable = true,
-        use_languagetree = false,
+        additional_vim_regex_highlighting = true,
+        disable = { "php" }, -- TODO: test later
       },
       indent = {
         enable = true,
+        disable = { "php" }, -- TODO: test later
       },
       autopairs = {
         enable = true,
       },
-    }
+    })
 
-    vim.cmd [[ autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A ]]
+    vim.cmd(
+      [[ autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A ]]
+    )
 
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     vim.opt.foldlevel = 99
-  end
+  end,
 }

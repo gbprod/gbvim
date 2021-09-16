@@ -8,8 +8,7 @@ My neovim setup
  - https://github.com/rmagatti/auto-session
  - https://github.com/vhyrro/neorg
  - https://github.com/windwp/nvim-ts-autotag
- - https://github.com/nvim-lua/completion-nvim
-
+ - lspsaga
 # todo
 
  - multi open telescope
