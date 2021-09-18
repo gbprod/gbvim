@@ -9,6 +9,9 @@ My neovim setup
  - https://github.com/vhyrro/neorg
  - https://github.com/windwp/nvim-ts-autotag
  - lspsaga
+ - https://github.com/terrortylor/nvim-comment
+ - https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+ - 
 # todo
 
  - multi open telescope

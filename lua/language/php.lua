@@ -13,7 +13,11 @@ return {
 
   setup = function()
     require("lspconfig").phpactor.setup({
-      cmd = { require("packer").config.package_root .. "/packer/opt/phpactor/bin/phpactor", "language-server" },
+      cmd = {
+        require("packer").config.package_root
+          .. "/packer/opt/phpactor/bin/phpactor",
+        "language-server",
+      },
       on_attach = require("lsp").on_attach,
       flags = {
         debounce_text_changes = 150,
@@ -53,28 +57,88 @@ return {
 
     require("which-key").register({
       ["<leader>l"] = { name = "+Php" },
-      ["<leader>li"] = { ":PhpactorImportClass<CR>", "Import the name under the cusor", buffer = 0 },
-      ["<leader>lI"] = { ":PhpactorImportMissingClasses<CR>", "Attempt to import all non-resolvable classes", buffer = 0 },
-      ["<leader>lm"] = { ":PhpactorContextMenu<CR>", "show the context menu for the current cursor position", buffer = 0 },
-      ["<leader>lr"] = { ":PhpactorFindReferences<CR>", "Attempt to find all references", buffer = 0 },
+      ["<leader>li"] = {
+        ":PhpactorImportClass<CR>",
+        "Import the name under the cusor",
+        buffer = 0,
+      },
+      ["<leader>lI"] = {
+        ":PhpactorImportMissingClasses<CR>",
+        "Attempt to import all non-resolvable classes",
+        buffer = 0,
+      },
+      ["<leader>lm"] = {
+        ":PhpactorContextMenu<CR>",
+        "show the context menu for the current cursor position",
+        buffer = 0,
+      },
+      ["<leader>lr"] = {
+        ":PhpactorFindReferences<CR>",
+        "Attempt to find all references",
+        buffer = 0,
+      },
       ["<leader>ln"] = { ":PhpactorNavigate<CR>", "Navigate", buffer = 0 },
-      ["<leader>lv"] = { ":PhpactorChangeVisibility<CR>", "Rotate visiblity", buffer = 0 },
+      ["<leader>lv"] = {
+        ":PhpactorChangeVisibility<CR>",
+        "Rotate visiblity",
+        buffer = 0,
+      },
 
       ["<leader>lf"] = { name = "+File" },
-      ["<leader>lfc"] = { ":PhpactorCopyFile<CR>", "Copy the current file", buffer = 0 },
-      ["<leader>lfm"] = { ":PhpactorMoveFile<CR>", "Move the current file", buffer = 0 },
+      ["<leader>lfc"] = {
+        ":PhpactorCopyFile<CR>",
+        "Copy the current file",
+        buffer = 0,
+      },
+      ["<leader>lfm"] = {
+        ":PhpactorMoveFile<CR>",
+        "Move the current file",
+        buffer = 0,
+      },
 
       ["<leader>lc"] = { name = "+Class" },
-      ["<leader>lci"] = { ":PhpactorClassInflect<CR>", "Inflect a new class from the current class", buffer = 0 },
-      ["<leader>lca"] = { ":PhpactorGenerateAccessors<CR>", "Generate accessors", buffer = 0 },
-      ["<leader>lct"] = { ":PhpactorTransform<CR>", "Show transform context menu", buffer = 0 },
-      ["<leader>lce"] = { ":PhpactorClassExpand<CR>", "Expand the class name", buffer = 0 },
-      ["<leader>lcn"] = { ":PhpactorClassNew<CR>", "Create a new class", buffer = 0 },
+      ["<leader>lci"] = {
+        ":PhpactorClassInflect<CR>",
+        "Inflect a new class from the current class",
+        buffer = 0,
+      },
+      ["<leader>lca"] = {
+        ":PhpactorGenerateAccessors<CR>",
+        "Generate accessors",
+        buffer = 0,
+      },
+      ["<leader>lct"] = {
+        ":PhpactorTransform<CR>",
+        "Show transform context menu",
+        buffer = 0,
+      },
+      ["<leader>lce"] = {
+        ":PhpactorClassExpand<CR>",
+        "Expand the class name",
+        buffer = 0,
+      },
+      ["<leader>lcn"] = {
+        ":PhpactorClassNew<CR>",
+        "Create a new class",
+        buffer = 0,
+      },
 
       ["<leader>lx"] = { name = "+Extract" },
-      ["<leader>lxm"] = { ":PhpactorExtractMethod<CR>", "Extract a new method", buffer = 0 },
-      ["<leader>lxv"] = { ":PhpactorExtractExpression<CR>", "Extract to a variable", buffer = 0 },
-      ["<leader>lxc"] = { ":PhpactorExtractConstant<CR>", "Extract a constant from a literal", buffer = 0 },
+      ["<leader>lxm"] = {
+        ":PhpactorExtractMethod<CR>",
+        "Extract a new method",
+        buffer = 0,
+      },
+      ["<leader>lxv"] = {
+        ":PhpactorExtractExpression<CR>",
+        "Extract to a variable",
+        buffer = 0,
+      },
+      ["<leader>lxc"] = {
+        ":PhpactorExtractConstant<CR>",
+        "Extract a constant from a literal",
+        buffer = 0,
+      },
       -- ['<leader>lt'] = { ':call layers#php#alternate(expand("%@"))<CR>', "Alternate test file", buffer = 0 },
     })
   end,
