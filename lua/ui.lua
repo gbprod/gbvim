@@ -45,7 +45,9 @@ return {
         diagnostics_indicator = function(count, level)
           return "(" .. count .. ")"
         end,
-        offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "left" } },
+        offsets = {
+          { filetype = "NvimTree", text = "File Explorer", text_align = "left" },
+        },
         custom_filter = function(buf_number)
           if vim.bo[buf_number].filetype == "" then
             return false
@@ -66,7 +68,10 @@ return {
         d = { "<cmd>Bdelete<cr>", "Close current" },
         D = { "<cmd>Bdelete!<cr>", "Force close current" },
         C = { "<cmd>bufdo :Bdelete<cr>", "Close all" },
-        c = { "<cmd>BufferLineCloseRight<cr><cmd>BufferLineCloseLeft<cr>", "Close all but current" },
+        c = {
+          "<cmd>BufferLineCloseRight<cr><cmd>BufferLineCloseLeft<cr>",
+          "Close all but current",
+        },
         L = { "<cmd>BufferLineCloseLeft<cr>", "Close buffers left" },
         R = { "<cmd>BufferLineCloseRight<cr>", "Close buffers right" },
         p = { "<cmd>BufferLinePick<cr>", "Pick buffer" },
@@ -75,7 +80,6 @@ return {
       },
     })
 
-    local map = vim.api.nvim_set_keymap
     local opts = { noremap = true, silent = true }
 
     map("n", "<A-Left>", ":BufferLineCyclePrev<CR>", opts)
@@ -88,15 +92,42 @@ return {
 
     wk.register({
       ["<leader>"] = {
-        ["&"] = { '<cmd>lua require"bufferline".go_to_buffer(1)<cr>', "which_key_ignore" },
-        ["é"] = { '<cmd>lua require"bufferline".go_to_buffer(2)<cr>', "which_key_ignore" },
-        ['"'] = { '<cmd>lua require"bufferline".go_to_buffer(3)<cr>', "which_key_ignore" },
-        ["'"] = { '<cmd>lua require"bufferline".go_to_buffer(4)<cr>', "which_key_ignore" },
-        ["("] = { '<cmd>lua require"bufferline".go_to_buffer(5)<cr>', "which_key_ignore" },
-        ["-"] = { '<cmd>lua require"bufferline".go_to_buffer(6)<cr>', "which_key_ignore" },
-        ["è"] = { '<cmd>lua require"bufferline".go_to_buffer(7)<cr>', "which_key_ignore" },
-        ["_"] = { '<cmd>lua require"bufferline".go_to_buffer(8)<cr>', "which_key_ignore" },
-        ["ç"] = { '<cmd>lua require"bufferline".go_to_buffer(9)<cr>', "which_key_ignore" },
+        ["&"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(1)<cr>',
+          "which_key_ignore",
+        },
+        ["é"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(2)<cr>',
+          "which_key_ignore",
+        },
+        ['"'] = {
+          '<cmd>lua require"bufferline".go_to_buffer(3)<cr>',
+          "which_key_ignore",
+        },
+        ["'"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(4)<cr>',
+          "which_key_ignore",
+        },
+        ["("] = {
+          '<cmd>lua require"bufferline".go_to_buffer(5)<cr>',
+          "which_key_ignore",
+        },
+        ["-"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(6)<cr>',
+          "which_key_ignore",
+        },
+        ["è"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(7)<cr>',
+          "which_key_ignore",
+        },
+        ["_"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(8)<cr>',
+          "which_key_ignore",
+        },
+        ["ç"] = {
+          '<cmd>lua require"bufferline".go_to_buffer(9)<cr>',
+          "which_key_ignore",
+        },
       },
     })
 

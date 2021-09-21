@@ -39,5 +39,6 @@ return {
     opt.title = true
     opt.undofile = true
     opt.signcolumn = "yes"
+    opt.shiftround = true
   end,
 }
