@@ -147,7 +147,7 @@
     "prefix": "test",
     "body": [
       "/** @test */",
-      "private function it_${1:name}(): void",
+      "public function it_${1:name}(): void",
       "{",
       "\t${0:$TM_SELECTED_TEXT}",
       "}"

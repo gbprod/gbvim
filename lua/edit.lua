@@ -12,11 +12,6 @@ return {
   end,
 
   setup = function()
-    vim.opt.tabstop = 4
-    vim.opt.softtabstop = 4
-    vim.opt.shiftwidth = 4
-    vim.opt.expandtab = true
-
     vim.cmd([[ autocmd ColorScheme * highlight ExtraWhitespace guibg=#3B4252]])
 
     vim.g.better_whitespace_enabled = 1
@@ -44,9 +39,24 @@ return {
     -- Ctrl+Shift+Up/Down to move up and down
     map("n", "<C-S-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
     map("n", "<C-S-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
-    map("i", "<C-S-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
-    map("i", "<C-S-Up>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
-    map("v", "<C-S-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+    map(
+      "i",
+      "<C-S-Down>",
+      "<Esc>:m .+1<CR>==gi",
+      { noremap = true, silent = true }
+    )
+    map(
+      "i",
+      "<C-S-Up>",
+      "<Esc>:m .-2<CR>==gi",
+      { noremap = true, silent = true }
+    )
+    map(
+      "v",
+      "<C-S-Down>",
+      ":m '>+1<CR>gv=gv",
+      { noremap = true, silent = true }
+    )
     map("v", "<C-S-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
     -- Use tab for indenting in visual mode
@@ -56,7 +66,12 @@ return {
     map("v", ">", ">gv", { noremap = true })
     map("v", "<", "<gv", { noremap = true })
 
-    map("v", "S", "gv<cmd>lua require'surround'.surround_add()<cr>", { noremap = true })
+    map(
+      "v",
+      "S",
+      "gv<cmd>lua require'surround'.surround_add()<cr>",
+      { noremap = true }
+    )
 
     wk.register({
       ["<leader>"] = {
@@ -82,7 +97,11 @@ return {
         t = { "<Plug>(abolish-coerce-word)t", "Title Case", mode = "n" },
         ["-"] = { "<Plug>(abolish-coerce-word)-", "dash-case", mode = "n" },
         ["."] = { "<Plug>(abolish-coerce-word).", "dot.case", mode = "n" },
-        ["<space>"] = { "<Plug>(abolish-coerce-word)<space>", "space case", mode = "n" },
+        ["<space>"] = {
+          "<Plug>(abolish-coerce-word)<space>",
+          "space case",
+          mode = "n",
+        },
       },
       ["<leader>xo"] = { "<Plug>SortMotion", "Sort <motion>" },
       ["<leader>fW"] = { ":SudaWrite<CR>", "Sudo save" },
@@ -100,7 +119,11 @@ return {
         t = { "<Plug>(abolish-coerce)t", "Title Case", mode = "v" },
         ["-"] = { "<Plug>(abolish-coerce)-", "dash-case", mode = "v" },
         ["."] = { "<Plug>(abolish-coerce).", "dot.case", mode = "v" },
-        ["<space>"] = { "<Plug>(abolish-coerce)<space>", "space case", mode = "v" },
+        ["<space>"] = {
+          "<Plug>(abolish-coerce)<space>",
+          "space case",
+          mode = "v",
+        },
       },
       ["<leader>xo"] = { "<Plug>SortMotionVisual", "Sort" },
     }, {

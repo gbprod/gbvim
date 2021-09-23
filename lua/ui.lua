@@ -7,6 +7,7 @@ return {
     use("folke/which-key.nvim")
     use("akinsho/nvim-bufferline.lua")
     use("famiu/bufdelete.nvim")
+    use("norcalli/nvim-colorizer.lua")
   end,
 
   setup = function()
@@ -57,6 +58,8 @@ return {
         end,
       },
     })
+
+    require("colorizer").setup()
   end,
 
   bindings = function(map)

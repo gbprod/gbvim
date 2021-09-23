@@ -50,6 +50,10 @@ return {
 
     vim.g.PHP_noArrowMatching = 1
     vim.g.PHP_vintage_case_default_indent = 1
+
+    require("kommentary.config").configure_language("php", {
+      prefer_single_line_comments = true,
+    })
   end,
 
   on_ft = function()

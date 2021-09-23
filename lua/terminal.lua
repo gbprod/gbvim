@@ -20,6 +20,7 @@ return {
 
     vim.cmd([[
     autocmd TermEnter term://*toggleterm#* tnoremap <silent><F4> <Cmd>ToggleTerm<CR>
+    autocmd TermEnter term://*toggleterm#* tnoremap <silent><C-o> <C-\><C-n>
     autocmd TermEnter term://*toggleterm#* set signcolumn=no
     ]])
   end,
