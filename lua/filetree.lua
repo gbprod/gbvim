@@ -1,10 +1,43 @@
 return {
 
   plugins = function(use)
-    use("kyazdani42/nvim-tree.lua")
+    use({
+      "kyazdani42/nvim-tree.lua",
+      commit = "d7f73b5ae9c8fa85535c32e2861c2cb97df5d56b",
+    })
   end,
 
   setup = function()
+    --[[ require("nvim-tree").setup({
+      disable_netrw = true,
+      hijack_netrw = true,
+      open_on_setup = true,
+      ignore_ft_on_setup = {},
+      auto_close = true,
+      open_on_tab = false,
+      hijack_cursor = true,
+      update_cwd = true,
+      lsp_diagnostics = true,
+      update_focused_file = {
+        enable = false,
+        update_cwd = false,
+        ignore_list = {},
+      },
+      system_open = {
+        cmd = nil,
+        args = {},
+      },
+      view = {
+        width = 40,
+        side = "left",
+        auto_resize = false,
+        mappings = {
+          custom_only = false,
+          list = {},
+        },
+      },
+    }) ]]
+
     vim.g.nvim_tree_width = 40
     vim.g.nvim_tree_auto_close = 0
     vim.g.nvim_tree_auto_open = 0

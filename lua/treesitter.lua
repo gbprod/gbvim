@@ -57,7 +57,7 @@ return {
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
-        disable = { "php" }, -- TODO: test later
+        disable = { "php", "yaml" }, -- TODO: test later
       },
       indent = {
         enable = true,
