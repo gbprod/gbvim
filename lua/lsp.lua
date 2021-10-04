@@ -19,15 +19,17 @@ return {
     })
   end,
 
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     require("lsp_signature").on_attach({
-      bind = true,
+      bind = false,
       hint_enable = false,
       padding = " ",
-      always_trigger = true,
       handler_opts = {
         border = "none",
       },
+      always_trigger = false,
+      auto_close_after = 10,
+      toggle_key = "<M-s>",
     })
 
     local function buf_set_keymap(...)

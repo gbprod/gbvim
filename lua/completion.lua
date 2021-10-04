@@ -33,6 +33,7 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+        ["<c-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
       },
 
       sources = {
@@ -42,14 +43,10 @@ return {
           name = "buffer",
           opts = {
             get_bufnrs = function()
-              local buffers = vim.api.nvim_list_bufs()
-              local availableBuffers = {}
-              for index, value in pairs(buffers) do
-                if vim.api.nvim_buf_is_valid(value) then
-                  availableBuffers[index] = value
-                end
-              end
-              return availableBuffers
+              return vim.tbl_filter(function(bufnr)
+                return vim.api.nvim_buf_is_valid(bufnr)
+                  and vim.api.nvim_buf_is_loaded(bufnr)
+              end, vim.api.nvim_list_bufs())
             end,
             keyword_pattern = [[\k\+]],
           },
@@ -58,7 +55,7 @@ return {
         { name = "nvim_lua" },
       },
       formatting = {
-        format = function(entry, vim_item)
+        format = function(_, vim_item)
           vim_item.kind = lspkind.presets.default[vim_item.kind]
           return vim_item
         end,
@@ -78,12 +75,42 @@ return {
   end,
 
   bindings = function(map)
-    map("i", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
-    map("s", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
-    map("i", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
-    map("s", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
-    map("i", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
-    map("s", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
+    map(
+      "i",
+      "<C-j>",
+      'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"',
+      { expr = true }
+    )
+    map(
+      "s",
+      "<C-j>",
+      'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"',
+      { expr = true }
+    )
+    map(
+      "i",
+      "<C-l>",
+      'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"',
+      { expr = true }
+    )
+    map(
+      "s",
+      "<C-l>",
+      'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"',
+      { expr = true }
+    )
+    map(
+      "i",
+      "<c-j>",
+      'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"',
+      { expr = true }
+    )
+    map(
+      "s",
+      "<c-j>",
+      'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"',
+      { expr = true }
+    )
     map("n", "gZ", "<Plug>(vsnip-select-text)", {})
     map("x", "gZ", "<Plug>(vsnip-select-text)", {})
     map("n", "gz", "<Plug>(vsnip-cut-text)", {})
