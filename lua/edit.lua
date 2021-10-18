@@ -65,6 +65,7 @@ return {
     map("v", "<S-Tab>", "<gv", { noremap = true })
     map("v", ">", ">gv", { noremap = true })
     map("v", "<", "<gv", { noremap = true })
+    map("i", "<C-d>", "<c-o>cw", { noremap = true })
 
     map(
       "v",

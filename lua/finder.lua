@@ -1,14 +1,20 @@
 return {
   plugins = function(use)
     use("nvim-telescope/telescope.nvim")
+    use("~/workspace/open-related.nvim")
   end,
 
   setup = function()
     require("telescope").setup({
       defaults = {
         sorting_strategy = "ascending",
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+        },
       },
     })
+    require("open-related").setup({})
   end,
 
   bindings = function(map)

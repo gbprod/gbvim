@@ -33,7 +33,7 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
         ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        ["<c-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
       },
 
       sources = {
@@ -61,7 +61,9 @@ return {
         end,
       },
     })
-
+    vim.cmd([[
+      autocmd ColorScheme * highlight link CmpItemAbbr CmpItemAbbrMatch
+    ]])
     require("nvim-autopairs").setup({
       check_ts = true,
     })

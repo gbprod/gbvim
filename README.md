@@ -2,21 +2,20 @@
 
 My neovim setup
 
-# To test
+# TODO
 
+ - https://github.com/romgrk/nvim-treesitter-context
+ - https://github.com/kyazdani42/nvim-tree.lua/issues/674
+ - https://github.com/numToStr/Comment.nvim
+ - https://github.com/numToStr/FTerm.nvim
  - https://github.com/nanotee/sqls.nvim
- - https://github.com/rmagatti/auto-session
  - https://github.com/vhyrro/neorg
  - https://github.com/windwp/nvim-ts-autotag
- - lspsaga
- - https://github.com/terrortylor/nvim-comment
  - https://github.com/JoosepAlviste/nvim-ts-context-commentstring
- - 
-# todo
-
- - multi open telescope
+ - https://github.com/tanvirtin/vgit.nvim
+ - update nvim tree
+ - multi open telescope - https://github.com/nvim-telescope/telescope.nvim/issues/1048
  - telescope in folder
- - repl
  - yaml
  - markdown
  - bash

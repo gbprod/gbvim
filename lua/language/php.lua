@@ -48,7 +48,7 @@ return {
       },
     }))
 
-    null_ls.register({
+    --[[ null_ls.register({
       name = "phpactor",
       method = require("null-ls.methods").internal.CODE_ACTION,
       filetypes = { "php" },
@@ -91,7 +91,7 @@ return {
           end
         end,
       },
-    })
+    }) ]]
 
     null_ls.register({
       name = "phpactor yaml",
