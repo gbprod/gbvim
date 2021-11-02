@@ -1,7 +1,7 @@
 return {
   plugins = function(use)
     use("nvim-telescope/telescope.nvim")
-    use("~/workspace/open-related.nvim")
+    use("gbprod/open-related.nvim")
   end,
 
   setup = function()
@@ -14,7 +14,10 @@ return {
         },
       },
     })
-    require("open-related").setup({})
+    require("open-related").setup({
+      open_with = "telescope",
+      create_with = "telescope",
+    })
   end,
 
   bindings = function(map)
@@ -33,6 +36,14 @@ return {
       ["<leader>fm"] = {
         "<cmd>Telescope oldfiles cwd_only=true<cr>",
         "MRU files",
+      },
+      ["<leader>fr"] = {
+        "<cmd>OpenRelated<cr>",
+        "Related files",
+      },
+      ["<leader>fc"] = {
+        "<cmd>CreateRelated<cr>",
+        "Create related files",
       },
       ["<leader>s"] = {
         name = "+Search",

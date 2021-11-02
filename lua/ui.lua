@@ -1,17 +1,19 @@
 return {
   plugins = function(use)
     use("arcticicestudio/nord-vim")
-    use("hoob3rt/lualine.nvim")
+    use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("lukas-reineke/indent-blankline.nvim")
     use("folke/which-key.nvim")
     use("akinsho/nvim-bufferline.lua")
     use("famiu/bufdelete.nvim")
     use("norcalli/nvim-colorizer.lua")
+    use("rcarriga/nvim-notify")
   end,
 
   setup = function()
     require("which-key").setup({})
+    vim.notify = require("notify")
 
     vim.cmd([[
     colorscheme nord
@@ -23,6 +25,21 @@ return {
         theme = "nord",
         section_separators = { "", "" },
         component_separators = { "|", "|" },
+      },
+      sections = {
+        lualine_x = {
+          "encoding",
+          "fileformat",
+          "filetype",
+          function()
+            return string.match(vim.fn.getcwd(), "/([^/]*)$")
+          end,
+        },
+      },
+      extensions = {
+        "nvim-tree",
+        "quickfix",
+        "toggleterm",
       },
     })
 

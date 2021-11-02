@@ -44,8 +44,16 @@ return {
     wk.register({
       ["<leader>d"] = {
         name = "+Diagnostics",
-        d = { "<cmd>LspTroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics", mode = "n" },
-        D = { "<cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics", mode = "n" },
+        d = {
+          "<cmd>LspTroubleToggle lsp_document_diagnostics<cr>",
+          "Document diagnostics",
+          mode = "n",
+        },
+        D = {
+          "<cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>",
+          "Workspace diagnostics",
+          mode = "n",
+        },
         l = { "<cmd>LspTroubleToggle loclist<cr>", "Loclist", mode = "n" },
         q = { "<cmd>LspTroubleToggle quickfix<cr>", "Quickfix", mode = "n" },
         t = { "<cmd>TodoTelescope<cr>", "Todo list", mode = "n" },
@@ -54,6 +62,11 @@ return {
       mode = "n",
     })
 
-    map("n", "gR", "<cmd>LspTrouble lsp_references<cr>", { silent = true, noremap = true })
+    map(
+      "n",
+      "gR",
+      "<cmd>LspTrouble lsp_references<cr>",
+      { silent = true, noremap = true }
+    )
   end,
 }

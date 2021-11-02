@@ -105,6 +105,12 @@ return {
       "<cmd>lua vim.lsp.buf.formatting()<CR>",
       opts
     )
+    buf_set_keymap(
+      "n",
+      "<space>cF",
+      "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
+      opts
+    )
 
     buf_set_keymap(
       "n",

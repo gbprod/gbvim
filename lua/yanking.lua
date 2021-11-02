@@ -13,6 +13,19 @@ return {
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup='YankedText', timeout=500}
     ]])
 
+    vim.g.clipboard = {
+      name = "xsel_override",
+      copy = {
+        ["+"] = "xsel --input --clipboard",
+        ["*"] = "xsel --input --primary",
+      },
+      paste = {
+        ["+"] = "xsel --output --clipboard",
+        ["*"] = "xsel --output --primary",
+      },
+      cache_enabled = 1,
+    }
+
     vim.g.yoinkIncludeDeleteOperations = 1
     vim.g.yoinkMaxItems = 20
     vim.g.yoinkSyncNumberedRegisters = 1
@@ -56,12 +69,18 @@ return {
       ["<leader>xs"] = {
         name = "+Substitute",
         s = { "<plug>(SubversiveSubstituteRange)", "Substitute <motion><motion>" },
-        S = { "<plug>(SubversiveSubstituteRangeConfirm)", "Substitute <motion><motion> with confirm" },
+        S = {
+          "<plug>(SubversiveSubstituteRangeConfirm)",
+          "Substitute <motion><motion> with confirm",
+        },
       },
       ["<leader>xS"] = {
         name = "+Subvert",
         s = { "<plug>(SubversiveSubvertRange)", "Subvert <motion><motion>" },
-        S = { "<plug>(SubversiveSubvertRangeConfirm)", "Subvert <motion><motion> with confirm" },
+        S = {
+          "<plug>(SubversiveSubvertRangeConfirm)",
+          "Subvert <motion><motion> with confirm",
+        },
       },
     }, {
       mode = "n",
@@ -71,12 +90,18 @@ return {
       ["<leader>xs"] = {
         name = "+Substitute",
         s = { "<plug>(SubversiveSubstituteRange)", "Substitute <motion><motion>" },
-        S = { "<plug>(SubversiveSubstituteRangeConfirm)", "Substitute <motion><motion> with confirm" },
+        S = {
+          "<plug>(SubversiveSubstituteRangeConfirm)",
+          "Substitute <motion><motion> with confirm",
+        },
       },
       ["<leader>xS"] = {
         name = "+Subvert",
         s = { "<plug>(SubversiveSubvertRange)", "Subvert <motion><motion>" },
-        S = { "<plug>(SubversiveSubvertRangeConfirm)", "Subvert <motion><motion> with confirm" },
+        S = {
+          "<plug>(SubversiveSubvertRangeConfirm)",
+          "Subvert <motion><motion> with confirm",
+        },
       },
     }, {
       mode = "x",

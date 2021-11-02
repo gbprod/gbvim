@@ -12,6 +12,14 @@ return {
   end,
 
   setup = function()
+    require("open-related").add_relation(
+      require("open-related.builtin.php").alternate_test_file.with({
+        opts = {
+          test_namespace_prefixes = { "Integration", "Unit" },
+        },
+      })
+    )
+
     require("lspconfig").phpactor.setup({
       cmd = {
         require("packer").config.package_root
@@ -46,6 +54,9 @@ return {
         "fix",
         "$FILENAME",
       },
+      runtime_condition = function(_)
+        return vim.b.should_format == nil or vim.b.should_format == true
+      end,
     }))
 
     --[[ null_ls.register({
