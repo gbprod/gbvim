@@ -96,9 +96,9 @@ return {
       }),
     })
 
-    vim.cmd([[
-      autocmd ColorScheme * highlight link CmpItemAbbr CmpItemAbbrMatch
-    ]])
+    -- vim.cmd([[
+    -- autocmd ColorScheme * highlight link CmpItemAbbr CmpItemAbbrMatch
+    -- ]])
     require("nvim-autopairs").setup({
       check_ts = true,
     })

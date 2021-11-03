@@ -47,7 +47,7 @@ return {
       char = "▏",
       space_char_blankline = " ",
       buftype_exclude = { "terminal" },
-      filetype_exclude = { "dashboard" },
+      filetype_exclude = { "alpha" },
     })
     -- fix https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
     vim.opt.colorcolumn = "99999"

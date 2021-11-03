@@ -1,50 +1,12 @@
 return {
 
   plugins = function(use)
-    use({
-      "kyazdani42/nvim-tree.lua",
-      commit = "d7f73b5ae9c8fa85535c32e2861c2cb97df5d56b",
-    })
+    use("kyazdani42/nvim-tree.lua")
   end,
 
   setup = function()
-    --[[ require("nvim-tree").setup({
-      disable_netrw = true,
-      hijack_netrw = true,
-      open_on_setup = true,
-      ignore_ft_on_setup = {},
-      auto_close = true,
-      open_on_tab = false,
-      hijack_cursor = true,
-      update_cwd = true,
-      lsp_diagnostics = true,
-      update_focused_file = {
-        enable = false,
-        update_cwd = false,
-        ignore_list = {},
-      },
-      system_open = {
-        cmd = nil,
-        args = {},
-      },
-      view = {
-        width = 40,
-        side = "left",
-        auto_resize = false,
-        mappings = {
-          custom_only = false,
-          list = {},
-        },
-      },
-    }) ]]
-
-    vim.g.nvim_tree_width = 40
-    vim.g.nvim_tree_auto_close = 0
-    vim.g.nvim_tree_auto_open = 0
-    vim.g.nvim_tree_auto_ignore_ft = { "dashboard" }
     vim.g.nvim_tree_git_hl = 1
     vim.g.nvim_tree_highlight_opened_files = 1
-    vim.g.nvim_tree_lsp_diagnostics = 1
     vim.g.nvim_tree_window_picker_exclude = {
       filetype = {
         "packer",
@@ -84,19 +46,43 @@ return {
         symlink = "",
         symlink_open = "",
       },
-      lsp = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
+      update_focused_file = {
+        enable = true,
       },
     }
 
+    require("nvim-tree").setup({
+      disable_netrw = true,
+      hijack_netrw = true,
+      open_on_setup = false,
+      auto_close = false,
+      open_on_tab = false,
+      update_cwd = false,
+      hijack_cursor = true,
+      diagnostics = {
+        enable = true,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
+      },
+      view = {
+        width = 40,
+        side = "left",
+        auto_resize = false,
+        mappings = {
+          custom_only = false,
+          list = {},
+        },
+      },
+      update_to_buf_dir = {
+        enable = false,
+      },
+    })
     vim.api.nvim_exec(
-      [[
-    autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1
-	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) | execute 'cd '.argv()[0] | execute 'Dashboard' | wincmd l | endif
-    ]],
+      "autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1",
       false
     )
   end,

@@ -6,7 +6,14 @@ return {
   end,
 
   setup = function()
-    vim.g.rooter_patterns = { ".git/", ".env", ".env.dist", ".project.vim", ".project.lua", ".envrc" }
+    vim.g.rooter_patterns = {
+      ".git/",
+      ".env",
+      ".env.dist",
+      ".project.vim",
+      ".project.lua",
+      ".envrc",
+    }
     vim.g.rooter_silent_chdir = 1
   end,
 }
