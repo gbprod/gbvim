@@ -20,3 +20,4 @@ My neovim setup
 - javascript/typescript/tsx
 - https://github.com/winston0410/range-highlight.nvim
 - http://neovimcraft.com/plugin/David-Kunz/treesitter-unit/index.html
+- https://github.com/sindrets/diffview.nvim

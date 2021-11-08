@@ -8,7 +8,7 @@ return {
     use("ntpeters/vim-better-whitespace")
     use("christoomey/vim-sort-motion")
     use("tpope/vim-repeat")
-    use("b3nj5m1n/kommentary")
+    use("numToStr/Comment.nvim")
   end,
 
   setup = function()
@@ -18,9 +18,9 @@ return {
     vim.g.strip_whitespace_on_save = 1
     vim.g.strip_whitespace_confirm = 0
     vim.g.better_whitespace_operator = ""
-    vim.cmd([[ autocmd FileType dashboard DisableWhitespace ]])
 
-    require("kommentary.config").use_extended_mappings()
+    require("Comment").setup()
+
     require("surround").setup({
       mappings_style = "surround",
     })
