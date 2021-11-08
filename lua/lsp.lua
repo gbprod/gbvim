@@ -7,7 +7,7 @@ return {
   end,
 
   setup = function()
-    require("null-ls").config()
+    require("null-ls").config({ debug = true })
     require("lspconfig")["null-ls"].setup({
       on_attach = function(client, _)
         if client.resolved_capabilities.document_formatting then

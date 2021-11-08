@@ -34,12 +34,14 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item({
           behavior = cmp.SelectBehavior.Insert,
         }),
-        ["<Down>"] = cmp.mapping.select_next_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
-        ["<Up>"] = cmp.mapping.select_prev_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
+        ["<Down>"] = cmp.mapping(
+          cmp.mapping.select_next_item(),
+          { "i", "s", "c" }
+        ),
+        ["<Up>"] = cmp.mapping(
+          cmp.mapping.select_prev_item(),
+          { "i", "s", "c" }
+        ),
         ["<C-g>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),

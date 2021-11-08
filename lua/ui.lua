@@ -54,25 +54,20 @@ return {
 
     require("bufferline").setup({
       options = {
-        numbers = "ordinal",
+        numbers = function(opts)
+          return string.format("%s", opts.raise(opts.ordinal))
+        end,
         close_command = function(bufnum)
           require("bufdelete").bufdelete(bufnum, true)
         end,
         right_mouse_command = nil,
         diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level)
+        diagnostics_indicator = function(count, _)
           return "(" .. count .. ")"
         end,
         offsets = {
           { filetype = "NvimTree", text = "File Explorer", text_align = "left" },
         },
-        custom_filter = function(buf_number)
-          if vim.bo[buf_number].filetype == "" then
-            return false
-          end
-
-          return true
-        end,
       },
     })
 

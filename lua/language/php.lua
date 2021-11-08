@@ -32,19 +32,18 @@ return {
       },
     })
 
-    local null_ls = require("null-ls")
+    vim.g.PhpactorRootDirectoryStrategy = function()
+      return vim.fn.getcwd()
+    end
 
+    local null_ls = require("null-ls")
     null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
       condition = function(utils)
         return utils.root_has_file("phpstan.neon")
       end,
     }))
 
-    null_ls.register(null_ls.builtins.diagnostics.psalm.with({
-      condition = function(utils)
-        return utils.root_has_file("psalm.xml")
-      end,
-    }))
+    null_ls.register(null_ls.builtins.diagnostics.psalm)
 
     null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
       args = {

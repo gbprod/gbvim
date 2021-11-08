@@ -34,8 +34,18 @@ return {
     }
 
     vim.api.nvim_exec(
-      "autocmd VimEnter * if argc() == 1 && !filereadable(argv()[0]) | Alpha",
+      "autocmd VimEnter * lua require('homepage').on_vim_enter()",
       false
     )
+  end,
+
+  on_vim_enter = function()
+    if
+      2 == vim.tbl_count(vim.v.argv)
+      and 0 == vim.fn.filereadable(vim.v.argv[2])
+    then
+      vim.cmd("Alpha")
+      vim.cmd("bwipeout 1")
+    end
   end,
 }
