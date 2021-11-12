@@ -9,10 +9,27 @@ return {
   setup = function()
     require("null-ls").config({ debug = true })
     require("lspconfig")["null-ls"].setup({
-      on_attach = function(client, _)
+      on_attach = function(client, bufnr)
         if client.resolved_capabilities.document_formatting then
           vim.cmd(
             "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+          )
+          local opts = { noremap = true, silent = true }
+          local function buf_set_keymap(...)
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+          end
+
+          buf_set_keymap(
+            "n",
+            "<space>cf",
+            "<cmd>lua vim.lsp.buf.formatting()<CR>",
+            opts
+          )
+          buf_set_keymap(
+            "n",
+            "<space>cF",
+            "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
+            opts
           )
         end
       end,

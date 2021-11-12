@@ -5,7 +5,6 @@ My neovim setup
 # TODO
 
 - multi open telescope - https://github.com/nvim-telescope/telescope.nvim/issues/1048
-- https://github.com/numToStr/Comment.nvim
 - https://github.com/numToStr/FTerm.nvim
 - https://github.com/nanotee/sqls.nvim
 - https://github.com/vhyrro/neorg

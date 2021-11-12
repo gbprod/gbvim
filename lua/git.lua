@@ -1,6 +1,7 @@
 return {
   plugins = function(use)
     use("tpope/vim-git")
+    use("tpope/vim-fugitive")
     use("lewis6991/gitsigns.nvim")
   end,
 
@@ -11,9 +12,16 @@ return {
         ["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
       },
     })
+
+    vim.cmd([[
+    autocmd ColorScheme * highlight DiffAdd guibg=#003300 ctermbg=149 guifg=NONE ctermfg=NONE gui=NONE cterm=NONE
+    autocmd ColorScheme * highlight DiffChange guibg=#003300 ctermbg=222 guifg=NONE ctermfg=NONE gui=NONE cterm=NONE
+    autocmd ColorScheme * highlight DiffDelete guibg=#330011 ctermbg=204 guifg=NONE ctermfg=NONE gui=NONE cterm=none
+    autocmd ColorScheme * highlight DiffText guibg=#007800 ctermbg=204 guifg=NONE ctermfg=NONE gui=NONE cterm=none
+    ]])
   end,
 
-  bindings = function(map)
+  bindings = function(_)
     local wk = require("which-key")
 
     wk.register({
@@ -29,12 +37,30 @@ return {
         "Prev hunk",
         expr = true,
       },
-      ["<leader>ghs"] = { '<cmd>lua require"gitsigns".stage_hunk()<CR>', "Stage hunk" },
-      ["<leader>ghu"] = { '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>', "Undo stage hunk" },
-      ["<leader>ghr"] = { '<cmd>lua require"gitsigns".reset_hunk()<CR>', "Reset hunk" },
-      ["<leader>gR"] = { '<cmd>lua require"gitsigns".reset_buffer()<CR>', "Reset buffer" },
-      ["<leader>ghp"] = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', "Preview hunk" },
-      ["<leader>gb"] = { '<cmd>lua require"gitsigns".blame_line(true)<CR>', "Blame" },
+      ["<leader>ghs"] = {
+        '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+        "Stage hunk",
+      },
+      ["<leader>ghu"] = {
+        '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+        "Undo stage hunk",
+      },
+      ["<leader>ghr"] = {
+        '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+        "Reset hunk",
+      },
+      ["<leader>gR"] = {
+        '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+        "Reset buffer",
+      },
+      ["<leader>ghp"] = {
+        '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+        "Preview hunk",
+      },
+      ["<leader>gb"] = {
+        '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+        "Blame",
+      },
       ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "Status" },
     })
 
@@ -47,12 +73,7 @@ return {
   end,
 
   on_ft = function()
-    vim.api.nvim_exec(
-      [[
-    setlocal nocindent colorcolumn=+1 textwidth=80
-    ]],
-      true
-    )
+    vim.api.nvim_exec("setlocal nocindent colorcolumn=+1 textwidth=80 ", true)
   end,
 
   on_gitrebase_ft = function()

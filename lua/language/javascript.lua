@@ -4,7 +4,14 @@ return {
   end,
   setup = function()
     local null_ls = require("null-ls")
-    null_ls.register(null_ls.builtins.formatting.prettier)
+    null_ls.register(null_ls.builtins.formatting.prettier.with({
+      args = {
+        "--config",
+        vim.fn.expand("~/.config/prettier/.prettierrc"),
+        "--stdin-filepath",
+        "$FILENAME",
+      },
+    }))
 
     require("lspconfig").tsserver.setup({
       on_attach = function(client)

@@ -14,7 +14,7 @@ return {
         ".project.lua",
         ".envrc",
       },
-      silent_chdir = false,
+      silent_chdir = true,
     })
 
     require("telescope").load_extension("projects")
