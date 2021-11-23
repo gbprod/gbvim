@@ -37,6 +37,8 @@ return {
     end
 
     local null_ls = require("null-ls")
+    -- null_ls.register(null_ls.builtins.diagnostics.php)
+
     null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
       condition = function(utils)
         return utils.root_has_file("phpstan.neon")
@@ -57,86 +59,6 @@ return {
         return vim.b.should_format == nil or vim.b.should_format == true
       end,
     }))
-
-    --[[ null_ls.register({
-      name = "phpactor",
-      method = require("null-ls.methods").internal.CODE_ACTION,
-      filetypes = { "php" },
-      generator = {
-        fn = function()
-          local context =
-            require("nvim-treesitter.ts_utils").get_node_at_cursor()
-
-          if
-            (
-              context ~= nil
-              and (
-                context:type() == "class_declaration"
-                or context:type() == "interface_declaration"
-              )
-            )
-            or (
-              (context ~= nil and context:parent() ~= nil)
-              and (
-                context:parent():type()
-                  == "interface_declaration"
-                or context:parent():type() == "class_declaration"
-              )
-            )
-          then
-            return {
-              {
-                title = "Move class",
-                action = function()
-                  vim.cmd("PhpactorMoveFile")
-                end,
-              },
-              {
-                title = "Copy class",
-                action = function()
-                  vim.cmd("PhpactorCopyFile")
-                end,
-              },
-            }
-          end
-        end,
-      },
-    }) ]]
-
-    null_ls.register({
-      name = "phpactor yaml",
-      method = require("null-ls.methods").internal.CODE_ACTION,
-      filetypes = { "yaml" },
-      generator = {
-        fn = function()
-          local context =
-            require("nvim-treesitter.ts_utils").get_node_at_cursor()
-
-          if context ~= nil and context:type() == "string_scalar" then
-            return {
-              {
-                title = "Expand class",
-                action = function()
-                  vim.cmd("PhpactorClassExpand")
-                end,
-              },
-              {
-                title = "Goto definition",
-                action = function()
-                  vim.cmd("PhpactorGotoDefinition")
-                end,
-              },
-              {
-                title = "Goto implementations",
-                action = function()
-                  vim.cmd("PhpactorGotoImplementations")
-                end,
-              },
-            }
-          end
-        end,
-      },
-    })
 
     vim.g.PHP_noArrowMatching = 1
     vim.g.PHP_vintage_case_default_indent = 1

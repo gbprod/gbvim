@@ -11,6 +11,9 @@ return {
         "--stdin-filepath",
         "$FILENAME",
       },
+      runtime_condition = function(_)
+        return vim.b.should_format == nil or vim.b.should_format == true
+      end,
     }))
 
     require("lspconfig").tsserver.setup({

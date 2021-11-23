@@ -20,7 +20,7 @@ return {
     local cmp = require("cmp")
     cmp.setup({
       completion = {
-        keyword_pattern = [[\k\+]],
+        keyword_pattern = [[\k]],
       },
       snippet = {
         expand = function(args)
@@ -64,12 +64,13 @@ return {
           name = "buffer",
           opts = {
             get_bufnrs = function()
-              return vim.tbl_filter(function(bufnr)
-                return vim.api.nvim_buf_is_valid(bufnr)
-                  and vim.api.nvim_buf_is_loaded(bufnr)
-              end, vim.api.nvim_list_bufs())
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                bufs[vim.api.nvim_win_get_buf(win)] = true
+              end
+              return vim.tbl_keys(bufs)
             end,
-            keyword_pattern = [[\k\+]],
+            keyword_pattern = [[\k]],
           },
         },
         { name = "treesitter" },

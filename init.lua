@@ -47,7 +47,6 @@ local layers = {
   require("language/lua"),
   require("language/json"),
   require("language/css"),
-  require("language/yaml"),
   require("language/javascript"),
 }
 

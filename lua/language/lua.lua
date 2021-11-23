@@ -9,6 +9,9 @@ return {
 
     null_ls.register(null_ls.builtins.formatting.stylua.with({
       extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },
+      runtime_condition = function(_)
+        return vim.b.should_format == nil or vim.b.should_format == true
+      end,
     }))
 
     null_ls.register(null_ls.builtins.diagnostics.luacheck)
