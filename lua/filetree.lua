@@ -81,9 +81,8 @@ return {
         enable = false,
       },
     })
-    vim.api.nvim_exec(
-      "autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1",
-      false
+    vim.cmd(
+      "autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1"
     )
   end,
 

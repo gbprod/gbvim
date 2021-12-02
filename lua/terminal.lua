@@ -9,7 +9,7 @@ return {
       persist_size = true,
       direction = "float",
       float_opts = {
-        border = "single",
+        border = "curved",
       },
     })
   end,

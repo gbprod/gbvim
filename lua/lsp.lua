@@ -3,11 +3,13 @@ return {
     use("neovim/nvim-lspconfig")
     use("ray-x/lsp_signature.nvim")
     use("onsails/lspkind-nvim")
-    use("jose-elias-alvarez/null-ls.nvim")
+    use("~/workspace/null-ls.nvim")
   end,
 
   setup = function()
-    require("null-ls").config({ debug = true })
+    require("null-ls").config({
+      update_on_insert = false,
+    })
     require("lspconfig")["null-ls"].setup({
       on_attach = function(client, bufnr)
         if client.resolved_capabilities.document_formatting then
@@ -29,6 +31,12 @@ return {
             "n",
             "<space>cF",
             "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
+            opts
+          )
+          buf_set_keymap(
+            "n",
+            "<a-cr>",
+            "<cmd>Telescope lsp_code_actions theme=dropdown<CR>",
             opts
           )
         end

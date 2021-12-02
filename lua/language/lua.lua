@@ -8,7 +8,12 @@ return {
     local null_ls = require("null-ls")
 
     null_ls.register(null_ls.builtins.formatting.stylua.with({
-      extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },
+      extra_args = {
+        "--config-path",
+        vim.fn.filereadable(vim.fn.getcwd() .. "/stylua.toml") == 1
+          and vim.fn.getcwd() .. "/stylua.toml"
+          or vim.fn.expand("~/.config/stylua.toml"),
+      },
       runtime_condition = function(_)
         return vim.b.should_format == nil or vim.b.should_format == true
       end,

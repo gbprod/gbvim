@@ -9,13 +9,18 @@ return {
     local button = dashboard.button
 
     dashboard.section.buttons.val = {
-      button("r", "  Recents", ":Telescope oldfiles cwd_only=true<cr>"),
-      button("t", "  Filetree", ":NvimTreeToggle<cr>"),
-      button("f", "  Find File", ":Telescope find_files<cr>"),
-      button("g", "  Git Status", ":Telescope git_status<cr>"),
-      button("w", "  Find Word", ":Telescope live_grep<cr>"),
-      button("e", "  New file", ":ene <cr>"),
-      button("u", "  Update plugins", ":PackerSync<cr>"),
+      button("r", "  > Recents", ":Telescope oldfiles cwd_only=true<cr>"),
+      button("t", "  > Filetree", ":NvimTreeToggle<cr>"),
+      button("f", "  > Find File", ":Telescope find_files<cr>"),
+      button("g", "  > Git Status", ":Telescope git_status<cr>"),
+      button("w", "  > Find Word", ":Telescope live_grep<cr>"),
+      button("e", "  > New file", ":ene <cr>"),
+      button("u", "  > Update plugins", ":PackerSync<cr>"),
+      button("q", "  > Exit", ":qa<cr>"),
+    }
+
+    dashboard.section.buttons.opts = {
+      spacing = 0,
     }
 
     alpha.setup(dashboard.opts)

@@ -3,7 +3,7 @@ return {
     use("tpope/vim-sleuth")
     use("blackCauldron7/surround.nvim")
     use("tpope/vim-abolish")
-    use("andrewradev/splitjoin.vim")
+    use("FooSoft/vim-argwrap")
     use("lambdalisue/suda.vim")
     use("ntpeters/vim-better-whitespace")
     use("christoomey/vim-sort-motion")
@@ -18,6 +18,8 @@ return {
     vim.g.strip_whitespace_on_save = 1
     vim.g.strip_whitespace_confirm = 0
     vim.g.better_whitespace_operator = ""
+
+    vim.g.argwrap_tail_comma = 1
 
     require("Comment").setup()
 
@@ -83,8 +85,7 @@ return {
       },
       ["<leader>j"] = {
         name = "+Join/Split",
-        J = { "<cmd>SplitjoinJoin<cr>", "Oneliner" },
-        j = { "<cmd>SplitjoinSplit<cr>", "Multiple lines" },
+        j = { "<cmd>ArgWrap<cr>", "Wrap Args" },
       },
       ["<leader>x"] = {
         name = "+String",

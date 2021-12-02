@@ -12,18 +12,11 @@
   },
   "function __construct": {
     "prefix": "cons",
-    "body": [
-      "${1:public} function __construct(${2:args})",
-      "{",
-      "\t$0",
-      "}"
-    ]
+    "body": ["${1:public} function __construct(${2:args})", "{", "\t$0", "}"]
   },
   "Variable documentation": {
     "prefix": "var",
-    "body": [
-      "var ${1:Type} \\$${2:var} */"
-    ],
+    "body": ["var ${1:Type} \\$${2:var} */"],
     "description": "Variable documentation"
   },
   "Paramater documentation": {
@@ -33,41 +26,27 @@
   },
   "public function": {
     "prefix": "pub",
-    "body": [
-      "public function ${1:name}(${2:params}): ${3:void}",
-      "{",
-      "\t${0:$TM_SELECTED_TEXT}",
-      "}"
-    ],
+    "body": ["public function ${1:name}(${2:params}): ${3:void}", "{", "\t${0:$TM_SELECTED_TEXT}", "}"],
+    "description": "public function"
+  },
+  "public static function": {
+    "prefix": "pubs",
+    "body": ["public static function ${1:name}(${2:params}): ${3:void}", "{", "\t${0:$TM_SELECTED_TEXT}", "}"],
     "description": "public function"
   },
   "protected function": {
     "prefix": "pro",
-    "body": [
-      "protected function ${1:name}(${2:params}): ${3:void}",
-      "{",
-      "\t${0:$TM_SELECTED_TEXT}",
-      "}"
-    ],
+    "body": ["protected function ${1:name}(${2:params}): ${3:void}", "{", "\t${0:$TM_SELECTED_TEXT}", "}"],
     "description": "protected function"
   },
   "private function": {
     "prefix": "pri",
-    "body": [
-      "private function ${1:name}(${2:params}): ${3:void}",
-      "{",
-      "\t${0:$TM_SELECTED_TEXT}",
-      "}"
-    ],
+    "body": ["private function ${1:name}(${2:params}): ${3:void}", "{", "\t${0:$TM_SELECTED_TEXT}", "}"],
     "description": "private function"
   },
   "do … while …": {
     "prefix": "do",
-    "body": [
-      "do {",
-      "\t${0:# code...}",
-      "} while (${1:\\$${2:a} <= ${3:10}});"
-    ],
+    "body": ["do {", "\t${0:# code...}", "} while (${1:\\$${2:a} <= ${3:10}});"],
     "description": "Do-While loop"
   },
   "while …": {
@@ -82,14 +61,7 @@
   },
   "if … else …": {
     "prefix": "ifelse",
-    "body": [
-      "if (${1:condition}) {",
-      "\t${2:# code...}",
-      "} else {",
-      "\t${3:# code...}",
-      "}",
-      "$0"
-    ],
+    "body": ["if (${1:condition}) {", "\t${2:# code...}", "} else {", "\t${3:# code...}", "}", "$0"],
     "description": "If Else block"
   },
   "$… = ( … ) ? … : …": {
@@ -109,50 +81,27 @@
   },
   "for …": {
     "prefix": "for",
-    "body": [
-      "for (\\$${1:i}=${2:0}; \\$${1:i} < $3; \\$${1:i}++) { ",
-      "\t${0:# code...}",
-      "}"
-    ],
+    "body": ["for (\\$${1:i}=${2:0}; \\$${1:i} < $3; \\$${1:i}++) { ", "\t${0:# code...}", "}"],
     "description": "For-loop"
   },
   "foreach …": {
     "prefix": "foreach",
-    "body": [
-      "foreach (\\$${1:variable} as \\$${2:key} ${3:=> \\$${4:value}}) {",
-      "\t${0:# code...}",
-      "}"
-    ],
+    "body": ["foreach (\\$${1:variable} as \\$${2:key} ${3:=> \\$${4:value}}) {", "\t${0:# code...}", "}"],
     "description": "Foreach loop"
   },
   "Try Catch Block": {
     "prefix": "try",
-    "body": [
-      "try {",
-      "\t${1://code...}",
-      "} catch (${2:\\Throwable} ${3:\\$th}) {",
-      "\t${4://throw \\$th;}",
-      "}"
-    ],
+    "body": ["try {", "\t${1://code...}", "} catch (${2:\\Throwable} ${3:\\$th}) {", "\t${4://throw \\$th;}", "}"],
     "description": "Try catch block"
   },
   "prophecy": {
     "prefix": "pro",
-    "body": [
-      "$this->prophesize($0);"
-    ],
+    "body": ["$this->prophesize($0);"],
     "description": "prophecy"
   },
   "test function": {
     "prefix": "test",
-    "body": [
-      "/** @test */",
-      "public function it_${1:name}(): void",
-      "{",
-      "\t${0:$TM_SELECTED_TEXT}",
-      "}"
-    ],
+    "body": ["/** @test */", "public function it_${1:name}(): void", "{", "\t${0:$TM_SELECTED_TEXT}", "}"],
     "description": "test function"
   }
 }
-

@@ -37,7 +37,6 @@ return {
     end
 
     local null_ls = require("null-ls")
-    -- null_ls.register(null_ls.builtins.diagnostics.php)
 
     null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
       condition = function(utils)

@@ -20,8 +20,9 @@ return {
     autocmd ColorScheme * highlight DiffText guibg=#007800 ctermbg=204 guifg=NONE ctermfg=NONE gui=NONE cterm=none
     ]])
 
-    -- local null_ls = require("null-ls")
+    local null_ls = require("null-ls")
     -- null_ls.register(null_ls.builtins.code_actions.gitsigns)
+    null_ls.register(null_ls.builtins.code_actions.gitrebase)
   end,
 
   bindings = function(_)
