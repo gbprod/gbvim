@@ -3,9 +3,36 @@ return {
     use("sheerun/vim-polyglot")
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("nvim-treesitter/nvim-treesitter-textobjects")
+    use("nvim-treesitter/playground")
   end,
 
   setup = function()
+    local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
+    parser_configs.norg = {
+      install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg",
+        files = { "src/parser.c", "src/scanner.cc" },
+        branch = "main",
+      },
+    }
+
+    parser_configs.norg_meta = {
+      install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+        files = { "src/parser.c" },
+        branch = "main",
+      },
+    }
+
+    parser_configs.norg_table = {
+      install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+        files = { "src/parser.c" },
+        branch = "main",
+      },
+    }
+
     require("nvim-treesitter.configs").setup({
       textobjects = {
         select = {
@@ -57,19 +84,21 @@ return {
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
-        disable = { "php", "yaml" }, -- TODO: test later
+        disable = { "yaml" }, -- TODO: test later
       },
       indent = {
         enable = true,
-        disable = { "php" }, -- TODO: test later
+        disable = {}, -- TODO: test later
       },
       autopairs = {
         enable = true,
       },
     })
 
-    vim.cmd(
-      [[ autocmd ColorScheme * highlight TSError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A ]]
+    vim.highlight.create(
+      "TSError",
+      { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#BF616A" },
+      false
     )
 
     vim.opt.foldmethod = "expr"

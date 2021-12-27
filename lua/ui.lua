@@ -12,13 +12,12 @@ return {
   end,
 
   setup = function()
+    vim.cmd("colorscheme nord")
+
     require("which-key").setup({})
     vim.notify = require("notify")
 
-    vim.cmd([[
-    colorscheme nord
-    autocmd ColorScheme * highlight Search ctermfg=6 ctermbg=8 guifg=#88C0D0 guibg=#4C566A
-    ]])
+    vim.highlight.create("Search", { ctermfg = "6", ctermbg = "8", guifg = "#88C0D0", guibg = "#4C566A" }, false)
 
     require("lualine").setup({
       options = {
@@ -155,5 +154,9 @@ return {
     map("n", "<PageDown>", "<C-D>", {})
     map("i", "<PageUp>", "<C-O><C-U>", {})
     map("i", "<PageDown>", "<C-O><C-D>", {})
+
+    vim.cmd([[
+      cnoreabbrev h vertical help
+    ]])
   end,
 }

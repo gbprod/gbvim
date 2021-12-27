@@ -8,7 +8,7 @@ return {
     use("glts/vim-textobj-comment")
     use("terryma/vim-expand-region")
     use("andymass/vim-matchup")
-    use("justinmk/vim-sneak")
+    use("phaazon/hop.nvim")
   end,
 
   setup = function()
@@ -28,17 +28,18 @@ return {
       ["ie"] = 0,
     }
 
-    vim.cmd([[
-    autocmd ColorScheme * highlight Sneak cterm=underline ctermfg=14 ctermbg=201 gui=underline guifg=Red guibg=#2E3440
-    ]])
-
     require("nvim-treesitter.configs").setup({
       matchup = {
         enable = true,
         disable = {},
       },
     })
+
     vim.g.textobj_comment_no_default_key_mappings = 1
+
+    require("hop").setup({
+      teasing = false,
+    })
   end,
 
   bindings = function(map)
@@ -53,25 +54,44 @@ return {
     map("n", "))", "]]", {})
     map("n", "((", "[[", {})
 
-    map("n", "m", "<Plug>Sneak_s", {})
-    map("n", "M", "<Plug>Sneak_S", {})
-    map("x", "m", "<Plug>Sneak_s", {})
-    map("x", "M", "<Plug>Sneak_S", {})
-    map("o", "m", "<Plug>Sneak_s", {})
-    map("o", "M", "<Plug>Sneak_S", {})
-    map("n", ";", "<Plug>Sneak_;", {})
-    map("n", ",", "<Plug>Sneak_,", {})
-    map("n", "f", "<Plug>Sneak_f", {})
-    map("n", "F", "<Plug>Sneak_F", {})
-    map("x", "f", "<Plug>Sneak_f", {})
-    map("x", "F", "<Plug>Sneak_F", {})
-    map("o", "f", "<Plug>Sneak_f", {})
-    map("o", "F", "<Plug>Sneak_F", {})
-    map("n", "t", "<Plug>Sneak_t", {})
-    map("n", "T", "<Plug>Sneak_T", {})
-    map("x", "t", "<Plug>Sneak_t", {})
-    map("x", "T", "<Plug>Sneak_T", {})
-    map("o", "t", "<Plug>Sneak_t", {})
-    map("o", "T", "<Plug>Sneak_T", {})
+    map(
+      "n",
+      "f",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR})<cr>",
+      {}
+    )
+    map(
+      "n",
+      "F",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>",
+      {}
+    )
+    map(
+      "o",
+      "f",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>",
+      {}
+    )
+    map(
+      "o",
+      "F",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>",
+      {}
+    )
+    map(
+      "",
+      "t",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>",
+      {}
+    )
+    map(
+      "",
+      "T",
+      "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>",
+      {}
+    )
+    map("n", "m", "<cmd>HopChar2AC<cr>", {})
+    map("n", "M", "<cmd>HopChar2BC<cr>", {})
+    map("n", "gl", "<cmd>HopLine<cr>", {})
   end,
 }

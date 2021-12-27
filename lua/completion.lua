@@ -19,9 +19,9 @@ return {
     local lspkind = require("lspkind")
     local cmp = require("cmp")
     cmp.setup({
-      completion = {
-        keyword_pattern = [[\k]],
-      },
+      -- completion = {
+      --   keyword_pattern = [[\k]],
+      -- },
       snippet = {
         expand = function(args)
           vim.fn["vsnip#anonymous"](args.body)
@@ -34,26 +34,14 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item({
           behavior = cmp.SelectBehavior.Insert,
         }),
-        ["<Down>"] = cmp.mapping(
-          cmp.mapping.select_next_item(),
-          { "i", "s", "c" }
-        ),
-        ["<Up>"] = cmp.mapping(
-          cmp.mapping.select_prev_item(),
-          { "i", "s", "c" }
-        ),
+        ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
+        ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
         ["<C-g>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<Tab>"] = cmp.mapping(
-          cmp.mapping.select_next_item(),
-          { "i", "s", "c" }
-        ),
-        ["<S-Tab>"] = cmp.mapping(
-          cmp.mapping.select_prev_item(),
-          { "i", "s", "c" }
-        ),
+        ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
+        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       },
 
@@ -66,12 +54,13 @@ return {
             get_bufnrs = function()
               return vim.api.nvim_list_bufs()
             end,
-            keyword_pattern = [[\k]],
+            keyword_pattern = [[\k\+]],
           },
         },
         { name = "treesitter" },
         { name = "path" },
         { name = "nvim_lua" },
+        { name = "neorg" },
       },
       formatting = {
         format = function(_, vim_item)
@@ -95,57 +84,21 @@ return {
       }),
     })
 
-    -- vim.cmd([[
-    -- autocmd ColorScheme * highlight link CmpItemAbbr CmpItemAbbrMatch
-    -- ]])
     require("nvim-autopairs").setup({
       check_ts = true,
     })
 
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    cmp.event:on(
-      "confirm_done",
-      cmp_autopairs.on_confirm_done({ map_char = { tex = "" } })
-    )
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
   end,
 
   bindings = function(map)
-    map(
-      "i",
-      "<C-j>",
-      'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"',
-      { expr = true }
-    )
-    map(
-      "s",
-      "<C-j>",
-      'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"',
-      { expr = true }
-    )
-    map(
-      "i",
-      "<C-l>",
-      'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"',
-      { expr = true }
-    )
-    map(
-      "s",
-      "<C-l>",
-      'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"',
-      { expr = true }
-    )
-    map(
-      "i",
-      "<c-j>",
-      'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"',
-      { expr = true }
-    )
-    map(
-      "s",
-      "<c-j>",
-      'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"',
-      { expr = true }
-    )
+    map("i", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
+    map("s", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
+    map("i", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
+    map("s", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
+    map("i", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
+    map("s", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
     map("n", "gZ", "<Plug>(vsnip-select-text)", {})
     map("x", "gZ", "<Plug>(vsnip-select-text)", {})
     map("n", "gz", "<Plug>(vsnip-cut-text)", {})

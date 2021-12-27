@@ -1,31 +1,19 @@
 return {
   plugins = function(use)
     use("tpope/vim-sleuth")
-    use("blackCauldron7/surround.nvim")
+    use("tpope/vim-surround")
     use("tpope/vim-abolish")
     use("FooSoft/vim-argwrap")
     use("lambdalisue/suda.vim")
-    use("ntpeters/vim-better-whitespace")
     use("christoomey/vim-sort-motion")
     use("tpope/vim-repeat")
     use("numToStr/Comment.nvim")
   end,
 
   setup = function()
-    vim.cmd([[ autocmd ColorScheme * highlight ExtraWhitespace guibg=#3B4252]])
-
-    vim.g.better_whitespace_enabled = 1
-    vim.g.strip_whitespace_on_save = 1
-    vim.g.strip_whitespace_confirm = 0
-    vim.g.better_whitespace_operator = ""
-
-    vim.g.argwrap_tail_comma = 1
+    vim.g.argwrap_tail_comma_braces = 1
 
     require("Comment").setup()
-
-    require("surround").setup({
-      mappings_style = "surround",
-    })
   end,
 
   bindings = function(map)
@@ -36,29 +24,12 @@ return {
     map("v", "<c-s>", ":<c-u>w<CR>gv", { noremap = true })
     map("i", "<C-s>", "<C-o>:w<CR>", { noremap = true })
 
-    map("n", "<C-l>", ":<C-u>noh<CR><C-l>", { noremap = true, silent = true })
-
     -- Ctrl+Shift+Up/Down to move up and down
     map("n", "<C-S-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
     map("n", "<C-S-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
-    map(
-      "i",
-      "<C-S-Down>",
-      "<Esc>:m .+1<CR>==gi",
-      { noremap = true, silent = true }
-    )
-    map(
-      "i",
-      "<C-S-Up>",
-      "<Esc>:m .-2<CR>==gi",
-      { noremap = true, silent = true }
-    )
-    map(
-      "v",
-      "<C-S-Down>",
-      ":m '>+1<CR>gv=gv",
-      { noremap = true, silent = true }
-    )
+    map("i", "<C-S-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
+    map("i", "<C-S-Up>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+    map("v", "<C-S-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
     map("v", "<C-S-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
     -- Use tab for indenting in visual mode
@@ -67,14 +38,9 @@ return {
     map("v", "<S-Tab>", "<gv", { noremap = true })
     map("v", ">", ">gv", { noremap = true })
     map("v", "<", "<gv", { noremap = true })
-    map("i", "<C-d>", "<c-o>cw", { noremap = true })
+    map("i", "<C-d>", '<c-o>"_cw', { noremap = true })
 
-    map(
-      "v",
-      "S",
-      "gv<cmd>lua require'surround'.surround_add()<cr>",
-      { noremap = true }
-    )
+    map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
 
     wk.register({
       ["<leader>"] = {

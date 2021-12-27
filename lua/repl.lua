@@ -3,7 +3,7 @@ return {
     use({ "rhysd/reply.vim", cmd = { "Repl", "ReplAuto" } })
   end,
 
-  bindings = function(map)
+  bindings = function(_)
     local wk = require("which-key")
     wk.register({
       ["<leader>r"] = { name = "+Repl" },

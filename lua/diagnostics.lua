@@ -16,7 +16,6 @@ return {
       },
     })
 
-    local actions = require("telescope.actions")
     local trouble = require("trouble.providers.telescope")
     local telescope = require("telescope")
 
@@ -31,12 +30,30 @@ return {
 
     require("todo-comments").setup({})
 
-    vim.cmd([[
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineError cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#BF616A
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#EBCB8B
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#88C0D0
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint cterm=undercurl ctermfg=1 gui=undercurl guifg=NONE guisp=#5E81AC
-    ]])
+    vim.highlight.create(
+      "DiagnosticUnderlineWarn",
+      { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#EBCB8B" },
+      false
+    )
+    vim.highlight.create(
+      "DiagnosticUnderlineError",
+      { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#BF616A" },
+      false
+    )
+    vim.highlight.create(
+      "DiagnosticUnderlineInfo",
+      { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#88C0D0" },
+      false
+    )
+    vim.highlight.create(
+      "DiagnosticUnderlineHint",
+      { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#5E81AC" },
+      false
+    )
+    vim.highlight.create("DiagnosticWarn", { ctermfg = "3", guifg = "#EBCB8B" }, false)
+    vim.highlight.create("DiagnosticError", { ctermfg = "1", guifg = "#BF616A" }, false)
+    vim.highlight.create("DiagnosticInfo", { ctermfg = "4", guifg = "#88C0D0" }, false)
+    vim.highlight.create("DiagnosticHint", { ctermfg = "7", guifg = "#5E81AC" }, false)
   end,
 
   bindings = function(map)
@@ -45,28 +62,21 @@ return {
       ["<leader>d"] = {
         name = "+Diagnostics",
         d = {
-          "<cmd>LspTroubleToggle lsp_document_diagnostics<cr>",
+          "<cmd>TroubleToggle document_diagnostics<cr>",
           "Document diagnostics",
           mode = "n",
         },
         D = {
-          "<cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>",
+          "<cmd>TroubleToggle workspace_diagnostics<cr>",
           "Workspace diagnostics",
           mode = "n",
         },
-        l = { "<cmd>LspTroubleToggle loclist<cr>", "Loclist", mode = "n" },
-        q = { "<cmd>LspTroubleToggle quickfix<cr>", "Quickfix", mode = "n" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Loclist", mode = "n" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix", mode = "n" },
         t = { "<cmd>TodoTelescope<cr>", "Todo list", mode = "n" },
       },
     }, {
       mode = "n",
     })
-
-    map(
-      "n",
-      "gR",
-      "<cmd>LspTrouble lsp_references<cr>",
-      { silent = true, noremap = true }
-    )
   end,
 }

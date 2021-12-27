@@ -1,24 +1,18 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({
     "git",
     "clone",
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   })
-  execute("packadd packer.nvim")
+  vim.api.nvim_command("packadd packer.nvim")
 end
 
 local packer = require("packer")
 
-vim.g.root_dir = vim.fn.fnamemodify(
-  vim.fn.resolve(vim.fn.expand("<sfile>:p")),
-  ":h"
-)
+vim.g.root_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>:p")), ":h")
 
 local use = packer.use
 
@@ -41,6 +35,7 @@ local layers = {
   require("terminal"),
   require("project"),
   require("repl"),
+  require("org"),
 
   require("language/php"),
   require("language/html"),

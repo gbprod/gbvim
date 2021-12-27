@@ -81,9 +81,9 @@ return {
         enable = false,
       },
     })
-    vim.cmd(
-      "autocmd ColorScheme * highlight NvimTreeGitDirty guifg=#EBCB8B | highlight Directory guifg=#81A1C1"
-    )
+
+    vim.highlight.create("NvimTreeGitDirty", { guifg = "#EBCB8B" }, false)
+    vim.highlight.create("Directory ", { guifg = "#81A1C1" }, false)
   end,
 
   bindings = function(map)

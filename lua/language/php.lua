@@ -12,18 +12,15 @@ return {
   end,
 
   setup = function()
-    require("open-related").add_relation(
-      require("open-related.builtin.php").alternate_test_file.with({
-        opts = {
-          test_namespace_prefixes = { "Integration", "Unit" },
-        },
-      })
-    )
+    require("open-related").add_relation(require("open-related.builtin.php").alternate_test_file.with({
+      opts = {
+        test_namespace_prefixes = { "Integration", "Unit" },
+      },
+    }))
 
     require("lspconfig").phpactor.setup({
       cmd = {
-        require("packer").config.package_root
-          .. "/packer/opt/phpactor/bin/phpactor",
+        require("packer").config.package_root .. "/packer/opt/phpactor/bin/phpactor",
         "language-server",
       },
       on_attach = require("lsp").on_attach,
@@ -45,6 +42,7 @@ return {
     }))
 
     null_ls.register(null_ls.builtins.diagnostics.psalm)
+    null_ls.register(null_ls.builtins.diagnostics.php)
 
     null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
       args = {
@@ -64,7 +62,7 @@ return {
   end,
 
   on_ft = function()
-    vim.opt.colorcolumn = { "80", "120" }
+    vim.opt.colorcolumn = { "81", "121" }
 
     require("which-key").register({
       ["<leader>l"] = { name = "+Php" },
@@ -150,7 +148,6 @@ return {
         "Extract a constant from a literal",
         buffer = 0,
       },
-      -- ['<leader>lt'] = { ':call layers#php#alternate(expand("%@"))<CR>', "Alternate test file", buffer = 0 },
     })
   end,
 }

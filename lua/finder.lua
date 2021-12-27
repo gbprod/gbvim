@@ -64,13 +64,6 @@ return {
       mode = "n",
     })
 
-    map(
-      "n",
-      "<c-p>",
-      "<cmd>lua require('telescope.builtin').find_files()<cr>",
-      {}
-    )
-
-    -- lua print(vim.inspect(require'nvim-tree.lib'.get_node_at_cursor()))
+    map("n", "<c-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
   end,
 }

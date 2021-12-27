@@ -1,15 +1,29 @@
 return {
   plugins = function(use)
-    use("svermeulen/vim-cutlass")
+    use("gbprod/cutlass.nvim")
     use("svermeulen/vim-yoink")
-    use("svermeulen/vim-subversive")
+    use("~/workspace/substitute.nvim")
   end,
 
   setup = function()
+    require("cutlass").setup({
+      cut_key = "x",
+      override_del = true,
+    })
+
+    require("substitute").setup({
+      on_substitute = function(_)
+        vim.cmd("call yoink#startUndoRepeatSwap()")
+      end,
+      range = {
+        prompt_current_text = true,
+      },
+    })
+
+    vim.highlight.create("YankedText", { guibg = "#4C566A" }, false)
+
     vim.cmd([[
     let &clipboard = "unnamed,unnamedplus"
-
-    autocmd ColorScheme * highlight YankedText guibg=#4C566A
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup='YankedText', timeout=500}
     ]])
 
@@ -34,19 +48,10 @@ return {
     vim.g.yoinkSwapClampAtEnds = 1
     vim.g.yoinkIncludeNamedRegisters = 1
     vim.g.yoinkSyncSystemClipboardOnFocus = 1
-
-    vim.g.subversivePromptWithCurrent = 1
-    vim.g.subversivePreserveCursorPosition = 1
   end,
 
   bindings = function(map)
     local wk = require("which-key")
-
-    map("n", "x", "d", { noremap = true })
-    map("x", "x", "d", { noremap = true })
-    map("n", "xx", "dd", { noremap = true })
-    map("n", "X", "D", { noremap = true })
-    map("n", "<Del>", '"_x', { noremap = true })
 
     map("n", "<M-p>", "<plug>(YoinkPostPasteSwapBack)", {})
     map("n", "<M-P>", "<plug>(YoinkPostPasteSwapForward)", {})
@@ -57,30 +62,31 @@ return {
     map("n", "y", "<Plug>(YoinkYankPreserveCursorPosition)", {})
     map("x", "y", "<Plug>(YoinkYankPreserveCursorPosition)", {})
 
-    map("n", "s", "<Plug>(SubversiveSubstitute)", {})
-    map("n", "ss", "<Plug>(SubversiveSubstituteLine)", {})
-    map("n", "S", "<Plug>(SubversiveSubstituteToEndOfLine)", {})
-
-    map("x", "s", "<plug>(SubversiveSubstitute)", {})
-    map("x", "p", "<plug>(SubversiveSubstitute)", {})
-    map("x", "P", "<plug>(SubversiveSubstitute)", {})
+    map("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+    map("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
+    map("n", "S", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
+    map("x", "s", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+    map("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+    map("x", "P", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 
     wk.register({
       ["<leader>xs"] = {
         name = "+Substitute",
-        s = { "<plug>(SubversiveSubstituteRange)", "Substitute <motion><motion>" },
+        s = { "<cmd>lua require('substitute.range').operator()<cr>", "Substitute <motion><motion>" },
         S = {
-          "<plug>(SubversiveSubstituteRangeConfirm)",
+          "<cmd>lua require('substitute.range').operator({ confirm = true })<cr>",
           "Substitute <motion><motion> with confirm",
         },
+        ["ss"] = { "<cmd>lua require('substitute.range').word()<cr>", "Substitute <motion><motion>" },
       },
       ["<leader>xS"] = {
-        name = "+Subvert",
-        s = { "<plug>(SubversiveSubvertRange)", "Subvert <motion><motion>" },
+        name = "+Substitute abolish",
+        s = { "<cmd>lua require('substitute.range').operator({ prefix = 'S' })<cr>", "Substitute <motion><motion>" },
         S = {
-          "<plug>(SubversiveSubvertRangeConfirm)",
-          "Subvert <motion><motion> with confirm",
+          "<cmd>lua require('substitute.range').operator({ confirm = true,  prefix = 'S' })<cr>",
+          "Substitute <motion><motion> with confirm",
         },
+        ["ss"] = { "<cmd>lua require('substitute.range').word({ prefix = 'S' })<cr>", "Substitute <motion><motion>" },
       },
     }, {
       mode = "n",
@@ -89,18 +95,21 @@ return {
     wk.register({
       ["<leader>xs"] = {
         name = "+Substitute",
-        s = { "<plug>(SubversiveSubstituteRange)", "Substitute <motion><motion>" },
+        s = { "<cmd>lua require('substitute.range').visual()<cr>", "Substitute <motion>" },
         S = {
-          "<plug>(SubversiveSubstituteRangeConfirm)",
-          "Substitute <motion><motion> with confirm",
+          "<cmd>lua require('substitute.range').visual({ confirm = true })<cr>",
+          "Substitute <motion> with confirm",
         },
       },
       ["<leader>xS"] = {
         name = "+Subvert",
-        s = { "<plug>(SubversiveSubvertRange)", "Subvert <motion><motion>" },
+        s = {
+          "<cmd>lua require('substitute.range').visual({ prefix = 'S' })<cr>",
+          "Substitute <motion>",
+        },
         S = {
-          "<plug>(SubversiveSubvertRangeConfirm)",
-          "Subvert <motion><motion> with confirm",
+          "<cmd>lua require('substitute.range').visual({ confirm = true,  prefix = 'S' })<cr>",
+          "Substitute <motion> with confirm",
         },
       },
     }, {

@@ -1,6 +1,7 @@
 return {
   plugins = function(use)
     use({ "nvim-treesitter/tree-sitter-lua", run = ":TSInstall lua" })
+    use({ "vigoux/tree-sitter-viml", run = ":TSInstall vim" })
     use("folke/lua-dev.nvim")
   end,
 
@@ -10,8 +11,7 @@ return {
     null_ls.register(null_ls.builtins.formatting.stylua.with({
       extra_args = {
         "--config-path",
-        vim.fn.filereadable(vim.fn.getcwd() .. "/stylua.toml") == 1
-          and vim.fn.getcwd() .. "/stylua.toml"
+        vim.fn.filereadable(vim.fn.getcwd() .. "/stylua.toml") == 1 and vim.fn.getcwd() .. "/stylua.toml"
           or vim.fn.expand("~/.config/stylua.toml"),
       },
       runtime_condition = function(_)
@@ -34,5 +34,7 @@ return {
     })
     local lspconfig = require("lspconfig")
     lspconfig.sumneko_lua.setup(luadev)
+
+    require("open-related").add_relation(require("open-related.builtin.nvim").alternate_spec)
   end,
 }
