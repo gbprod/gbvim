@@ -35,7 +35,6 @@ local layers = {
   require("terminal"),
   require("project"),
   require("repl"),
-  require("org"),
 
   require("language/php"),
   require("language/html"),

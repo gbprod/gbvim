@@ -1,5 +1,7 @@
-return {
-  plugins = function(use)
-    use({ "tree-sitter/tree-sitter-json", run = ":TSInstall json" })
-  end,
-}
+local json = {}
+
+function json.plugins(use)
+  use({ "tree-sitter/tree-sitter-json", run = ":TSInstall json" })
+end
+
+return json

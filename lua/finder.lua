@@ -1,7 +1,7 @@
 return {
   plugins = function(use)
     use("nvim-telescope/telescope.nvim")
-    use("gbprod/open-related.nvim")
+    use("~/workspace/open-related.nvim")
   end,
 
   setup = function()
