@@ -60,6 +60,10 @@ function php.setup()
 
   vim.g.PHP_noArrowMatching = 1
   vim.g.PHP_vintage_case_default_indent = 1
+
+  vim.cmd([[
+  autocmd Filetype php :iabbrev ret return
+  ]])
 end
 
 function php.on_ft()

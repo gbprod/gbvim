@@ -19,7 +19,7 @@ return {
     opt.linebreak = true
     opt.autoread = true
     opt.expandtab = true
-    opt.showmatch = true
+    opt.showmatch = false
     opt.showmode = true
     opt.completeopt = "menu,menuone,noselect"
     opt.complete = ".,w,b,u,t,k"

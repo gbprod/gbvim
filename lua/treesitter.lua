@@ -62,7 +62,7 @@ return {
       },
       indent = {
         enable = true,
-        disable = {}, -- TODO: test later
+        disable = { "php" }, -- TODO: test later
       },
       autopairs = {
         enable = true,

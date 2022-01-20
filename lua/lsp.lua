@@ -69,7 +69,7 @@ return {
 
     buf_set_keymap("n", "<leader>dN", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>ds", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+    buf_set_keymap("n", "<leader>ds", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap(
       "n",

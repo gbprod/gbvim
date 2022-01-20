@@ -42,6 +42,7 @@ local layers = {
   require("language/json"),
   require("language/css"),
   require("language/javascript"),
+  require("language/sql"),
 }
 
 packer.startup(function()

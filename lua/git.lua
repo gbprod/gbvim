@@ -11,6 +11,9 @@ return {
         ["o ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
         ["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
       },
+      preview_config = {
+        border = "rounded",
+      },
     })
 
     vim.highlight.create(
@@ -76,7 +79,11 @@ return {
         "Preview hunk",
       },
       ["<leader>gb"] = {
-        '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+        '<cmd>lua require"gitsigns".blame_line({full=false})<CR>',
+        "Blame",
+      },
+      ["<leader>gB"] = {
+        '<cmd>lua require"gitsigns".blame_line({full=true})<CR>',
         "Blame",
       },
       ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "Status" },
