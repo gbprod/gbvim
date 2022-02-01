@@ -91,6 +91,7 @@ return {
     local wk = require("which-key")
 
     map("n", "<F3>", ":NvimTreeToggle<CR>", opts)
+    map("n", "<M-a>", ":NvimTreeToggle<CR>", opts)
 
     wk.register({
       ["<leader>f"] = { name = "+Files" },

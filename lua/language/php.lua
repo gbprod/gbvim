@@ -18,6 +18,13 @@ function php.setup()
       test_namespace_prefixes = { "Integration", "Unit" },
     },
   }))
+  require("open-related").add_relation({
+    filetypes = { "php" },
+    related_to = require("open-related.helpers.filename").from_patterns({
+      { match = "^(.*)src/(.*)%.php$", format = "%ssrc/%sHandler.php" },
+      { match = "^(.*)src/(.*)Handler%.php$", format = "%ssrc/%s.php" },
+    }),
+  })
 
   require("lspconfig").phpactor.setup({
     cmd = {
@@ -36,15 +43,6 @@ function php.setup()
 
   local null_ls = require("null-ls")
 
-  null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
-    condition = function(utils)
-      return utils.root_has_file("phpstan.neon")
-    end,
-  }))
-
-  null_ls.register(null_ls.builtins.diagnostics.psalm)
-  null_ls.register(null_ls.builtins.diagnostics.php)
-
   null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
     args = {
       "--no-interaction",
@@ -58,11 +56,25 @@ function php.setup()
     end,
   }))
 
+  null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
+    condition = function(utils)
+      return utils.root_has_file("phpstan.neon")
+    end,
+  }))
+
+  null_ls.register(null_ls.builtins.diagnostics.psalm)
+
+  null_ls.register(null_ls.builtins.diagnostics.php)
+
   vim.g.PHP_noArrowMatching = 1
   vim.g.PHP_vintage_case_default_indent = 1
 
   vim.cmd([[
   autocmd Filetype php :iabbrev ret return
+  autocmd Filetype php :iabbrev pub public
+  autocmd Filetype php :iabbrev pri private
+  autocmd Filetype php :iabbrev pro protected
+  autocmd Filetype php :iabbrev con const
   ]])
 end
 
