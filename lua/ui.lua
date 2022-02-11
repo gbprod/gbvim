@@ -6,7 +6,7 @@ function ui.plugins(use)
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
   use("folke/which-key.nvim")
-  use("akinsho/nvim-bufferline.lua")
+  use("romgrk/barbar.nvim")
   use("famiu/bufdelete.nvim")
   use("norcalli/nvim-colorizer.lua")
   use("rcarriga/nvim-notify")
@@ -57,24 +57,35 @@ function ui.setup()
   -- fix https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
   vim.opt.colorcolumn = "99999"
 
-  require("bufferline").setup({
-    options = {
-      numbers = function(opts)
-        return string.format("%s", opts.raise(opts.ordinal))
-      end,
-      close_command = function(bufnum)
-        require("bufdelete").bufdelete(bufnum, true)
-      end,
-      right_mouse_command = nil,
-      diagnostics = "nvim_lsp",
-      diagnostics_indicator = function(count, _)
-        return "(" .. count .. ")"
-      end,
-      offsets = {
-        { filetype = "NvimTree", text = "File Explorer", text_align = "left" },
-      },
-    },
-  })
+  vim.g.bufferline = {
+    exclude_ft = { "qf" },
+    exclude_name = {},
+
+    icons = "both",
+    icon_separator_active = "▏",
+    icon_separator_inactive = "▏",
+    icon_close_tab = "",
+    icon_close_tab_modified = "●",
+    icon_pinned = "車",
+    letters = "qsdfjklghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
+    maximum_padding = 2,
+  }
+
+  vim.highlight.create("BufferCurrentMod", { ctermfg = "3", guifg = "#EBCB8B" }, false)
+  vim.highlight.create("BufferCurrentIndex", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
+  vim.highlight.create("BufferCurrentMod", { guifg = "#EBCB8B", guibg = "#2E3440", gui = "bold" }, false)
+  vim.highlight.create("BufferCurrentSign", { guifg = "#88C0D0", guibg = "#2E3440" }, false)
+  vim.highlight.create("BufferCurrentTarget", { guifg = "#D57780", guibg = "#2E3440", gui = "bold" }, false)
+  vim.highlight.create("BufferVisible", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
+  vim.highlight.create("BufferVisibleIndex", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
+  vim.highlight.create("BufferVisibleMod", { guifg = "#EBCB8B", guibg = "#2E3440", gui = "bold" }, false)
+  vim.highlight.create("BufferVisibleSign", { guifg = "#6C7A96", guibg = "#2E3440" }, false)
+  vim.highlight.create("BufferVisibleTarget", { guifg = "#D57780", guibg = "#2E3440", gui = "bold" }, false)
+  vim.highlight.create("BufferInactive", { guifg = "#6C7A96", guibg = "#353B49" }, false)
+  vim.highlight.create("BufferInactiveIndex", { guifg = "#6C7A96", guibg = "#353B49" }, false)
+  vim.highlight.create("BufferInactiveMod", { guifg = "#EBCB8B", guibg = "#353B49" }, false)
+  vim.highlight.create("BufferInactiveSign", { guifg = "#6C7A96", guibg = "#353B49" }, false)
+  vim.highlight.create("BufferInactiveTarget", { guifg = "#D57780", guibg = "#353B49", gui = "bold" }, false)
 
   require("colorizer").setup()
 end
@@ -85,67 +96,74 @@ function ui.bindings(map)
   wk.register({
     ["<leader>b"] = {
       name = "+Buffer",
-      d = { "<cmd>Bdelete<cr>", "Close current" },
-      D = { "<cmd>Bdelete!<cr>", "Force close current" },
-      C = { "<cmd>bufdo :Bdelete<cr>", "Close all" },
+      d = { "<cmd>confirm BufferClose<cr>", "Close current" },
       c = {
-        "<cmd>BufferLineCloseRight<cr><cmd>BufferLineCloseLeft<cr>",
-        "Close all but current",
+        name = "+Close",
+        a = { "<cmd>bufdo :confirm BufferClose<cr>", "Close all" },
+        p = {
+          "<cmd>BufferCloseAllButPinned<cr>",
+          "Close all but pinned",
+        },
+        c = {
+          "<cmd>BufferCloseAllButCurrent<cr>",
+          "Close all but current",
+        },
+        l = { "<cmd>BufferCloseBuffersLeft<cr>", "Close buffers left" },
+        r = { "<cmd>BufferCloseBuffersRight<cr>", "Close buffers right" },
       },
-      L = { "<cmd>BufferLineCloseLeft<cr>", "Close buffers left" },
-      R = { "<cmd>BufferLineCloseRight<cr>", "Close buffers right" },
-      p = { "<cmd>BufferLinePick<cr>", "Pick buffer" },
-      od = { "<cmd>BufferLineSortByDirectory<CR>", "Sort by directory" },
-      oe = { "<cmd>BufferLineSortByExtension<CR>", "Sort by extension" },
+      p = { "<cmd>BufferPin<cr>", "Pin buffer" },
+      od = { "<cmd>BufferOrderByDirectory<CR>", "Sort by directory" },
+      oe = { "<cmd>BufferOrderByLanguage<CR>", "Sort by language" },
     },
   })
 
   local opts = { noremap = true, silent = true }
 
-  map("n", "<A-Left>", ":BufferLineCyclePrev<CR>", opts)
-  map("n", "<A-Right>", ":BufferLineCycleNext<CR>", opts)
-  map("n", "<A-j>", ":BufferLineCyclePrev<CR>", opts)
-  map("n", "<A-k>", ":BufferLineCycleNext<CR>", opts)
-  map("n", "<A-<>", ":BufferLineMovePrev<CR>", opts)
-  map("n", "<A->>", " :BufferLineMoveNext<CR>", opts)
-  map("n", "<A-q>", ":Bdelete<CR>", opts)
+  map("n", "<A-Left>", ":BufferPrevious<CR>", opts)
+  map("n", "<A-Right>", ":BufferNext<CR>", opts)
+  map("n", "<A-j>", ":BufferPrevious<CR>", opts)
+  map("n", "<A-k>", ":BufferNext<CR>", opts)
+  map("n", "<A-<>", ":BufferMovePrevious<CR>", opts)
+  map("n", "<A->>", " :BufferMoveNext<CR>", opts)
+  map("n", "<A-q>", ":confirm BufferClose<CR>", opts)
+  map("n", "gh", ":BufferPick<CR>", opts)
 
   wk.register({
     ["<leader>"] = {
       ["&"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(1)<cr>',
+        "<cmd>BufferGoto 1<cr>",
         "which_key_ignore",
       },
       ["é"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(2)<cr>',
+        "<cmd>BufferGoto 2<cr>",
         "which_key_ignore",
       },
       ['"'] = {
-        '<cmd>lua require"bufferline".go_to_buffer(3)<cr>',
+        "<cmd>BufferGoto 3<cr>",
         "which_key_ignore",
       },
       ["'"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(4)<cr>',
+        "<cmd>BufferGoto 4<cr>",
         "which_key_ignore",
       },
       ["("] = {
-        '<cmd>lua require"bufferline".go_to_buffer(5)<cr>',
+        "<cmd>BufferGoto 5<cr>",
         "which_key_ignore",
       },
       ["-"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(6)<cr>',
+        "<cmd>BufferGoto 6<cr>",
         "which_key_ignore",
       },
       ["è"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(7)<cr>',
+        "<cmd>BufferGoto 7<cr>",
         "which_key_ignore",
       },
       ["_"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(8)<cr>',
+        "<cmd>BufferGoto 8<cr>",
         "which_key_ignore",
       },
       ["ç"] = {
-        '<cmd>lua require"bufferline".go_to_buffer(9)<cr>',
+        "<cmd>BufferGoto 9<cr>",
         "which_key_ignore",
       },
     },

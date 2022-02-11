@@ -64,11 +64,6 @@
     "body": ["if (${1:condition}) {", "\t${2:# code...}", "} else {", "\t${3:# code...}", "}", "$0"],
     "description": "If Else block"
   },
-  "$… = ( … ) ? … : …": {
-    "prefix": "if?",
-    "body": "\\$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b} ;",
-    "description": "Ternary conditional assignment"
-  },
   "else …": {
     "prefix": "else",
     "body": ["else {", "\t${0:# code...}", "}"],

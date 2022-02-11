@@ -2,12 +2,9 @@ local yanking = {}
 
 function yanking.plugins(use)
   use("~/workspace/cutlass.nvim")
-
   vim.g.use_yanky = false
-
   use("~/workspace/yanky.nvim")
   use("svermeulen/vim-yoink")
-
   use("~/workspace/substitute.nvim")
 end
 
@@ -18,9 +15,9 @@ function yanking.setup()
   })
 
   require("substitute").setup({
-    -- on_substitute = function(_)
-    --   vim.cmd("call yoink#startUndoRepeatSwap()")
-    -- end,
+    on_substitute = function(_)
+      vim.cmd("call yoink#startUndoRepeatSwap()")
+    end,
     range = {
       prompt_current_text = true,
     },
@@ -109,6 +106,11 @@ function yanking.bindings(map)
   map("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
   map("n", "S", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
   map("x", "s", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+
+  map("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
+  map("n", "sxx", "<cmd>lua require('substitute.exchange').line()<cr>", { noremap = true })
+  map("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
+  map("n", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>", { noremap = true })
 
   wk.register({
     ["<leader>xs"] = {

@@ -1,30 +1,25 @@
 return {
   plugins = function(use)
-    use("akinsho/toggleterm.nvim")
+    use("numToStr/FTerm.nvim")
   end,
 
   setup = function()
-    require("toggleterm").setup({
-      open_mapping = nil,
-      persist_size = true,
-      direction = "float",
-      float_opts = {
-        border = "curved",
+    require("FTerm").setup({
+      dimensions = {
+        height = 0.95,
+        width = 0.95,
       },
     })
   end,
 
   bindings = function(map)
-    map("n", "<F4>", "':ToggleTerm dir=' . getcwd() . '<cr>'", { expr = true })
-    map("i", "<F4>", "<esc><cmd>ToggleTerm<cr>", {})
-    map("n", "<M-z>", "':ToggleTerm dir=' . getcwd() . '<cr>'", { expr = true })
-    map("i", "<M-z>", "<esc><cmd>ToggleTerm<cr>", {})
-    map("t", "<C-o>", [[<C-\><C-n>]], { silent = true })
+    map("n", "<M-z>", "<CMD>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
+    map("i", "<M-z>", "<esc><CMD>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
+    map("t", "<C-o>", [[<C-\><C-n>]], { noremap = true, silent = true })
+    map("t", "<M-z>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true })
 
-    vim.cmd([[
-    autocmd TermEnter term://*toggleterm#* tnoremap <silent><F4> <Cmd>ToggleTerm<CR>
-    autocmd TermEnter term://*toggleterm#* tnoremap <silent><M-z> <Cmd>ToggleTerm<CR>
-    autocmd TermEnter term://*toggleterm#* set signcolumn=no
-    ]])
+    -- vim.cmd([[
+    -- autocmd TermEnter term://*toggleterm#* set signcolumn=no
+    -- ]])
   end,
 }

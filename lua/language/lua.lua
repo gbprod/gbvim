@@ -37,6 +37,11 @@ function lua.setup()
   lspconfig.sumneko_lua.setup(luadev)
 
   require("open-related").add_relation(require("open-related.builtin.nvim").alternate_spec)
+
+  vim.cmd([[
+  autocmd Filetype lua :iabbrev ret return
+  autocmd Filetype lua :iabbrev lo local
+  ]])
 end
 
 function lua.on_ft()

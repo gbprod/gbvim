@@ -2,7 +2,6 @@ return {
   plugins = function(use)
     use("neovim/nvim-lspconfig")
     use("ray-x/lsp_signature.nvim")
-    use("onsails/lspkind-nvim")
     use("jose-elias-alvarez/null-ls.nvim")
   end,
 
@@ -91,38 +90,6 @@ return {
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     ]]
-
-    require("lspkind").init({
-      with_text = true,
-      preset = "default",
-      symbol_map = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-        Field = "ﰠ",
-        Variable = "",
-        Class = "ﴯ",
-        Interface = "",
-        Module = "",
-        Property = "ﰠ",
-        Unit = "塞",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
-      },
-    })
 
     -- Gutter signs
     local signs = {

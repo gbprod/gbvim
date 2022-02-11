@@ -84,13 +84,23 @@ return {
 
     vim.highlight.create("NvimTreeGitDirty", { guifg = "#EBCB8B" }, false)
     vim.highlight.create("Directory ", { guifg = "#81A1C1" }, false)
+
+    --    vim.api.nvim_add_user_command("TreeToggle", function()
+    --      local view = require("nvim-tree.view")
+    --      if view.win_open() then
+    --        view.close()
+    --        require("bufferline.state").set_offset(0)
+    --      else
+    --        require("bufferline.state").set_offset(40, "FileTree")
+    --        require("nvim-tree.lib").open()
+    --      end
+    --    end, {})
   end,
 
   bindings = function(map)
     local opts = { noremap = true, silent = true }
     local wk = require("which-key")
 
-    map("n", "<F3>", ":NvimTreeToggle<CR>", opts)
     map("n", "<M-a>", ":NvimTreeToggle<CR>", opts)
 
     wk.register({

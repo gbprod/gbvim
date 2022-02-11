@@ -13,6 +13,7 @@ return {
         ".env.dist",
         ".project.lua",
         ".envrc",
+        "composer.json",
       },
       silent_chdir = true,
     })

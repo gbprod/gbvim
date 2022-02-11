@@ -56,7 +56,7 @@ return {
     vim.highlight.create("DiagnosticHint", { ctermfg = "7", guifg = "#5E81AC" }, false)
   end,
 
-  bindings = function(map)
+  bindings = function(_)
     local wk = require("which-key")
     wk.register({
       ["<leader>d"] = {

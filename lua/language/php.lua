@@ -75,6 +75,7 @@ function php.setup()
   autocmd Filetype php :iabbrev pri private
   autocmd Filetype php :iabbrev pro protected
   autocmd Filetype php :iabbrev con const
+  autocmd Filetype php :iabbrev thr throw
   ]])
 end
 
