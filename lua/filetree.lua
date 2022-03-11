@@ -1,5 +1,4 @@
 return {
-
   plugins = function(use)
     use("kyazdani42/nvim-tree.lua")
   end,
@@ -7,15 +6,6 @@ return {
   setup = function()
     vim.g.nvim_tree_git_hl = 1
     vim.g.nvim_tree_highlight_opened_files = 1
-    vim.g.nvim_tree_window_picker_exclude = {
-      filetype = {
-        "packer",
-        "qf",
-      },
-      buftype = {
-        "terminal",
-      },
-    }
     vim.g.nvim_tree_special_files = {}
     vim.g.nvim_tree_show_icons = {
       git = 0,
@@ -80,21 +70,22 @@ return {
       update_to_buf_dir = {
         enable = false,
       },
+      actions = {
+        open_file = {
+          window_picker = {
+            enable = true,
+            chars = "fjqsdghklm",
+            exclude = {
+              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+              buftype = { "nofile", "terminal", "help" },
+            },
+          },
+        },
+      },
     })
 
     vim.highlight.create("NvimTreeGitDirty", { guifg = "#EBCB8B" }, false)
     vim.highlight.create("Directory ", { guifg = "#81A1C1" }, false)
-
-    --    vim.api.nvim_add_user_command("TreeToggle", function()
-    --      local view = require("nvim-tree.view")
-    --      if view.win_open() then
-    --        view.close()
-    --        require("bufferline.state").set_offset(0)
-    --      else
-    --        require("bufferline.state").set_offset(40, "FileTree")
-    --        require("nvim-tree.lib").open()
-    --      end
-    --    end, {})
   end,
 
   bindings = function(map)

@@ -23,7 +23,7 @@ return {
       spacing = 0,
     }
 
-    alpha.setup(dashboard.opts)
+    alpha.setup(dashboard.config)
 
     vim.cmd([[
     autocmd FileType alpha setlocal nofoldenable

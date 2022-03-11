@@ -24,7 +24,11 @@ function yanking.setup()
   })
 
   if vim.g.use_yanky then
-    require("yanky").setup()
+    require("yanky").setup({
+      highlight = {
+        enabled = true,
+      },
+    })
   end
 
   vim.highlight.create("YankedText", { guibg = "#4C566A" }, false)
@@ -47,8 +51,8 @@ function yanking.setup()
     cache_enabled = 1,
   }
 
+  vim.g.yoinkIncludeDeleteOperations = 1
   if not vim.g.use_yanky then
-    vim.g.yoinkIncludeDeleteOperations = 1
     vim.g.yoinkMaxItems = 20
     vim.g.yoinkSyncNumberedRegisters = 1
     vim.g.yoinkSavePersistently = 1
@@ -63,33 +67,18 @@ function yanking.bindings(map)
   local wk = require("which-key")
 
   if vim.g.use_yanky then
-    map(
-      "n",
-      "p",
-      "<cmd>lua require('yanky').prepare('p')<cr><cmd>set opfunc=v:lua.require'yanky'.put<cr>g@l",
-      { noremap = true }
-    )
-    map(
-      "n",
-      "P",
-      "<cmd>lua require('yanky').prepare('P')<cr><cmd>set opfunc=v:lua.require'yanky'.put<cr>g@l",
-      { noremap = true }
-    )
-    map(
-      "x",
-      "p",
-      "<cmd>lua require('yanky').prepare('p')<cr><cmd>set opfunc=v:lua.require'yanky'.put<cr>g@`>",
-      { noremap = true }
-    )
-    map(
-      "x",
-      "P",
-      "<cmd>lua require('yanky').prepare('P')<cr><cmd>set opfunc=v:lua.require'yanky'.put<cr>g@`>",
-      { noremap = true }
-    )
+    map("n", "p", "<Plug>(YankyPutAfter)", {})
+    map("n", "P", "<Plug>(YankyPutBefore)", {})
+    map("x", "p", "<Plug>(YankyPutAfter)", {})
+    map("x", "P", "<Plug>(YankyPutBefore)", {})
 
-    map("n", "<M-p>", "<cmd>lua require('yanky').cycle(1)<cr>", {})
-    map("n", "<M-P>", "<cmd>lua require('yanky').cycle(-1)<cr>", {})
+    map("n", "gp", "<Plug>(YankyGPutAfter)", {})
+    map("n", "gP", "<Plug>(YankyGPutBefore)", {})
+    map("x", "gp", "<Plug>(YankyGPutAfter)", {})
+    map("x", "gP", "<Plug>(YankyGPutBefore)", {})
+
+    map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
+    map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
   else
     map("n", "<M-p>", "<plug>(YoinkPostPasteSwapBack)", {})
     map("n", "<M-P>", "<plug>(YoinkPostPasteSwapForward)", {})

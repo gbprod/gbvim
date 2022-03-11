@@ -9,6 +9,7 @@ end
 function terminal.setup()
   require("FTerm").setup({
     ft = "FTerm",
+    cmd = os.getenv("SHELL") .. ";#term_default#",
     dimensions = {
       height = 0.95,
       width = 0.95,
@@ -22,21 +23,25 @@ function terminal.bindings(map)
   map("t", "<C-o>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
   vim.cmd([[
-  autocmd TermEnter term://*FTerm#* tnoremap <M-z> <cmd>lua require('FTerm').toggle()<CR>
-]])
+  autocmd TermEnter term://*#term_default#* tnoremap <silent><M-z> <cmd>lua require('FTerm').close()<CR>
+  ]])
 end
 
 function terminal.create_custom(name, cmd)
   local fterm = require("FTerm")
 
   custom[name] = fterm:new({
-    cmd = cmd,
-    ft = "FTerm_" .. name,
+    cmd = cmd .. ";#term_" .. name .. "#",
+    ft = "term_" .. name,
+    dimensions = {
+      height = 0.95,
+      width = 0.95,
+    },
   })
 
   vim.cmd(
     string.format(
-      [[ autocmd TermEnter term://FTerm_%s lua vim.api.nvim_buf_set_keymap('t', '<M-z>', '<C-\\><C-n><cmd>lua require("terminal").toggle_custom("%s")<CR>', { noremap = true, silent = true }) ]],
+      [[ autocmd TermEnter term://*#term_%s#* tnoremap <silent><M-z> <cmd>lua require('terminal').toggle_custom('%s')<CR> ]],
       name,
       name
     )

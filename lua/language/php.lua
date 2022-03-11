@@ -5,7 +5,7 @@ function php.plugins(use)
     "phpactor/phpactor",
     branch = "master",
     ft = "php",
-    run = "composer install --no-dev -o && bin/phpactor extension:install phpactor/phpunit-extension",
+    run = "composer install --no-dev -o",
   })
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall php" })
   use("nelsyeung/twig.vim")
@@ -76,6 +76,8 @@ function php.setup()
   autocmd Filetype php :iabbrev pro protected
   autocmd Filetype php :iabbrev con const
   autocmd Filetype php :iabbrev thr throw
+  autocmd Filetype php :iabbrev impl implements
+  autocmd Filetype php :iabbrev ext extends
   ]])
 end
 
@@ -86,28 +88,28 @@ function php.on_ft()
   require("which-key").register({
     ["<leader>l"] = { name = "+Php" },
     ["<leader>li"] = {
-      ":PhpactorImportClass<CR>",
+      "<cmd>PhpactorImportClass<CR>",
       "Import the name under the cusor",
       buffer = 0,
     },
     ["<leader>lI"] = {
-      ":PhpactorImportMissingClasses<CR>",
+      "<cmd>PhpactorImportMissingClasses<CR>",
       "Attempt to import all non-resolvable classes",
       buffer = 0,
     },
     ["<leader>lm"] = {
-      ":PhpactorContextMenu<CR>",
+      "<cmd>PhpactorContextMenu<CR>",
       "show the context menu for the current cursor position",
       buffer = 0,
     },
     ["<leader>lr"] = {
-      ":PhpactorFindReferences<CR>",
+      "<cmd>PhpactorFindReferences<CR>",
       "Attempt to find all references",
       buffer = 0,
     },
-    ["<leader>ln"] = { ":PhpactorNavigate<CR>", "Navigate", buffer = 0 },
+    ["<leader>ln"] = { "<cmd>PhpactorNavigate<CR>", "Navigate", buffer = 0 },
     ["<leader>lv"] = {
-      ":PhpactorChangeVisibility<CR>",
+      "<cmd>PhpactorChangeVisibility<CR>",
       "Rotate visiblity",
       buffer = 0,
     },
@@ -126,47 +128,68 @@ function php.on_ft()
 
     ["<leader>lc"] = { name = "+Class" },
     ["<leader>lci"] = {
-      ":PhpactorClassInflect<CR>",
+      "<cmd>PhpactorClassInflect<CR>",
       "Inflect a new class from the current class",
       buffer = 0,
     },
     ["<leader>lca"] = {
-      ":PhpactorGenerateAccessors<CR>",
+      "<cmd>PhpactorGenerateAccessors<CR>",
       "Generate accessors",
       buffer = 0,
     },
     ["<leader>lct"] = {
-      ":PhpactorTransform<CR>",
+      "<cmd>PhpactorTransform<CR>",
       "Show transform context menu",
       buffer = 0,
     },
     ["<leader>lce"] = {
-      ":PhpactorClassExpand<CR>",
+      "<cmd>PhpactorClassExpand<CR>",
       "Expand the class name",
       buffer = 0,
     },
     ["<leader>lcn"] = {
-      ":PhpactorClassNew<CR>",
+      "<cmd>PhpactorClassNew<CR>",
       "Create a new class",
       buffer = 0,
     },
 
     ["<leader>lx"] = { name = "+Extract" },
     ["<leader>lxm"] = {
-      ":PhpactorExtractMethod<CR>",
+      "<cmd>PhpactorExtractMethod<CR>",
       "Extract a new method",
       buffer = 0,
     },
     ["<leader>lxv"] = {
-      ":PhpactorExtractExpression<CR>",
+      "<cmd>PhpactorExtractExpression<CR>",
       "Extract to a variable",
       buffer = 0,
     },
     ["<leader>lxc"] = {
-      ":PhpactorExtractConstant<CR>",
+      "<cmd>PhpactorExtractConstant<CR>",
       "Extract a constant from a literal",
       buffer = 0,
     },
+  }, { mode = "n" })
+
+  require("which-key").register({
+    ["<leader>lx"] = { name = "+Extract" },
+    ["<leader>lxm"] = {
+      "<cmd>PhpactorExtractMethod<CR>",
+      "Extract a new method",
+      buffer = 0,
+    },
+    ["<leader>lxv"] = {
+      "<cmd>PhpactorExtractExpression<CR>",
+      "Extract to a variable",
+      buffer = 0,
+    },
+    ["<leader>lxc"] = {
+      "<cmd>PhpactorExtractConstant<CR>",
+      "Extract a constant from a literal",
+      buffer = 0,
+    },
+  }, {
+    mode = "x",
   })
 end
 
