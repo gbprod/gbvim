@@ -2,7 +2,7 @@ local yanking = {}
 
 function yanking.plugins(use)
   use("~/workspace/cutlass.nvim")
-  vim.g.use_yanky = false
+  vim.g.use_yanky = true
   use("~/workspace/yanky.nvim")
   use("svermeulen/vim-yoink")
   use("~/workspace/substitute.nvim")
@@ -12,6 +12,7 @@ function yanking.setup()
   require("cutlass").setup({
     cut_key = "x",
     override_del = true,
+    exclude = { "ns", "nS" },
   })
 
   require("substitute").setup({
@@ -24,11 +25,7 @@ function yanking.setup()
   })
 
   if vim.g.use_yanky then
-    require("yanky").setup({
-      highlight = {
-        enabled = true,
-      },
-    })
+    require("yanky").setup()
   end
 
   vim.highlight.create("YankedText", { guibg = "#4C566A" }, false)
@@ -36,7 +33,7 @@ function yanking.setup()
   vim.cmd([[
     let &clipboard = "unnamed,unnamedplus"
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup='YankedText', timeout=500}
-    ]])
+  ]])
 
   vim.g.clipboard = {
     name = "xsel_override",
@@ -79,6 +76,9 @@ function yanking.bindings(map)
 
     map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
     map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
+
+    map("n", "y", "<Plug>(YankyYank)", {})
+    map("x", "y", "<Plug>(YankyYank)", {})
   else
     map("n", "<M-p>", "<plug>(YoinkPostPasteSwapBack)", {})
     map("n", "<M-P>", "<plug>(YoinkPostPasteSwapForward)", {})

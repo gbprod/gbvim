@@ -32,6 +32,7 @@ function lsp.setup()
           opts
         )
         buf_set_keymap("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
+        buf_set_keymap("x", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
       end
     end,
   })
@@ -69,8 +70,8 @@ function lsp.on_attach(_, bufnr)
 
   buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-  buf_set_keymap("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
-  buf_set_keymap("v", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
+  buf_set_keymap("n", "<a-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  buf_set_keymap("x", "<a-cr>", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
   buf_set_keymap("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 
   buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)

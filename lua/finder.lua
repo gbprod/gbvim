@@ -2,6 +2,7 @@ local finder = {}
 
 function finder.plugins(use)
   use("nvim-telescope/telescope.nvim")
+  use("stevearc/dressing.nvim")
   use("~/workspace/open-related.nvim")
 end
 
@@ -14,7 +15,34 @@ function finder.setup()
         height = 0.9,
       },
     },
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown({}),
+      },
+    },
   })
+
+  require("dressing").setup({
+    input = {
+      enabled = true,
+      anchor = "SW",
+      border = "rounded",
+      relative = "win",
+      winblend = 0,
+      winhighlight = "NormalFloat:DressingFloatTitle",
+    },
+    select = {
+      enabled = true,
+      backend = { "telescope", "builtin" },
+      telescope = require("telescope.themes").get_dropdown(),
+    },
+  })
+
+  vim.highlight.link("FloatTitle", "Normal", true)
+  vim.highlight.link("DressingFloatTitle", "Normal", true)
+  vim.highlight.link("DressingInputText ", "Normal", true)
+  vim.highlight.link("DressingSelectText", "Normal", true)
+
   require("open-related").setup({
     open_with = "telescope",
     create_with = "telescope",
