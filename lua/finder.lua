@@ -30,6 +30,14 @@ function finder.setup()
       relative = "win",
       winblend = 0,
       winhighlight = "NormalFloat:DressingFloatTitle",
+      override = function(opt)
+        if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
+          opt.anchor = "SW"
+          opt.col = 1
+          opt.row = vim.o.lines - vim.o.cmdheight - 1
+          opt.relative = "editor"
+        end
+      end,
     },
     select = {
       enabled = true,
@@ -40,7 +48,6 @@ function finder.setup()
 
   vim.highlight.link("FloatTitle", "Normal", true)
   vim.highlight.link("DressingFloatTitle", "Normal", true)
-  vim.highlight.link("DressingInputText ", "Normal", true)
   vim.highlight.link("DressingSelectText", "Normal", true)
 
   require("open-related").setup({

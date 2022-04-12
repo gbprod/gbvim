@@ -14,8 +14,9 @@ function ui.plugins(use)
 end
 
 function ui.setup()
+  vim.g.loaded_gitgutter = true
   vim.cmd("colorscheme nord")
-  vim.highlight.create("Search", { ctermfg = "6", ctermbg = "8", guifg = "#88C0D0", guibg = "#4C566A" }, false)
+  vim.highlight.create("Search", { guifg = "NONE", guibg = "#4C566A" }, false)
 
   require("which-key").setup({})
   vim.notify = require("notify")
@@ -180,8 +181,10 @@ function ui.bindings(map)
   map("i", "<PageDown>", "<C-O><C-D>", {})
 
   vim.cmd([[
-      cnoreabbrev h vertical help
-    ]])
+    cnoreabbrev h vertical help
+    cnoreabbrev qa confirm qa
+    cnoreabbrev q confirm q
+  ]])
 end
 
 return ui

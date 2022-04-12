@@ -8,10 +8,39 @@ return {
     use("christoomey/vim-sort-motion")
     use("tpope/vim-repeat")
     use("numToStr/Comment.nvim")
+    use("monaqa/dial.nvim")
   end,
 
   setup = function()
     vim.g.argwrap_tail_comma_braces = 1
+
+    local augend = require("dial.augend")
+    require("dial.config").augends:register_group({
+      default = {
+        augend.integer.alias.decimal,
+        augend.integer.alias.hex,
+        augend.date.alias["%Y-%m-%d"],
+        augend.date.alias["%H:%M:%S"],
+        augend.date.alias["%H:%M"],
+        augend.constant.alias.bool,
+        augend.semver.alias.semver,
+        augend.constant.new({
+          elements = { "and", "or" },
+          word = true,
+          cyclic = true,
+        }),
+        augend.constant.new({
+          elements = { "&&", "||" },
+          word = false,
+          cyclic = true,
+        }),
+        augend.constant.new({
+          elements = { "public", "protected", "private" },
+          word = false,
+          cyclic = true,
+        }),
+      },
+    })
 
     require("Comment").setup()
   end,
@@ -38,9 +67,16 @@ return {
     map("v", "<S-Tab>", "<gv", { noremap = true })
     map("v", ">", ">gv", { noremap = true })
     map("v", "<", "<gv", { noremap = true })
-    map("i", "<C-d>", '<c-o>"_cw', { noremap = true })
+    map("i", "<M-d>", '<c-o>"_cw', { noremap = true })
 
     map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
+
+    map("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
+    map("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
+    map("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
+    map("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
+    map("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
+    map("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
 
     wk.register({
       ["<leader>"] = {

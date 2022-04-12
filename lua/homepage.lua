@@ -10,6 +10,7 @@ return {
 
     dashboard.section.buttons.val = {
       button("r", "  > Recents", ":Telescope oldfiles cwd_only=true<cr>"),
+      button("b", "  > Filebrowser", ":Telescope file_browser grouped=true<cr>"),
       button("t", "  > Filetree", ":NvimTreeToggle<cr>"),
       button("f", "  > Find File", ":Telescope find_files<cr>"),
       button("g", "  > Git Status", ":Telescope git_status<cr>"),

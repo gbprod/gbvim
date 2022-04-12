@@ -2,9 +2,7 @@ local yanking = {}
 
 function yanking.plugins(use)
   use("~/workspace/cutlass.nvim")
-  vim.g.use_yanky = true
   use("~/workspace/yanky.nvim")
-  use("svermeulen/vim-yoink")
   use("~/workspace/substitute.nvim")
 end
 
@@ -16,24 +14,20 @@ function yanking.setup()
   })
 
   require("substitute").setup({
-    on_substitute = function(_)
-      vim.cmd("call yoink#startUndoRepeatSwap()")
+    on_substitute = function(event)
+      require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV]"))
     end,
     range = {
       prompt_current_text = true,
     },
   })
 
-  if vim.g.use_yanky then
-    require("yanky").setup()
-  end
+  require("yanky").setup()
 
-  vim.highlight.create("YankedText", { guibg = "#4C566A" }, false)
+  vim.highlight.create("YankyPut", { guibg = "#4C566A" }, false)
+  vim.highlight.create("YankyYanked", { guibg = "#4C566A" }, false)
 
-  vim.cmd([[
-    let &clipboard = "unnamed,unnamedplus"
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup='YankedText', timeout=500}
-  ]])
+  vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
 
   vim.g.clipboard = {
     name = "xsel_override",
@@ -47,49 +41,26 @@ function yanking.setup()
     },
     cache_enabled = 1,
   }
-
-  vim.g.yoinkIncludeDeleteOperations = 1
-  if not vim.g.use_yanky then
-    vim.g.yoinkMaxItems = 20
-    vim.g.yoinkSyncNumberedRegisters = 1
-    vim.g.yoinkSavePersistently = 1
-    vim.g.yoinkMoveCursorToEndOfPaste = 1
-    vim.g.yoinkSwapClampAtEnds = 1
-    vim.g.yoinkIncludeNamedRegisters = 1
-    vim.g.yoinkSyncSystemClipboardOnFocus = 1
-  end
 end
 
 function yanking.bindings(map)
   local wk = require("which-key")
 
-  if vim.g.use_yanky then
-    map("n", "p", "<Plug>(YankyPutAfter)", {})
-    map("n", "P", "<Plug>(YankyPutBefore)", {})
-    map("x", "p", "<Plug>(YankyPutAfter)", {})
-    map("x", "P", "<Plug>(YankyPutBefore)", {})
+  map("n", "p", "<Plug>(YankyPutAfter)", {})
+  map("n", "P", "<Plug>(YankyPutBefore)", {})
+  map("x", "p", "<Plug>(YankyPutAfter)", {})
+  map("x", "P", "<Plug>(YankyPutBefore)", {})
 
-    map("n", "gp", "<Plug>(YankyGPutAfter)", {})
-    map("n", "gP", "<Plug>(YankyGPutBefore)", {})
-    map("x", "gp", "<Plug>(YankyGPutAfter)", {})
-    map("x", "gP", "<Plug>(YankyGPutBefore)", {})
+  map("n", "gp", "<Plug>(YankyGPutAfter)", {})
+  map("n", "gP", "<Plug>(YankyGPutBefore)", {})
+  map("x", "gp", "<Plug>(YankyGPutAfter)", {})
+  map("x", "gP", "<Plug>(YankyGPutBefore)", {})
 
-    map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
-    map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
+  map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
+  map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
 
-    map("n", "y", "<Plug>(YankyYank)", {})
-    map("x", "y", "<Plug>(YankyYank)", {})
-  else
-    map("n", "<M-p>", "<plug>(YoinkPostPasteSwapBack)", {})
-    map("n", "<M-P>", "<plug>(YoinkPostPasteSwapForward)", {})
-    map("n", "p", "<plug>(YoinkPaste_p)", {})
-    map("n", "P", "<Plug>(YoinkPaste_P)", {})
-    map("n", "y", "<Plug>(YoinkYankPreserveCursorPosition)", {})
-    map("x", "y", "<Plug>(YoinkYankPreserveCursorPosition)", {})
-
-    map("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-    map("x", "P", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-  end
+  map("n", "y", "<Plug>(YankyYank)", {})
+  map("x", "y", "<Plug>(YankyYank)", {})
 
   map("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
   map("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })

@@ -10,9 +10,12 @@ function php.plugins(use)
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall php" })
   use("nelsyeung/twig.vim")
   use("2072/PHP-Indenting-for-VIm")
+  use("~/workspace/phpactor.nvim")
 end
 
 function php.setup()
+  require("phpactor").setup()
+
   require("open-related").add_relation(require("open-related.builtin.php").alternate_test_file.with({
     opts = {
       test_namespace_prefixes = { "Integration", "Unit" },

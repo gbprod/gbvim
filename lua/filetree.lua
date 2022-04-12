@@ -1,6 +1,7 @@
 return {
   plugins = function(use)
     use("kyazdani42/nvim-tree.lua")
+    use("nvim-telescope/telescope-file-browser.nvim")
   end,
 
   setup = function()
@@ -84,6 +85,8 @@ return {
       },
     })
 
+    require("telescope").load_extension("file_browser")
+
     vim.highlight.create("NvimTreeGitDirty", { guifg = "#EBCB8B" }, false)
     vim.highlight.create("Directory ", { guifg = "#81A1C1" }, false)
   end,
@@ -97,6 +100,7 @@ return {
     wk.register({
       ["<leader>f"] = { name = "+Files" },
       ["<leader>fo"] = { "<cmd>NvimTreeFindFile<cr>", "Reveal in filetree" },
+      ["<leader>fb"] = { "<cmd>Telescope file_browser grouped=true<cr>", "File browser" },
     })
   end,
 }
