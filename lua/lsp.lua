@@ -44,7 +44,7 @@ function lsp.on_attach(_, bufnr)
     hint_enable = false,
     padding = " ",
     handler_opts = {
-      border = "none",
+      border = "rounded",
     },
     always_trigger = false,
     -- auto_close_after = 10,

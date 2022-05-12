@@ -9,6 +9,7 @@ end
 function finder.setup()
   require("telescope").setup({
     defaults = {
+      dynamic_preview_title = true,
       sorting_strategy = "ascending",
       layout_config = {
         width = 0.9,
@@ -29,7 +30,6 @@ function finder.setup()
       border = "rounded",
       relative = "win",
       winblend = 0,
-      winhighlight = "NormalFloat:DressingFloatTitle",
       override = function(opt)
         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
           opt.anchor = "SW"
@@ -46,14 +46,14 @@ function finder.setup()
     },
   })
 
-  vim.highlight.link("FloatTitle", "Normal", true)
-  vim.highlight.link("DressingFloatTitle", "Normal", true)
-  vim.highlight.link("DressingSelectText", "Normal", true)
-
   require("open-related").setup({
     open_with = "telescope",
     create_with = "telescope",
   })
+
+  vim.cmd([[
+    cnoreabbrev T Telescope
+  ]])
 end
 
 function finder.bindings(map)

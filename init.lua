@@ -43,6 +43,8 @@ local layers = {
   require("language/css"),
   require("language/javascript"),
   require("language/sql"),
+  require("language/sh"),
+  require("language/yaml"),
 }
 
 packer.startup(function()
@@ -60,7 +62,7 @@ for _, layer in pairs(layers) do
   end
 end
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 for _, layer in pairs(layers) do
   if layer.bindings ~= nil then
     layer.bindings(map)

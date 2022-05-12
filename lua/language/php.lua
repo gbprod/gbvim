@@ -4,7 +4,7 @@ function php.plugins(use)
   use({
     "phpactor/phpactor",
     branch = "master",
-    ft = "php",
+    -- ft = "php",
     run = "composer install --no-dev -o",
   })
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall php" })
@@ -31,7 +31,7 @@ function php.setup()
 
   require("lspconfig").phpactor.setup({
     cmd = {
-      require("packer").config.package_root .. "/packer/opt/phpactor/bin/phpactor",
+      require("packer").config.package_root .. "/packer/start/phpactor/bin/phpactor",
       "language-server",
     },
     on_attach = require("lsp").on_attach,
@@ -82,6 +82,8 @@ function php.setup()
   autocmd Filetype php :iabbrev impl implements
   autocmd Filetype php :iabbrev ext extends
   ]])
+
+  -- vim.highlight.create("phpClasses", { guifg = "#8FBCBB" })
 end
 
 function php.on_ft()

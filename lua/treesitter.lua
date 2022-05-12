@@ -59,7 +59,6 @@ function treesitter.setup()
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = true,
-      disable = { "yaml", "php" }, -- TODO: test later
     },
     indent = {
       enable = true,
@@ -69,12 +68,6 @@ function treesitter.setup()
       enable = true,
     },
   })
-
-  vim.highlight.create(
-    "TSError",
-    { cterm = "undercurl", ctermfg = "1", gui = "undercurl", guifg = "NONE", guisp = "#BF616A" },
-    false
-  )
 
   vim.opt.foldmethod = "expr"
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

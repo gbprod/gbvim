@@ -1,7 +1,8 @@
 local ui = {}
 
 function ui.plugins(use)
-  use("arcticicestudio/nord-vim")
+  -- use("arcticicestudio/nord-vim")
+  use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
@@ -14,11 +15,29 @@ function ui.plugins(use)
 end
 
 function ui.setup()
-  vim.g.loaded_gitgutter = true
-  vim.cmd("colorscheme nord")
-  vim.highlight.create("Search", { guifg = "NONE", guibg = "#4C566A" }, false)
+  -- vim.g.loaded_gitgutter = true
+  vim.g.nord_borders = true
+  require("nord").set()
+
+  vim.highlight.create("Search", { guifg = "NONE", guibg = "#4C566A", gui = "NONE" }, false)
+  vim.highlight.create("Identifier", { guifg = "#D8DEE9" }, false)
+  vim.highlight.create("FloatBorder", { guifg = "#3B4252" }, false)
+
+  vim.highlight.link("TSParameter", "Identifier", true)
+  vim.highlight.create("TSProperty", { guifg = "#D8DEE9" })
+  vim.highlight.create("TSType", { guifg = "#8FBCBB" })
+  vim.highlight.link("TSException", "TSKeyword", true)
+  vim.highlight.link("TSKeywordReturn", "TSKeyword", true)
+  vim.highlight.link("TSKeywordFunction", "TSKeyword", true)
+  vim.highlight.link("TSKeywordOperator", "TSKeyword", true)
+  vim.highlight.link("TSVariableBuiltin", "TSKeyword", true)
+  vim.highlight.link("TSConstBuiltin", "TSKeyword", true)
+  vim.highlight.link("TSConstructor", "TSType", true)
+  vim.highlight.create("TSConstant", { guifg = "#88C0D0" }, false)
 
   require("which-key").setup({})
+
+  require("notify").setup({})
   vim.notify = require("notify")
 
   require("nvim-gps").setup({
@@ -63,30 +82,14 @@ function ui.setup()
     exclude_name = {},
 
     icons = "both",
-    icon_separator_active = "▏",
-    icon_separator_inactive = "▏",
+    icon_separator_active = " ",
+    icon_separator_inactive = " ",
     icon_close_tab = "",
     icon_close_tab_modified = "●",
     icon_pinned = "車",
     letters = "qsdfjklghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
     maximum_padding = 2,
   }
-
-  vim.highlight.create("BufferCurrentMod", { ctermfg = "3", guifg = "#EBCB8B" }, false)
-  vim.highlight.create("BufferCurrentIndex", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
-  vim.highlight.create("BufferCurrentMod", { guifg = "#EBCB8B", guibg = "#2E3440", gui = "bold" }, false)
-  vim.highlight.create("BufferCurrentSign", { guifg = "#88C0D0", guibg = "#2E3440" }, false)
-  vim.highlight.create("BufferCurrentTarget", { guifg = "#D57780", guibg = "#2E3440", gui = "bold" }, false)
-  vim.highlight.create("BufferVisible", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
-  vim.highlight.create("BufferVisibleIndex", { guifg = "#C8D0E0", guibg = "#2E3440" }, false)
-  vim.highlight.create("BufferVisibleMod", { guifg = "#EBCB8B", guibg = "#2E3440", gui = "bold" }, false)
-  vim.highlight.create("BufferVisibleSign", { guifg = "#6C7A96", guibg = "#2E3440" }, false)
-  vim.highlight.create("BufferVisibleTarget", { guifg = "#D57780", guibg = "#2E3440", gui = "bold" }, false)
-  vim.highlight.create("BufferInactive", { guifg = "#6C7A96", guibg = "#353B49" }, false)
-  vim.highlight.create("BufferInactiveIndex", { guifg = "#6C7A96", guibg = "#353B49" }, false)
-  vim.highlight.create("BufferInactiveMod", { guifg = "#EBCB8B", guibg = "#353B49" }, false)
-  vim.highlight.create("BufferInactiveSign", { guifg = "#6C7A96", guibg = "#353B49" }, false)
-  vim.highlight.create("BufferInactiveTarget", { guifg = "#D57780", guibg = "#353B49", gui = "bold" }, false)
 
   require("colorizer").setup()
 end

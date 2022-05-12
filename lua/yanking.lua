@@ -23,10 +23,7 @@ function yanking.setup()
   })
 
   require("yanky").setup()
-
-  vim.highlight.create("YankyPut", { guibg = "#4C566A" }, false)
-  vim.highlight.create("YankyYanked", { guibg = "#4C566A" }, false)
-
+  require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
 
   vim.g.clipboard = {
@@ -91,6 +88,10 @@ function yanking.bindings(map)
       },
       ["ss"] = { "<cmd>lua require('substitute.range').word({ prefix = 'S' })<cr>", "Substitute <motion><motion>" },
     },
+    ["<leader>yy"] = {
+      "<cmd>Telescope yank_history<cr>",
+      "Yank History",
+    },
   }, {
     mode = "n",
   })
@@ -114,6 +115,10 @@ function yanking.bindings(map)
         "<cmd>lua require('substitute.range').visual({ confirm = true,  prefix = 'S' })<cr>",
         "Substitute <motion> with confirm",
       },
+    },
+    ["<leader>yy"] = {
+      "<cmd>Telescope yank_history<cr>",
+      "Yank History",
     },
   }, {
     mode = "x",

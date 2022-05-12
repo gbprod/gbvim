@@ -56,37 +56,37 @@ function motions.bindings(map)
   map("n", "))", "]]", {})
   map("n", "((", "[[", {})
 
-  vim.api.nvim_set_keymap(
+  map(
     "n",
     "f",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
     {}
   )
-  vim.api.nvim_set_keymap(
+  map(
     "n",
     "F",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
     {}
   )
-  vim.api.nvim_set_keymap(
+  map(
     "o",
     "f",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
     {}
   )
-  vim.api.nvim_set_keymap(
+  map(
     "o",
     "F",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
     {}
   )
-  vim.api.nvim_set_keymap(
+  map(
     "",
     "t",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
     {}
   )
-  vim.api.nvim_set_keymap(
+  map(
     "",
     "T",
     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",

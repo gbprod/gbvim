@@ -33,8 +33,6 @@ function completion.setup()
       ["<C-p>"] = cmp.mapping.select_prev_item({
         behavior = cmp.SelectBehavior.Insert,
       }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
       ["<C-g>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "s", "c" }),
@@ -59,12 +57,21 @@ function completion.setup()
       { name = "treesitter" },
       { name = "path" },
       { name = "nvim_lua" },
-      { name = "neorg" },
     },
     formatting = {
+      fields = { "kind", "abbr", "menu" },
       format = lspkind.cmp_format({
-        mode = "symbol_text",
+        mode = "symbol",
         maxwidth = 50,
+        -- before = function(entry, vim_item)
+        --   vim_item.menu = entry.completion_item.detail
+        --   if "nvim_lsp" == entry.source.name then
+        --     if "phpactor" == entry.source.source.client.name then
+        --       vim_item.menu = entry.completion_item.detail .. " " .. vim_item.menu
+        --     end
+        --   end
+        --   return vim_item
+        -- end,
       }),
     },
   })
