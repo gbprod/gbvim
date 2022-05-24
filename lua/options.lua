@@ -1,50 +1,50 @@
-return {
-  setup = function()
-    vim.g.mapleader = " "
+local options = {}
 
-    local opt = vim.opt
+function options.setup()
+  vim.g.mapleader = " "
 
-    opt.cursorline = true
-    opt.number = true
-    opt.numberwidth = 2
-    opt.relativenumber = true
-    opt.termguicolors = true
-    opt.laststatus = 2
-    opt.showcmd = true
-    opt.autoindent = true
-    opt.smartindent = true
-    opt.cindent = true
-    opt.wildmenu = true
-    opt.wildmode = "longest:full,full"
-    opt.linebreak = true
-    opt.autoread = true
-    opt.expandtab = true
-    opt.showmatch = false
-    opt.showmode = true
-    opt.completeopt = "menu,menuone,noselect"
-    opt.complete = ".,w,b,u,t,k"
-    opt.pumheight = 15
-    opt.scrolloff = 4
-    opt.sidescrolloff = 5
-    opt.display = "lastline,msgsep"
-    opt.incsearch = true
-    opt.hlsearch = true
-    opt.wildignorecase = true
-    opt.mouse = "a"
-    opt.hidden = true
-    opt.ttimeout = true
-    opt.ttimeoutlen = 50
-    opt.wrap = false
-    opt.conceallevel = 2
-    opt.title = true
-    opt.undofile = true
-    opt.signcolumn = "yes"
-    opt.shiftround = true
-    opt.tabstop = 4
-    opt.softtabstop = 4
-    opt.shiftwidth = 4
-    opt.expandtab = true
+  vim.opt.cursorline = true
+  vim.opt.number = true
+  vim.opt.numberwidth = 2
+  vim.opt.relativenumber = true
+  vim.opt.termguicolors = true
+  vim.opt.laststatus = 2
+  vim.opt.showcmd = true
+  vim.opt.autoindent = true
+  vim.opt.smartindent = true
+  vim.opt.cindent = true
+  vim.opt.wildmenu = true
+  vim.opt.wildmode = "longest:full,full"
+  vim.opt.linebreak = true
+  vim.opt.autoread = true
+  vim.opt.expandtab = true
+  vim.opt.showmatch = false
+  vim.opt.showmode = true
+  vim.opt.completeopt = "menu,menuone,noselect"
+  vim.opt.complete = ".,w,b,u,t,k"
+  vim.opt.pumheight = 15
+  vim.opt.scrolloff = 4
+  vim.opt.sidescrolloff = 5
+  vim.opt.display = "lastline,msgsep"
+  vim.opt.incsearch = true
+  vim.opt.hlsearch = true
+  vim.opt.wildignorecase = true
+  vim.opt.mouse = "a"
+  vim.opt.hidden = true
+  vim.opt.ttimeout = true
+  vim.opt.ttimeoutlen = 50
+  vim.opt.wrap = false
+  vim.opt.conceallevel = 2
+  vim.opt.title = true
+  vim.opt.undofile = true
+  vim.opt.signcolumn = "yes"
+  vim.opt.shiftround = true
+  vim.opt.tabstop = 4
+  vim.opt.softtabstop = 4
+  vim.opt.shiftwidth = 4
+  vim.opt.expandtab = true
 
-    vim.o.confirm = true
-  end,
-}
+  vim.o.confirm = true
+end
+
+return options

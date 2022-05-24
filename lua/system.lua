@@ -1,32 +1,34 @@
-return {
-  plugins = function(use)
-    use("nvim-lua/plenary.nvim")
-    use("tpope/vim-eunuch")
-    use("ahmedkhalf/project.nvim")
-  end,
+local system = {}
 
-  setup = function()
-    require("project_nvim").setup({
-      patterns = {
-        ".git/",
-        ".env",
-        ".env.dist",
-        ".project.lua",
-        ".envrc",
-        "composer.json",
-      },
-      silent_chdir = true,
-    })
+function system.plugins(use)
+  use("nvim-lua/plenary.nvim")
+  use("tpope/vim-eunuch")
+  use("ahmedkhalf/project.nvim")
+end
 
-    require("telescope").load_extension("projects")
-  end,
-  bindings = function(_)
-    local wk = require("which-key")
-    wk.register({
-      ["<leader>p"] = {
-        name = "+Project",
-        p = { "<cmd>Telescope projects<cr>", "Projects" },
-      },
-    })
-  end,
-}
+function system.setup()
+  require("project_nvim").setup({
+    patterns = {
+      ".git/",
+      ".env",
+      ".env.dist",
+      ".project.lua",
+      ".envrc",
+      "composer.json",
+    },
+    silent_chdir = true,
+  })
+
+  require("telescope").load_extension("projects")
+end
+function system.bindings(_)
+  local wk = require("which-key")
+  wk.register({
+    ["<leader>p"] = {
+      name = "+Project",
+      p = { "<cmd>Telescope projects<cr>", "Projects" },
+    },
+  })
+end
+
+return system

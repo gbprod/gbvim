@@ -26,6 +26,11 @@ function completion.setup()
         vim.fn["vsnip#anonymous"](args.body)
       end,
     },
+    window = {
+      documentation = cmp.config.window.bordered({
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+    },
     mapping = {
       ["<C-n>"] = cmp.mapping.select_next_item({
         behavior = cmp.SelectBehavior.Insert,

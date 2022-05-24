@@ -10,9 +10,14 @@ function edit.plugins(use)
   use("tpope/vim-repeat")
   use("numToStr/Comment.nvim")
   use("monaqa/dial.nvim")
+  use("tpope/vim-rsi")
+
+  use("~/workspace/stay-in-place.nvim")
 end
 
 function edit.setup()
+  require("stay-in-place").setup()
+
   vim.g.argwrap_tail_comma_braces = 1
 
   local augend = require("dial.augend")
@@ -68,7 +73,6 @@ function edit.bindings(map)
   map("v", "<S-Tab>", "<gv", { noremap = true })
   map("v", ">", ">gv", { noremap = true })
   map("v", "<", "<gv", { noremap = true })
-  map("i", "<M-d>", '<c-o>"_cw', { noremap = true })
 
   map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
 

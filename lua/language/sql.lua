@@ -25,6 +25,25 @@ function sql.setup()
   })
 end
 
-function sql.bindings(map) end
+function sql.on_ft()
+  require("which-key").register({
+    ["<leader>l"] = { name = "+Sql" },
+    ["<leader>le"] = {
+      "<cmd>SqlsExecuteQuery<CR>",
+      "Execute query",
+      buffer = 0,
+    },
+    ["<leader>lE"] = {
+      "<cmd>SqlsExecuteQueryVertical<CR>",
+      "Execute query vertical mode",
+      buffer = 0,
+    },
+    ["<leader>ls"] = {
+      "<cmd>SqlsSwitchConnection<CR>",
+      "Switch connection",
+      buffer = 0,
+    },
+  }, { mode = "n" })
+end
 
 return sql

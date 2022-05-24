@@ -81,6 +81,7 @@ function php.setup()
   autocmd Filetype php :iabbrev thr throw
   autocmd Filetype php :iabbrev impl implements
   autocmd Filetype php :iabbrev ext extends
+  autocmd Filetype php :iabbrev fun function
   ]])
 
   -- vim.highlight.create("phpClasses", { guifg = "#8FBCBB" })

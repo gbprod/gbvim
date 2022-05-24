@@ -2,7 +2,7 @@ local ui = {}
 
 function ui.plugins(use)
   -- use("arcticicestudio/nord-vim")
-  use("~/workspace/nord.nvim")
+  use("shaunsingh/nord.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
@@ -15,13 +15,14 @@ function ui.plugins(use)
 end
 
 function ui.setup()
-  -- vim.g.loaded_gitgutter = true
   vim.g.nord_borders = true
   require("nord").set()
 
   vim.highlight.create("Search", { guifg = "NONE", guibg = "#4C566A", gui = "NONE" }, false)
-  vim.highlight.create("Identifier", { guifg = "#D8DEE9" }, false)
   vim.highlight.create("FloatBorder", { guifg = "#3B4252" }, false)
+  vim.highlight.create("MatchParen", { guifg = "NONE", guibg = "#4C566A" }, false)
+  vim.highlight.create("Identifier", { guifg = "#D8DEE9" }, false)
+  vim.highlight.create("qfLineNr", { guifg = "#88C0D0", gui = "NONE" }, false)
 
   vim.highlight.link("TSParameter", "Identifier", true)
   vim.highlight.create("TSProperty", { guifg = "#D8DEE9" })

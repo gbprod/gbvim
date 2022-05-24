@@ -36,6 +36,14 @@ function lsp.setup()
       end
     end,
   })
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "single",
+  })
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "single",
+  })
 end
 
 function lsp.on_attach(_, bufnr)
@@ -43,6 +51,7 @@ function lsp.on_attach(_, bufnr)
     bind = false,
     hint_enable = false,
     padding = " ",
+
     handler_opts = {
       border = "rounded",
     },
@@ -52,42 +61,35 @@ function lsp.on_attach(_, bufnr)
     hi_parameter = "Search",
   })
 
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-  local opts = { noremap = true, silent = true }
-  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+  vim.keymap.set("n", "<a-cr>", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("x", "<a-cr>", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
+  vim.keymap.set("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 
-  buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-  buf_set_keymap("n", "<a-cr>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("x", "<a-cr>", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
-  buf_set_keymap("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+  vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 
-  buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-
-  buf_set_keymap("n", "<leader>dN", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<leader>ds", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  buf_set_keymap(
+  vim.keymap.set("n", "<leader>dN", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "<space>cf", vim.lsp.buf.formatting, opts)
+  vim.keymap.set(
     "n",
     "<space>cF",
     "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
     opts
   )
 
-  buf_set_keymap("n", "<M-s>", "<cmd>lua require('lsp_signature').toggle_float_win()<CR>", opts)
+  vim.keymap.set("n", "<M-s>", require("lsp_signature").toggle_float_win, opts)
 
   local signs = {
     Error = " ",

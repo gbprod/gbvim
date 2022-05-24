@@ -2,6 +2,7 @@ local finder = {}
 
 function finder.plugins(use)
   use("nvim-telescope/telescope.nvim")
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use("stevearc/dressing.nvim")
   use("~/workspace/open-related.nvim")
 end
@@ -20,8 +21,16 @@ function finder.setup()
       ["ui-select"] = {
         require("telescope.themes").get_dropdown({}),
       },
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
     },
   })
+
+  require("telescope").load_extension("fzf")
 
   require("dressing").setup({
     input = {

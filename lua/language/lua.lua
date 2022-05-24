@@ -41,6 +41,7 @@ function lua.setup()
   vim.cmd([[
   autocmd Filetype lua :iabbrev ret return
   autocmd Filetype lua :iabbrev lo local
+  autocmd Filetype php :iabbrev fun function
   ]])
 end
 

@@ -35,6 +35,7 @@ local layers = {
   require("terminal"),
   require("project"),
   require("repl"),
+  require("scratchpad"),
 
   require("language/php"),
   require("language/html"),
@@ -49,6 +50,7 @@ local layers = {
 
 packer.startup(function()
   use("wbthomason/packer.nvim")
+
   for _, layer in pairs(layers) do
     if layer.plugins ~= nil then
       layer.plugins(use)
