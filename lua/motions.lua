@@ -9,7 +9,7 @@ function motions.plugins(use)
   use("Julian/vim-textobj-variable-segment")
   use("terryma/vim-expand-region")
   use("andymass/vim-matchup")
-  use("phaazon/hop.nvim")
+  use("ggandor/leap.nvim")
 end
 
 function motions.setup()
@@ -38,10 +38,6 @@ function motions.setup()
   vim.g.matchup_matchparen_offscreen = {}
 
   vim.g.textobj_comment_no_default_key_mappings = 1
-
-  require("hop").setup({
-    teasing = false,
-  })
 end
 
 function motions.bindings(map)
@@ -56,45 +52,28 @@ function motions.bindings(map)
   map("n", "))", "]]", {})
   map("n", "((", "[[", {})
 
-  map(
-    "n",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  map(
-    "n",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  map(
-    "o",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  map(
-    "o",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  map(
-    "",
-    "t",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  map(
-    "",
-    "T",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  map("n", "m", "<cmd>HopChar2AC<cr>", {})
-  map("n", "M", "<cmd>HopChar2BC<cr>", {})
-  map("n", "gj", "<cmd>HopLine<cr>", {})
+  map("n", "m", "<Plug>(leap-forward)", {})
+  map("n", "M", "<Plug>(leap-backward)", {})
+  map("x", "m", "<Plug>(leap-forward)", {})
+  map("x", "M", "<Plug>(leap-backward)", {})
+  map("o", "m", "<Plug>(leap-forward)", {})
+  map("o", "M", "<Plug>(leap-backward)", {})
+  map("o", "z", "<Plug>(leap-forward-x)", {})
+  map("o", "Z", "<Plug>(leap-backward-x)", {})
+  map("n", "gm", "<Plug>(leap-cross-window)", {})
+  map("x", "gm", "<Plug>(leap-cross-window)", {})
+  map("o", "gm", "<Plug>(leap-cross-window)", {})
+
+  -- map({ "n", "o" }, "f", function()
+  --   local c = vim.fn.getcharstr()
+  --   local seq = vim.api.nvim_replace_termcodes("<plug>(leap-forward)" .. c .. "<enter>", true, true, true)
+  --   vim.api.nvim_feedkeys(seq, "", false)
+  -- end, {})
+  -- map({ "n", "o" }, "F", function()
+  --   local c = vim.fn.getcharstr()
+  --   local seq = vim.api.nvim_replace_termcodes("<plug>(leap-backward)" .. c .. "<enter>", true, true, true)
+  --   vim.api.nvim_feedkeys(seq, "", false)
+  -- end, {})
 end
 
 return motions

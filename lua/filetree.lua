@@ -6,43 +6,6 @@ function filetree.plugins(use)
 end
 
 function filetree.setup()
-  vim.g.nvim_tree_git_hl = 1
-  vim.g.nvim_tree_highlight_opened_files = 1
-  vim.g.nvim_tree_special_files = {}
-  vim.g.nvim_tree_show_icons = {
-    git = 0,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1,
-  }
-
-  vim.g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-      unstaged = "~",
-      staged = "+",
-      unmerged = "",
-      renamed = ">",
-      untracked = "*",
-      deleted = "-",
-      ignored = "",
-    },
-    folder = {
-      arrow_open = "",
-      arrow_closed = "",
-      default = "",
-      open = "",
-      empty = "",
-      empty_open = "",
-      symlink = "",
-      symlink_open = "",
-    },
-    update_focused_file = {
-      enable = true,
-    },
-  }
-
   require("nvim-tree").setup({
     disable_netrw = true,
     hijack_netrw = true,
@@ -82,6 +45,33 @@ function filetree.setup()
           },
         },
       },
+    },
+    renderer = {
+      highlight_git = true,
+      highlight_opened_files = "icon",
+      special_files = {},
+      icons = {
+        show = {
+          git = false,
+          file = true,
+          folder = true,
+          folder_arrow = true,
+        },
+        glyphs = {
+          git = {
+            unstaged = "~",
+            staged = "+",
+            unmerged = "",
+            renamed = ">",
+            untracked = "*",
+            deleted = "-",
+            ignored = "",
+          },
+        },
+      },
+    },
+    update_focused_file = {
+      enable = true,
     },
   })
 

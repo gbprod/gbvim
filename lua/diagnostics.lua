@@ -7,6 +7,15 @@ function diagnostics.plugins(use)
 end
 
 function diagnostics.setup()
+  vim.diagnostic.config({
+    float = {
+      show_header = true,
+      source = "always",
+      border = "rounded",
+      focusable = false,
+    },
+  })
+
   require("trouble").setup({
     signs = {
       error = "",

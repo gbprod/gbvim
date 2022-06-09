@@ -3,6 +3,7 @@ local ui = {}
 function ui.plugins(use)
   -- use("arcticicestudio/nord-vim")
   use("shaunsingh/nord.nvim")
+  -- use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
@@ -36,10 +37,15 @@ function ui.setup()
   vim.highlight.link("TSConstructor", "TSType", true)
   vim.highlight.create("TSConstant", { guifg = "#88C0D0" }, false)
 
+  vim.highlight.link("BufferOffset", "BufferCurrent", true)
+
+  local presets = require("which-key.plugins.presets")
+  presets.operators[">"] = nil
   require("which-key").setup({})
 
   require("notify").setup({})
   vim.notify = require("notify")
+  require("telescope").load_extension("notify")
 
   require("nvim-gps").setup({
     icons = {
@@ -53,6 +59,7 @@ function ui.setup()
       theme = "nord",
       section_separators = { "", "" },
       component_separators = { "|", "|" },
+      globalstatus = true,
     },
     sections = {
       lualine_a = { "mode" },
@@ -93,6 +100,24 @@ function ui.setup()
   }
 
   require("colorizer").setup()
+
+  vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    callback = function()
+      if vim.bo.filetype == "NvimTree" then
+        require("bufferline.state").set_offset(41, "FileTree")
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = "*",
+    callback = function()
+      if vim.fn.expand("<afile>"):match("NvimTree") then
+        require("bufferline.state").set_offset(0)
+      end
+    end,
+  })
 end
 
 function ui.bindings(map)

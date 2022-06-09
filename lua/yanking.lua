@@ -18,7 +18,8 @@ function yanking.setup()
       require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV]"))
     end,
     range = {
-      prompt_current_text = true,
+      prompt_current_text = false,
+      group_substituted_text = true,
     },
   })
 
@@ -26,18 +27,31 @@ function yanking.setup()
   require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
 
-  vim.g.clipboard = {
-    name = "xsel_override",
-    copy = {
-      ["+"] = "xsel --input --clipboard",
-      ["*"] = "xsel --input --primary",
-    },
-    paste = {
-      ["+"] = "xsel --output --clipboard",
-      ["*"] = "xsel --output --primary",
-    },
-    cache_enabled = 1,
-  }
+  -- vim.g.clipboard = {
+  --   name = "xclip",
+  --   copy = {
+  --     ["+"] = "xclip -quiet -i -selection clipboard",
+  --     ["*"] = "xclip -quiet -i -selection primary",
+  --   },
+  --   paste = {
+  --     ["+"] = "xclip -o -selection clipboard",
+  --     ["*"] = "xclip -o -selection primary",
+  --   },
+  --   cache_enabled = 1,
+  -- }
+
+  -- vim.g.clipboard = {
+  --   name = "xsel_override",
+  --   copy = {
+  --     ["+"] = "xsel --input --clipboard",
+  --     ["*"] = "xsel --input --primary",
+  --   },
+  --   paste = {
+  --     ["+"] = "xsel --output --clipboard",
+  --     ["*"] = "xsel --output --primary",
+  --   },
+  --   cache_enabled = 1,
+  -- }
 end
 
 function yanking.bindings(map)

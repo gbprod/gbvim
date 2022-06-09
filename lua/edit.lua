@@ -16,7 +16,7 @@ function edit.plugins(use)
 end
 
 function edit.setup()
-  require("stay-in-place").setup()
+  -- require("stay-in-place").setup()
 
   vim.g.argwrap_tail_comma_braces = 1
 
@@ -53,6 +53,11 @@ end
 
 function edit.bindings(map)
   local wk = require("which-key")
+
+  -- map("n", "<Up>", "<Nop>", { noremap = true })
+  -- map("n", "<Down>", "<Nop>", { noremap = true })
+  -- map("n", "<Left>", "<Nop>", { noremap = true })
+  -- map("n", "<Right>", "<Nop>", { noremap = true })
 
   -- Save
   map("n", "<c-s>", ":<c-u>w<CR>", { noremap = true })

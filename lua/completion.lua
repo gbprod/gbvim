@@ -11,7 +11,6 @@ function completion.plugins(use)
   use("hrsh7th/cmp-nvim-lua")
   use("hrsh7th/cmp-vsnip")
   use("hrsh7th/cmp-cmdline")
-  use("ray-x/cmp-treesitter")
   use("onsails/lspkind-nvim")
 end
 
@@ -59,7 +58,6 @@ function completion.setup()
           keyword_pattern = [[\k\+]],
         },
       },
-      { name = "treesitter" },
       { name = "path" },
       { name = "nvim_lua" },
     },

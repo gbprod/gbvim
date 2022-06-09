@@ -14,15 +14,16 @@ function javascript.setup()
       "$FILENAME",
     },
     runtime_condition = function(_)
-      return vim.b.should_format == nil or vim.b.should_format == true
+      return require("lsp").should_format()
     end,
   }))
 
   require("lspconfig").tsserver.setup({
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
-      require("lsp").on_attach()
+      require("lsp").on_attach(client, bufnr)
     end,
+    capabilities = require("lsp").make_capabilities(),
   })
   require("lspconfig").eslint.setup({})
 end

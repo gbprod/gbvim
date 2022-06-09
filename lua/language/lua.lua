@@ -16,7 +16,7 @@ function lua.setup()
         or vim.fn.expand("~/.config/stylua.toml"),
     },
     runtime_condition = function(_)
-      return vim.b.should_format == nil or vim.b.should_format == true
+      return require("lsp").should_format()
     end,
   }))
 
@@ -31,6 +31,7 @@ function lua.setup()
         lsp_root_path .. "main.lua",
       },
       on_attach = require("lsp").on_attach,
+      capabilities = require("lsp").make_capabilities(),
     },
   })
   local lspconfig = require("lspconfig")

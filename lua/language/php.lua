@@ -38,6 +38,7 @@ function php.setup()
     flags = {
       debounce_text_changes = 150,
     },
+    capabilities = require("lsp").make_capabilities(),
   })
 
   vim.g.PhpactorRootDirectoryStrategy = function()
@@ -55,7 +56,7 @@ function php.setup()
       "$FILENAME",
     },
     runtime_condition = function(_)
-      return vim.b.should_format == nil or vim.b.should_format == true
+      return require('lsp').should_format()
     end,
   }))
 
@@ -82,6 +83,7 @@ function php.setup()
   autocmd Filetype php :iabbrev impl implements
   autocmd Filetype php :iabbrev ext extends
   autocmd Filetype php :iabbrev fun function
+  autocmd Filetype php :iabbrev str string
   ]])
 
   -- vim.highlight.create("phpClasses", { guifg = "#8FBCBB" })

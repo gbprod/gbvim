@@ -25,12 +25,7 @@ function lsp.setup()
         end
 
         buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-        buf_set_keymap(
-          "n",
-          "<space>cF",
-          "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
-          opts
-        )
+        buf_set_keymap("n", "<space>cF", "<cmd>lua require('lsp').toggle_should_format()<CR>", opts)
         buf_set_keymap("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
         buf_set_keymap("x", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
       end
@@ -38,11 +33,11 @@ function lsp.setup()
   })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "single",
+    border = "rounded",
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "single",
+    border = "rounded",
   })
 end
 
@@ -82,12 +77,7 @@ function lsp.on_attach(_, bufnr)
   vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "<space>cf", vim.lsp.buf.formatting, opts)
-  vim.keymap.set(
-    "n",
-    "<space>cF",
-    "<cmd>lua vim.b.should_format = vim.b.should_format ~= nil and not vim.b.should_format or false<CR>",
-    opts
-  )
+  vim.keymap.set("n", "<space>cF", "<cmd>lua require('lsp').toggle_should_format()<CR>", opts)
 
   vim.keymap.set("n", "<M-s>", require("lsp_signature").toggle_float_win, opts)
 
@@ -103,4 +93,30 @@ function lsp.on_attach(_, bufnr)
   end
 end
 
+function lsp.make_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  return require("cmp_nvim_lsp").update_capabilities(capabilities)
+end
+
+function lsp.should_format()
+  if vim.b.should_format == nil then
+    return vim.g.should_format ~= nil and vim.g.should_format
+  end
+
+  return vim.b.should_format
+end
+
+function lsp.toggle_should_format()
+  if vim.b.should_format == nil then
+    if vim.g.should_format ~= nil then
+      vim.b.should_format = vim.g.should_format
+    else
+      vim.b.should_format = true
+    end
+  end
+
+  vim.b.should_format = not vim.b.should_format
+
+  print(string.format("autoformat %s", vim.b.should_format and "on" or "off"))
+end
 return lsp
