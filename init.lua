@@ -46,6 +46,7 @@ local layers = {
   require("language/sql"),
   require("language/sh"),
   require("language/yaml"),
+  require("language/python"),
 }
 
 packer.startup(function()

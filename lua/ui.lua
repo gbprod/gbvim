@@ -1,7 +1,6 @@
 local ui = {}
 
 function ui.plugins(use)
-  -- use("arcticicestudio/nord-vim")
   use("shaunsingh/nord.nvim")
   -- use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")

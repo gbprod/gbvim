@@ -25,14 +25,10 @@ function filetree.setup()
     view = {
       width = 40,
       side = "left",
-      auto_resize = false,
       mappings = {
         custom_only = false,
         list = {},
       },
-    },
-    update_to_buf_dir = {
-      enable = false,
     },
     actions = {
       open_file = {

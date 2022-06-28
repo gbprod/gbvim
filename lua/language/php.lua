@@ -1,20 +1,28 @@
 local php = {}
 
 function php.plugins(use)
-  use({
-    "phpactor/phpactor",
-    branch = "master",
-    -- ft = "php",
-    run = "composer install --no-dev -o",
-  })
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall php" })
   use("nelsyeung/twig.vim")
   use("2072/PHP-Indenting-for-VIm")
-  use("~/workspace/phpactor.nvim")
+  use({
+    "~/workspace/phpactor.nvim",
+    run = require("phpactor.handler.update"),
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  })
 end
 
 function php.setup()
-  require("phpactor").setup()
+  require("phpactor").setup({
+    install = {
+      check_on_startup = "daily",
+    },
+    lspconfig = {
+      options = {
+        on_attach = require("lsp").on_attach,
+        capabilities = require("lsp").make_capabilities(),
+      },
+    },
+  })
 
   require("open-related").add_relation(require("open-related.builtin.php").alternate_test_file.with({
     opts = {
@@ -27,18 +35,6 @@ function php.setup()
       { match = "^(.*)src/(.*)%.php$", format = "%ssrc/%sHandler.php" },
       { match = "^(.*)src/(.*)Handler%.php$", format = "%ssrc/%s.php" },
     }),
-  })
-
-  require("lspconfig").phpactor.setup({
-    cmd = {
-      require("packer").config.package_root .. "/packer/start/phpactor/bin/phpactor",
-      "language-server",
-    },
-    on_attach = require("lsp").on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    capabilities = require("lsp").make_capabilities(),
   })
 
   vim.g.PhpactorRootDirectoryStrategy = function()
@@ -56,7 +52,7 @@ function php.setup()
       "$FILENAME",
     },
     runtime_condition = function(_)
-      return require('lsp').should_format()
+      return require("lsp").should_format()
     end,
   }))
 
@@ -74,6 +70,8 @@ function php.setup()
   vim.g.PHP_vintage_case_default_indent = 1
 
   vim.cmd([[
+  autocmd Filetype php setlocal textwidth=80
+  autocmd Filetype php setlocal colorcolumn=+1,+41
   autocmd Filetype php :iabbrev ret return
   autocmd Filetype php :iabbrev pub public
   autocmd Filetype php :iabbrev pri private
@@ -85,120 +83,65 @@ function php.setup()
   autocmd Filetype php :iabbrev fun function
   autocmd Filetype php :iabbrev str string
   ]])
-
-  -- vim.highlight.create("phpClasses", { guifg = "#8FBCBB" })
 end
 
 function php.on_ft()
-  vim.opt.textwidth = 80
-  vim.opt.colorcolumn = { "+1", "+41" }
-
   require("which-key").register({
     ["<leader>l"] = { name = "+Php" },
     ["<leader>li"] = {
-      "<cmd>PhpactorImportClass<CR>",
+      "<cmd>PhpActor import_class<CR>",
       "Import the name under the cusor",
       buffer = 0,
     },
     ["<leader>lI"] = {
-      "<cmd>PhpactorImportMissingClasses<CR>",
+      "<cmd>PhpActor import_missing_classes<CR>",
       "Attempt to import all non-resolvable classes",
       buffer = 0,
     },
     ["<leader>lm"] = {
-      "<cmd>PhpactorContextMenu<CR>",
+      "<cmd>PhpActor context_menu<CR>",
       "show the context menu for the current cursor position",
       buffer = 0,
     },
-    ["<leader>lr"] = {
-      "<cmd>PhpactorFindReferences<CR>",
-      "Attempt to find all references",
-      buffer = 0,
-    },
-    ["<leader>ln"] = { "<cmd>PhpactorNavigate<CR>", "Navigate", buffer = 0 },
-    ["<leader>lv"] = {
-      "<cmd>PhpactorChangeVisibility<CR>",
-      "Rotate visiblity",
-      buffer = 0,
-    },
-
-    ["<leader>lf"] = { name = "+File" },
-    ["<leader>lfc"] = {
-      ":PhpactorCopyFile<CR>",
-      "Copy the current file",
-      buffer = 0,
-    },
-    ["<leader>lfm"] = {
-      ":PhpactorMoveFile<CR>",
-      "Move the current file",
-      buffer = 0,
-    },
+    ["<leader>ln"] = { "<cmd>PhpActor navigate<CR>", "Navigate", buffer = 0 },
 
     ["<leader>lc"] = { name = "+Class" },
+    ["<leader>lcc"] = {
+      ":PhpActor copy_class<CR>",
+      "Copy the current class",
+      buffer = 0,
+    },
+    ["<leader>lcm"] = {
+      ":PhpActor move_class<CR>",
+      "Move the current class",
+      buffer = 0,
+    },
     ["<leader>lci"] = {
-      "<cmd>PhpactorClassInflect<CR>",
+      "<cmd>PhpActor class_inflect<CR>",
       "Inflect a new class from the current class",
       buffer = 0,
     },
     ["<leader>lca"] = {
-      "<cmd>PhpactorGenerateAccessors<CR>",
+      "<cmd>PhpActor generate_accessors<CR>",
       "Generate accessors",
       buffer = 0,
     },
     ["<leader>lct"] = {
-      "<cmd>PhpactorTransform<CR>",
+      "<cmd>PhpActor transform<CR>",
       "Show transform context menu",
       buffer = 0,
     },
     ["<leader>lce"] = {
-      "<cmd>PhpactorClassExpand<CR>",
+      "<cmd>PhpActor class_expand<CR>",
       "Expand the class name",
       buffer = 0,
     },
     ["<leader>lcn"] = {
-      "<cmd>PhpactorClassNew<CR>",
+      "<cmd>PhpActor class_new<CR>",
       "Create a new class",
       buffer = 0,
     },
-
-    ["<leader>lx"] = { name = "+Extract" },
-    ["<leader>lxm"] = {
-      "<cmd>PhpactorExtractMethod<CR>",
-      "Extract a new method",
-      buffer = 0,
-    },
-    ["<leader>lxv"] = {
-      "<cmd>PhpactorExtractExpression<CR>",
-      "Extract to a variable",
-      buffer = 0,
-    },
-    ["<leader>lxc"] = {
-      "<cmd>PhpactorExtractConstant<CR>",
-      "Extract a constant from a literal",
-      buffer = 0,
-    },
   }, { mode = "n" })
-
-  require("which-key").register({
-    ["<leader>lx"] = { name = "+Extract" },
-    ["<leader>lxm"] = {
-      "<cmd>PhpactorExtractMethod<CR>",
-      "Extract a new method",
-      buffer = 0,
-    },
-    ["<leader>lxv"] = {
-      "<cmd>PhpactorExtractExpression<CR>",
-      "Extract to a variable",
-      buffer = 0,
-    },
-    ["<leader>lxc"] = {
-      "<cmd>PhpactorExtractConstant<CR>",
-      "Extract a constant from a literal",
-      buffer = 0,
-    },
-  }, {
-    mode = "x",
-  })
 end
 
 return php

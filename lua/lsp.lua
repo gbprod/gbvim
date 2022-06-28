@@ -99,11 +99,15 @@ function lsp.make_capabilities()
 end
 
 function lsp.should_format()
-  if vim.b.should_format == nil then
-    return vim.g.should_format ~= nil and vim.g.should_format
+  if vim.b.should_format ~= nil then
+    return vim.b.should_format
   end
 
-  return vim.b.should_format
+  if vim.g.should_format ~= nil then
+    return vim.g.should_format
+  end
+
+  return true
 end
 
 function lsp.toggle_should_format()
@@ -119,4 +123,5 @@ function lsp.toggle_should_format()
 
   print(string.format("autoformat %s", vim.b.should_format and "on" or "off"))
 end
+
 return lsp

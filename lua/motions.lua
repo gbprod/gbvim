@@ -38,6 +38,42 @@ function motions.setup()
   vim.g.matchup_matchparen_offscreen = {}
 
   vim.g.textobj_comment_no_default_key_mappings = 1
+
+  require("leap").setup({
+    safe_labels = { "m", "f", "n", "u", "t", ",", ";", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
+    labels = {
+      "m",
+      "f",
+      "n",
+      "j",
+      "k",
+      "l",
+      "o",
+      "d",
+      "w",
+      "e",
+      "h",
+      "m",
+      "v",
+      "g",
+      "u",
+      "t",
+      "c",
+      ".",
+      "z",
+      ",",
+      "F",
+      "L",
+      "N",
+      "H",
+      "G",
+      "M",
+      "U",
+      "T",
+      ";",
+      "Z",
+    },
+  })
 end
 
 function motions.bindings(map)
