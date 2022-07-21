@@ -18,26 +18,10 @@ function git.setup()
     },
   })
 
-  vim.highlight.create(
-    "DiffAdd",
-    { guibg = "#003300", ctermbg = "149", guifg = "NONE", ctermfg = "NONE", gui = "NONE", cterm = "NONE" },
-    false
-  )
-  vim.highlight.create(
-    "DiffChange",
-    { guibg = "#003300", ctermbg = "222", guifg = "NONE", ctermfg = "NONE", gui = "NONE", cterm = "NONE" },
-    false
-  )
-  vim.highlight.create(
-    "DiffDelete",
-    { guibg = "#330011", ctermbg = "204", guifg = "NONE", ctermfg = "NONE", gui = "NONE", cterm = "none" },
-    false
-  )
-  vim.highlight.create(
-    "DiffText",
-    { guibg = "#007800", ctermbg = "204", guifg = "NONE", ctermfg = "NONE", gui = "NONE", cterm = "none" },
-    false
-  )
+  vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#003300", fg = "NONE" })
+  vim.api.nvim_set_hl(0, "DiffChange", { bg = "#003300", fg = "NONE" })
+  vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#330011", fg = "NONE" })
+  vim.api.nvim_set_hl(0, "DiffText", { bg = "#007800", fg = "NONE" })
 
   local null_ls = require("null-ls")
   -- null_ls.register(null_ls.builtins.code_actions.gitsigns)

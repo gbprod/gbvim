@@ -1,7 +1,6 @@
 local edit = {}
 
 function edit.plugins(use)
-  use("tpope/vim-sleuth")
   use("tpope/vim-surround")
   use("tpope/vim-abolish")
   use("FooSoft/vim-argwrap")
@@ -11,12 +10,14 @@ function edit.plugins(use)
   use("numToStr/Comment.nvim")
   use("monaqa/dial.nvim")
   use("tpope/vim-rsi")
+  use("nmac427/guess-indent.nvim")
 
   use("~/workspace/stay-in-place.nvim")
 end
 
 function edit.setup()
-  -- require("stay-in-place").setup()
+  require("stay-in-place").setup()
+  require("guess-indent").setup({})
 
   vim.g.argwrap_tail_comma_braces = 1
 
@@ -54,11 +55,6 @@ end
 function edit.bindings(map)
   local wk = require("which-key")
 
-  -- map("n", "<Up>", "<Nop>", { noremap = true })
-  -- map("n", "<Down>", "<Nop>", { noremap = true })
-  -- map("n", "<Left>", "<Nop>", { noremap = true })
-  -- map("n", "<Right>", "<Nop>", { noremap = true })
-
   -- Save
   map("n", "<c-s>", ":<c-u>w<CR>", { noremap = true })
   map("v", "<c-s>", ":<c-u>w<CR>gv", { noremap = true })
@@ -72,14 +68,7 @@ function edit.bindings(map)
   map("v", "<C-S-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
   map("v", "<C-S-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-  -- Use tab for indenting in visual mode
-  map("i", "<S-Tab>", "<C-D>", { noremap = true })
-  map("v", "<Tab>", ">gv", { noremap = true })
-  map("v", "<S-Tab>", "<gv", { noremap = true })
-  map("v", ">", ">gv", { noremap = true })
-  map("v", "<", "<gv", { noremap = true })
-
-  map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
+  -- map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
 
   map("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
   map("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })

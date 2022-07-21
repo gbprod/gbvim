@@ -4,39 +4,41 @@ function ui.plugins(use)
   use("shaunsingh/nord.nvim")
   -- use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
+  -- use("feline-nvim/feline.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
   use("folke/which-key.nvim")
+  -- use("linty-org/key-menu.nvim")
   use("romgrk/barbar.nvim")
   use("famiu/bufdelete.nvim")
   use("norcalli/nvim-colorizer.lua")
   use("rcarriga/nvim-notify")
-  use("SmiteshP/nvim-gps")
+  use("SmiteshP/nvim-navic")
 end
 
 function ui.setup()
   vim.g.nord_borders = true
   require("nord").set()
 
-  vim.highlight.create("Search", { guifg = "NONE", guibg = "#4C566A", gui = "NONE" }, false)
-  vim.highlight.create("FloatBorder", { guifg = "#3B4252" }, false)
-  vim.highlight.create("MatchParen", { guifg = "NONE", guibg = "#4C566A" }, false)
-  vim.highlight.create("Identifier", { guifg = "#D8DEE9" }, false)
-  vim.highlight.create("qfLineNr", { guifg = "#88C0D0", gui = "NONE" }, false)
+  vim.api.nvim_set_hl(0, "Search", { fg = "NONE", bg = "#4C566A" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#3B4252" })
+  vim.api.nvim_set_hl(0, "MatchParen", { fg = "NONE", bg = "#4C566A" })
+  vim.api.nvim_set_hl(0, "Identifier", { fg = "#D8DEE9" })
+  vim.api.nvim_set_hl(0, "qfLineNr", { fg = "#88C0D0" })
 
-  vim.highlight.link("TSParameter", "Identifier", true)
-  vim.highlight.create("TSProperty", { guifg = "#D8DEE9" })
-  vim.highlight.create("TSType", { guifg = "#8FBCBB" })
-  vim.highlight.link("TSException", "TSKeyword", true)
-  vim.highlight.link("TSKeywordReturn", "TSKeyword", true)
-  vim.highlight.link("TSKeywordFunction", "TSKeyword", true)
-  vim.highlight.link("TSKeywordOperator", "TSKeyword", true)
-  vim.highlight.link("TSVariableBuiltin", "TSKeyword", true)
-  vim.highlight.link("TSConstBuiltin", "TSKeyword", true)
-  vim.highlight.link("TSConstructor", "TSType", true)
-  vim.highlight.create("TSConstant", { guifg = "#88C0D0" }, false)
+  vim.api.nvim_set_hl(0, "TSParameter", { link = "Identifier" })
+  vim.api.nvim_set_hl(0, "TSProperty", { fg = "#D8DEE9" })
+  vim.api.nvim_set_hl(0, "TSType", { fg = "#8FBCBB" })
+  vim.api.nvim_set_hl(0, "TSException", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSKeywordReturn", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSKeywordFunction", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSKeywordOperator", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSVariableBuiltin", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSConstBuiltin", { link = "TSKeyword" })
+  vim.api.nvim_set_hl(0, "TSConstructor", { link = "TSType" })
+  vim.api.nvim_set_hl(0, "TSConstant", { fg = "#88C0D0" })
 
-  vim.highlight.link("BufferOffset", "BufferCurrent", true)
+  vim.api.nvim_set_hl(0, "BufferOffset", { link = "BufferCurrent" })
 
   local presets = require("which-key.plugins.presets")
   presets.operators[">"] = nil
@@ -46,12 +48,12 @@ function ui.setup()
   vim.notify = require("notify")
   require("telescope").load_extension("notify")
 
-  require("nvim-gps").setup({
-    icons = {
-      ["container-name"] = " ", -- Containers (example: lua tables)
-    },
-  })
-  local gps = require("nvim-gps")
+  -- require("nvim-navic").setup({
+  --   icons = {
+  --     ["container-name"] = " ", -- Containers (example: lua tables)
+  --   },
+  -- })
+  local navic = require("nvim-navic")
 
   require("lualine").setup({
     options = {
@@ -63,7 +65,7 @@ function ui.setup()
     sections = {
       lualine_a = { "mode" },
       lualine_b = {},
-      lualine_c = { { gps.get_location, cond = gps.is_available } },
+      lualine_c = { { navic.get_location, cond = navic.is_available } },
       lualine_x = { "encoding", "fileformat", "filetype" },
       lualine_y = { "branch", "diff", "diagnostics" },
       lualine_z = { "progress", "location" },
@@ -74,6 +76,8 @@ function ui.setup()
       "toggleterm",
     },
   })
+
+  -- require("feline").setup({})
 
   require("indent_blankline").setup({
     char = "▏",
@@ -120,6 +124,8 @@ function ui.setup()
 end
 
 function ui.bindings(map)
+  -- require("key-menu").set("n", "<Space>")
+
   local wk = require("which-key")
 
   wk.register({

@@ -25,7 +25,7 @@ function completion.setup()
         vim.fn["vsnip#anonymous"](args.body)
       end,
     },
-    window = {
+    wildmenu_entries_viewndow = {
       documentation = cmp.config.window.bordered({
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
       }),
@@ -66,15 +66,22 @@ function completion.setup()
       format = lspkind.cmp_format({
         mode = "symbol",
         maxwidth = 50,
-        -- before = function(entry, vim_item)
-        --   vim_item.menu = entry.completion_item.detail
-        --   if "nvim_lsp" == entry.source.name then
-        --     if "phpactor" == entry.source.source.client.name then
-        --       vim_item.menu = entry.completion_item.detail .. " " .. vim_item.menu
-        --     end
-        --   end
-        --   return vim_item
-        -- end,
+        before = function(entry, vim_item)
+          if "nvim_lsp" == entry.source.name then
+            if
+              "phpactor" == entry.source.source.client.name
+              and (entry.completion_item.kind == 7 or entry.completion_item.kind == 8)
+            then
+              local details = entry.completion_item.detail
+              if details:len() > 50 then
+                details = details:sub(0, 47) .. "..."
+              end
+
+              vim_item.menu = details
+            end
+          end
+          return vim_item
+        end,
       }),
     },
   })

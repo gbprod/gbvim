@@ -19,10 +19,7 @@ function javascript.setup()
   }))
 
   require("lspconfig").tsserver.setup({
-    on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      require("lsp").on_attach(client, bufnr)
-    end,
+    on_attach = require("lsp").on_attach,
     capabilities = require("lsp").make_capabilities(),
   })
   require("lspconfig").eslint.setup({})

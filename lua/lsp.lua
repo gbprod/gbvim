@@ -11,11 +11,11 @@ function lsp.setup()
     -- debug = true,
     update_on_insert = false,
     on_attach = function(client, bufnr)
-      if client.resolved_capabilities.document_formatting then
+      if client.supports_method("textDocument/formatting") then
         vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
             augroup END
           ]])
 
@@ -41,17 +41,15 @@ function lsp.setup()
   })
 end
 
-function lsp.on_attach(_, bufnr)
+function lsp.on_attach(client, bufnr)
   require("lsp_signature").on_attach({
     bind = false,
     hint_enable = false,
     padding = " ",
-
     handler_opts = {
       border = "rounded",
     },
     always_trigger = false,
-    -- auto_close_after = 10,
     toggle_key = "<M-s>",
     hi_parameter = "Search",
   })
@@ -91,6 +89,8 @@ function lsp.on_attach(_, bufnr)
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
+
+  require("nvim-navic").attach(client, bufnr)
 end
 
 function lsp.make_capabilities()

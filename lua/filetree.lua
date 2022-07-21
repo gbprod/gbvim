@@ -67,23 +67,12 @@ function filetree.setup()
       },
     },
     update_focused_file = {
-      enable = true,
+      enable = false,
     },
   })
 
-  vim.highlight.create("NvimTreeFolderName", { guifg = require("nord.colors").nord9_gui }, false)
+  vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = require("nord.colors").nord9_gui })
 
-  -- vim.api.nvim_create_user_command("TreeToggle", function()
-  --   local view = require("nvim-tree.view")
-  --   if view.win_open() then
-  --     view.close()
-  --     require("bufferline.state").set_offset(0)
-  --   else
-  --     require("bufferline.state").set_offset(40, "FileTree")
-  --     require("nvim-tree.lib").open()
-  --   end
-  -- end, {})
-  --
   require("telescope").load_extension("file_browser")
 end
 

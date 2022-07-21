@@ -27,52 +27,41 @@ function yanking.setup()
   require("yanky").setup()
   require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
-
-  -- vim.g.clipboard = {
-  --   name = "xclip",
-  --   copy = {
-  --     ["+"] = "xclip -quiet -i -selection clipboard",
-  --     ["*"] = "xclip -quiet -i -selection primary",
-  --   },
-  --   paste = {
-  --     ["+"] = "xclip -o -selection clipboard",
-  --     ["*"] = "xclip -o -selection primary",
-  --   },
-  --   cache_enabled = 1,
-  -- }
-
-  -- vim.g.clipboard = {
-  --   name = "xsel_override",
-  --   copy = {
-  --     ["+"] = "xsel --input --clipboard",
-  --     ["*"] = "xsel --input --primary",
-  --   },
-  --   paste = {
-  --     ["+"] = "xsel --output --clipboard",
-  --     ["*"] = "xsel --output --primary",
-  --   },
-  --   cache_enabled = 1,
-  -- }
 end
 
 function yanking.bindings(map)
   local wk = require("which-key")
 
-  map("n", "p", "<Plug>(YankyPutAfter)", {})
-  map("n", "P", "<Plug>(YankyPutBefore)", {})
-  map("x", "p", "<Plug>(YankyPutAfter)", {})
-  map("x", "P", "<Plug>(YankyPutBefore)", {})
+  map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", {})
+  map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", {})
 
-  map("n", "gp", "<Plug>(YankyGPutAfter)", {})
-  map("n", "gP", "<Plug>(YankyGPutBefore)", {})
-  map("x", "gp", "<Plug>(YankyGPutAfter)", {})
-  map("x", "gP", "<Plug>(YankyGPutBefore)", {})
+  map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", {})
+  map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", {})
+
+  map({ "n", "x" }, ")p", "<Plug>(YankyPutIndentAfterLinewise)", {})
+  map({ "n", "x" }, "(p", "<Plug>(YankyPutIndentBeforeLinewise)", {})
+  map({ "n", "x" }, ")P", "<Plug>(YankyPutIndentAfterLinewise)", {})
+  map({ "n", "x" }, "(P", "<Plug>(YankyPutIndentBeforeLinewise)", {})
+
+  map({ "n", "x" }, ")gp", "<Plug>(YankyGPutAfterLinewise)", {})
+  map({ "n", "x" }, "(gp", "<Plug>(YankyGPutBeforeLinewise)", {})
+  map({ "n", "x" }, ")gP", "<Plug>(YankyGPutAfterLinewise)", {})
+  map({ "n", "x" }, "(gP", "<Plug>(YankyGPutBeforeLinewise)", {})
+
+  map({ "n", "x" }, ">p", "<Plug>(YankyPutIndentAfterShiftRight)", {})
+  map({ "n", "x" }, "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", {})
+  map({ "n", "x" }, ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", {})
+  map({ "n", "x" }, "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", {})
+
+  map({ "n", "x" }, "=p", "<Plug>(YankyPutAfterFilter)", {})
+  map({ "n", "x" }, "=P", "<Plug>(YankyPutBeforeFilter)", {})
+  map({ "n", "x" }, "=gp", "<Plug>(YankyGPutAfterFilter)", {})
+  map({ "n", "x" }, "=gP", "<Plug>(YankyGPutBeforeFilter)", {})
 
   map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
   map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
 
-  map("n", "y", "<Plug>(YankyYank)", {})
-  map("x", "y", "<Plug>(YankyYank)", {})
+  map({ "n", "x" }, "y", "<Plug>(YankyYank)", {})
 
   map("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
   map("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
