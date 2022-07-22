@@ -7,28 +7,30 @@ function lsp.plugins(use)
 end
 
 function lsp.setup()
+  local formatting_autogroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
   require("null-ls").setup({
     -- debug = true,
     update_on_insert = false,
     on_attach = function(client, bufnr)
       if client.supports_method("textDocument/formatting") then
-        vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-            augroup END
-          ]])
-
-        local opts = { noremap = true, silent = true }
-        local function buf_set_keymap(...)
-          vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
-
-        buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-        buf_set_keymap("n", "<space>cF", "<cmd>lua require('lsp').toggle_should_format()<CR>", opts)
-        buf_set_keymap("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
-        buf_set_keymap("x", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
+        vim.api.nvim_clear_autocmds({ group = formatting_autogroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = formatting_autogroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
       end
+
+      local opts = { noremap = true, silent = true, buffer = bufnr }
+      vim.keymap.set("n", "<space>cf", function()
+        vim.lsp.buf.format({ buffer = bufnr })
+      end, opts)
+      vim.keymap.set("n", "<space>cF", lsp.toggle_should_format, opts)
+      vim.keymap.set("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
+      vim.keymap.set("x", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
     end,
   })
 
@@ -74,8 +76,10 @@ function lsp.on_attach(client, bufnr)
   vim.keymap.set("n", "<leader>dN", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "<space>cf", vim.lsp.buf.formatting, opts)
-  vim.keymap.set("n", "<space>cF", "<cmd>lua require('lsp').toggle_should_format()<CR>", opts)
+  vim.keymap.set("n", "<space>cf", function()
+    vim.lsp.buf.format({ buffer = bufnr })
+  end, opts)
+  vim.keymap.set("n", "<space>cF", lsp.toggle_should_format, opts)
 
   vim.keymap.set("n", "<M-s>", require("lsp_signature").toggle_float_win, opts)
 

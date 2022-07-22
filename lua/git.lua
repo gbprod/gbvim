@@ -102,7 +102,7 @@ function git.bindings(_)
 end
 
 function git.on_ft()
-  vim.api.nvim_exec("setlocal nocindent colorcolumn=+1 textwidth=80 ", true)
+  vim.cmd("setlocal nocindent colorcolumn=+1 textwidth=80 ", true)
 end
 
 return git

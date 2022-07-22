@@ -99,17 +99,6 @@ function motions.bindings(map)
   map("n", "gm", "<Plug>(leap-cross-window)", {})
   map("x", "gm", "<Plug>(leap-cross-window)", {})
   map("o", "gm", "<Plug>(leap-cross-window)", {})
-
-  -- map({ "n", "o" }, "f", function()
-  --   local c = vim.fn.getcharstr()
-  --   local seq = vim.api.nvim_replace_termcodes("<plug>(leap-forward)" .. c .. "<enter>", true, true, true)
-  --   vim.api.nvim_feedkeys(seq, "", false)
-  -- end, {})
-  -- map({ "n", "o" }, "F", function()
-  --   local c = vim.fn.getcharstr()
-  --   local seq = vim.api.nvim_replace_termcodes("<plug>(leap-backward)" .. c .. "<enter>", true, true, true)
-  --   vim.api.nvim_feedkeys(seq, "", false)
-  -- end, {})
 end
 
 return motions

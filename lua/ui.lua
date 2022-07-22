@@ -2,9 +2,7 @@ local ui = {}
 
 function ui.plugins(use)
   use("shaunsingh/nord.nvim")
-  -- use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
-  -- use("feline-nvim/feline.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
   use("folke/which-key.nvim")
@@ -48,11 +46,6 @@ function ui.setup()
   vim.notify = require("notify")
   require("telescope").load_extension("notify")
 
-  -- require("nvim-navic").setup({
-  --   icons = {
-  --     ["container-name"] = " ", -- Containers (example: lua tables)
-  --   },
-  -- })
   local navic = require("nvim-navic")
 
   require("lualine").setup({
@@ -124,8 +117,6 @@ function ui.setup()
 end
 
 function ui.bindings(map)
-  -- require("key-menu").set("n", "<Space>")
-
   local wk = require("which-key")
 
   wk.register({

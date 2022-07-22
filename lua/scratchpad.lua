@@ -11,7 +11,7 @@ function scratchpad.setup()
     list_buffers = true,
     initial_content = {},
     ext_options = { "php", "sql", "lua", "js", "py", "" },
-    format_opts = { [""] = "[Scratchpad]" }, -- How they'll look
+    format_opts = { [""] = "[Scratchpad]" },
     run = {},
   })
 

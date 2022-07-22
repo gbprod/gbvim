@@ -68,14 +68,17 @@ function edit.bindings(map)
   map("v", "<C-S-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
   map("v", "<C-S-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-  -- map("v", "S", "<esc>gv<cmd>lua require'surround'.surround_add()<cr>", {})
-
   map("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
   map("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
   map("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
   map("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
   map("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
   map("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
+
+  map("n", "(o", "<cmd>pu! _<cr>:']+1<cr>", { noremap = true })
+  map("n", ")O", "<cmd>pu! _<cr>:']+1<cr>", { noremap = true })
+  map("n", ")o", "<cmd>pu _<cr>:'[-1<cr>", { noremap = true })
+  map("n", "(O", "<cmd>pu _<cr>:'[-1<cr>", { noremap = true })
 
   wk.register({
     ["<leader>"] = {
