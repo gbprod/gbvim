@@ -40,7 +40,7 @@ function homepage.setup()
     " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
   }
 
-  vim.api.nvim_exec("autocmd VimEnter * lua require('homepage').on_vim_enter()", false)
+  vim.api.nvim_exec("autocmd VimEnter * lua require('usr.homepage').on_vim_enter()", false)
 end
 
 function homepage.on_vim_enter()

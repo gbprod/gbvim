@@ -1,1 +1,1 @@
-require("language/sql").on_ft()
+require("usr.language.sql").on_ft()

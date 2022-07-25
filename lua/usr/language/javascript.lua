@@ -14,13 +14,13 @@ function javascript.setup()
       "$FILENAME",
     },
     runtime_condition = function(_)
-      return require("lsp").should_format()
+      return require("usr.lsp").should_format()
     end,
   }))
 
   require("lspconfig").tsserver.setup({
-    on_attach = require("lsp").on_attach,
-    capabilities = require("lsp").make_capabilities(),
+    on_attach = require("usr.lsp").on_attach,
+    capabilities = require("usr.lsp").make_capabilities(),
   })
   require("lspconfig").eslint.setup({})
 end

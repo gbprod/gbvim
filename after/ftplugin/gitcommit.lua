@@ -1,1 +1,1 @@
-require("git").on_ft()
+require("usr.git").on_ft()

@@ -18,8 +18,8 @@ function php.setup()
     },
     lspconfig = {
       options = {
-        on_attach = require("lsp").on_attach,
-        capabilities = require("lsp").make_capabilities(),
+        on_attach = require("usr.lsp").on_attach,
+        capabilities = require("usr.lsp").make_capabilities(),
       },
     },
   })
@@ -52,7 +52,7 @@ function php.setup()
       "$FILENAME",
     },
     runtime_condition = function(_)
-      return require("lsp").should_format()
+      return require("usr.lsp").should_format()
     end,
   }))
 

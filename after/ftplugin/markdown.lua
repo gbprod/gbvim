@@ -1,1 +1,1 @@
-require("language/markdown").on_ft()
+require("usr.language.markdown").on_ft()

@@ -1,1 +1,1 @@
-require("language/php").on_ft()
+require("usr.language.php").on_ft()

@@ -2,8 +2,8 @@ local sh = {}
 
 function sh.setup()
   require("lspconfig").bashls.setup({
-    on_attach = require("lsp").on_attach,
-    capabilities = require("lsp").make_capabilities(),
+    on_attach = require("usr.lsp").on_attach,
+    capabilities = require("usr.lsp").make_capabilities(),
   })
 
   local null_ls = require("null-ls")

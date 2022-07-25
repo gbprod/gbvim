@@ -6,14 +6,14 @@ end
 
 function python.setup()
   require("lspconfig").pyright.setup({
-    on_attach = require("lsp").on_attach,
-    capabilities = require("lsp").make_capabilities(),
+    on_attach = require("usr.lsp").on_attach,
+    capabilities = require("usr.lsp").make_capabilities(),
   })
 
   local null_ls = require("null-ls")
   null_ls.register(null_ls.builtins.formatting.black.with({
     runtime_condition = function(_)
-      return require("lsp").should_format()
+      return require("usr.lsp").should_format()
     end,
   }))
 

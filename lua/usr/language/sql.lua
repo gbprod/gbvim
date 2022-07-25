@@ -22,7 +22,7 @@ function sql.setup()
     on_attach = function(client, bufnr)
       require("sqls").on_attach(client, bufnr)
     end,
-    capabilities = require("lsp").make_capabilities(),
+    capabilities = require("usr.lsp").make_capabilities(),
   })
 end
 

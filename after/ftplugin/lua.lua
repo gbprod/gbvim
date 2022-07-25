@@ -1,1 +1,1 @@
-require("language/lua").on_ft()
+require("usr.language.lua").on_ft()

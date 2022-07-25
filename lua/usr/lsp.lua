@@ -73,8 +73,9 @@ function lsp.on_attach(client, bufnr)
 
   vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 
-  vim.keymap.set("n", "<leader>dN", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", ")d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "(d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", ")D", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "<space>cf", function()
     vim.lsp.buf.format({ buffer = bufnr })

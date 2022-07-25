@@ -1,7 +1,7 @@
 local css = {}
 
 function css.setup()
-  local capabilities = require("lsp").make_capabilities()
+  local capabilities = require("usr.lsp").make_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   require("lspconfig").cssls.setup({

@@ -2,7 +2,7 @@ local project = {}
 
 function project.setup()
   vim.cmd([[
-    autocmd VimEnter * lua require('project').load()
+    autocmd VimEnter * lua require('usr.project').load()
     ]])
 end
 

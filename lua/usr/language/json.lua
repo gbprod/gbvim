@@ -5,7 +5,7 @@ function json.plugins(use)
 end
 
 function json.setup()
-  local capabilities = require("lsp").make_capabilities()
+  local capabilities = require("usr.lsp").make_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   require("lspconfig").jsonls.setup({
