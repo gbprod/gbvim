@@ -25,7 +25,7 @@ function completion.setup()
         vim.fn["vsnip#anonymous"](args.body)
       end,
     },
-    wildmenu_entries_viewndow = {
+    window = {
       documentation = cmp.config.window.bordered({
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
       }),
@@ -66,22 +66,6 @@ function completion.setup()
       format = lspkind.cmp_format({
         mode = "symbol",
         maxwidth = 50,
-        before = function(entry, vim_item)
-          if "nvim_lsp" == entry.source.name then
-            if
-              "phpactor" == entry.source.source.client.name
-              and (entry.completion_item.kind == 7 or entry.completion_item.kind == 8)
-            then
-              local details = entry.completion_item.detail
-              if details:len() > 50 then
-                details = details:sub(0, 47) .. "..."
-              end
-
-              vim_item.menu = details
-            end
-          end
-          return vim_item
-        end,
       }),
     },
   })
@@ -105,16 +89,15 @@ function completion.setup()
   })
 
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
 function completion.bindings(map)
-  map("i", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
-  map("s", "<C-j>", 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"', { expr = true })
-  map("i", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
-  map("s", "<C-l>", 'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"', { expr = true })
-  map("i", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
-  map("s", "<c-j>", 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<c-j>"', { expr = true })
+  vim.cmd([[
+  imap <expr> <C-j> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+  smap <expr> <C-j> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+  ]])
+
   map("n", "gZ", "<Plug>(vsnip-select-text)", {})
   map("x", "gZ", "<Plug>(vsnip-select-text)", {})
   map("n", "gz", "<Plug>(vsnip-cut-text)", {})

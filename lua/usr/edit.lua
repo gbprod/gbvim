@@ -1,7 +1,7 @@
 local edit = {}
 
 function edit.plugins(use)
-  use("tpope/vim-surround")
+  use("kylechui/nvim-surround")
   use("tpope/vim-abolish")
   use("FooSoft/vim-argwrap")
   use("lambdalisue/suda.vim")
@@ -18,6 +18,7 @@ end
 function edit.setup()
   require("stay-in-place").setup()
   require("guess-indent").setup({})
+  require("nvim-surround").setup({})
 
   vim.g.argwrap_tail_comma_braces = 1
 

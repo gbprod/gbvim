@@ -71,6 +71,11 @@ function filetree.setup()
     },
   })
 
+  local api = require("nvim-tree.api")
+
+  api.events.subscribe(api.events.Event.FileCreated, function(data)
+    vim.cmd(":edit " .. data.fname)
+  end)
   vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = require("nord.colors").nord9_gui })
 
   require("telescope").load_extension("file_browser")

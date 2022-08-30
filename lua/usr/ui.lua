@@ -12,6 +12,7 @@ function ui.plugins(use)
   use("norcalli/nvim-colorizer.lua")
   use("rcarriga/nvim-notify")
   use("SmiteshP/nvim-navic")
+  use("folke/zen-mode.nvim")
 end
 
 function ui.setup()
@@ -42,7 +43,9 @@ function ui.setup()
   presets.operators[">"] = nil
   require("which-key").setup({})
 
-  require("notify").setup({})
+  require("notify").setup({
+    background_colour = "#2E3440",
+  })
   vim.notify = require("notify")
   require("telescope").load_extension("notify")
 
@@ -114,6 +117,8 @@ function ui.setup()
       end
     end,
   })
+
+  require("zen-mode").setup({})
 end
 
 function ui.bindings(map)
@@ -140,6 +145,10 @@ function ui.bindings(map)
       p = { "<cmd>BufferPin<cr>", "Pin buffer" },
       od = { "<cmd>BufferOrderByDirectory<CR>", "Sort by directory" },
       oe = { "<cmd>BufferOrderByLanguage<CR>", "Sort by language" },
+    },
+    ["<leader>u"] = {
+      name = "+UI",
+      z = { "<cmd>ZenMode<cr>", "Toggle Zen mode" },
     },
   })
 

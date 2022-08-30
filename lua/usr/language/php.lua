@@ -9,6 +9,13 @@ function php.plugins(use)
     run = require("phpactor.handler.update"),
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   })
+  use({
+    "~/workspace/php-enhanced-treesitter.nvim",
+    requires = {
+      { "derekstride/tree-sitter-sql", run = ":TSInstall sql" },
+      { "tree-sitter/tree-sitter-regex", run = ":TSInstall regex" },
+    },
+  })
 end
 
 function php.setup()
@@ -68,7 +75,7 @@ function php.setup()
     end,
   }))
 
-  null_ls.register(null_ls.builtins.diagnostics.php)
+  -- null_ls.register(null_ls.builtins.diagnostics.php)
 
   vim.g.PHP_noArrowMatching = 1
   vim.g.PHP_vintage_case_default_indent = 1

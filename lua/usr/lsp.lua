@@ -10,7 +10,7 @@ function lsp.setup()
   local formatting_autogroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
   require("null-ls").setup({
-    -- debug = true,
+    debug = true,
     update_on_insert = false,
     on_attach = function(client, bufnr)
       if client.supports_method("textDocument/formatting") then
