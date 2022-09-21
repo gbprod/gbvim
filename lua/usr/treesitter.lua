@@ -2,7 +2,7 @@ local treesitter = {}
 
 function treesitter.plugins(use)
   use("sheerun/vim-polyglot")
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUPdate" })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
 end

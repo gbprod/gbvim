@@ -5,6 +5,7 @@ function git.plugins(use)
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")
   use("sindrets/diffview.nvim")
+  use("rhysd/committia.vim")
 end
 
 function git.setup()

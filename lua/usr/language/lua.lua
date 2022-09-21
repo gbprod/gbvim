@@ -1,8 +1,7 @@
 local lua = {}
 
 function lua.plugins(use)
-  use({ "nvim-treesitter/tree-sitter-lua", run = ":TSInstall lua" })
-  use({ "vigoux/tree-sitter-viml", run = ":TSInstall vim" })
+  use({ "nvim-treesitter/tree-sitter-query", run = ":TSInstall query" })
   use("folke/lua-dev.nvim")
 end
 

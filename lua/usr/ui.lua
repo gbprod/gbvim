@@ -10,7 +10,7 @@ function ui.plugins(use)
   use("romgrk/barbar.nvim")
   use("famiu/bufdelete.nvim")
   use("norcalli/nvim-colorizer.lua")
-  use("rcarriga/nvim-notify")
+  use("vigoux/notifier.nvim")
   use("SmiteshP/nvim-navic")
   use("folke/zen-mode.nvim")
 end
@@ -43,11 +43,12 @@ function ui.setup()
   presets.operators[">"] = nil
   require("which-key").setup({})
 
-  require("notify").setup({
-    background_colour = "#2E3440",
-  })
-  vim.notify = require("notify")
-  require("telescope").load_extension("notify")
+  require("notifier").setup({})
+  -- require("notify").setup({
+  --   background_colour = "#2E3440",
+  -- })
+  -- vim.notify = require("notify")
+  -- require("telescope").load_extension("notify")
 
   local navic = require("nvim-navic")
 

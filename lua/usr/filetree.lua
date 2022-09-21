@@ -7,6 +7,12 @@ end
 
 function filetree.setup()
   require("nvim-tree").setup({
+    sync_root_with_cwd = true,
+    respect_buf_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_root = true,
+    },
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = true,
@@ -42,6 +48,11 @@ function filetree.setup()
         },
       },
     },
+    filters = {
+      dotfiles = false,
+      custom = { "^.null\\-ls_" },
+      exclude = {},
+    },
     renderer = {
       highlight_git = true,
       highlight_opened_files = "icon",
@@ -65,9 +76,6 @@ function filetree.setup()
           },
         },
       },
-    },
-    update_focused_file = {
-      enable = false,
     },
   })
 

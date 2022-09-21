@@ -25,4 +25,11 @@ function javascript.setup()
   require("lspconfig").eslint.setup({})
 end
 
+function javascript.on_ft()
+  vim.cmd([[
+  setlocal textwidth=80
+  setlocal colorcolumn=+1,+41
+  ]])
+end
+
 return javascript

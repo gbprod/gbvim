@@ -6,10 +6,11 @@ function motions.plugins(use)
   use("kana/vim-textobj-entire")
   use("kana/vim-textobj-line")
   use("glts/vim-textobj-comment")
-  use("Julian/vim-textobj-variable-segment")
+  use({ "Julian/vim-textobj-variable-segment", branch = "main" })
   use("terryma/vim-expand-region")
   use("andymass/vim-matchup")
   use("ggandor/leap.nvim")
+  use("ggandor/flit.nvim")
 end
 
 function motions.setup()
@@ -40,39 +41,16 @@ function motions.setup()
   vim.g.textobj_comment_no_default_key_mappings = 1
 
   require("leap").setup({
-    safe_labels = { "m", "f", "n", "u", "t", ",", ";", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
-    labels = {
-      "m",
-      "f",
-      "n",
-      "j",
-      "k",
-      "l",
-      "o",
-      "d",
-      "w",
-      "e",
-      "h",
-      "m",
-      "v",
-      "g",
-      "u",
-      "t",
-      "c",
-      ".",
-      "z",
-      ",",
-      "F",
-      "L",
-      "N",
-      "H",
-      "G",
-      "M",
-      "U",
-      "T",
-      ";",
-      "Z",
-    },
+    safe_labels = { "m", "f", "n", "u", "t", ",", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
+    -- stylua: ignore
+    -- luacheck:ignore 631
+    labels = {"m", "f", "n", "j", "k", "l", "o", "d", "w", "e", "h", "m", "v", "g", "u", "t", "c", ".", "z", ",", "F", "L", "N", "H", "G", "M", "U", "T", "Z"},
+  })
+
+  require("flit").setup({
+    multiline = true,
+    eager_ops = true,
+    keymaps = { f = "f", F = "F", t = "t", T = "T" },
   })
 end
 
