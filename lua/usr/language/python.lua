@@ -1,7 +1,7 @@
 local python = {}
 
 function python.plugins(use)
-  use({ "tree-sitter/tree-sitter-python", run = ":TSInstall python" })
+  use({ "tree-sitter/tree-sitter-python", run = ":TSInstall! python" })
 end
 
 function python.setup()

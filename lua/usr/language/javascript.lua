@@ -1,7 +1,7 @@
 local javascript = {}
 
 function javascript.plugins(use)
-  use({ "tree-sitter/tree-sitter-javascript", run = ":TSInstall javascript" })
+  use({ "tree-sitter/tree-sitter-javascript", run = ":TSInstall! javascript" })
 end
 
 function javascript.setup()

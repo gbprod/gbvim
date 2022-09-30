@@ -105,7 +105,7 @@ function ui.setup()
     pattern = "*",
     callback = function()
       if vim.bo.filetype == "NvimTree" then
-        require("bufferline.state").set_offset(41, "FileTree")
+        require("bufferline.api").set_offset(41, "FileTree")
       end
     end,
   })
@@ -114,7 +114,7 @@ function ui.setup()
     pattern = "*",
     callback = function()
       if vim.fn.expand("<afile>"):match("NvimTree") then
-        require("bufferline.state").set_offset(0)
+        require("bufferline.api").set_offset(0)
       end
     end,
   })

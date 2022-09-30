@@ -1,7 +1,7 @@
 local php = {}
 
 function php.plugins(use)
-  use({ "tree-sitter/tree-sitter-php", run = ":TSInstall php" })
+  use({ "tree-sitter/tree-sitter-php", run = ":TSInstall! php" })
   -- use("nelsyeung/twig.vim")
   use("2072/PHP-Indenting-for-VIm")
   use({
@@ -12,8 +12,8 @@ function php.plugins(use)
   use({
     "~/workspace/php-enhanced-treesitter.nvim",
     requires = {
-      { "derekstride/tree-sitter-sql", run = ":TSInstall sql" },
-      { "tree-sitter/tree-sitter-regex", run = ":TSInstall regex" },
+      { "derekstride/tree-sitter-sql", run = ":TSInstall! sql" },
+      { "tree-sitter/tree-sitter-regex", run = ":TSInstall! regex" },
     },
   })
 
@@ -23,7 +23,6 @@ function php.plugins(use)
       url = "~/workspace/tree-sitter-twig",
       files = { "src/parser.c" },
     },
-    filetype = "html.twig", -- if filetype does not match the parser name
   }
 end
 
@@ -90,18 +89,18 @@ function php.setup()
   vim.g.PHP_vintage_case_default_indent = 1
 
   vim.cmd([[
-  setlocal textwidth=80
-  setlocal colorcolumn=+1,+41
-  iabbrev ret return
-  iabbrev pub public
-  iabbrev pri private
-  iabbrev pro protected
-  iabbrev con const
-  iabbrev thr throw
-  iabbrev impl implements
-  iabbrev ext extends
-  iabbrev fun function
-  iabbrev str string
+  autocmd Filetype php setlocal textwidth=80
+  autocmd Filetype php setlocal colorcolumn=+1,+41
+  autocmd Filetype php :iabbrev ret return
+  autocmd Filetype php :iabbrev pub public
+  autocmd Filetype php :iabbrev pri private
+  autocmd Filetype php :iabbrev pro protected
+  autocmd Filetype php :iabbrev con const
+  autocmd Filetype php :iabbrev thr throw
+  autocmd Filetype php :iabbrev impl implements
+  autocmd Filetype php :iabbrev ext extends
+  autocmd Filetype php :iabbrev fun function
+  autocmd Filetype php :iabbrev str string
   cnoreabbrev P PhpActor
   ]])
 end

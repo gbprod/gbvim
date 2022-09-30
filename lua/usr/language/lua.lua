@@ -1,7 +1,7 @@
 local lua = {}
 
 function lua.plugins(use)
-  use({ "nvim-treesitter/tree-sitter-query", run = ":TSInstall query" })
+  use({ "nvim-treesitter/tree-sitter-query", run = ":TSInstall! query" })
   use("folke/lua-dev.nvim")
 end
 

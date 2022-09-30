@@ -16,7 +16,22 @@ function edit.plugins(use)
 end
 
 function edit.setup()
-  require("stay-in-place").setup()
+  require("stay-in-place").setup({
+    on_apply_operator = function(state)
+      vim.fn["repeat#set"](
+        vim.api.nvim_replace_termcodes(
+          string.format(
+            ':lua vim.api.nvim_feedkeys(require("stay-in-place").operator("%s", "%s"), "mi", false)<CR>',
+            state.type,
+            state.motion
+          ),
+          true,
+          true,
+          true
+        )
+      )
+    end,
+  })
   require("guess-indent").setup({})
   require("nvim-surround").setup({})
 

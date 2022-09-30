@@ -4,7 +4,7 @@ local util = require("lspconfig.util")
 
 function sql.plugins(use)
   use("nanotee/sqls.nvim")
-  use({ "derekstride/tree-sitter-sql", run = ":TSInstall sql" })
+  use({ "derekstride/tree-sitter-sql", run = ":TSInstall! sql" })
 end
 
 function sql.setup()

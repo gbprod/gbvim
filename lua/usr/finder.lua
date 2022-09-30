@@ -79,7 +79,7 @@ function finder.bindings(map)
       "Find files",
     },
     ["<leader>fw"] = {
-      "':Telescope find_files<cr>' . expand('<cword>')",
+      "':Telescope find_files default_text=' . expand('<cword>') .'<cr>'",
       "Find file <cword>",
       expr = true,
     },

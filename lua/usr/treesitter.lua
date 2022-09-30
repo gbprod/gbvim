@@ -1,8 +1,10 @@
 local treesitter = {}
 
 function treesitter.plugins(use)
-  use("sheerun/vim-polyglot")
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUPdate" })
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = "TSInstall! javascript python query sql json html make php regex twig css scheme scss",
+  })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
 end
@@ -58,11 +60,11 @@ function treesitter.setup()
     },
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = true,
+      additional_vim_regex_highlighting = false,
     },
     indent = {
       enable = true,
-      disable = { "php" }, -- TODO: test later
+      -- disable = { "php" }, -- TODO: test later
     },
     autopairs = {
       enable = true,

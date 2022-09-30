@@ -4,6 +4,7 @@ function yanking.plugins(use)
   use("~/workspace/cutlass.nvim")
   use("~/workspace/yanky.nvim")
   use("~/workspace/substitute.nvim")
+  use("kkharji/sqlite.lua")
 end
 
 function yanking.setup()
@@ -19,12 +20,14 @@ function yanking.setup()
       require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV]"))
     end,
     range = {
-      prompt_current_text = false,
+      prompt_current_text = true,
       group_substituted_text = true,
     },
   })
 
-  require("yanky").setup()
+  require("yanky").setup({
+    -- ring = { storage = "sqlite" },
+  })
   require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
 end

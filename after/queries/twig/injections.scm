@@ -1,3 +1,3 @@
-;; (content) @html
+(content) @html
 
 
