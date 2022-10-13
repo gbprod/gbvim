@@ -6,7 +6,7 @@ function ui.plugins(use)
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
   use("folke/which-key.nvim")
-  -- use("linty-org/key-menu.nvim")
+  use("sunjon/Shade.nvim")
   use("romgrk/barbar.nvim")
   use("famiu/bufdelete.nvim")
   use("norcalli/nvim-colorizer.lua")
@@ -44,11 +44,11 @@ function ui.setup()
   require("which-key").setup({})
 
   require("notifier").setup({})
-  -- require("notify").setup({
-  --   background_colour = "#2E3440",
-  -- })
-  -- vim.notify = require("notify")
-  -- require("telescope").load_extension("notify")
+
+  require("shade").setup({})
+  vim.api.nvim_create_user_command("ShadeToggle", function()
+    require("shade").toggle()
+  end, {})
 
   local navic = require("nvim-navic")
 

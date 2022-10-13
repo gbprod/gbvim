@@ -7,15 +7,20 @@ function treesitter.plugins(use)
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
+  use("JoosepAlviste/nvim-ts-context-commentstring")
+  use("windwp/nvim-ts-autotag")
 end
 
 function treesitter.setup()
+  require("nvim-ts-autotag").setup()
   require("nvim-treesitter.configs").setup({
     textobjects = {
       select = {
         enable = true,
         lookahead = true,
         keymaps = {
+          ["aA"] = "@attribute.outer",
+          ["iA"] = "@attribute.inner",
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
@@ -24,17 +29,17 @@ function treesitter.setup()
           ["aa"] = "@parameter.outer",
           -- ["i"] = "@block.inner",
           -- ["a"] = "@block.outer",
-          -- ["im"] = "@call.inner",
-          -- ["am"] = "@call.outer",
-          -- @comment.outer
-          -- ["iC"] = '@conditional.inner',
-          -- ["aC"] = '@conditional.outer',
+          ["im"] = "@call.inner",
+          ["am"] = "@call.outer",
+          ["ax"] = "@comment.outer",
+          ["iC"] = "@conditional.inner",
+          ["aC"] = "@conditional.outer",
           -- @frame.inner
           -- @frame.outer
-          -- @loop.inner
-          -- @loop.outer
+          ["iL"] = "@loop.inner",
+          ["aL"] = "@loop.outer",
           -- @scopename.inner
-          -- @statement.outer
+          ["aS"] = "@statement.outer",
         },
       },
       move = {
@@ -64,7 +69,6 @@ function treesitter.setup()
     },
     indent = {
       enable = true,
-      -- disable = { "php" }, -- TODO: test later
     },
     autopairs = {
       enable = true,
@@ -74,8 +78,42 @@ function treesitter.setup()
       use_virtual_text = true,
       lint_events = { "BufWrite", "CursorHold" },
     },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+      },
+    },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+      config = {
+        twig = "{#%s#}",
+      },
+    },
+    autotag = {
+      enable = true,
+      filetypes = {
+        "html",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "svelte",
+        "vue",
+        "tsx",
+        "jsx",
+        "rescript",
+        "xml",
+        "php",
+        "markdown",
+        "twig",
+      },
+    },
   })
-
   vim.opt.foldmethod = "expr"
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   vim.opt.foldlevel = 99

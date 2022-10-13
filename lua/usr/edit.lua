@@ -65,7 +65,9 @@ function edit.setup()
     },
   })
 
-  require("Comment").setup()
+  require("Comment").setup({
+    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+  })
 end
 
 function edit.bindings(map)
@@ -98,8 +100,6 @@ function edit.bindings(map)
 
   wk.register({
     ["<leader>"] = {
-      O = { "<cmd>pu! _<cr>:']+1<cr>", "which_key_ignore" },
-      o = { "<cmd>pu _<cr>:'[-1<cr>", "which_key_ignore" },
       [";"] = { "A;<C-c>", "which_key_ignore" },
       [","] = { "A,<C-c>", "which_key_ignore" },
     },

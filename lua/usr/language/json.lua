@@ -12,4 +12,9 @@ function json.setup()
     capabilities = capabilities,
   })
 end
+
+function json.on_ft()
+  vim.cmd([[set conceallevel=0]])
+end
+
 return json

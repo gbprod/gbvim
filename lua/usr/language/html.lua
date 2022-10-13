@@ -10,7 +10,7 @@ function html.setup()
   require("lspconfig").html.setup({
     capabilities = capabilities,
     on_attach = require("usr.lsp").on_attach,
-    filetypes = { "html", "html.twig" },
+    filetypes = { "html", "twig" },
     init_options = {
       provideFormatter = false,
     },

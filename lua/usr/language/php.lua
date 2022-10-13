@@ -2,6 +2,7 @@ local php = {}
 
 function php.plugins(use)
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall! php" })
+  use({ "gbprod/tree-sitter-twig", run = ":TSInstall! twig" })
   -- use("nelsyeung/twig.vim")
   use("2072/PHP-Indenting-for-VIm")
   use({
@@ -16,14 +17,6 @@ function php.plugins(use)
       { "tree-sitter/tree-sitter-regex", run = ":TSInstall! regex" },
     },
   })
-
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.twig = {
-    install_info = {
-      url = "~/workspace/tree-sitter-twig",
-      files = { "src/parser.c" },
-    },
-  }
 end
 
 function php.setup()

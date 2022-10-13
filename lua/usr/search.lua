@@ -1,15 +1,35 @@
 local search = {}
 
 function search.plugins(use)
-  use("haya14busa/vim-asterisk")
   use("windwp/nvim-spectre")
 end
 
 function search.bindings(map)
-  map("n", "*", "<Plug>(asterisk-z*)", {})
-  map("n", "#", "<Plug>(asterisk-z#)", {})
-  map("n", "g*", "<Plug>(asterisk-gz*)", {})
-  map("n", "g#", "<Plug>(asterisk-gz#)", {})
+  local opts = { noremap = true, silent = true }
+
+  map("n", "*", function()
+    vim.fn.execute("normal! *N")
+  end, opts)
+
+  map("n", "#", function()
+    vim.fn.execute("normal! #N")
+  end, opts)
+
+  map("n", "g*", function()
+    vim.fn.execute("normal! g*N")
+  end, opts)
+
+  map("n", "g#", function()
+    vim.fn.execute("normal! g#N")
+  end, opts)
+
+  map("n", "n", function()
+    vim.fn.execute("normal! " .. vim.v.count1 .. "n")
+  end, opts)
+
+  map("n", "N", function()
+    vim.fn.execute("normal! " .. vim.v.count1 .. "N")
+  end, opts)
 
   local wk = require("which-key")
 

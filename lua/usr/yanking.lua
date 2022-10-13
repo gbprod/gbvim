@@ -26,7 +26,7 @@ function yanking.setup()
   })
 
   require("yanky").setup({
-    -- ring = { storage = "sqlite" },
+    ring = { storage = "sqlite", history_length = 1000 },
   })
   require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
