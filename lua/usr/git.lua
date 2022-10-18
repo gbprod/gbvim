@@ -6,18 +6,6 @@ function git.plugins(use)
   use("lewis6991/gitsigns.nvim")
   use("sindrets/diffview.nvim")
   -- use("rhysd/committia.vim")
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.gitcommit = {
-    install_info = {
-      url = "https://github.com/the-mikedavis/tree-sitter-git-commit",
-      files = { "src/parser.c" },
-      branch = "main",
-      filetype = "gitcommit",
-      requires_generate_from_grammar = false,
-      generate_requires_npm = false,
-    },
-    maintainers = { "@the-mikedavis" },
-  }
 end
 
 function git.setup()
@@ -35,6 +23,9 @@ function git.setup()
   vim.api.nvim_set_hl(0, "DiffChange", { bg = "#003300", fg = "NONE" })
   vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#330011", fg = "NONE" })
   vim.api.nvim_set_hl(0, "DiffText", { bg = "#007800", fg = "NONE" })
+
+  vim.api.nvim_set_hl(0, "@text.diff.add", { bg = "#003300", fg = "NONE" })
+  vim.api.nvim_set_hl(0, "@text.diff.delete", { bg = "#330011", fg = "NONE" })
 
   local null_ls = require("null-ls")
   -- null_ls.register(null_ls.builtins.code_actions.gitsigns)

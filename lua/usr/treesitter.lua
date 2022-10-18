@@ -2,18 +2,49 @@ local treesitter = {}
 
 function treesitter.plugins(use)
   use({
-    "nvim-treesitter/nvim-treesitter",
-    run = "TSInstall! javascript python query sql json html make php regex twig css scheme scss phpdoc",
+    "~/workspace/nvim-treesitter",
+    run = "TSUpdate!",
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.git_commit = {
+    install_info = {
+      url = "https://github.com/the-mikedavis/tree-sitter-git-commit",
+      files = { "src/parser.c" },
+      branch = "main",
+    },
+    filetype = "gitcommit",
+    maintainers = { "@gbprod" },
+  }
 end
 
 function treesitter.setup()
   require("nvim-ts-autotag").setup()
   require("nvim-treesitter.configs").setup({
+    ensure_installed = {
+      "javascript",
+      "python",
+      "query",
+      "sql",
+      "json",
+      "html",
+      "make",
+      "php",
+      "regex",
+      "twig",
+      "css",
+      "scheme",
+      "scss",
+      "phpdoc",
+      "git_rebase",
+      "markdown",
+      "diff",
+      "bash",
+      "gitcommit",
+    },
     textobjects = {
       select = {
         enable = true,
