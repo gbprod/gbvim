@@ -3,7 +3,7 @@ local treesitter = {}
 function treesitter.plugins(use)
   use({
     "nvim-treesitter/nvim-treesitter",
-    run = "TSInstall! javascript python query sql json html make php regex twig css scheme scss",
+    run = "TSInstall! javascript python query sql json html make php regex twig css scheme scss phpdoc",
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
@@ -90,9 +90,6 @@ function treesitter.setup()
     context_commentstring = {
       enable = true,
       enable_autocmd = false,
-      config = {
-        twig = "{#%s#}",
-      },
     },
     autotag = {
       enable = true,

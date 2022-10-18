@@ -5,32 +5,13 @@ function motions.plugins(use)
   use("kana/vim-textobj-indent")
   use("kana/vim-textobj-entire")
   use("kana/vim-textobj-line")
-  -- use("glts/vim-textobj-comment")
   use({ "Julian/vim-textobj-variable-segment", branch = "main" })
-  -- use("terryma/vim-expand-region")
   use("andymass/vim-matchup")
   use("ggandor/leap.nvim")
   use("ggandor/flit.nvim")
-  use("ggandor/leap-ast.nvim")
 end
 
 function motions.setup()
-  -- vim.g.expand_region_text_objects = {
-  --   ["iw"] = 0,
-  --   ["iW"] = 0,
-  --   ['i"'] = 0,
-  --   ["i'"] = 0,
-  --   ["i]"] = 1,
-  --   ["ib"] = 1,
-  --   ["iB"] = 1,
-  --   ["il"] = 1,
-  --   ["ii"] = 1,
-  --   ["ip"] = 0,
-  --   ["if"] = 1,
-  --   ["ic"] = 1,
-  --   ["ie"] = 0,
-  -- }
-
   require("nvim-treesitter.configs").setup({
     matchup = {
       enable = true,
@@ -84,10 +65,6 @@ function motions.bindings(map)
   map("n", "gm", "<Plug>(leap-cross-window)", {})
   map("x", "gm", "<Plug>(leap-cross-window)", {})
   map("o", "gm", "<Plug>(leap-cross-window)", {})
-
-  map({ "n", "x", "o" }, "<leader>m", function()
-    require("leap-ast").leap()
-  end, {})
 end
 
 return motions

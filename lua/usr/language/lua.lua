@@ -2,7 +2,7 @@ local lua = {}
 
 function lua.plugins(use)
   use({ "nvim-treesitter/tree-sitter-query", run = ":TSInstall! query" })
-  use("folke/lua-dev.nvim")
+  use("folke/neodev.nvim")
 end
 
 function lua.setup()
@@ -21,20 +21,17 @@ function lua.setup()
 
   null_ls.register(null_ls.builtins.diagnostics.luacheck)
 
+  require("neodev").setup()
   local lsp_root_path = vim.fn.expand("~/workspace/lua-language-server/")
-  local luadev = require("lua-dev").setup({
-    lspconfig = {
-      cmd = {
-        lsp_root_path .. "bin/Linux/lua-language-server",
-        "-E",
-        lsp_root_path .. "main.lua",
-      },
-      on_attach = require("usr.lsp").on_attach,
-      capabilities = require("usr.lsp").make_capabilities(),
+  require("lspconfig").sumneko_lua.setup({
+    cmd = {
+      lsp_root_path .. "bin/Linux/lua-language-server",
+      "-E",
+      lsp_root_path .. "main.lua",
     },
+    on_attach = require("usr.lsp").on_attach,
+    capabilities = require("usr.lsp").make_capabilities(),
   })
-  local lspconfig = require("lspconfig")
-  lspconfig.sumneko_lua.setup(luadev)
 
   require("open-related").add_relation(require("open-related.builtin.nvim").alternate_spec)
 

@@ -5,7 +5,19 @@ function git.plugins(use)
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")
   use("sindrets/diffview.nvim")
-  use("rhysd/committia.vim")
+  -- use("rhysd/committia.vim")
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.gitcommit = {
+    install_info = {
+      url = "https://github.com/the-mikedavis/tree-sitter-git-commit",
+      files = { "src/parser.c" },
+      branch = "main",
+      filetype = "gitcommit",
+      requires_generate_from_grammar = false,
+      generate_requires_npm = false,
+    },
+    maintainers = { "@the-mikedavis" },
+  }
 end
 
 function git.setup()

@@ -2,6 +2,7 @@ local php = {}
 
 function php.plugins(use)
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall! php" })
+  use({ "claytonrcarter/tree-sitter-phpdoc", run = ":TSInstall! phpdoc" })
   use({ "gbprod/tree-sitter-twig", run = ":TSInstall! twig" })
   -- use("nelsyeung/twig.vim")
   use("2072/PHP-Indenting-for-VIm")
