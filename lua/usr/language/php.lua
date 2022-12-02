@@ -4,7 +4,16 @@ function php.plugins(use)
   use({ "tree-sitter/tree-sitter-php", run = ":TSInstall! php" })
   use({ "claytonrcarter/tree-sitter-phpdoc", run = ":TSInstall! phpdoc" })
   use({ "gbprod/tree-sitter-twig", run = ":TSInstall! twig" })
-  -- use("nelsyeung/twig.vim")
+  -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  -- parser_config.twig = {
+  --   install_info = {
+  --     url = "~/workspace/tree-sitter-twig",
+  --     files = { "src/parser.c" },
+  --     branch = "main",
+  --   },
+  --   filetype = "twig",
+  -- }
+
   use("2072/PHP-Indenting-for-VIm")
   use({
     "~/workspace/phpactor.nvim",
@@ -65,22 +74,19 @@ function php.setup()
     end,
   }))
 
-  null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
-    condition = function(utils)
-      return utils.root_has_file("phpstan.neon")
-    end,
-  }))
+  -- null_ls.register(null_ls.builtins.diagnostics.phpstan.with({
+  --   condition = function(utils)
+  --     return utils.root_has_file("phpstan.neon")
+  --   end,
+  -- }))
 
-  null_ls.register(null_ls.builtins.diagnostics.psalm.with({
-    condition = function(utils)
-      return utils.root_has_file("psalm.xml")
-    end,
-  }))
+  -- null_ls.register(null_ls.builtins.diagnostics.psalm.with({
+  --   condition = function(utils)
+  --     return utils.root_has_file("psalm.xml")
+  --   end,
+  -- }))
 
   -- null_ls.register(null_ls.builtins.diagnostics.php)
-
-  vim.g.PHP_noArrowMatching = 1
-  vim.g.PHP_vintage_case_default_indent = 1
 
   vim.cmd([[
   autocmd Filetype php setlocal textwidth=80

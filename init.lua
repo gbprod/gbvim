@@ -48,6 +48,7 @@ local layers = {
   require("usr.language.yaml"),
   require("usr.language.python"),
   require("usr.language.markdown"),
+  require("usr.language.cpp"),
 }
 
 packer.startup(function()

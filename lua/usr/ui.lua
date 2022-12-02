@@ -1,10 +1,12 @@
 local ui = {}
 
 function ui.plugins(use)
-  use("shaunsingh/nord.nvim")
+  --  use("shaunsingh/nord.nvim")
+  use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
+  use("lukas-reineke/virt-column.nvim")
   use("folke/which-key.nvim")
   use("sunjon/Shade.nvim")
   use("romgrk/barbar.nvim")
@@ -13,33 +15,23 @@ function ui.plugins(use)
   use("vigoux/notifier.nvim")
   use("SmiteshP/nvim-navic")
   use("folke/zen-mode.nvim")
+  use("folke/tokyonight.nvim")
 end
 
 function ui.setup()
-  vim.g.nord_borders = true
-  require("nord").set()
-  local colors = require("nord.named_colors")
-
-  vim.api.nvim_set_hl(0, "Search", { fg = "NONE", bg = colors.light_gray })
-  vim.api.nvim_set_hl(0, "FloatBorder", { fg = colors.dark_gray })
-  vim.api.nvim_set_hl(0, "MatchParen", { fg = "NONE", bg = colors.light_gray })
-  vim.api.nvim_set_hl(0, "Identifier", { fg = colors.darkest_white })
-  vim.api.nvim_set_hl(0, "qfLineNr", { fg = colors.teal })
-
-  vim.api.nvim_set_hl(0, "@parameter", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@constructor", { link = "@type" })
-  vim.api.nvim_set_hl(0, "@property", { link = "@field" })
-  vim.api.nvim_set_hl(0, "@type", { fg = colors.teal })
-  vim.api.nvim_set_hl(0, "@exception", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@constructor", { link = "@type" })
-  vim.api.nvim_set_hl(0, "@constant", { fg = colors.teal })
-  vim.api.nvim_set_hl(0, "@keyword.return", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@keyword.function", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@keyword.operator", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@variable.builtin", { link = "@keyword" })
-  vim.api.nvim_set_hl(0, "@constant.builtin", { link = "@keyword" })
-
-  vim.api.nvim_set_hl(0, "BufferOffset", { link = "BufferCurrent" })
+  require("nord").setup({
+    diff = { mode = "fg" },
+    borders = true,
+    errors = { mode = "none" },
+    styles = {
+      comments = { italic = true },
+      keywords = {},
+      functions = {},
+      variables = {},
+      errors = {},
+    },
+  })
+  vim.cmd("colorscheme nord")
 
   local presets = require("which-key.plugins.presets")
   presets.operators[">"] = nil
@@ -53,6 +45,9 @@ function ui.setup()
   end, {})
 
   local navic = require("nvim-navic")
+  navic.setup({
+    highlight = true,
+  })
 
   require("lualine").setup({
     options = {
@@ -86,6 +81,8 @@ function ui.setup()
   })
   -- fix https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
   vim.opt.colorcolumn = "99999"
+
+  require("virt-column").setup()
 
   vim.g.bufferline = {
     exclude_ft = { "qf" },

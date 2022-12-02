@@ -16,9 +16,7 @@ function yanking.setup()
 
   require("substitute").setup({
     yank_substituted_text = false,
-    on_substitute = function(event)
-      require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV]"))
-    end,
+    on_substitute = require("yanky.integration").substitute(),
     range = {
       prompt_current_text = true,
       group_substituted_text = true,
@@ -38,8 +36,10 @@ function yanking.bindings(map)
   map("n", "p", "<Plug>(YankyPutAfter)", {})
   map("n", "P", "<Plug>(YankyPutBefore)", {})
 
-  map("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-  map("x", "P", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+  map("x", "p", "<Plug>(YankyPutAfter)", {})
+  map("x", "P", "<Plug>(YankyPutBefore)", {})
+  -- map("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+  -- map("x", "P", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 
   map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", {})
   map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", {})
@@ -67,7 +67,7 @@ function yanking.bindings(map)
   map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
   map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
 
-  map({ "n", "x" }, "y", "<Plug>(YankyYank)", {})
+  map({ "n", "x" }, "y", "<Plug>(YankyYank)", { noremap = true })
 
   map("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
   map("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })

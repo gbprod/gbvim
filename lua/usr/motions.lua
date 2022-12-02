@@ -9,6 +9,7 @@ function motions.plugins(use)
   use("andymass/vim-matchup")
   use("ggandor/leap.nvim")
   use("ggandor/flit.nvim")
+  use("ggandor/leap-spooky.nvim")
 end
 
 function motions.setup()
@@ -30,9 +31,16 @@ function motions.setup()
   })
 
   require("flit").setup({
+    keys = { f = "f", F = "F", t = "t", T = "T" },
+    labeled_modes = "nvo",
     multiline = true,
-    eager_ops = true,
-    keymaps = { f = "f", F = "F", t = "t", T = "T" },
+  })
+  require("leap-spooky").setup({
+    affixes = {
+      remote = { window = "r", cross_window = "R" },
+      magnetic = { window = "m", cross_window = "M" },
+    },
+    paste_on_remote_yank = false,
   })
 end
 

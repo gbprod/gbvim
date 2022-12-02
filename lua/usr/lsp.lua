@@ -29,8 +29,7 @@ function lsp.setup()
         vim.lsp.buf.format({ buffer = bufnr })
       end, opts)
       vim.keymap.set("n", "<space>cF", lsp.toggle_should_format, opts)
-      vim.keymap.set("n", "<a-cr>", "<cmd>Telescope lsp_code_actions theme=dropdown<CR>", opts)
-      vim.keymap.set("x", "<a-cr>", "<cmd>Telescope lsp_range_code_actions theme=dropdown<CR>", opts)
+      vim.keymap.set({ "v", "n" }, "<a-cr>", vim.lsp.buf.code_action, opts)
     end,
   })
 
@@ -67,8 +66,7 @@ function lsp.on_attach(client, bufnr)
 
   vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
   vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-  vim.keymap.set("n", "<a-cr>", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("x", "<a-cr>", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
+  vim.keymap.set({ "v", "n" }, "<a-cr>", vim.lsp.buf.code_action, opts)
   vim.keymap.set("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 
   vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)

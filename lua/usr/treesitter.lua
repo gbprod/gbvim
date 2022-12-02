@@ -2,22 +2,22 @@ local treesitter = {}
 
 function treesitter.plugins(use)
   use({
-    "~/workspace/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
     run = "TSUpdate!",
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
+
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.git_commit = {
+  parser_config.gitcommit = {
     install_info = {
-      url = "https://github.com/the-mikedavis/tree-sitter-git-commit",
-      files = { "src/parser.c" },
+      url = "~/workspace/tree-sitter-gitcommit",
+      files = { "src/parser.c", "src/scanner.c" },
       branch = "main",
     },
     filetype = "gitcommit",
-    maintainers = { "@gbprod" },
   }
 end
 
@@ -41,8 +41,10 @@ function treesitter.setup()
       "phpdoc",
       "git_rebase",
       "markdown",
+      "markdown_inline",
       "diff",
       "bash",
+      "yaml",
       "gitcommit",
     },
     textobjects = {

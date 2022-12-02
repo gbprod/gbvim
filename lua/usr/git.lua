@@ -27,10 +27,6 @@ function git.setup()
   vim.api.nvim_set_hl(0, "@text.diff.add", { bg = "#003300", fg = "NONE" })
   vim.api.nvim_set_hl(0, "@text.diff.delete", { bg = "#330011", fg = "NONE" })
 
-  local null_ls = require("null-ls")
-  -- null_ls.register(null_ls.builtins.code_actions.gitsigns)
-  null_ls.register(null_ls.builtins.code_actions.gitrebase)
-
   require("diffview").setup({
     enhanced_diff_hl = true,
   })
