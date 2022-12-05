@@ -3,7 +3,8 @@ local edit = {}
 function edit.plugins(use)
   use("kylechui/nvim-surround")
   use("tpope/vim-abolish")
-  use("FooSoft/vim-argwrap")
+  use("Wansmer/treesj")
+  -- use("FooSoft/vim-argwrap")
   use("lambdalisue/suda.vim")
   use("christoomey/vim-sort-motion")
   use("tpope/vim-repeat")
@@ -22,7 +23,14 @@ function edit.setup()
   require("guess-indent").setup({})
   require("nvim-surround").setup({})
 
-  vim.g.argwrap_tail_comma_braces = 1
+  -- vim.g.argwrap_tail_comma_braces = 1
+  require("treesj").setup({
+    use_default_keymaps = false,
+    check_syntax_error = true,
+    max_join_length = 120,
+    cursor_behavior = "hold",
+    notify = true,
+  })
 
   local augend = require("dial.augend")
   require("dial.config").augends:register_group({
@@ -92,7 +100,9 @@ function edit.bindings(map)
     },
     ["<leader>j"] = {
       name = "+Join/Split",
-      j = { "<cmd>ArgWrap<cr>", "Wrap Args" },
+      j = { "<cmd>TSJToggle<cr>", "Toggle" },
+      s = { "<cmd>TSJSplit<cr>", "Split" },
+      J = { "<cmd>TSJJoin<cr>", "Join" },
     },
     ["<leader>x"] = {
       name = "+String",

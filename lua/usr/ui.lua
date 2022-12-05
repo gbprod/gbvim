@@ -1,7 +1,6 @@
 local ui = {}
 
 function ui.plugins(use)
-  --  use("shaunsingh/nord.nvim")
   use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
@@ -9,13 +8,14 @@ function ui.plugins(use)
   use("lukas-reineke/virt-column.nvim")
   use("folke/which-key.nvim")
   use("sunjon/Shade.nvim")
-  use("romgrk/barbar.nvim")
   use("famiu/bufdelete.nvim")
   use("norcalli/nvim-colorizer.lua")
   use("vigoux/notifier.nvim")
   use("SmiteshP/nvim-navic")
-  use("folke/zen-mode.nvim")
   use("folke/tokyonight.nvim")
+
+  use("romgrk/barbar.nvim")
+  -- use({ "akinsho/bufferline.nvim", tag = "v3.*" })
 end
 
 function ui.setup()
@@ -29,6 +29,10 @@ function ui.setup()
       functions = {},
       variables = {},
       errors = {},
+      bufferline = {
+        current = { bold = true },
+        modified = { italic = true },
+      },
     },
   })
   vim.cmd("colorscheme nord")
@@ -37,6 +41,8 @@ function ui.setup()
   presets.operators[">"] = nil
   require("which-key").setup({})
 
+  -- require("notify").setup({ level = vim.log.levels.TRACE })
+  -- vim.notify = require("notify")
   require("notifier").setup({})
 
   require("shade").setup({})
@@ -71,7 +77,7 @@ function ui.setup()
     },
   })
 
-  -- require("feline").setup({})
+  require("colorizer").setup()
 
   require("indent_blankline").setup({
     char = "▏",
@@ -83,6 +89,16 @@ function ui.setup()
   vim.opt.colorcolumn = "99999"
 
   require("virt-column").setup()
+
+  -- vim.opt.termguicolors = true
+  -- require("bufferline").setup({
+  --   options = {
+  --     numbers = "ordinal",
+  --     diagnostics = "nvim_lsp",
+  --     separator_style = "thick",
+  --   },
+  --   highlights = require("nord.plugins.bufferline").akinsho(),
+  -- })
 
   vim.g.bufferline = {
     exclude_ft = { "qf" },
@@ -97,8 +113,6 @@ function ui.setup()
     letters = "qsdfjklghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
     maximum_padding = 2,
   }
-
-  require("colorizer").setup()
 
   vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "*",
@@ -117,8 +131,6 @@ function ui.setup()
       end
     end,
   })
-
-  require("zen-mode").setup({})
 end
 
 function ui.bindings(map)
