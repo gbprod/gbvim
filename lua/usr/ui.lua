@@ -7,13 +7,11 @@ function ui.plugins(use)
   use("lukas-reineke/indent-blankline.nvim")
   use("lukas-reineke/virt-column.nvim")
   use("folke/which-key.nvim")
-  use("sunjon/Shade.nvim")
+  -- use("sunjon/Shade.nvim")
   use("famiu/bufdelete.nvim")
-  use("norcalli/nvim-colorizer.lua")
+  use("NvChad/nvim-colorizer.lua")
   use("vigoux/notifier.nvim")
   use("SmiteshP/nvim-navic")
-  use("folke/tokyonight.nvim")
-
   use("romgrk/barbar.nvim")
   -- use({ "akinsho/bufferline.nvim", tag = "v3.*" })
 end
@@ -30,8 +28,8 @@ function ui.setup()
       variables = {},
       errors = {},
       bufferline = {
-        current = { bold = true },
-        modified = { italic = true },
+        current = { bold = false },
+        modified = { bold = false, italic = true },
       },
     },
   })
@@ -45,10 +43,10 @@ function ui.setup()
   -- vim.notify = require("notify")
   require("notifier").setup({})
 
-  require("shade").setup({})
-  vim.api.nvim_create_user_command("ShadeToggle", function()
-    require("shade").toggle()
-  end, {})
+  -- require("shade").setup({})
+  -- vim.api.nvim_create_user_command("ShadeToggle", function()
+  --   require("shade").toggle()
+  -- end, {})
 
   local navic = require("nvim-navic")
   navic.setup({
@@ -77,7 +75,11 @@ function ui.setup()
     },
   })
 
-  require("colorizer").setup()
+  require("colorizer").setup({
+    user_default_options = {
+      names = false,
+    },
+  })
 
   require("indent_blankline").setup({
     char = "▏",
@@ -100,19 +102,22 @@ function ui.setup()
   --   highlights = require("nord.plugins.bufferline").akinsho(),
   -- })
 
-  vim.g.bufferline = {
+  require("bufferline").setup({
     exclude_ft = { "qf" },
     exclude_name = {},
 
     icons = "both",
-    icon_separator_active = " ",
-    icon_separator_inactive = " ",
-    icon_close_tab = "",
-    icon_close_tab_modified = "●",
-    icon_pinned = "車",
-    letters = "qsdfjklghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
+    icon_separator_active = "▎",
+    icon_separator_inactive = "▎ ",
+    letters = "qsdfjklghnmxcvbziowerutyqpQSDFJKLGHNMXCVBZIOWERUTYQP",
     maximum_padding = 2,
-  }
+    diagnostics = {
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+      [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
+      [vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
+      [vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
+    },
+  })
 
   vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "*",

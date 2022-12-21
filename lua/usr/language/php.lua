@@ -62,6 +62,9 @@ function php.setup()
   local null_ls = require("null-ls")
 
   null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
+    env = {
+      PHP_CS_FIXER_IGNORE_ENV = true,
+    },
     args = {
       "--no-interaction",
       "--quiet",

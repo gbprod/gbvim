@@ -43,7 +43,6 @@ function finder.setup()
       anchor = "SW",
       border = "rounded",
       relative = "win",
-      winblend = 0,
       override = function(opt)
         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
           opt.anchor = "SW"

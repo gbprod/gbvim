@@ -23,8 +23,19 @@ function yanking.setup()
     },
   })
 
+  local mapping = require("yanky.telescope.mapping")
   require("yanky").setup({
     ring = { storage = "sqlite", history_length = 1000 },
+    picker = {
+      telescope = {
+        mappings = {
+          default = mapping.put("p"),
+          i = {
+            ["<c-a>"] = mapping.special_put("YankyPutAfterCharwiseJoined"),
+          },
+        },
+      },
+    },
   })
   require("telescope").load_extension("yank_history")
   vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
@@ -35,6 +46,9 @@ function yanking.bindings(map)
 
   map("n", "p", "<Plug>(YankyPutAfter)", {})
   map("n", "P", "<Plug>(YankyPutBefore)", {})
+
+  map("n", "]p", "<Plug>(YankyPutAfterCharwiseJoined)", {})
+  map("n", "]P", "<Plug>(YankyPutBeforeCharwiseJoined)", {})
 
   map("x", "p", "<Plug>(YankyPutAfter)", {})
   map("x", "P", "<Plug>(YankyPutBefore)", {})

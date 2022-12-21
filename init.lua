@@ -36,7 +36,6 @@ local layers = {
   require("usr.project"),
   require("usr.repl"),
   require("usr.scratchpad"),
-  require("usr.tests"),
 
   require("usr.language.php"),
   require("usr.language.html"),

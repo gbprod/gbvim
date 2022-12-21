@@ -19,6 +19,7 @@ function completion.setup()
 
   local lspkind = require("lspkind")
   local cmp = require("cmp")
+  local types = require("cmp.types")
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -41,8 +42,14 @@ function completion.setup()
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "s", "c" }),
       ["<C-e>"] = cmp.mapping(cmp.mapping.close(), { "i", "s", "c" }),
-      ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
-      ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
+      ["<Tab>"] = cmp.mapping(
+        cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
+        { "i", "s", "c" }
+      ),
+      ["<S-Tab>"] = cmp.mapping(
+        cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
+        { "i", "s", "c" }
+      ),
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
 
@@ -67,6 +74,9 @@ function completion.setup()
         mode = "symbol",
         maxwidth = 50,
       }),
+    },
+    experimental = {
+      ghost_text = true,
     },
   })
 
