@@ -65,14 +65,14 @@ function treesitter.setup()
           ["im"] = "@call.inner",
           ["am"] = "@call.outer",
           -- ["ax"] = "@comment.outer",
-          ["iC"] = "@conditional.inner",
-          ["aC"] = "@conditional.outer",
+          ["i?"] = "@conditional.inner",
+          ["a?"] = "@conditional.outer",
           -- @frame.inner
           -- @frame.outer
-          ["iL"] = "@loop.inner",
-          ["aL"] = "@loop.outer",
+          ["i*"] = "@loop.inner",
+          ["a*"] = "@loop.outer",
           -- @scopename.inner
-          ["aS"] = "@statement.outer",
+          ["as"] = "@statement.outer",
         },
       },
       move = {

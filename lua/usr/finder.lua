@@ -41,7 +41,7 @@ function finder.setup()
     input = {
       enabled = true,
       anchor = "SW",
-      border = "rounded",
+      border = "single",
       relative = "win",
       override = function(opt)
         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then

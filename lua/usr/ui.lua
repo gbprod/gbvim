@@ -3,7 +3,7 @@ local ui = {}
 function ui.plugins(use)
   use("~/workspace/nord.nvim")
   use("nvim-lualine/lualine.nvim")
-  use("kyazdani42/nvim-web-devicons")
+  use("nvim-tree/nvim-web-devicons")
   use("lukas-reineke/indent-blankline.nvim")
   use("lukas-reineke/virt-column.nvim")
   use("folke/which-key.nvim")

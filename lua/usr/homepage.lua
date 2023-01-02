@@ -44,7 +44,10 @@ function homepage.setup()
 end
 
 function homepage.on_vim_enter()
-  if 2 == vim.tbl_count(vim.v.argv) and 0 == vim.fn.filereadable(vim.v.argv[2]) then
+  if "" == vim.api.nvim_buf_get_name(0) then
+    return
+  end
+  if 0 == vim.fn.filereadable(vim.api.nvim_buf_get_name(0)) then
     vim.cmd("Alpha")
     vim.cmd("bwipeout 1")
   end

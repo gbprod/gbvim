@@ -34,11 +34,11 @@ function lsp.setup()
   })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+    border = "single",
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
+    border = "single",
   })
 end
 
@@ -48,7 +48,7 @@ function lsp.on_attach(client, bufnr)
     hint_enable = false,
     padding = " ",
     handler_opts = {
-      border = "rounded",
+      border = "single",
     },
     always_trigger = false,
     toggle_key = "<M-s>",

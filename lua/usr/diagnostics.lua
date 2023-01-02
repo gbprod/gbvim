@@ -11,7 +11,7 @@ function diagnostics.setup()
     float = {
       show_header = true,
       source = "always",
-      border = "rounded",
+      border = "single",
       focusable = false,
     },
   })

@@ -104,6 +104,7 @@ function php.setup()
   autocmd Filetype php :iabbrev ext extends
   autocmd Filetype php :iabbrev fun function
   autocmd Filetype php :iabbrev str string
+  autocmd Filetype php :iabbrev rea readonly
   cnoreabbrev P PhpActor
   ]])
 end

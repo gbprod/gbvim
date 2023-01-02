@@ -15,7 +15,7 @@ function terminal.setup()
       },
     },
     float_opts = {
-      border = "curved",
+      border = "single",
     },
   })
 end
