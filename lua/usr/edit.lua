@@ -49,12 +49,17 @@ function edit.setup()
       }),
       augend.constant.new({
         elements = { "&&", "||" },
-        word = false,
+        word = true,
         cyclic = true,
       }),
       augend.constant.new({
         elements = { "public", "protected", "private" },
-        word = false,
+        word = true,
+        cyclic = true,
+      }),
+      augend.constant.new({
+        elements = { "!==", "===" },
+        word = true,
         cyclic = true,
       }),
     },

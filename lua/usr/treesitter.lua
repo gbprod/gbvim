@@ -9,7 +9,6 @@ function treesitter.plugins(use)
   use("nvim-treesitter/playground")
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
-  use("kiyoon/treesitter-indent-object.nvim")
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
   parser_config.gitcommit = {
     install_info = {
@@ -147,17 +146,6 @@ function treesitter.setup()
   vim.opt.foldmethod = "expr"
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   vim.opt.foldlevel = 99
-end
-
-function treesitter.bindings(map)
-  map({ "x", "o" }, "ai", require("treesitter_indent_object.textobj").select_indent_outer)
-  map({ "x", "o" }, "aI", function()
-    require("treesitter_indent_object.textobj").select_indent_outer(true)
-  end)
-  map({ "x", "o" }, "ii", require("treesitter_indent_object.textobj").select_indent_inner)
-  map({ "x", "o" }, "iI", function()
-    require("treesitter_indent_object.textobj").select_indent_inner(true)
-  end)
 end
 
 return treesitter

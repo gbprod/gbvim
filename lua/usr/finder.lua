@@ -4,6 +4,7 @@ function finder.plugins(use)
   use("nvim-telescope/telescope.nvim")
   use("stevearc/dressing.nvim")
   use("~/workspace/open-related.nvim")
+  use("debugloop/telescope-undo.nvim")
 end
 
 function finder.setup()
@@ -34,15 +35,19 @@ function finder.setup()
       ["ui-select"] = {
         require("telescope.themes").get_dropdown({}),
       },
+      undo = {},
     },
   })
-
+  require("telescope").load_extension("undo")
   require("dressing").setup({
     input = {
       enabled = true,
       anchor = "SW",
       border = "single",
       relative = "win",
+      win_options = {
+        winblend = 0,
+      },
       override = function(opt)
         if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
           opt.anchor = "SW"
@@ -93,6 +98,10 @@ function finder.bindings(map)
     ["<leader>fc"] = {
       "<cmd>CreateRelated<cr>",
       "Create related files",
+    },
+    ["<leader>fu"] = {
+      "<cmd>Telescope undo<cr>",
+      "Undo history",
     },
     ["<leader>s"] = {
       name = "+Search",

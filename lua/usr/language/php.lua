@@ -14,7 +14,6 @@ function php.plugins(use)
   --   filetype = "twig",
   -- }
 
-  use("2072/PHP-Indenting-for-VIm")
   use({
     "~/workspace/phpactor.nvim",
     run = require("phpactor.handler.update"),

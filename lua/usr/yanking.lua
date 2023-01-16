@@ -59,24 +59,31 @@ function yanking.bindings(map)
   map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", {})
 
   map({ "n", "x" }, ")p", "<Plug>(YankyPutIndentAfterLinewise)", {})
-  map({ "n", "x" }, "(p", "<Plug>(YankyPutIndentBeforeLinewise)", {})
   map({ "n", "x" }, ")P", "<Plug>(YankyPutIndentAfterLinewise)", {})
-  map({ "n", "x" }, "(P", "<Plug>(YankyPutIndentBeforeLinewise)", {})
 
   map({ "n", "x" }, ")gp", "<Plug>(YankyGPutAfterLinewise)", {})
-  map({ "n", "x" }, "(gp", "<Plug>(YankyGPutBeforeLinewise)", {})
   map({ "n", "x" }, ")gP", "<Plug>(YankyGPutAfterLinewise)", {})
-  map({ "n", "x" }, "(gP", "<Plug>(YankyGPutBeforeLinewise)", {})
 
   map({ "n", "x" }, ">p", "<Plug>(YankyPutIndentAfterShiftRight)", {})
-  map({ "n", "x" }, "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", {})
   map({ "n", "x" }, ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", {})
+
+  map({ "n", "x" }, "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", {})
   map({ "n", "x" }, "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", {})
 
   map({ "n", "x" }, "=p", "<Plug>(YankyPutAfterFilter)", {})
   map({ "n", "x" }, "=P", "<Plug>(YankyPutBeforeFilter)", {})
+
   map({ "n", "x" }, "=gp", "<Plug>(YankyGPutAfterFilter)", {})
   map({ "n", "x" }, "=gP", "<Plug>(YankyGPutBeforeFilter)", {})
+
+  map({ "n", "x" }, ">gp", "<Plug>(YankyGPutAfterShiftRight)", {})
+  map({ "n", "x" }, ">gP", "<Plug>(YankyGPutBeforeShiftRight)", {})
+
+  map({ "n", "x" }, "<gp", "<Plug>(YankyGPutAfterShiftLeft)", {})
+  map({ "n", "x" }, "<gP", "<Plug>(YankyGPutBeforeShiftLeft)", {})
+
+  map("n", "]gp", "<Plug>(YankyGPutAfterCharwiseJoined)", {})
+  map("n", "]gP", "<Plug>(YankyGPutBeforeCharwiseJoined)", {})
 
   map("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
   map("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})

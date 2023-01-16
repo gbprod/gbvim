@@ -14,6 +14,9 @@ function ui.plugins(use)
   use("SmiteshP/nvim-navic")
   use("romgrk/barbar.nvim")
   -- use({ "akinsho/bufferline.nvim", tag = "v3.*" })
+  use("utilyre/barbecue.nvim")
+  use("petertriho/nvim-scrollbar")
+  use("folke/zen-mode.nvim")
 end
 
 function ui.setup()
@@ -136,6 +139,15 @@ function ui.setup()
       end
     end,
   })
+
+  require("barbecue").setup({
+    exclude_filetypes = { "gitcommit", "toggleterm", "gitrebase" },
+  })
+  require("scrollbar").setup()
+  require("scrollbar.handlers.gitsigns").setup()
+  require("scrollbar.handlers.search").setup({})
+
+  require("zen-mode").setup()
 end
 
 function ui.bindings(map)
