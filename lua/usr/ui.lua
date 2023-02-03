@@ -13,6 +13,7 @@ function ui.plugins(use)
   use("vigoux/notifier.nvim")
   use("SmiteshP/nvim-navic")
   use("romgrk/barbar.nvim")
+  use("Isrothy/lualine-diagnostic-message")
   -- use({ "akinsho/bufferline.nvim", tag = "v3.*" })
   use("utilyre/barbecue.nvim")
   use("petertriho/nvim-scrollbar")
@@ -24,8 +25,17 @@ function ui.setup()
     diff = { mode = "fg" },
     borders = true,
     errors = { mode = "none" },
+    colorblind = {
+      enable = false,
+      preserve_background = true,
+      severity = {
+        protan = 0,
+        deutan = 1,
+        tritan = 1,
+      },
+    },
     styles = {
-      comments = { italic = true },
+      comments = { italic = false },
       keywords = {},
       functions = {},
       variables = {},
@@ -66,7 +76,7 @@ function ui.setup()
     sections = {
       lualine_a = { "mode" },
       lualine_b = {},
-      lualine_c = { { navic.get_location, cond = navic.is_available } },
+      lualine_c = { "diagnostic-message" },
       lualine_x = { "encoding", "fileformat", "filetype" },
       lualine_y = { "branch", "diff", "diagnostics" },
       lualine_z = { "progress", "location" },

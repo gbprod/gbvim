@@ -19,13 +19,13 @@ function git.setup()
     },
   })
 
-  vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#003300", fg = "NONE" })
-  vim.api.nvim_set_hl(0, "DiffChange", { bg = "#003300", fg = "NONE" })
-  vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#330011", fg = "NONE" })
-  vim.api.nvim_set_hl(0, "DiffText", { bg = "#007800", fg = "NONE" })
-
-  vim.api.nvim_set_hl(0, "@text.diff.add", { bg = "#003300", fg = "NONE" })
-  vim.api.nvim_set_hl(0, "@text.diff.delete", { bg = "#330011", fg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#003300", fg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "DiffChange", { bg = "#003300", fg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#330011", fg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "DiffText", { bg = "#007800", fg = "NONE" })
+  --
+  -- vim.api.nvim_set_hl(0, "@text.diff.add", { bg = "#003300", fg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "@text.diff.delete", { bg = "#330011", fg = "NONE" })
 
   require("diffview").setup({
     enhanced_diff_hl = true,
@@ -38,12 +38,12 @@ function git.bindings(_)
   wk.register({
     ["<leader>g"] = { name = "+Git" },
     ["<leader>gh"] = { name = "+Hunk" },
-    ["<leader>gn"] = {
+    [")g"] = {
       "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
       "Next hunk",
       expr = true,
     },
-    ["<leader>gN"] = {
+    [")G"] = {
       "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
       "Prev hunk",
       expr = true,

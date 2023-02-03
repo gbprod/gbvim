@@ -137,7 +137,7 @@ function treesitter.setup()
         "jsx",
         "rescript",
         "xml",
-        "php",
+        -- "php",
         "markdown",
         "twig",
       },

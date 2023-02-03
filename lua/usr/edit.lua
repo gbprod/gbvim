@@ -18,7 +18,7 @@ end
 
 function edit.setup()
   require("stay-in-place").setup({
-    on_apply_operator = require("stay-in-place.integration").tpope_repeat,
+    -- on_apply_operator = require("stay-in-place.integration").tpope_repeat,
   })
   require("guess-indent").setup({})
   require("nvim-surround").setup({})
@@ -49,7 +49,7 @@ function edit.setup()
       }),
       augend.constant.new({
         elements = { "&&", "||" },
-        word = true,
+        word = false,
         cyclic = true,
       }),
       augend.constant.new({
@@ -59,6 +59,13 @@ function edit.setup()
       }),
       augend.constant.new({
         elements = { "!==", "===" },
+        word = false,
+        cyclic = true,
+      }),
+    },
+    gitcommit = {
+      augend.constant.new({
+        elements = { "feat", "fix", "chore", "refactor", "test", "docs", "style", "perf" },
         word = true,
         cyclic = true,
       }),

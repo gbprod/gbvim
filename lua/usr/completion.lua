@@ -16,6 +16,7 @@ end
 
 function completion.setup()
   vim.g.vsnip_snippet_dir = vim.g.root_dir .. "/snippets"
+  vim.g.vsnip_extra_mapping = false
 
   local lspkind = require("lspkind")
   local cmp = require("cmp")
