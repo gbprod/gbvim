@@ -9,19 +9,12 @@ function filetree.setup()
   require("nvim-tree").setup({
     sync_root_with_cwd = true,
     respect_buf_cwd = true,
-    ignore_ft_on_setup = {
-      "startify",
-      "dashboard",
-      "alpha",
-    },
     update_focused_file = {
       enable = true,
       update_root = true,
     },
     disable_netrw = true,
     hijack_netrw = true,
-    open_on_setup = false,
-    open_on_setup_file = false,
     open_on_tab = false,
     update_cwd = false,
     hijack_cursor = true,

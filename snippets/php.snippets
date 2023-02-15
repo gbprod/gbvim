@@ -1,0 +1,101 @@
+snippet class
+	class ${1:ClassName} ${2:extends ${3:AnotherClass}} ${4:implements ${5:Interface}}
+	{
+	    ${0}
+	}
+
+snippet cons
+	${1:public} function __construct(${2:args})
+	{
+	    $0
+	}
+
+snippet var
+	var ${1:Type} \$${2:var} */
+
+snippet param
+	param ${1:Type} ${2:var} */
+
+snippet pub
+	public function ${1:name}(${2:params}): ${3:void}
+	{
+	    ${0}
+	}
+
+snippet pubs
+	public static function ${1:name}(${2:params}): ${3:void}
+	{
+	    ${0}
+	}
+
+snippet pro
+	protected function ${1:name}(${2:params}): ${3:void}
+	{
+	    ${0}
+	}
+
+snippet pri
+	private function ${1:name}(${2:params}): ${3:void}
+	{
+	    ${0}
+	}
+
+snippet do
+	body: do {
+	    ${0}
+	} while (${1:\\$${2:a} <= ${3:10}});
+
+snippet while
+	while (${1:\\$${2:a} <= ${3:10}}) {
+	    ${0}
+	}
+
+snippet if
+	if (${1:condition}) {
+    ${0}
+	}
+
+snippet ifelse
+	body: [if (${1:condition}) {
+	    ${2}
+	} else {
+	    ${3}
+	}
+	$0
+
+snippet else
+	else {
+	    ${0}
+	}
+
+snippet elseif
+	elseif (${1:condition}) {
+	    ${0}
+	}
+
+snippet for
+	for ($${1:i}=${2:0}; $${1:i} < $3; $${1:i}++) { 
+	    ${0}
+	}
+
+snippet foreach
+	foreach ($${1:variable} as $${2:key} ${3:=> $${4:value}}) {
+	    ${0}
+	}
+
+snippet try
+	try {
+	    ${1}
+	} catch (${2:\Throwable} ${3:\\$e}) {
+      ${4://throw \$e;}
+	}
+
+snippet pro
+	$this->prophesize(${0});
+
+snippet test
+	/** @test */
+	public function it_${1:name}(): void
+	{
+	    ${0}
+	}

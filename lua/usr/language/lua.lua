@@ -22,15 +22,23 @@ function lua.setup()
   null_ls.register(null_ls.builtins.diagnostics.luacheck)
 
   require("neodev").setup()
-  local lsp_root_path = vim.fn.expand("~/workspace/lua-language-server/")
-  require("lspconfig").sumneko_lua.setup({
-    cmd = {
-      lsp_root_path .. "bin/Linux/lua-language-server",
-      "-E",
-      lsp_root_path .. "main.lua",
+  require("lspconfig").lua_ls.setup({
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
     },
-    on_attach = require("usr.lsp").on_attach,
-    capabilities = require("usr.lsp").make_capabilities(),
   })
 
   require("open-related").add_relation(require("open-related.builtin.nvim").alternate_spec)
