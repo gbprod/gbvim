@@ -1,7 +1,6 @@
 local edit = {}
 
 function edit.plugins(use)
-  use("kylechui/nvim-surround")
   use("tpope/vim-abolish")
   use("Wansmer/treesj")
   -- use("FooSoft/vim-argwrap")
@@ -11,7 +10,6 @@ function edit.plugins(use)
   use("numToStr/Comment.nvim")
   use("monaqa/dial.nvim")
   use("tpope/vim-rsi")
-  use("nmac427/guess-indent.nvim")
 
   use("~/workspace/stay-in-place.nvim")
 end
@@ -20,8 +18,6 @@ function edit.setup()
   require("stay-in-place").setup({
     -- on_apply_operator = require("stay-in-place.integration").tpope_repeat,
   })
-  require("guess-indent").setup({})
-  require("nvim-surround").setup({})
 
   -- vim.g.argwrap_tail_comma_braces = 1
   require("treesj").setup({

@@ -22,7 +22,7 @@ function php.plugins(use)
   use({
     "~/workspace/php-enhanced-treesitter.nvim",
     requires = {
-      { "derekstride/tree-sitter-sql", run = ":TSInstall! sql" },
+      { "derekstride/tree-sitter-sql",   run = ":TSInstall! sql" },
       { "tree-sitter/tree-sitter-regex", run = ":TSInstall! regex" },
     },
   })
@@ -39,19 +39,6 @@ function php.setup()
         capabilities = require("usr.lsp").make_capabilities(),
       },
     },
-  })
-
-  require("open-related").add_relation(require("open-related.builtin.php").alternate_test_file.with({
-    opts = {
-      test_namespace_prefixes = { "Integration", "Unit" },
-    },
-  }))
-  require("open-related").add_relation({
-    filetypes = { "php" },
-    related_to = require("open-related.helpers.filename").from_patterns({
-      { match = "^(.*)src/(.*)%.php$", format = "%ssrc/%sHandler.php" },
-      { match = "^(.*)src/(.*)Handler%.php$", format = "%ssrc/%s.php" },
-    }),
   })
 
   vim.g.PhpactorRootDirectoryStrategy = function()
@@ -127,7 +114,6 @@ function php.on_ft()
       buffer = 0,
     },
     ["<leader>ln"] = { "<cmd>PhpActor navigate<CR>", "Navigate", buffer = 0 },
-
     ["<leader>lc"] = { name = "+Class" },
     ["<leader>lcc"] = {
       ":PhpActor copy_class<CR>",
