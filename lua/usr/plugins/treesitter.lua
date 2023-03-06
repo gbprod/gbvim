@@ -1,8 +1,10 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        config = function()
+        build = function()
             require("nvim-treesitter.install").update({ with_sync = true })
+        end,
+        config = function()
             require("nvim-ts-autotag").setup()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
@@ -136,4 +138,5 @@ return {
             "windwp/nvim-ts-autotag",
         },
     },
+    { dir = "~/workspace/php-enhanced-treesitter.nvim" },
 }

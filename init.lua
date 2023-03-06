@@ -14,14 +14,15 @@ vim.opt.rtp:prepend("~/workspace/gbvim/") -- TDOD: REMOVE
 
 require("usr.options")()
 require("usr.defaults")()
+require("usr.abbrev")()
 
 require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "tpope/vim-eunuch",
   { "nvim-tree/nvim-web-devicons", opts = {} },
-  { "folke/which-key.nvim", opts = {} },
-  { "kylechui/nvim-surround", opts = {} },
-  { "nmac427/guess-indent.nvim", opts = {} },
+  { "folke/which-key.nvim",        opts = {} },
+  { "kylechui/nvim-surround",      opts = {} },
+  { "nmac427/guess-indent.nvim",   opts = {} },
   {
     "numToStr/Comment.nvim",
     opts = {
@@ -29,14 +30,14 @@ require("lazy").setup({
     },
   },
   { import = "usr.plugins.indent_blankline" },
-  { "lukas-reineke/virt-column.nvim", opts = {} },
+  { "lukas-reineke/virt-column.nvim",       opts = {} },
   { import = "usr.plugins.nord" },
   { import = "usr.plugins.lualine" },
   { import = "usr.plugins.project_nvim" },
-  { "vigoux/notifier.nvim", opts = {} },
-  { "SmiteshP/nvim-navic", opts = { highlight = true } },
+  { "vigoux/notifier.nvim",                 opts = {} },
+  { "SmiteshP/nvim-navic",                  opts = { highlight = true } },
   { import = "usr.plugins.bufferline" },
-  { "utilyre/barbecue.nvim", opts = { exclude_filetypes = { "gitcommit", "toggleterm", "gitrebase" } } },
+  { "utilyre/barbecue.nvim",                opts = { exclude_filetypes = { "gitcommit", "toggleterm", "gitrebase" } } },
   { import = "usr.plugins.treesitter" },
   { import = "usr.plugins.colorizer" },
   { import = "usr.plugins.scrollbar" },
@@ -45,6 +46,11 @@ require("lazy").setup({
   { import = "usr.plugins.dressing" },
   { import = "usr.plugins.dressing" },
   { import = "usr.plugins.open-related" },
+  { "windwp/nvim-autopairs",                opts = { check_ts = true } },
+  { import = "usr.plugins.cmp" },
+  { import = "usr.plugins.gitsigns" },
+  { import = "usr.plugins.lspconfig" },
+  { import = "usr.plugins.phpactor" },
 }, {
   ui = {
     border = "single",

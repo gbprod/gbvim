@@ -1,1 +1,1 @@
-require("usr.git").on_ft()
+vim.cmd("setlocal nocindent colorcolumn=+1 textwidth=80")
