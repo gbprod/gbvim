@@ -24,7 +24,7 @@ function ui.setup()
   require("nord").setup({
     diff = { mode = "fg" },
     borders = true,
-    errors = { mode = "none" },
+    errors = { mode = "fg" },
     colorblind = {
       enable = false,
       preserve_background = true,
@@ -39,7 +39,6 @@ function ui.setup()
       keywords = {},
       functions = {},
       variables = {},
-      errors = {},
       bufferline = {
         current = { bold = false },
         modified = { bold = false, italic = true },
@@ -118,7 +117,6 @@ function ui.setup()
   require("bufferline").setup({
     exclude_ft = { "qf" },
     exclude_name = {},
-
     icons = "both",
     icon_separator_active = "▎",
     icon_separator_inactive = "▎ ",
@@ -200,7 +198,7 @@ function ui.bindings(map)
   map("n", "<A-<>", ":BufferMovePrevious<CR>", opts)
   map("n", "<A->>", " :BufferMoveNext<CR>", opts)
   map("n", "<A-q>", ":confirm BufferClose<CR>", opts)
-  map("n", "gh", ":BufferPick<CR>", opts)
+  map("n", "gh", ":BufferPick<CR>", { noremap = true, silent = true, desc = "Pick buffer" })
 
   wk.register({
     ["<leader>"] = {

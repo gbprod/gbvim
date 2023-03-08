@@ -12,7 +12,7 @@ function lua.setup()
     extra_args = {
       "--config-path",
       vim.fn.filereadable(vim.fn.getcwd() .. "/stylua.toml") == 1 and vim.fn.getcwd() .. "/stylua.toml"
-        or vim.fn.expand("~/.config/stylua.toml"),
+      or vim.fn.expand("~/.config/stylua.toml"),
     },
     runtime_condition = function(_)
       return require("usr.lsp").should_format()
@@ -23,6 +23,8 @@ function lua.setup()
 
   require("neodev").setup()
   require("lspconfig").lua_ls.setup({
+    on_attach = require("usr.lsp").on_attach,
+    capabilities = require("usr.lsp").make_capabilities(),
     settings = {
       Lua = {
         runtime = {
