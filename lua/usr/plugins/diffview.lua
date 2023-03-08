@@ -1,17 +1,15 @@
-  require("diffview").setup({
-    enhanced_diff_hl = true,
-  })
+return {
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      require("diffview").setup({
+        enhanced_diff_hl = true,
+      })
 
-    ["<leader>gd"] = { name = "+Diff" },
-    ["<leader>gdf"] = {
-      "<cmd>DiffviewFileHistory<CR>",
-      "File history",
-    },
-    ["<leader>gdo"] = {
-      "<cmd>DiffviewOpen<CR>",
-      "Open",
-    },
-    ["<leader>gdc"] = {
-      "<cmd>DiffviewClose<CR>",
-      "Close",
-    },
+      require("which-key").register({ ["<leader>gd"] = { name = "+Diff" } })
+      vim.keymap.set("n", "<leader>gdf", "<cmd>DiffviewFileHistory<CR>", { desc = "File history" })
+      vim.keymap.set("n", "<leader>gdo", "<cmd>DiffviewOpen<CR>", { desc = "Open" })
+      vim.keymap.set("n", "<leader>gdc", "<cmd>DiffviewClose<CR>", { desc = "Close" })
+    end,
+  },
+}

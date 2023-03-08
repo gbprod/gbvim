@@ -25,6 +25,10 @@ return {
         { desc = "Prev hunk", expr = true }
       )
 
+      require("which-key").register({
+        ["<leader>g"] = { name = "+Git" },
+        ["<leader>gh"] = { name = "+Hunk" },
+      })
       vim.keymap.set("n", "<leader>ghs", require("gitsigns").stage_hunk, { desc = "Stage hunk" })
       vim.keymap.set("n", "<leader>ghu", require("gitsigns").undo_stage_hunk, { desc = "Undo stage hunk" })
       vim.keymap.set("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "Reset hunk" })

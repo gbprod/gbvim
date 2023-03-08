@@ -126,6 +126,10 @@ return {
                         "twig",
                     },
                 },
+                matchup = {
+                    enable = true,
+                    disable = {},
+                },
             })
             vim.opt.foldmethod = "expr"
             vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -136,6 +140,7 @@ return {
             "nvim-treesitter/playground",
             "JoosepAlviste/nvim-ts-context-commentstring",
             "windwp/nvim-ts-autotag",
+            "andymass/vim-matchup",
         },
     },
     { dir = "~/workspace/php-enhanced-treesitter.nvim" },
