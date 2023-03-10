@@ -1,5 +1,5 @@
 return function()
-    vim.cmd([[
+  vim.cmd([[
     cnoreabbrev P PhpActor
     cnoreabbrev T Telescope
     cnoreabbrev h vertical help

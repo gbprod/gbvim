@@ -1,6 +1,5 @@
 return {
   {
-
     "windwp/nvim-spectre",
     config = function()
       require("which-key").register({ ["<leader>sr"] = { name = "+Replace" }, { mode = "n" } })

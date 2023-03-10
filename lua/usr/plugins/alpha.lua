@@ -14,6 +14,7 @@ return {
         button("g", "  > Git Status", ":Telescope git_status<cr>", { silent = true }),
         button("w", "  > Find Word", ":Telescope live_grep<cr>", { silent = true }),
         button("e", "  > New file", ":ene <cr>", { silent = true }),
+        button("u", "  > Update plugins", ":Lazy update<cr>", { silent = true }),
         button("q", "  > Exit", ":qa<cr>", { silent = true }),
       }
 
