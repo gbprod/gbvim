@@ -1,8 +1,7 @@
-local options = {}
-
-function options.setup()
+return function()
   vim.g.mapleader = " "
-
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
   vim.opt.cursorline = true
   vim.opt.number = true
   vim.opt.numberwidth = 2
@@ -45,5 +44,3 @@ function options.setup()
   vim.opt.expandtab = true
   vim.o.confirm = true
 end
-
-return options

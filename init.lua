@@ -1,75 +1,91 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
   })
-  vim.api.nvim_command("packadd packer.nvim")
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer = require("packer")
+require("usr.options")()
+require("usr.defaults")()
+require("usr.keymaps")()
+require("usr.abbrev")()
 
-vim.g.root_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>:p")), ":h")
-
-local use = packer.use
-
-local layers = {
-  require("usr.options"),
-  require("usr.system"),
-  require("usr.ui"),
-  require("usr.filetree"),
-  require("usr.homepage"),
-  require("usr.edit"),
-  require("usr.yanking"),
-  require("usr.completion"),
-  require("usr.treesitter"),
-  require("usr.diagnostics"),
-  require("usr.finder"),
-  require("usr.lsp"),
-  require("usr.motions"),
-  require("usr.git"),
-  require("usr.search"),
-  require("usr.terminal"),
-  require("usr.project"),
-  require("usr.repl"),
-  require("usr.scratchpad"),
-
-  require("usr.language.php"),
-  require("usr.language.html"),
-  require("usr.language.lua"),
-  require("usr.language.json"),
-  require("usr.language.css"),
-  require("usr.language.javascript"),
-  require("usr.language.sql"),
-  require("usr.language.sh"),
-  require("usr.language.yaml"),
-  require("usr.language.python"),
-  require("usr.language.markdown"),
-  require("usr.language.cpp"),
-}
-
-packer.startup(function()
-  use("wbthomason/packer.nvim")
-
-  for _, layer in pairs(layers) do
-    if layer.plugins ~= nil then
-      layer.plugins(use)
-    end
-  end
-end)
-
-for _, layer in pairs(layers) do
-  if layer.setup ~= nil then
-    layer.setup()
-  end
-end
-
-local map = vim.keymap.set
-for _, layer in pairs(layers) do
-  if layer.bindings ~= nil then
-    layer.bindings(map)
-  end
-end
+require("lazy").setup({
+  "nvim-lua/plenary.nvim",
+  "tpope/vim-eunuch",
+  "tpope/vim-rsi",
+  { "nvim-tree/nvim-web-devicons", opts = {} },
+  { "folke/which-key.nvim", opts = {} },
+  { "kylechui/nvim-surround", opts = {} },
+  { "nmac427/guess-indent.nvim", opts = {} },
+  { "kana/vim-textobj-user", priority = 1000 },
+  "kana/vim-textobj-indent",
+  "kana/vim-textobj-entire",
+  "kana/vim-textobj-line",
+  "Julian/vim-textobj-variable-segment",
+  "glts/vim-textobj-comment",
+  { "folke/neodev.nvim", opts = {} },
+  {
+    dir = "~/workspace/cutlass.nvim",
+    opts = {
+      cut_key = "x",
+      override_del = true,
+      exclude = { "ns", "nS" },
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    opts = {
+      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+    },
+  },
+  { import = "usr.plugins.indent_blankline" },
+  { "lukas-reineke/virt-column.nvim", opts = {} },
+  { import = "usr.plugins.nord" },
+  { import = "usr.plugins.lualine" },
+  { import = "usr.plugins.project_nvim" },
+  { "vigoux/notifier.nvim", opts = {} },
+  { "SmiteshP/nvim-navic", opts = { highlight = true } },
+  { import = "usr.plugins.bufferline" },
+  { "utilyre/barbecue.nvim", opts = { exclude_filetypes = { "gitcommit", "toggleterm", "gitrebase" } } },
+  { import = "usr.plugins.treesitter" },
+  { import = "usr.plugins.colorizer" },
+  { import = "usr.plugins.scrollbar" },
+  { import = "usr.plugins.nvim-tree" },
+  { import = "usr.plugins.telescope" },
+  { import = "usr.plugins.dressing" },
+  { import = "usr.plugins.open-related" },
+  { "windwp/nvim-autopairs", opts = { check_ts = true } },
+  { import = "usr.plugins.cmp" },
+  { import = "usr.plugins.gitsigns" },
+  { import = "usr.plugins.lspconfig" },
+  { import = "usr.plugins.phpactor" },
+  { import = "usr.plugins.trouble" },
+  { "folke/todo-comments.nvim", opts = {} },
+  { import = "usr.plugins.textcase" },
+  { import = "usr.plugins.treesj" },
+  { dir = "~/workspace/stay-in-place.nvim", opts = {} },
+  { import = "usr.plugins.dial" },
+  { import = "usr.plugins.diffview" },
+  { import = "usr.plugins.alpha" },
+  { import = "usr.plugins.null-ls" },
+  { import = "usr.plugins.leap" },
+  { import = "usr.plugins.hlslens" },
+  { import = "usr.plugins.spectre" },
+  { import = "usr.plugins.toggleterm" },
+  { import = "usr.plugins.yanky" },
+  { import = "usr.plugins.substitute" },
+}, {
+  install = {
+    colorscheme = { "nord" },
+  },
+  ui = {
+    border = "single",
+  },
+})

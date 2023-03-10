@@ -1,1 +1,1 @@
-require("usr.language.markdown").on_ft()
+vim.opt.conceallevel = 0
