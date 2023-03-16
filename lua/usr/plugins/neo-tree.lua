@@ -87,6 +87,8 @@ return {
             ["?"] = "show_help",
             ["<"] = "prev_source",
             [">"] = "next_source",
+            [")G"] = "prev_git_modified",
+            [")g"] = "next_git_modified",
           },
         },
         filesystem = {
