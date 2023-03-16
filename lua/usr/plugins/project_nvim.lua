@@ -1,6 +1,7 @@
 return {
   {
     "ahmedkhalf/project.nvim",
+    priority = 500,
     config = function()
       require("project_nvim").setup({
         patterns = {

@@ -5,7 +5,7 @@ return {
       char = "▏",
       space_char_blankline = " ",
       buftype_exclude = { "terminal" },
-      filetype_exclude = { "alpha" },
+      filetype_exclude = { "alpha", "neo-tree", "NvimTree" },
     },
   },
 }

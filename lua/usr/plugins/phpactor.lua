@@ -1,6 +1,7 @@
 return {
   {
     dir = "~/workspace/phpactor.nvim",
+    ft = { "php", "yaml" },
     build = function()
       require("phpactor.handler.update")()
     end,

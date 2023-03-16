@@ -7,7 +7,7 @@ function edit.plugins(use)
   use("tpope/vim-repeat")
 end
 
-function edit.bindings(map)
+function edit.bindings(_)
   local wk = require("which-key")
 
   wk.register({

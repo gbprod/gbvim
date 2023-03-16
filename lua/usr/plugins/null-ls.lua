@@ -6,7 +6,7 @@ return {
 
       local null_ls = require("null-ls")
       null_ls.setup({
-        -- debug = true,
+        debug = true,
         update_on_insert = false,
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then

@@ -57,7 +57,7 @@ require("lazy").setup({
   { import = "usr.plugins.treesitter" },
   { import = "usr.plugins.colorizer" },
   { import = "usr.plugins.scrollbar" },
-  { import = "usr.plugins.nvim-tree" },
+  { import = "usr.plugins.neo-tree" },
   { import = "usr.plugins.telescope" },
   { import = "usr.plugins.dressing" },
   { import = "usr.plugins.open-related" },
@@ -81,6 +81,7 @@ require("lazy").setup({
   { import = "usr.plugins.toggleterm" },
   { import = "usr.plugins.yanky" },
   { import = "usr.plugins.substitute" },
+  { import = "usr.plugins.iron" },
 }, {
   install = {
     colorscheme = { "nord" },

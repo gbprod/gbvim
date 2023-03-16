@@ -22,6 +22,9 @@ return {
         }),
       })
       open.add_relation(require("open-related.builtin.nvim").alternate_spec)
+
+      vim.keymap.set("n", "<leader>fr", "<cmd>Telescope open_related<cr>", { desc = "Open Related" })
+      vim.keymap.set("n", "<leader>fc", "<cmd>Telescope create_related<cr>", { desc = "Create Related" })
     end,
   },
 }
