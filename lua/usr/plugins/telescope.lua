@@ -54,6 +54,8 @@ return {
       vim.keymap.set("n", "<leader>fu", require("telescope").extensions.undo.undo, { desc = "Undo history" })
       vim.keymap.set("n", "<leader>ss", require("telescope.builtin").live_grep, { desc = "Live grep" })
       vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "Grep word" })
+
+      require("which-key").register({ ["<leader>b"] = { name = "+Buffers" } })
       vim.keymap.set("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
       vim.keymap.set("n", "<c-p>", require("telescope.builtin").find_files, {})
       vim.keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser grouped=true<cr>", { desc = "File browser" })

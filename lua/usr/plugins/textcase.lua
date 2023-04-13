@@ -11,7 +11,7 @@ return {
       vim.keymap.set("n", "crs", function()
         require("textcase").current_word("to_snake_case")
       end, { noremap = true, desc = "To snake case" })
-      vim.keymap.set("n", "crd", function()
+      vim.keymap.set("n", "crk", function()
         require("textcase").current_word("to_dash_case")
       end, { noremap = true, desc = "To dash case" })
       vim.keymap.set("n", "crn", function()

@@ -39,12 +39,7 @@ require("lazy").setup({
       exclude = { "ns", "nS" },
     },
   },
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-    },
-  },
+  { import = "usr.plugins.comment" },
   { import = "usr.plugins.indent_blankline" },
   { "lukas-reineke/virt-column.nvim", opts = {} },
   { import = "usr.plugins.nord" },

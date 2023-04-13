@@ -1,6 +1,5 @@
 return {
   {
-
     dir = "~/workspace/substitute.nvim",
     config = function()
       require("substitute").setup({
@@ -18,6 +17,24 @@ return {
       vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
       vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
       vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
+
+      vim.keymap.set("n", ")s", function()
+        require("substitute").operator({
+          wrappers = require("substitute.wrappers").build({ "linewise" }),
+        })
+      end, { noremap = true })
+
+      vim.keymap.set("n", "=s", function()
+        require("substitute").operator({
+          wrappers = require("substitute.wrappers").build({ "linewise", "==" }),
+        })
+      end, { noremap = true })
+
+      vim.keymap.set("n", "]s", function()
+        require("substitute").operator({
+          wrappers = require("substitute.wrappers").build({ "charwise", "join", "trim" }),
+        })
+      end, { noremap = true })
 
       vim.keymap.set("n", "sx", require("substitute.exchange").operator, { noremap = true })
       vim.keymap.set("n", "sxx", require("substitute.exchange").line, { noremap = true })

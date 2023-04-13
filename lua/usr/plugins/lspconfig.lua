@@ -33,6 +33,9 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       lspconfig.cssls.setup({
         capabilities = capabilities,
+        init_options = {
+          provideFormatter = false,
+        },
       })
 
       -- html
@@ -95,13 +98,13 @@ return {
         capabilities = utils.make_capabilities(),
       })
 
-      lspconfig.sqls.setup({
-        root_dir = require("lspconfig.util").root_pattern(".project.lua"),
-        on_attach = function(client, bufnr)
-          require("sqls").on_attach(client, bufnr)
-        end,
-        capabilities = utils.make_capabilities(),
-      })
+      -- lspconfig.sqls.setup({
+      --   root_dir = require("lspconfig.util").root_pattern(".project.lua"),
+      --   on_attach = function(client, bufnr)
+      --     require("sqls").on_attach(client, bufnr)
+      --   end,
+      --   capabilities = utils.make_capabilities(),
+      -- })
     end,
   },
 }

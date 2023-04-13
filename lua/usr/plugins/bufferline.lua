@@ -5,17 +5,21 @@ return {
       require("bufferline").setup({
         exclude_ft = { "qf" },
         exclude_name = {},
-        icons = "both",
-        icon_separator_active = "▎",
-        icon_separator_inactive = "▎ ",
+        icons = {
+          buffer_index = true,
+          filetype = { enabled = true },
+          diagnostics = {
+            [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+            [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
+            [vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
+            [vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
+          },
+          separator = {
+            left = "▎",
+          },
+        },
         letters = "qsdfjklghnmxcvbziowerutyqpQSDFJKLGHNMXCVBZIOWERUTYQP",
         maximum_padding = 2,
-        diagnostics = {
-          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-          [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
-          [vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
-          [vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
-        },
       })
 
       vim.keymap.set("n", "<leader>bd", "<cmd>confirm BufferClose<cr>", { desc = "Close current" })

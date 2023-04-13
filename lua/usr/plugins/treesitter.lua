@@ -143,5 +143,5 @@ return {
       "andymass/vim-matchup",
     },
   },
-  { dir = "~/workspace/php-enhanced-treesitter.nvim" },
+  -- { dir = "~/workspace/php-enhanced-treesitter.nvim" },
 }

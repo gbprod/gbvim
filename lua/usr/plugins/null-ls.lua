@@ -34,7 +34,8 @@ return {
       null_ls.register(null_ls.builtins.formatting.prettier.with({
         args = {
           "--config",
-          vim.fn.expand("~/.config/prettier/.prettierrc"),
+          vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc") == 1 and vim.fn.getcwd() .. "/.prettierrc"
+            or vim.fn.expand("~/.config/prettier/.prettierrc"),
           "--stdin-filepath",
           "$FILENAME",
         },

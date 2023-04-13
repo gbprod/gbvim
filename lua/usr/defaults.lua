@@ -12,13 +12,4 @@ return function()
       focusable = false,
     },
   })
-
-  vim.api.nvim_create_autocmd("VimEnter", {
-    pattern = "*",
-    callback = function()
-      if vim.fn.filereadable(".project.lua") == 1 then
-        vim.cmd("source .project.lua")
-      end
-    end,
-  })
 end
