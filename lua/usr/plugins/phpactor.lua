@@ -1,13 +1,13 @@
 return {
   {
     dir = "~/workspace/phpactor.nvim",
-    ft = { "php", "yaml" },
     build = function()
       require("phpactor.handler.update")()
     end,
     opts = {
       install = {
-        check_on_startup = "daily",
+        check_on_startup = "always",
+        auto_update = true,
       },
       lspconfig = {
         enable = true,

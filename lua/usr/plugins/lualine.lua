@@ -10,7 +10,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = {},
+        lualine_b = { "require('lsp-progress').progress()" },
         lualine_c = { "diagnostic-message" },
         lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_y = { "branch", "diff", "diagnostics" },
@@ -23,7 +23,15 @@ return {
       },
     },
     dependencies = {
+      "nvim-tree/nvim-web-devicons",
       "Isrothy/lualine-diagnostic-message",
+      "linrongbin16/lsp-progress.nvim",
     },
+  },
+  {
+    "linrongbin16/lsp-progress.nvim",
+    config = function()
+      require("lsp-progress").setup()
+    end,
   },
 }

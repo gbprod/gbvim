@@ -9,9 +9,10 @@ return {
     config = function()
       require("leap").setup({
         safe_labels = { "m", "n", "u", "t", ",", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
-                -- stylua: ignore
-                -- luacheck:ignore 631
-                labels = { "m", "n", "j", "k", "l", "o", "d", "w", "e", "h", "m", "v", "g", "u", "t", "c", ".", "z", ",", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
+        -- stylua: ignore
+        -- luacheck:ignore 631
+        labels = { "m", "n", "j", "k", "l", "o", "d", "w", "e", "h", "m", "v", "g", "u", "t", "c", ".", "z", ",", "F", "L", "N", "H", "G", "M", "U", "T", "Z" },
+        highlight_unlabeled_phase_one_targets = true,
       })
 
       require("flit").setup({

@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
+      -- require("nvim-treesitter.install").update({ with_sync = true })
     end,
     config = function()
       require("nvim-ts-autotag").setup()
@@ -134,6 +134,14 @@ return {
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
       vim.opt.foldlevel = 99
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.gitcommit = {
+        install_info = {
+          url = "~/workspace/tree-sitter-gitcommit/",
+          files = { "src/parser.c", "src/scanner.c" },
+          branch = "feat-fixup",
+        },
+      }
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -143,5 +151,5 @@ return {
       "andymass/vim-matchup",
     },
   },
-  -- { dir = "~/workspace/php-enhanced-treesitter.nvim" },
+  { dir = "~/workspace/php-enhanced-treesitter.nvim" },
 }

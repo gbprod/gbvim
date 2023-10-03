@@ -4,7 +4,9 @@ return {
     opts = {
       input = {
         enabled = true,
-        anchor = "SW",
+        override = function(conf)
+          conf.anchor = "SW"
+        end,
         border = "single",
         relative = "win",
         win_options = {

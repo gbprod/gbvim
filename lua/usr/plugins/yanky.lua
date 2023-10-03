@@ -6,8 +6,12 @@ return {
     },
     config = function()
       local mapping = require("yanky.telescope.mapping")
+      require("telescope").load_extension("yank_history")
       require("yanky").setup({
         ring = { storage = "sqlite", history_length = 1000 },
+        textobj = {
+          enabled = true,
+        },
         picker = {
           telescope = {
             mappings = {
@@ -18,7 +22,6 @@ return {
           },
         },
       })
-      require("telescope").load_extension("yank_history")
 
       vim.keymap.set("n", "p", "<Plug>(YankyPutAfter)", {})
       vim.keymap.set("n", "P", "<Plug>(YankyPutBefore)", {})

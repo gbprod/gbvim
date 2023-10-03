@@ -1,11 +1,9 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
-      char = "▏",
-      space_char_blankline = " ",
-      buftype_exclude = { "terminal" },
-      filetype_exclude = { "alpha", "neo-tree", "NvimTree" },
+      scope = { enabled = false },
     },
   },
 }

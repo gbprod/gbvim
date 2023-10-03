@@ -21,16 +21,6 @@ require("lazy").setup({
   "tpope/vim-eunuch",
   "tpope/vim-rsi",
   { "nvim-tree/nvim-web-devicons", opts = {} },
-  { "folke/which-key.nvim", opts = {} },
-  { "kylechui/nvim-surround", opts = {} },
-  { "nmac427/guess-indent.nvim", opts = {} },
-  { "kana/vim-textobj-user", priority = 1000 },
-  "kana/vim-textobj-indent",
-  "kana/vim-textobj-entire",
-  "kana/vim-textobj-line",
-  "Julian/vim-textobj-variable-segment",
-  "glts/vim-textobj-comment",
-  { "folke/neodev.nvim", opts = {} },
   {
     dir = "~/workspace/cutlass.nvim",
     opts = {
@@ -39,16 +29,30 @@ require("lazy").setup({
       exclude = { "ns", "nS" },
     },
   },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      local which_key = require("which-key")
+      which_key.setup({})
+    end,
+  },
+  { "kylechui/nvim-surround", opts = {} },
+  { "nmac427/guess-indent.nvim", opts = {} },
+  { "kana/vim-textobj-user", priority = 1000 },
+  "glts/vim-textobj-comment",
+  { import = "usr.plugins.nvim-various-textobjs" },
+  { "folke/neodev.nvim", opts = {} },
   { import = "usr.plugins.comment" },
   { import = "usr.plugins.indent_blankline" },
   { "lukas-reineke/virt-column.nvim", opts = {} },
   { import = "usr.plugins.nord" },
   { import = "usr.plugins.lualine" },
   { import = "usr.plugins.project_nvim" },
-  { "vigoux/notifier.nvim", opts = {} },
-  { "SmiteshP/nvim-navic", opts = { highlight = true } },
+  -- { "vigoux/notifier.nvim", opts = {} },
+  { import = "usr.plugins.nvim-notify" },
   { import = "usr.plugins.bufferline" },
-  { "utilyre/barbecue.nvim", opts = { exclude_filetypes = { "gitcommit", "toggleterm", "gitrebase" } } },
+  { "Bekaboo/dropbar.nvim", opts = { menu = { win_configs = { border = "shadow" } } } },
   { import = "usr.plugins.treesitter" },
   { import = "usr.plugins.colorizer" },
   { import = "usr.plugins.scrollbar" },
@@ -77,6 +81,27 @@ require("lazy").setup({
   { import = "usr.plugins.yanky" },
   { import = "usr.plugins.substitute" },
   { import = "usr.plugins.iron" },
+  { import = "usr.plugins.sentiment" },
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    config = function()
+      vim.g.codeium_disable_bindings = 1
+      vim.keymap.set("i", "<c-g>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      vim.keymap.set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      -- vim.keymap.set("i", "<c-x>", function()
+      --   return vim.fn["codeium#Clear"]()
+      -- end, { expr = true })
+    end,
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
 }, {
   install = {
     colorscheme = { "nord" },

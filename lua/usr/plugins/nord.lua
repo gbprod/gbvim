@@ -29,7 +29,7 @@ return {
           },
         },
       })
-      vim.cmd("colorscheme nord")
+      vim.cmd.colorscheme("nord")
     end,
   },
 }
