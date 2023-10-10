@@ -5,9 +5,13 @@ return {
       require("substitute").setup({
         yank_substituted_text = false,
         on_substitute = require("yanky.integration").substitute(),
+        preserve_cursor_position = true,
         range = {
           prompt_current_text = true,
           group_substituted_text = true,
+        },
+        exchange = {
+          preserve_cursor_position = true,
         },
       })
       -- vim.keymap.set("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })

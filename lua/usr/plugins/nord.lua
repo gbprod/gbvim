@@ -8,19 +8,13 @@ return {
         diff = { mode = "fg" },
         borders = true,
         errors = { mode = "none" },
-        colorblind = {
-          enable = false,
-          preserve_background = true,
-          severity = {
-            protan = 0,
-            deutan = 1,
-            tritan = 1,
-          },
-        },
+        on_highlights = function(highlights, colors)
+          highlights.Search = { bg = colors.polar_night.brighter, bold = true }
+        end,
         styles = {
-          comments = { italic = false },
+          comments = { italic = true },
           keywords = {},
-          functions = {},
+          functions = { italic = true },
           variables = {},
           errors = {},
           bufferline = {

@@ -1,6 +1,6 @@
 return {
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       local formatting_autogroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
