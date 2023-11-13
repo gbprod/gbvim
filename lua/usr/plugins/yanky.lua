@@ -8,7 +8,10 @@ return {
       local mapping = require("yanky.telescope.mapping")
       require("telescope").load_extension("yank_history")
       require("yanky").setup({
-        ring = { storage = "sqlite", history_length = 1000 },
+        ring = {
+          storage = "sqlite",
+          history_length = 1000,
+        },
         textobj = {
           enabled = true,
         },

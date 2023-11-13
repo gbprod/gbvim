@@ -39,8 +39,6 @@ function M.on_attach(client, bufnr)
   vim.keymap.set("n", "<space>cF", M.toggle_should_format, opts)
 
   vim.keymap.set("n", "<M-s>", require("lsp_signature").toggle_float_win, opts)
-
-  require("nvim-navic").attach(client, bufnr)
 end
 
 function M.make_capabilities()

@@ -35,19 +35,19 @@ return {
           }),
           ["<C-g>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "s", "c" }),
-          ["<C-e>"] = cmp.mapping(cmp.mapping.close(), { "i", "s", "c" }),
-          ["<Tab>"] = cmp.mapping(
-            cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
-            { "i", "s", "c" }
-          ),
-          ["<S-Tab>"] = cmp.mapping(
-            cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
-            { "i", "s", "c" }
-          ),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<Tab>"] = cmp.mapping.select_next_item({
+            behavior = types.cmp.SelectBehavior.Select,
+          }),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item({
+            behavior = types.cmp.SelectBehavior.Select,
+          }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         },
         sources = {
+          { name = "copilot" },
+          { name = "codeium" },
           { name = "nvim_lsp" },
           { name = "snippy" },
           {
@@ -67,6 +67,11 @@ return {
           format = lspkind.cmp_format({
             mode = "symbol",
             maxwidth = 50,
+            ellipsis_char = "...",
+            symbol_map = {
+              Codeium = "",
+              Copilot = "",
+            },
           }),
         },
         experimental = {

@@ -6,7 +6,7 @@ return {
         lookForwardSmall = 5,
         lookForwardBig = 15,
         useDefaultKeymaps = true,
-        disabledKeymaps = { "iS", "aS" },
+        disabledKeymaps = { "iS", "aS", "gc" },
       })
 
       vim.keymap.set({ "o", "x" }, "iv", "<cmd>lua require('various-textobjs').subword('inner')<CR>")

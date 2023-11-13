@@ -14,15 +14,13 @@ return {
           preserve_cursor_position = true,
         },
       })
-      -- vim.keymap.set("x", "p", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-      -- vim.keymap.set("x", "P", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 
       vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
       vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
       vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
       vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
 
-      vim.keymap.set("n", ")s", function()
+      vim.keymap.set({ "n", "x" }, ")s", function()
         require("substitute").operator({
           wrappers = require("substitute.wrappers").build({ "linewise" }),
         })
@@ -30,13 +28,13 @@ return {
 
       vim.keymap.set("n", "=s", function()
         require("substitute").operator({
-          wrappers = require("substitute.wrappers").build({ "linewise", "==" }),
+          wrappers = require("substitute.wrappers").build({ "linewise", "reindent" }),
         })
       end, { noremap = true })
 
       vim.keymap.set("n", "]s", function()
         require("substitute").operator({
-          wrappers = require("substitute.wrappers").build({ "charwise", "join", "trim" }),
+          wrappers = require("substitute.wrappers").build({ "join", "trim" }),
         })
       end, { noremap = true })
 

@@ -39,7 +39,7 @@ return function()
   vim.keymap.set("n", "(Q", "<cmd>cfirst<cr>", {})
   vim.keymap.set("n", ")Q", "<cmd>clast<cr>", {})
 
-  vim.keymap.set({ "o", "x" }, "lp", function()
+  vim.keymap.set({ "o", "x" }, "vp", function()
     require("yanky.textobj").last_put()
   end, {})
 end

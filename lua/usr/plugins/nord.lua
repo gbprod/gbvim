@@ -6,11 +6,9 @@ return {
     config = function()
       require("nord").setup({
         diff = { mode = "fg" },
+        search = { theme = "vscode" },
         borders = true,
         errors = { mode = "none" },
-        on_highlights = function(highlights, colors)
-          highlights.Search = { bg = colors.polar_night.brighter, bold = true }
-        end,
         styles = {
           comments = { italic = true },
           keywords = {},

@@ -29,14 +29,7 @@ require("lazy").setup({
       exclude = { "ns", "nS" },
     },
   },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = function()
-      local which_key = require("which-key")
-      which_key.setup({})
-    end,
-  },
+  { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
   { "kylechui/nvim-surround", opts = {} },
   { "nmac427/guess-indent.nvim", opts = {} },
   { "kana/vim-textobj-user", priority = 1000 },
@@ -49,7 +42,6 @@ require("lazy").setup({
   { import = "usr.plugins.nord" },
   { import = "usr.plugins.lualine" },
   { import = "usr.plugins.project_nvim" },
-  -- { "vigoux/notifier.nvim", opts = {} },
   { import = "usr.plugins.nvim-notify" },
   { import = "usr.plugins.bufferline" },
   { "Bekaboo/dropbar.nvim", opts = { menu = { win_configs = { border = "shadow" } } } },
@@ -82,25 +74,10 @@ require("lazy").setup({
   { import = "usr.plugins.substitute" },
   { import = "usr.plugins.iron" },
   { import = "usr.plugins.sentiment" },
-  {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-    config = function()
-      vim.g.codeium_disable_bindings = 1
-      vim.keymap.set("i", "<c-g>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      -- vim.keymap.set("i", "<c-x>", function()
-      --   return vim.fn["codeium#Clear"]()
-      -- end, { expr = true })
-    end,
-  },
+  { import = "usr.plugins.illuminate" },
+  { "tzachar/highlight-undo.nvim", opts = {} },
+  { "Exafunction/codeium.nvim", event = "BufEnter", opts = {} },
+  { import = "usr.plugins.copilot" },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
 }, {
   install = {
