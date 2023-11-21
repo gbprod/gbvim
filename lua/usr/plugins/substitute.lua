@@ -15,26 +15,43 @@ return {
         },
       })
 
-      vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
-      vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
+      vim.keymap.set("n", "s", function()
+        require("substitute").operator({
+          modifiers = function(state)
+            if state.vmode == "char" then
+              return { "trim" }
+            end
+
+            if state.vmode == "line" then
+              return { "reindent" }
+            end
+          end,
+        })
+      end, { noremap = true })
+
+      vim.keymap.set("n", "ss", function()
+        require("substitute").line({
+          modifiers = { "reindent" },
+        })
+      end, { noremap = true })
       vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
       vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
 
       vim.keymap.set({ "n", "x" }, ")s", function()
         require("substitute").operator({
-          wrappers = require("substitute.wrappers").build({ "linewise" }),
+          modifiers = { "linewise" },
         })
       end, { noremap = true })
 
       vim.keymap.set("n", "=s", function()
         require("substitute").operator({
-          wrappers = require("substitute.wrappers").build({ "linewise", "reindent" }),
+          modifiers = { "linewise", "reindent" },
         })
       end, { noremap = true })
 
       vim.keymap.set("n", "]s", function()
         require("substitute").operator({
-          wrappers = require("substitute.wrappers").build({ "join", "trim" }),
+          modifiers = require("substitute.modifiers").build({ "join", "trim" }),
         })
       end, { noremap = true })
 
@@ -44,7 +61,9 @@ return {
       vim.keymap.set("n", "sxc", require("substitute.exchange").cancel, { noremap = true })
 
       require("which-key").register({ ["<leader>xs"] = { name = "+Substitute" }, { mode = "n" } })
-      vim.keymap.set("n", "<leader>xss", require("substitute.range").operator, { desc = "Substitute <motion><motion>" })
+      vim.keymap.set("n", "<leader>xss", function()
+        require("substitute.range").operator({ cursor_position = "start", register = "0" })
+      end, { desc = "Substitute <motion><motion>" })
       vim.keymap.set("n", "<leader>xsS", function()
         require("substitute.range").operator({ confirm = true })
       end, { desc = "Substitute <motion><motion> with confirm" })

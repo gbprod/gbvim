@@ -42,7 +42,7 @@ require("lazy").setup({
   { import = "usr.plugins.nord" },
   { import = "usr.plugins.lualine" },
   { import = "usr.plugins.project_nvim" },
-  { import = "usr.plugins.nvim-notify" },
+  { import = "usr.plugins.fidget" },
   { import = "usr.plugins.bufferline" },
   { "Bekaboo/dropbar.nvim", opts = { menu = { win_configs = { border = "shadow" } } } },
   { import = "usr.plugins.treesitter" },
