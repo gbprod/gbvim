@@ -31,15 +31,15 @@ return {
             error_annote = " ",
           },
         },
-      },
-      view = {
-        icon_separator = " ",
-        group_separator = "---",
-        group_separator_hl = "Normal",
-      },
+        view = {
+          icon_separator = " ",
+          group_separator = "---",
+          group_separator_hl = "Normal",
+        },
 
-      window = {
-        normal_hl = "Normal",
+        window = {
+          normal_hl = "Normal",
+        },
       },
     },
   },

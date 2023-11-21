@@ -103,10 +103,6 @@ return {
             node_decremental = "grm",
           },
         },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
         autotag = {
           enable = true,
           filetypes = {
