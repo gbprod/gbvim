@@ -15,7 +15,9 @@ return {
               group = formatting_autogroup,
               buffer = bufnr,
               callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr })
+                if require("usr.lsp-utils").should_format() then
+                  vim.lsp.buf.format({ bufnr = bufnr })
+                end
               end,
             })
           end

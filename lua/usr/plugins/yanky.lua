@@ -65,8 +65,8 @@ return {
       vim.keymap.set("n", "]gp", "<Plug>(YankyGPutAfterCharwiseJoined)", {})
       vim.keymap.set("n", "]gP", "<Plug>(YankyGPutBeforeCharwiseJoined)", {})
 
-      vim.keymap.set("n", "<M-p>", "<Plug>(YankyCycleForward)", {})
-      vim.keymap.set("n", "<M-P>", "<Plug>(YankyCycleBackward)", {})
+      vim.keymap.set("n", "<M-p>", "<Plug>(YankyPreviousEntry)", {})
+      vim.keymap.set("n", "<M-P>", "<Plug>(YankyNextEntry)", {})
 
       vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { noremap = true })
 

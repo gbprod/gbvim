@@ -43,7 +43,7 @@ return {
           ["<S-Tab>"] = cmp.mapping.select_prev_item({
             behavior = types.cmp.SelectBehavior.Select,
           }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm(--[[ { select = true } ]]),
         },
         sources = {
           { name = "copilot" },

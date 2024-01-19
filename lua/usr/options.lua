@@ -5,7 +5,7 @@ return function()
   vim.opt.cursorline = true
   vim.opt.number = true
   vim.opt.numberwidth = 2
-  vim.opt.relativenumber = true
+  vim.opt.relativenumber = false
   vim.opt.termguicolors = true
   vim.opt.laststatus = 2
   vim.opt.showcmd = true

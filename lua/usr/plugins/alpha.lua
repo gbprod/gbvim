@@ -12,7 +12,12 @@ return {
         button("b", "  > Filebrowser", ":Telescope file_browser grouped=true<cr>", { silent = true }),
         button("f", "  > Find File", ":Telescope find_files<cr>", { silent = true }),
         button("e", "  > New file", ":ene <cr>", { silent = true }),
-        button("u", "  > Update plugins", ":Lazy update<cr>", { silent = true }),
+        button(
+          "u",
+          "  > Update plugins",
+          ":Lazy update | TSUpdate | lua require('phpactor.handler.update')()<cr>",
+          { silent = true }
+        ),
         button("q", "  > Exit", ":qa<cr>", { silent = true }),
       }
 

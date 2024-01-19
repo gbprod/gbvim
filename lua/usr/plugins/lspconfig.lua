@@ -50,10 +50,11 @@ return {
         },
       })
 
-      -- javascript
+      -- -- javascript
       lspconfig.tsserver.setup({
         on_attach = utils.on_attach,
         capabilities = utils.make_capabilities(),
+        settings = { documentFormatting = false },
       })
       lspconfig.eslint.setup({})
 

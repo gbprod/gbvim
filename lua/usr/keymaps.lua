@@ -42,4 +42,9 @@ return function()
   vim.keymap.set({ "o", "x" }, "vp", function()
     require("yanky.textobj").last_put()
   end, {})
+
+  -- Toggle relative line numbers
+  vim.keymap.set("n", "<leader>tn", function()
+    vim.opt.relativenumber = not vim.opt.relativenumber._value
+  end, { desc = "Toggle relative line numbers" })
 end
