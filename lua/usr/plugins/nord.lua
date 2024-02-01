@@ -20,6 +20,9 @@ return {
             modified = { bold = false, italic = true },
           },
         },
+        on_highlights = function(highlights, colors)
+          highlights["@warning"] = { sp = colors.aurora.yellow, undercurl = true }
+        end,
       })
       vim.cmd.colorscheme("nord")
     end,

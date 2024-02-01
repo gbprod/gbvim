@@ -1,4 +1,5 @@
 ; extends
 
-(subject (subject_prefix) @function @spell)
+(subject (overflow) @warning @spell)
+(subject (overflow (warning) @error @spell))
 

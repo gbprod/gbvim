@@ -31,7 +31,7 @@ return {
         end,
       })
 
-      null_ls.register(null_ls.builtins.formatting.clang_format)
+      -- null_ls.register(null_ls.builtins.formatting.clang_format)
 
       null_ls.register(null_ls.builtins.formatting.prettier.with({
         args = {
@@ -57,7 +57,7 @@ return {
         end,
       }))
 
-      null_ls.register(null_ls.builtins.diagnostics.luacheck)
+      null_ls.register(require("none-ls-luacheck.diagnostics.luacheck"))
 
       -- php
       null_ls.register(null_ls.builtins.formatting.phpcsfixer.with({
@@ -83,9 +83,17 @@ return {
         end,
       }))
 
-      null_ls.register(null_ls.builtins.code_actions.shellcheck)
-      null_ls.register(null_ls.builtins.diagnostics.shellcheck)
-      null_ls.register(null_ls.builtins.formatting.shfmt)
+      null_ls.register(require("none-ls-shellcheck.diagnostics"))
+      null_ls.register(require("none-ls-shellcheck.code_actions"))
+      -- null_ls.register(null_ls.builtins.formatting.shfmt)
+      null_ls.register(require("none-ls-php.diagnostics.php"))
+      -- null_ls.register(require("none-ls-psalm.diagnostics"))
     end,
+    dependencies = {
+      { dir = "~/workspace/none-ls-php.nvim" },
+      { dir = "~/workspace/none-ls-luacheck.nvim" },
+      { dir = "~/workspace/none-ls-shellcheck.nvim" },
+      { dir = "~/workspace/none-ls-psalm.nvim" },
+    },
   },
 }

@@ -17,13 +17,17 @@ function M.on_attach(client, bufnr)
 
   local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+  -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+  vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>")
+  vim.keymap.set("n", "gr", "<CMD>Glance references<CR>")
+  vim.keymap.set("n", "gt", "<CMD>Glance type_definitions<CR>")
+  vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>")
+  -- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
   vim.keymap.set({ "v", "n" }, "<a-cr>", vim.lsp.buf.code_action, opts)
   vim.keymap.set("n", "<leader>ft", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 

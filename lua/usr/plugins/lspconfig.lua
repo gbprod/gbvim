@@ -3,6 +3,17 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "ray-x/lsp_signature.nvim",
+      {
+        "dnlhc/glance.nvim",
+        opts = {
+          folds = {
+            folded = false,
+          },
+          preview_win_opts = {
+            colorcolumn = "",
+          },
+        },
+      },
       "nanotee/sqls.nvim",
     },
     config = function()
