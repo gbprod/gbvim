@@ -74,26 +74,44 @@ return {
         runtime_condition = function(_)
           return require("usr.lsp-utils").should_format()
         end,
+        condition = function(utils)
+          return utils.root_has_file(".php-cs-fixer.php") or utils.root_has_file(".php-cs-fixer.dist.php")
+        end,
       }))
 
       -- python
-      null_ls.register(null_ls.builtins.formatting.black.with({
-        runtime_condition = function(_)
-          return require("usr.lsp-utils").should_format()
-        end,
-      }))
+      -- null_ls.register(null_ls.builtins.formatting.black.with({
+      --   runtime_condition = function(_)
+      --     return require("usr.lsp-utils").should_format()
+      --   end,
+      -- }))
 
       null_ls.register(require("none-ls-shellcheck.diagnostics"))
       null_ls.register(require("none-ls-shellcheck.code_actions"))
       -- null_ls.register(null_ls.builtins.formatting.shfmt)
+
       null_ls.register(require("none-ls-php.diagnostics.php"))
-      -- null_ls.register(require("none-ls-psalm.diagnostics"))
+      -- null_ls.register(require("none-ls-psalm.diagnostics").with({
+      --   condition = function(utils)
+      --     return utils.root_has_file("psalm.xml")
+      --   end,
+      -- }))
+      null_ls.register(require("none-ls-ecs.formatting").with({
+        command = "vendor/bin/ecs",
+        runtime_condition = function(_)
+          return require("usr.lsp-utils").should_format()
+        end,
+        condition = function(utils)
+          return utils.root_has_file("ecs.php") and utils.root_has_file("vendor/bin/ecs")
+        end,
+      }))
     end,
     dependencies = {
+      { dir = "~/workspace/none-ls-ecs.nvim" },
       { dir = "~/workspace/none-ls-php.nvim" },
       { dir = "~/workspace/none-ls-luacheck.nvim" },
       { dir = "~/workspace/none-ls-shellcheck.nvim" },
-      { dir = "~/workspace/none-ls-psalm.nvim" },
+      -- { dir = "~/workspace/none-ls-psalm.nvim" },
     },
   },
 }

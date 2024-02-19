@@ -5,14 +5,11 @@ return {
       "ray-x/lsp_signature.nvim",
       {
         "dnlhc/glance.nvim",
-        opts = {
+        opts = require("nord.plugins.glance").make_opts({
           folds = {
             folded = false,
           },
-          preview_win_opts = {
-            colorcolumn = "",
-          },
-        },
+        }),
       },
       "nanotee/sqls.nvim",
     },
@@ -113,15 +110,14 @@ return {
         end,
       })
 
-      -- python
-      lspconfig.pyright.setup({
+      lspconfig.bashls.setup({
         on_attach = utils.on_attach,
         capabilities = utils.make_capabilities(),
       })
 
-      lspconfig.bashls.setup({
-        on_attach = utils.on_attach,
-        capabilities = utils.make_capabilities(),
+      -- psalm
+      lspconfig.psalm.setup({
+        cmd = { "vendor/bin/psalm", "--language-server", "--show-diagnostic-warnings=false" },
       })
 
       -- lspconfig.sqls.setup({

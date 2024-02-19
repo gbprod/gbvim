@@ -57,7 +57,11 @@ require("lazy").setup({
   { import = "usr.plugins.telescope" },
   { import = "usr.plugins.dressing" },
   { import = "usr.plugins.open-related" },
-  { "windwp/nvim-autopairs", opts = { check_ts = true } },
+  {
+    "windwp/nvim-autopairs",
+    opts = { check_ts = true },
+    commit = "00def0123a1a728c313a7dd448727eac71392c57",
+  },
   { import = "usr.plugins.cmp" },
   { import = "usr.plugins.gitsigns" },
   { import = "usr.plugins.lspconfig" },

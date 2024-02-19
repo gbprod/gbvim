@@ -60,6 +60,12 @@ return {
           -- Text object
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
         end,
+        current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 1000,
+          virt_text_priority = 5000,
+        },
+        current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
         preview_config = {
           border = "single",
         },
