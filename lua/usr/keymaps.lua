@@ -9,9 +9,9 @@ return function()
   vim.keymap.set("i", "<PageUp>", "<C-O><C-U>", {})
   vim.keymap.set("i", "<PageDown>", "<C-O><C-D>", {})
 
-  vim.keymap.set("n", "<c-s>", ":<c-u>w<CR>", { noremap = true })
-  vim.keymap.set("v", "<c-s>", ":<c-u>w<CR>gv", { noremap = true })
-  vim.keymap.set("i", "<C-s>", "<C-o>:w<CR>", { noremap = true })
+  vim.keymap.set("n", "<c-s>", ":<c-u>update<CR>", { noremap = true })
+  vim.keymap.set("v", "<c-s>", ":<c-u>update<CR>gv", { noremap = true })
+  vim.keymap.set("i", "<C-s>", "<C-o>:update<CR>", { noremap = true })
 
   vim.keymap.set("n", "<C-S-Down>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "which_key_ignore" })
   vim.keymap.set("n", "<C-S-Up>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "which_key_ignore" })

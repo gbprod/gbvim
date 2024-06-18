@@ -1,41 +1,56 @@
 return {
   {
     "kevinhwang91/nvim-hlslens",
+    opts = {
+      calm_down = false,
+      nearest_only = true,
+      nearest_float_when = "never",
+    },
+  },
+  {
+    "backdround/improved-search.nvim",
+    requires = "kevinhwang91/nvim-hlslens",
     config = function()
       local hlslens = require("hlslens")
-      hlslens.setup({
-        calm_down = false,
-        nearest_only = true,
-        nearest_float_when = "never",
-      })
+      local search = require("improved-search")
 
-      vim.keymap.set("n", "*", function()
-        vim.fn.execute("normal! *N")
+      vim.keymap.set({ "n", "x", "o" }, "n", function()
+        search.stable_next()
         hlslens.start()
       end, { noremap = true, silent = true })
 
-      vim.keymap.set("n", "#", function()
-        vim.fn.execute("normal! #N")
+      vim.keymap.set({ "n", "x", "o" }, "N", function()
+        search.stable_previous()
         hlslens.start()
       end, { noremap = true, silent = true })
 
-      vim.keymap.set("n", "g*", function()
-        vim.fn.execute("normal! g*N")
+      vim.keymap.set({ "n", "x" }, "*", function()
+        search.current_word_strict()
         hlslens.start()
       end, { noremap = true, silent = true })
 
-      vim.keymap.set("n", "g#", function()
-        vim.fn.execute("normal! g#N")
+      vim.keymap.set({ "n", "x" }, "#", function()
+        search.current_word_strict()
         hlslens.start()
       end, { noremap = true, silent = true })
 
-      vim.keymap.set("n", "n", function()
-        vim.fn.execute("normal! " .. vim.v.count1 .. "n")
+      vim.keymap.set({ "n", "x" }, "g*", function()
+        search.current_word()
         hlslens.start()
       end, { noremap = true, silent = true })
 
-      vim.keymap.set("n", "N", function()
-        vim.fn.execute("normal! " .. vim.v.count1 .. "N")
+      vim.keymap.set({ "n", "x" }, "g#", function()
+        search.current_word()
+        hlslens.start()
+      end, { noremap = true, silent = true })
+
+      vim.keymap.set({ "n", "x" }, "g#", function()
+        search.current_word()
+        hlslens.start()
+      end, { noremap = true, silent = true })
+
+      vim.keymap.set({ "n" }, "!", function()
+        search.in_place()
         hlslens.start()
       end, { noremap = true, silent = true })
     end,

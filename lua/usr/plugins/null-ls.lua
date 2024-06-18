@@ -5,9 +5,11 @@ return {
       local formatting_autogroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
       local null_ls = require("null-ls")
+
       null_ls.setup({
         debug = true,
         update_on_insert = false,
+        sources = {},
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_clear_autocmds({ group = formatting_autogroup, buffer = bufnr })
@@ -16,22 +18,31 @@ return {
               buffer = bufnr,
               callback = function()
                 if require("usr.lsp-utils").should_format() then
-                  vim.lsp.buf.format({ bufnr = bufnr })
+                  vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
                 end
               end,
             })
           end
 
-          local opts = { noremap = true, silent = true, buffer = bufnr }
           vim.keymap.set("n", "<space>cf", function()
-            vim.lsp.buf.format({ buffer = bufnr })
-          end, opts)
-          vim.keymap.set("n", "<space>cF", require("usr.lsp-utils").toggle_should_format, opts)
-          vim.keymap.set({ "v", "n" }, "<a-cr>", vim.lsp.buf.code_action, opts)
+            vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
+          end, { noremap = true, silent = true, buffer = bufnr })
+          vim.keymap.set(
+            "n",
+            "<space>cF",
+            require("usr.lsp-utils").toggle_should_format,
+            { noremap = true, silent = true, buffer = bufnr }
+          )
+          vim.keymap.set(
+            { "v", "n" },
+            "<a-cr>",
+            vim.lsp.buf.code_action,
+            { noremap = true, silent = true, buffer = bufnr }
+          )
         end,
       })
 
-      -- null_ls.register(null_ls.builtins.formatting.clang_format)
+      null_ls.register(null_ls.builtins.formatting.clang_format)
 
       null_ls.register(null_ls.builtins.formatting.prettier.with({
         args = {
@@ -79,22 +90,15 @@ return {
         end,
       }))
 
-      -- python
-      -- null_ls.register(null_ls.builtins.formatting.black.with({
-      --   runtime_condition = function(_)
-      --     return require("usr.lsp-utils").should_format()
-      --   end,
-      -- }))
-
       null_ls.register(require("none-ls-shellcheck.diagnostics"))
       null_ls.register(require("none-ls-shellcheck.code_actions"))
-      -- null_ls.register(null_ls.builtins.formatting.shfmt)
 
       null_ls.register(require("none-ls-php.diagnostics.php"))
       -- null_ls.register(require("none-ls-psalm.diagnostics").with({
       --   condition = function(utils)
       --     return utils.root_has_file("psalm.xml")
       --   end,
+      --   method = require("null-ls.methods").internal.DIAGNOSTICS_ON_SAVE,
       -- }))
       null_ls.register(require("none-ls-ecs.formatting").with({
         command = "vendor/bin/ecs",
@@ -102,7 +106,7 @@ return {
           return require("usr.lsp-utils").should_format()
         end,
         condition = function(utils)
-          return utils.root_has_file("ecs.php") and utils.root_has_file("vendor/bin/ecs")
+          return utils.root_has_file("ecs.php")
         end,
       }))
     end,
@@ -111,7 +115,7 @@ return {
       { dir = "~/workspace/none-ls-php.nvim" },
       { dir = "~/workspace/none-ls-luacheck.nvim" },
       { dir = "~/workspace/none-ls-shellcheck.nvim" },
-      -- { dir = "~/workspace/none-ls-psalm.nvim" },
+      { dir = "~/workspace/none-ls-psalm.nvim" },
     },
   },
 }

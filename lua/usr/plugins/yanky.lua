@@ -71,6 +71,7 @@ return {
       vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { noremap = true })
 
       vim.keymap.set({ "n", "x" }, "<leader>yy", "<cmd>Telescope yank_history<cr>", {})
+      vim.keymap.set("i", "<C-r>", "<cmd>Telescope yank_history theme=cursor previewer=false<cr>", {})
     end,
   },
 }

@@ -24,6 +24,7 @@ return {
       vim.cmd([[
       autocmd TermEnter term://*toggleterm#* tnoremap <silent><M-z> <Cmd>ToggleTerm<CR>
       autocmd TermEnter term://*toggleterm#* set signcolumn=no
+      autocmd TermEnter term://*toggleterm#* set winfixbuf
       ]])
     end,
   },

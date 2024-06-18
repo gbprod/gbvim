@@ -8,14 +8,6 @@ return {
         suggestion = {
           enabled = false,
           auto_trigger = false,
-          -- keymap = {
-          --   accept = "<M-g>",
-          --   accept_word = "<M-w>",
-          --   accept_line = "<M-l>",
-          --   next = "<M-)>",
-          --   prev = "<M-(>",
-          --   dismiss = "<M-e>",
-          -- },
         },
         panel = {
           enabled = false,
@@ -33,5 +25,14 @@ return {
     config = function()
       require("copilot_cmp").setup({})
     end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    opts = { debug = false },
   },
 }

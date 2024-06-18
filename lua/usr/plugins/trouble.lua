@@ -28,8 +28,12 @@ return {
         "<cmd>TroubleToggle document_diagnostics<cr>",
         { silent = true, noremap = true }
       )
-      vim.keymap.set("n", "<leader>dl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-      vim.keymap.set("n", "<leader>dq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", ")t", function()
+        require("trouble").next({ skip_groups = true, jump = true })
+      end, { silent = true, noremap = true })
+      vim.keymap.set("n", ")T", function()
+        require("trouble").previous({ skip_groups = true, jump = true })
+      end, { silent = true, noremap = true })
     end,
   },
 }

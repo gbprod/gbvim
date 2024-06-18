@@ -19,13 +19,13 @@ return {
               ["<C-Down>"] = require("telescope.actions").cycle_history_next,
               ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
               ["<C-h>"] = "which_key",
-              ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+              ["<c-t>"] = require("trouble.sources.telescope").open,
             },
             n = {
               ["<Down>"] = require("telescope.actions").cycle_history_next,
               ["<Up>"] = require("telescope.actions").cycle_history_prev,
               H = "which_key",
-              t = require("trouble.providers.telescope").open_with_trouble,
+              t = require("trouble.sources.telescope").open,
             },
           },
         },
@@ -62,5 +62,20 @@ return {
       vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Git Status" })
       vim.keymap.set("n", "<leader>gg", require("telescope.builtin").git_branches, { desc = "Git Branches" })
     end,
+  },
+  {
+    "danielfalk/smart-open.nvim",
+    config = function()
+      require("telescope").load_extension("smart_open")
+      vim.keymap.set("n", "<c-p>", function()
+        require("telescope").extensions.smart_open.smart_open({
+          cwd_only = true,
+          filename_first = false,
+        })
+      end, { noremap = true, silent = true })
+    end,
+    dependencies = {
+      "kkharji/sqlite.lua",
+    },
   },
 }

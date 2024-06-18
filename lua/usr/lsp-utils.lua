@@ -38,7 +38,7 @@ function M.on_attach(client, bufnr)
   vim.keymap.set("n", ")D", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "<space>cf", function()
-    vim.lsp.buf.format({ buffer = bufnr })
+    vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
   end, opts)
   vim.keymap.set("n", "<space>cF", M.toggle_should_format, opts)
 
@@ -46,6 +46,7 @@ function M.on_attach(client, bufnr)
 end
 
 function M.make_capabilities()
+  -- vim.lsp.inlay_hint.enable(true)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   return require("cmp_nvim_lsp").default_capabilities(capabilities)
 end

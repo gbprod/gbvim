@@ -5,11 +5,13 @@ return {
       "ray-x/lsp_signature.nvim",
       {
         "dnlhc/glance.nvim",
-        opts = require("nord.plugins.glance").make_opts({
-          folds = {
-            folded = false,
-          },
-        }),
+        config = function()
+          require("glance").setup(require("nord.plugins.glance").make_opts({
+            folds = {
+              folded = false,
+            },
+          }))
+        end,
       },
       "nanotee/sqls.nvim",
     },
@@ -77,35 +79,37 @@ return {
       lspconfig.lua_ls.setup({
         on_attach = utils.on_attach,
         on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-            client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-              Lua = {
-                format = {
-                  enable = false,
-                },
-                runtime = {
-                  version = "LuaJIT",
-                },
-                globals = {
-                  "it",
-                  "vim",
-                  "describe",
-                  "before_each",
-                },
-                workspace = {
-                  checkThirdParty = false,
-                  library = {
-                    vim.env.VIMRUNTIME,
-                    "${3rd}/luv/library",
-                    "${3rd}/busted/library",
+          -- local path = client.workspace_folders[1].name
+          -- if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+          client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+            Lua = {
+              format = {
+                enable = false,
+              },
+              runtime = {
+                version = "LuaJIT",
+              },
+              workspace = {
+                diagnostics = {
+                  globals = {
+                    "it",
+                    "vim",
+                    "describe",
+                    "before_each",
                   },
                 },
+                checkThirdParty = false,
+                library = {
+                  vim.env.VIMRUNTIME,
+                  "${3rd}/luv/library",
+                  "${3rd}/busted/library",
+                },
               },
-            })
+            },
+          })
 
-            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-          end
+          client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+          -- end
           return true
         end,
       })
@@ -116,9 +120,14 @@ return {
       })
 
       -- psalm
-      lspconfig.psalm.setup({
-        cmd = { "vendor/bin/psalm", "--language-server", "--show-diagnostic-warnings=false" },
-      })
+      -- lspconfig.psalm.setup({
+      --   cmd = {
+      --     "psalm",
+      --     "--language-server",
+      --     "--show-diagnostic-warnings=false",
+      --   },
+      --   capabilities = utils.make_capabilities(),
+      -- })
 
       -- lspconfig.sqls.setup({
       --   root_dir = require("lspconfig.util").root_pattern(".project.lua"),

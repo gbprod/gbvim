@@ -43,11 +43,10 @@ return {
           ["<S-Tab>"] = cmp.mapping.select_prev_item({
             behavior = types.cmp.SelectBehavior.Select,
           }),
-          ["<CR>"] = cmp.mapping.confirm(--[[ { select = true } ]]),
+          ["<CR>"] = cmp.mapping.confirm( --[[ { select = true } ]]),
         },
         sources = {
           { name = "copilot" },
-          { name = "codeium" },
           { name = "nvim_lsp" },
           { name = "snippy" },
           {
@@ -69,7 +68,6 @@ return {
             maxwidth = 50,
             ellipsis_char = "...",
             symbol_map = {
-              Codeium = "",
               Copilot = "",
             },
           }),

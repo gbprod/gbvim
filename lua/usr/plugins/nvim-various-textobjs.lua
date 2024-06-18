@@ -5,6 +5,8 @@ return {
       require("various-textobjs").setup({
         lookForwardSmall = 5,
         lookForwardBig = 15,
+        lookBackwardSmall = 5,
+        lookBackwardBig = 15,
         useDefaultKeymaps = true,
         disabledKeymaps = { "iS", "aS", "gc" },
       })
