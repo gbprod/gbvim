@@ -122,7 +122,7 @@ return {
         install_info = {
           url = "~/workspace/tree-sitter-gitcommit/",
           files = { "src/parser.c", "src/scanner.c" },
-          branch = "fix-1char-subsject-and-summary",
+          branch = "feat-remove-5072",
         },
       }
     end,

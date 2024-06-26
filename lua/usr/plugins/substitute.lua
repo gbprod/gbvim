@@ -22,9 +22,9 @@ return {
               return { "trim" }
             end
 
-            if state.vmode == "line" then
-              return { "reindent" }
-            end
+            -- if state.vmode == "line" then
+            --   return { "reindent" }
+            -- end
           end,
         })
       end, { noremap = true })

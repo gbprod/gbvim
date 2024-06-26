@@ -10,7 +10,7 @@ return {
           filetype = { enabled = true },
           diagnostics = {
             [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-            [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
+            [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
             [vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
             [vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
           },

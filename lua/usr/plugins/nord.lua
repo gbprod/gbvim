@@ -20,9 +20,9 @@ return {
             modified = { bold = false, italic = true },
           },
         },
-        -- on_highlights = function(highlights, colors)
-        -- highlights["@variable.parameter.php"] = { link = "@variable" }
-        -- end,
+        on_highlights = function(highlights, _)
+          highlights["@variable.parameter.bash"] = { link = "@variable" }
+        end,
       })
       vim.cmd.colorscheme("nord")
     end,

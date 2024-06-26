@@ -48,7 +48,7 @@ return {
         args = {
           "--config",
           vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc") == 1 and vim.fn.getcwd() .. "/.prettierrc"
-            or vim.fn.expand("~/.config/prettier/.prettierrc"),
+          or vim.fn.expand("~/.config/prettier/.prettierrc"),
           "--stdin-filepath",
           "$FILENAME",
         },
@@ -61,7 +61,7 @@ return {
         extra_args = {
           "--config-path",
           vim.fn.filereadable(vim.fn.getcwd() .. "/stylua.toml") == 1 and vim.fn.getcwd() .. "/stylua.toml"
-            or vim.fn.expand("~/.config/stylua.toml"),
+          or vim.fn.expand("~/.config/stylua.toml"),
         },
         runtime_condition = function(_)
           return require("usr.lsp-utils").should_format()
@@ -78,7 +78,7 @@ return {
         args = {
           "--no-interaction",
           "--quiet",
-          "--config=/home/gilles/.config/phpcs/.php-cs-fixer.php",
+          "--config=/home/gbprod/.dotfiles/config/phpcs/.php-cs-fixer.php",
           "fix",
           "$FILENAME",
         },
