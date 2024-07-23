@@ -3,13 +3,7 @@ return {
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup({
-        signs = {
-          error = "",
-          warning = "",
-          hint = "",
-          information = "",
-          other = "﫠",
-        },
+        use_lsp_diagnostic_signs = true,
       })
       require("which-key").register({
         ["<leader>d"] = {
@@ -25,7 +19,7 @@ return {
       vim.keymap.set(
         "n",
         "<leader>dd",
-        "<cmd>TroubleToggle document_diagnostics<cr>",
+        "<cmd>TroubleToggle diagnostics<cr>",
         { silent = true, noremap = true }
       )
       vim.keymap.set("n", ")t", function()

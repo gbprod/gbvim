@@ -9,7 +9,7 @@ return {
       require("telescope").load_extension("yank_history")
       require("yanky").setup({
         ring = {
-          storage = "sqlite",
+          storage = "shada",
           history_length = 1000,
         },
         textobj = {

@@ -16,6 +16,17 @@ return {
       "nanotee/sqls.nvim",
     },
     config = function()
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
+          },
+        },
+      })
+
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "single",
       })
@@ -25,10 +36,10 @@ return {
       })
 
       local signs = {
-        Error = " ",
-        Warn = " ",
-        Hint = " ",
-        Info = " ",
+        Error = " ",
+        Warn = " ",
+        Hint = " ",
+        Info = " ",
       }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
