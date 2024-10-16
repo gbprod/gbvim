@@ -1,9 +1,7 @@
 return {
   {
     dir = "~/workspace/yanky.nvim",
-    dependencies = {
-      "kkharji/sqlite.lua",
-    },
+    dependencies = {},
     config = function()
       local mapping = require("yanky.telescope.mapping")
       require("telescope").load_extension("yank_history")

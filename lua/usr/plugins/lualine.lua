@@ -13,7 +13,7 @@ return {
         lualine_b = {},
         lualine_c = { "diagnostic-message" },
         lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { "branch", "diff", "diagnostics" },
+        lualine_y = { "branch", "diff" },
         lualine_z = { "progress", "location" },
       },
       extensions = {
@@ -24,7 +24,6 @@ return {
     },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "Isrothy/lualine-diagnostic-message",
     },
   },
 }

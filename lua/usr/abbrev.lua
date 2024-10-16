@@ -6,5 +6,6 @@ return function()
     cnoreabbrev h vertical help
     cnoreabbrev qa confirm qa
     cnoreabbrev q confirm q
+    cnoreabbrev hi highlight
     ]])
 end

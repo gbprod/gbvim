@@ -22,9 +22,8 @@ return {
           end,
         },
         window = {
-          documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-          }),
+          -- completion = cmp.config.window.bordered({}),
+          documentation = cmp.config.window.bordered({}),
         },
         mapping = {
           ["<C-n>"] = cmp.mapping.select_next_item({

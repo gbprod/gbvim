@@ -12,6 +12,7 @@ return {
         button("b", "  > Filebrowser", ":Telescope file_browser grouped=true<cr>", { silent = true }),
         button("f", "  > Find File", ":Telescope find_files<cr>", { silent = true }),
         button("e", "  > New file", ":ene <cr>", { silent = true }),
+        button("c", "  > Copilot", ":CopilotChat<cr>", { silent = true }),
         button(
           "u",
           "  > Update plugins",

@@ -8,6 +8,7 @@ return {
         diff = { mode = "fg" },
         search = { theme = "vscode" },
         borders = true,
+        transparent = false,
         errors = { mode = "none" },
         styles = {
           comments = { italic = true },
@@ -20,7 +21,7 @@ return {
             modified = { bold = false, italic = true },
           },
         },
-        on_highlights = function(highlights, _)
+        on_highlights = function(highlights, colors)
           highlights["@variable.parameter.bash"] = { link = "@variable" }
         end,
       })

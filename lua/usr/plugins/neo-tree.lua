@@ -174,7 +174,7 @@ return {
         },
       })
 
-      vim.keymap.set("n", "<M-a>", ":Neotree toggle<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<M-a>", ":Neotree toggle=true action=show<CR>", { noremap = true, silent = true })
       vim.keymap.set("n", "<leader>fo", "<cmd>Neotree reveal<cr>", { desc = "Reveal in filetree" })
       vim.keymap.set("n", "<leader>fg", "<cmd>Neotree git_status<cr>", { desc = "Reveal in filetree" })
     end,

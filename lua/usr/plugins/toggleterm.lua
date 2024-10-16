@@ -3,19 +3,14 @@ return {
     "akinsho/toggleterm.nvim",
 
     config = function()
-      require("toggleterm").setup({
+      require("toggleterm").setup(require("nord.plugins.toggleterm").make_opts({
         open_mapping = nil,
         persist_size = true,
         direction = "float",
-        highlights = {
-          FloatBorder = {
-            link = "FloatBorder",
-          },
-        },
         float_opts = {
           border = "single",
         },
-      })
+      }))
 
       vim.keymap.set("n", "<M-z>", "':ToggleTerm dir=' . getcwd() . '<cr>'", { expr = true })
       vim.keymap.set("i", "<M-z>", "<esc><cmd>ToggleTerm<cr>", {})

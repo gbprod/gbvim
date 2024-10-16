@@ -57,6 +57,7 @@ return {
 
       require("which-key").register({ ["<leader>b"] = { name = "+Buffers" } })
       vim.keymap.set("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
+      vim.keymap.set("n", "<c-b>", require("telescope.builtin").buffers, { desc = "Buffers" })
       vim.keymap.set("n", "<c-p>", require("telescope.builtin").find_files, {})
       vim.keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser grouped=true<cr>", { desc = "File browser" })
       vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Git Status" })
