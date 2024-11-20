@@ -39,7 +39,7 @@ return {
       vim.keymap.set({ "n", "x" }, ")p", "<Plug>(YankyPutIndentAfterLinewise)", {})
       vim.keymap.set({ "n", "x" }, ")P", "<Plug>(YankyPutIndentAfterLinewise)", {})
 
-      vim.keymap.set({ "n", "x" }, ")gp", "<Plug>(YankyGPutAfterLinewise)", {})
+      -- vim.keymap.set({ "n", "x" }, ")gp", "<Plug>(YankyGPutAfterLinewise)", {})
       vim.keymap.set({ "n", "x" }, ")gP", "<Plug>(YankyGPutAfterLinewise)", {})
 
       vim.keymap.set({ "n", "x" }, ">p", "<Plug>(YankyPutIndentAfterShiftRight)", {})

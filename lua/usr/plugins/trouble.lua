@@ -10,18 +10,8 @@ return {
           name = "+Diagnostics",
         },
       })
-      vim.keymap.set(
-        "n",
-        "<leader>dw",
-        "<cmd>TroubleToggle workspace_diagnostics<cr>",
-        { silent = true, noremap = true }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>dd",
-        "<cmd>TroubleToggle diagnostics<cr>",
-        { silent = true, noremap = true }
-      )
+      vim.keymap.set("n", "<leader>dw", "<cmd>Trouble workspace_diagnostics<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>dd", "<cmd>Trouble diagnostics<cr>", { silent = true, noremap = true })
       vim.keymap.set("n", ")t", function()
         require("trouble").next({ skip_groups = true, jump = true })
       end, { silent = true, noremap = true })

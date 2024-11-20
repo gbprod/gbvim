@@ -84,6 +84,7 @@ return {
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       lspconfig.jsonls.setup({
         capabilities = capabilities,
+        root_dir = require("lspconfig.util").root_pattern(".env", ".git"),
       })
 
       -- lua
@@ -118,6 +119,11 @@ return {
       })
 
       lspconfig.bashls.setup({
+        on_attach = utils.on_attach,
+        capabilities = utils.make_capabilities(),
+      })
+
+      lspconfig.pyright.setup({
         on_attach = utils.on_attach,
         capabilities = utils.make_capabilities(),
       })
