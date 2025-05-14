@@ -37,6 +37,7 @@ return {
       require("CopilotChat.integrations.cmp").setup()
       require("CopilotChat").setup()
     end,
+    cmd = "CopilotChat",
     keys = {
       {
         "<leader>gcc",

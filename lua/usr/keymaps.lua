@@ -22,8 +22,6 @@ return function()
 
   vim.keymap.set("n", ")O", "<cmd>pu! _<cr>:']+1<cr>", { noremap = true, desc = "which_key_ignore" })
   vim.keymap.set("n", ")o", "<cmd>pu _<cr>:'[-1<cr>", { noremap = true, desc = "which_key_ignore" })
-  -- vim.keymap.set("n", "<leader>;", "A;<C-c>", { desc = "which_key_ignore" })
-  -- vim.keymap.set("n", "<leader>,", "A,<C-c>", { desc = "which_key_ignore" })
 
   vim.keymap.set("x", "ax", "<Plug>(textobj-comment-a)", {})
   vim.keymap.set("o", "ax", "<Plug>(textobj-comment-a)", {})
