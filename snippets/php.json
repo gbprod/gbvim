@@ -1,0 +1,180 @@
+{
+	"class": {
+		"prefix": "class",
+		"body": [
+			"class ${1:ClassName} ${2:extends ${3:AnotherClass}} ${4:implements ${5:Interface}}",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP class definition"
+	},
+	"cons": {
+		"prefix": "cons",
+		"body": [
+			"${1:public} function __construct(${2:args})",
+			"{",
+			"    $0",
+			"}"
+		],
+		"description": "PHP constructor"
+	},
+	"var": {
+		"prefix": "var",
+		"body": [
+			"var ${1:Type} \\$${2:var} */"
+		],
+		"description": "PHP variable"
+	},
+	"param": {
+		"prefix": "param",
+		"body": [
+			"param ${1:Type} ${2:var} */"
+		],
+		"description": "PHP parameter"
+	},
+	"pub": {
+		"prefix": "pub",
+		"body": [
+			"public function ${1:name}(${2:params}): ${3:void}",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP public function"
+	},
+	"pubs": {
+		"prefix": "pubs",
+		"body": [
+			"public static function ${1:name}(${2:params}): ${3:void}",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP public static function"
+	},
+	"pro": {
+		"prefix": "pro",
+		"body": [
+			"protected function ${1:name}(${2:params}): ${3:void}",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP protected function"
+	},
+	"pri": {
+		"prefix": "pri",
+		"body": [
+			"private function ${1:name}(${2:params}): ${3:void}",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP private function"
+	},
+	"do": {
+		"prefix": "do",
+		"body": [
+			"do {",
+			"    ${0}",
+			"} while (${1:\\$${2:a} <= ${3:10}});"
+		],
+		"description": "PHP do-while loop"
+	},
+	"while": {
+		"prefix": "while",
+		"body": [
+			"while (${1:\\$${2:a} <= ${3:10}}) {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP while loop"
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if (${1:condition}) {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP if statement"
+	},
+	"ifelse": {
+		"prefix": "ifelse",
+		"body": [
+			"if (${1:condition}) {",
+			"    ${2}",
+			"} else {",
+			"    ${3}",
+			"}",
+			"$0"
+		],
+		"description": "PHP if-else statement"
+	},
+	"else": {
+		"prefix": "else",
+		"body": [
+			"else {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP else statement"
+	},
+	"elseif": {
+		"prefix": "elseif",
+		"body": [
+			"elseif (${1:condition}) {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP elseif statement"
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for ($${1:i}=${2:0}; $${1:i} < $3; $${1:i}++) {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP for loop"
+	},
+	"foreach": {
+		"prefix": "foreach",
+		"body": [
+			"foreach ($${1:variable} as $${2:key} ${3:=> $${4:value}}) {",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP foreach loop"
+	},
+	"try": {
+		"prefix": "try",
+		"body": [
+			"try {",
+			"    ${1}",
+			"} catch (${2:\\Throwable} ${3:\\$e}) {",
+			"    ${4://throw \\$e;}",
+			"}"
+		],
+		"description": "PHP try-catch block"
+	},
+	"prophesize": {
+		"prefix": "pro",
+		"body": [
+			"$this->prophesize(${0});"
+		],
+		"description": "PHP prophesize"
+	},
+	"test": {
+		"prefix": "test",
+		"body": [
+			"#[Test]",
+			"public function it_${1:name}(): void",
+			"{",
+			"    ${0}",
+			"}"
+		],
+		"description": "PHP test function"
+	}
+}
