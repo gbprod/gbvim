@@ -1,3 +1,0 @@
-# .gbvim
-
-My neovim setup
