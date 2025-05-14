@@ -1,0 +1,157 @@
+{
+	"#!": {
+		"prefix": "#!",
+		"body": [
+			"#!/bin/sh"
+		],
+		"description": "Shebang for sh"
+	},
+	"s#!": {
+		"prefix": "s#!",
+		"body": [
+			"#!/bin/sh",
+			"set -eu"
+		],
+		"description": "Shebang for sh with set -eu"
+	},
+	"safe": {
+		"prefix": "safe",
+		"body": [
+			"set -eu"
+		],
+		"description": "Set -eu"
+	},
+	"bash": {
+		"prefix": "bash",
+		"body": [
+			"#!/usr/bin/env bash"
+		],
+		"description": "Shebang for bash"
+	},
+	"sbash": {
+		"prefix": "sbash",
+		"body": [
+			"#!/usr/bin/env bash",
+			"set -euo pipefail",
+			"IFS=$'\\n\\t'"
+		],
+		"description": "Shebang for bash with set -euo pipefail and IFS"
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if [ $1 ]; then",
+			"    ${0:${VISUAL}}",
+			"fi"
+		],
+		"description": "If statement"
+	},
+	"elif": {
+		"prefix": "elif",
+		"body": [
+			"elif [ $1 ]; then",
+			"    ${0:${VISUAL}}"
+		],
+		"description": "Elif statement"
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do",
+			"    ${0:${VISUAL}}",
+			"done"
+		],
+		"description": "For loop"
+	},
+	"fori": {
+		"prefix": "fori",
+		"body": [
+			"for ${1:needle} in ${2:haystack} ; do",
+			"    ${0:${VISUAL}}",
+			"done"
+		],
+		"description": "For-in loop"
+	},
+	"wh": {
+		"prefix": "wh",
+		"body": [
+			"while [ $1 ]; do",
+			"    ${0:${VISUAL}}",
+			"done"
+		],
+		"description": "While loop"
+	},
+	"wht": {
+		"prefix": "wht",
+		"body": [
+			"while true; do",
+			"    ${0:${VISUAL}}",
+			"done"
+		],
+		"description": "While true loop"
+	},
+	"until": {
+		"prefix": "until",
+		"body": [
+			"until [ $1 ]; do",
+			"    ${0:${VISUAL}}",
+			"done"
+		],
+		"description": "Until loop"
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case ${1:word} in",
+			"    ${2:pattern})",
+			"        ${0};;",
+			"esac"
+		],
+		"description": "Case statement"
+	},
+	"go": {
+		"prefix": "go",
+		"body": [
+			"while getopts '${1:o}' ${2:opts}",
+			"do",
+			"    case $$2 in",
+			"    ${3:o0})",
+			"        ${0:#statements};;",
+			"    esac",
+			"done"
+		],
+		"description": "Getopts loop"
+	},
+	"sdir": {
+		"prefix": "sdir",
+		"body": [
+			"SCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )\""
+		],
+		"description": "Set SCRIPT_DIR variable to directory script is located"
+	},
+	"root": {
+		"prefix": "root",
+		"body": [
+			"if [ $(id -u) -ne 0 ]; then exec sudo $0; fi"
+		],
+		"description": "Check if script is run as root"
+	},
+	"fun-sh": {
+		"prefix": "fun-sh",
+		"body": [
+			"${1:function_name}() {",
+			"    $0",
+			"}"
+		],
+		"description": "Function definition in sh"
+	},
+	"fun": {
+		"prefix": "fun",
+		"body": [
+			"function ${1:function_name}() {",
+			"    $0",
+			"}"
+		],
+		"description": "Function definition"
+	}
+}

@@ -1,0 +1,6 @@
+{
+  "inspect": {
+      "prefix": "ins",
+      "body": ["print(vim.inspect(${2:var}))$0"]
+  }
+}
