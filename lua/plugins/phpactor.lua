@@ -6,6 +6,7 @@ return {
       "neovim/nvim-lspconfig",
       "folke/noice.nvim",
     },
+    event = "VeryLazy",
     opts = {
       install = {
         check_on_startup = "always",

@@ -21,6 +21,15 @@ return {
         desc = "Flash",
       },
       {
+        "µ",
+        mode = "n",
+        function()
+          require("flash").jump({
+            continue = true,
+          })
+        end,
+      },
+      {
         "M",
         mode = { "n", "o", "x" },
         function()

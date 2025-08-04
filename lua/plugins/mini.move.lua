@@ -6,13 +6,13 @@ return {
       mappings = {
         left = "<c-s-Left>",
         right = "<c-s-Right>",
-        down = "<c-s-Down>",
-        up = "<c-s-Up>",
+        down = "<c-s-j>",
+        up = "<c-s-k>",
 
         line_left = "<c-s-Left>",
         line_right = "<c-s-Right>",
-        line_down = "<c-s-Down>",
-        line_up = "<c-s-Up>",
+        line_down = "<c-s-j>",
+        line_up = "<c-s-k>",
       },
 
       options = {

@@ -35,6 +35,13 @@ return {
         return {}
       end
 
+      local util = require("conform.util")
+      opts.formatters.php_cs_fixer = {
+        env = {
+          PHP_CS_FIXER_IGNORE_ENV = "1",
+        },
+      }
+
       return opts
     end,
   },
