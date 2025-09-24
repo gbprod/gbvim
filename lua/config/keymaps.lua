@@ -115,11 +115,6 @@ end, { desc = "Terminal (Root Dir)" })
 set("t", "<m-z>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 set("t", "<C-o>", [[<C-\><C-n>]], { silent = true })
 
--- set("n", "<PageUp>", "<C-U>", {})
--- set("n", "<PageDown>", "<C-D>", {})
--- set("i", "<PageUp>", "<C-O><C-U>", {})
--- set("i", "<PageDown>", "<C-O><C-D>", {})
-
 set("n", ")O", "<cmd>pu! _<cr>:']+1<cr>", { noremap = true, desc = "Insert empty line before" })
 set("n", ")o", "<cmd>pu _<cr>:'[-1<cr>", { desc = "Insert empty line after" })
 
@@ -132,3 +127,13 @@ _G.bt = function()
   Snacks.debug.backtrace()
 end
 vim.print = _G.dd
+
+set("n", "<PageUp>", "<C-U>", {})
+set("n", "<PageDown>", "<C-D>", {})
+set("i", "<PageUp>", "<C-O><C-U>", {})
+set("i", "<PageDown>", "<C-O><C-D>", {})
+
+set("n", "<Left>", "<Nop>", { silent = true })
+set("n", "<Right>", "<Nop>", { silent = true })
+set("n", "<Up>", "<Nop>", { silent = true })
+set("n", "<Down>", "<Nop>", { silent = true })

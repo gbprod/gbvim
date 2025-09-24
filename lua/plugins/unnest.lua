@@ -1,3 +1,0 @@
-return {
-  { "brianhuster/unnest.nvim" },
-}
