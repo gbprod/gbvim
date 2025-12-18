@@ -13,8 +13,6 @@ set("n", "<C-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 set("n", "<C-Right>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Move Lines
-del("n", "<A-j>")
-del("n", "<A-k>")
 del("i", "<A-j>")
 del("i", "<A-k>")
 del("v", "<A-j>")
@@ -31,15 +29,15 @@ del("n", "<leader>bd")
 del("n", "<leader>bo")
 del("n", "<leader>bD")
 
-set("n", "<A-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-set("n", "<A-j>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-set("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-set("n", "<A-k>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- set("n", "<A-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- set("n", "<A-j>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- set("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- set("n", "<A-k>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
-set("n", "<A-Left>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-set("n", "<A-Right>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-set("n", ")b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-set("n", ")B", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- set("n", "<A-Left>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- set("n", "<A-Right>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- set("n", ")b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- set("n", ")B", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 set("n", '<leader>"', "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 set("n", "<A-q>", function()
   Snacks.bufdelete()
@@ -47,10 +45,6 @@ end, { desc = "Delete Buffer" })
 set("n", "<leader>bdo", function()
   Snacks.bufdelete.other()
 end, { desc = "Delete Other Buffers" })
-
--- -- Clear search with <esc>
--- set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
--- -- set({ "i", "n" }, "<C-l>", "<cmd>noh<cr>", { desc = "Clear hlsearch" })
 
 -- lazy
 del("n", "<leader>l")
