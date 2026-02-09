@@ -62,14 +62,6 @@ return {
         desc = "rest of paragraph",
       },
       {
-        "e",
-        mode = { "o", "x" },
-        function()
-          require("various-textobjs").nearEol()
-        end,
-        desc = "near end of line",
-      },
-      {
         "a_",
         mode = { "o", "x" },
         function()

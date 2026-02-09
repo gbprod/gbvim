@@ -160,7 +160,7 @@
     "description": "PHP try-catch block"
   },
   "prophesize": {
-    "prefix": "pro",
+    "prefix": "proph",
     "body": [
       "$this->prophesize(${0});"
     ],

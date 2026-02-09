@@ -1,12 +1,6 @@
 local del = vim.keymap.del
 local set = vim.keymap.set
 
--- Move to window using the <ctrl> hjkl keys
--- del("n", "<C-h>")
--- del("n", "<C-j>")
--- del("n", "<C-k>")
--- del("n", "<C-l>")
-
 set("n", "<C-Left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 set("n", "<C-Down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 set("n", "<C-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
@@ -57,10 +51,12 @@ set("n", ")q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    vim.diagnostic.jump({
+      count = (next and 1 or -1) * vim.v.count1,
+      severity = severity and vim.diagnostic.severity[severity] or nil,
+      float = false,
+    })
   end
 end
 del("n", "]d")
@@ -131,3 +127,8 @@ set("n", "<Left>", "<Nop>", { silent = true })
 set("n", "<Right>", "<Nop>", { silent = true })
 set("n", "<Up>", "<Nop>", { silent = true })
 set("n", "<Down>", "<Nop>", { silent = true })
+
+Snacks.keymap.set("n", "<Up>", "<Up>", { ft = { "snacks_dashboard", "neo-tree" } })
+Snacks.keymap.set("n", "<Down>", "<Down>", { ft = { "snacks_dashboard", "neo-tree" } })
+Snacks.keymap.set("n", "<Left>", "<Left>", { ft = { "snacks_dashboard", "neo-tree" } })
+Snacks.keymap.set("n", "<Right>", "<Right>", { ft = { "snacks_dashboard", "neo-tree" } })

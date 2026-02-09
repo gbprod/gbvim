@@ -10,7 +10,6 @@ return {
       vim.keymap.set({ "n", "x" }, "#", search.current_word_strict, { noremap = true, silent = true })
       vim.keymap.set({ "n", "x" }, "g*", search.current_word, { noremap = true, silent = true })
       vim.keymap.set({ "n", "x" }, "g#", search.current_word, { noremap = true, silent = true })
-      vim.keymap.set({ "n", "x" }, "g#", search.current_word, { noremap = true, silent = true })
       vim.keymap.set({ "n" }, "§", search.in_place, { noremap = true, silent = true })
     end,
   },

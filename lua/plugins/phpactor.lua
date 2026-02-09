@@ -9,7 +9,7 @@ return {
     event = "VeryLazy",
     opts = {
       install = {
-        check_on_startup = "always",
+        check_on_startup = "daily",
         auto_update = true,
       },
       lspconfig = {

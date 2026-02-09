@@ -1,14 +1,16 @@
 vim.opt.relativenumber = false
 vim.g.lazyvim_picker = "snacks"
+vim.o.scrolloff = 20
+vim.o.sidescrolloff = 20
 
-vim.diagnostic.config({
-  float = {
-    show_header = true,
-    source = true,
-    border = "single",
-    focusable = false,
-  },
-})
+-- vim.diagnostic.config({
+--   float = {
+--     show_header = true,
+--     source = true,
+--     border = "single",
+--     focusable = false,
+--   },
+-- })
 
 vim.cmd([[ let &clipboard = "unnamed,unnamedplus" ]])
 

@@ -25,7 +25,7 @@ return {
       }
 
       opts.formatters.prettier = function()
-        if not vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc") == 1 then
+        if vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc") ~= 1 then
           return {
             "--config",
             vim.fn.expand("~/.config/prettier/.prettierrc"),
@@ -35,7 +35,6 @@ return {
         return {}
       end
 
-      local util = require("conform.util")
       opts.formatters.php_cs_fixer = {
         env = {
           PHP_CS_FIXER_IGNORE_ENV = "1",
