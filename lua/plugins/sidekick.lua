@@ -4,13 +4,6 @@ return {
     keys = {
       { "<tab>", false, mode = { "n" }, expr = true },
       { "<a-b>", LazyVim.cmp.map({ "ai_nes" }, "<a-b>"), mode = { "n" }, expr = true },
-      {
-        "<leader>ac",
-        function()
-          require("sidekick.cli").toggle({ name = "copilot", focus = true })
-        end,
-        desc = "Sidekick Copilot Toggle",
-      },
     },
   },
   {

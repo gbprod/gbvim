@@ -2,6 +2,15 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
+      local parser_config = require("nvim-treesitter.parsers")
+
+      parser_config.gitcommit = {
+        install_info = {
+          url = "~/workspace/tree-sitter-gitcommit",
+          files = { "src/parser.c" },
+        },
+      }
+
       vim.list_extend(opts.ensure_installed, {
         "sql",
         "make",

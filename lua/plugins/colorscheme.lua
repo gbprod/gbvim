@@ -1,6 +1,6 @@
 return {
   {
-    dir = "/home/gbprod/workspace/nord.nvim/",
+    dir = "~/workspace/nord.nvim/",
     lazy = false,
     priority = 1000,
     opts = {
