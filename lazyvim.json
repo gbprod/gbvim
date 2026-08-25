@@ -5,11 +5,12 @@
     "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.editor.dial",
-    "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.git",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.twig",
+    "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],

@@ -11,6 +11,13 @@ return {
         },
       }
 
+      parser_config.twig = {
+        install_info = {
+          url = "~/workspace/tree-sitter-twig",
+          files = { "src/parser.c" },
+        },
+      }
+
       vim.list_extend(opts.ensure_installed, {
         "sql",
         "make",

@@ -19,6 +19,16 @@
     ],
     "description": "PHP constructor"
   },
+  "cons": {
+    "prefix": "invo",
+    "body": [
+      "${1:public} function __invoke(${2:args})",
+      "{",
+      "    $0",
+      "}"
+    ],
+    "description": "PHP constructor"
+  },
   "var": {
     "prefix": "var",
     "body": [

@@ -3,6 +3,10 @@ vim.g.lazyvim_picker = "snacks"
 vim.o.scrolloff = 20
 vim.o.sidescrolloff = 20
 
+-- set upfront: bufferline turning it on mid-startup shifts the view one line,
+-- which scrolloff then turns into a 22-line cursor jump in the startup buffer
+vim.o.showtabline = 2
+
 -- vim.diagnostic.config({
 --   float = {
 --     show_header = true,
